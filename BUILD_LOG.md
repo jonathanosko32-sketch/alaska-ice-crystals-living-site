@@ -160,3 +160,25 @@ Safety rule:
 - This pass changes placement and performance only.
 - No approved image asset was deleted, redrawn or replaced.
 - The exact original sign remains reserved for later insertion.
+
+## 2026-08-08 — A-Frame Proportion and Depth Pass v0.4.3
+
+Status: LIVE DEVELOPMENT BUILD
+
+Reason for change:
+- Phone verification of v0.4.2 showed the page was improved but the A-frame still read too much like a basic ranch gate and the foreground remained visually crowded.
+
+Changed in this build:
+- Raised the A-frame higher in the scene and made the roof pitch steeper.
+- Slimmed the angled beams and reduced the crossbar so the entrance reads cleaner and more engineered.
+- Kept the exact sign space reserved but hid the temporary dashed oval so the center stays visually clean until the approved sign is inserted.
+- Moved the two crystal-light posts farther outward and lower so they frame the approach.
+- Pushed headquarters, SKIE 27 rocks and the campfire deeper/smaller for stronger foreground-to-background separation.
+- Moved all four interactive controls to the outer edges, leaving the center of the property unobstructed.
+- Lowered, narrowed and flattened the turquoise cattle guard so it reads more like part of the roadway.
+- Added `refine-v043.css` as a separate override layer so previous working geometry remains recoverable.
+
+Safety rule:
+- Code-only refinement; no image generation.
+- No approved OSKO asset was deleted, redrawn, replaced or imported from the internet.
+- The original Alaska Ice Crystals entrance sign remains reserved and unchanged.
