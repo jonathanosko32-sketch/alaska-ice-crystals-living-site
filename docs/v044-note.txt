@@ -1,0 +1,1 @@
+v0.4.4 checkpoint marker: upper A-frame timber beams joined by code only. No drawing/image generation.
