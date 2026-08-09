@@ -1,0 +1,35 @@
+/* v0.7.3 crystal-only inset correction.
+   Preserve locked v0.7.2 stone pillars and locked v0.7.1 cattle guard.
+   Move only the two crystal lamps inward onto their pillar caps, make them
+   slightly smaller, and tighten the glow so they do not clip at phone edges. */
+
+.gate-pillar-left::after{left:42%}
+.gate-pillar-right::after{left:58%}
+
+.gate-pillar::after{
+  top:-34px;
+  width:20px;
+  height:25px;
+  box-shadow:
+    0 0 6px rgba(103,241,255,.92),
+    0 0 12px rgba(56,218,255,.62),
+    0 0 20px rgba(102,82,255,.30),
+    inset 0 0 7px rgba(255,255,255,.72);
+}
+
+@media(max-width:520px){
+  .gate-pillar-left::after{left:40%}
+  .gate-pillar-right::after{left:60%}
+  .gate-pillar::after{
+    top:-30px;
+    width:18px;
+    height:22px;
+    box-shadow:
+      0 0 5px rgba(103,241,255,.9),
+      0 0 10px rgba(56,218,255,.56),
+      0 0 16px rgba(102,82,255,.26),
+      inset 0 0 6px rgba(255,255,255,.70);
+  }
+}
+
+.build-stamp::after{content:"AIC Living Site • v0.7.3"}
