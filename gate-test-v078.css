@@ -1,16 +1,15 @@
-/* v0.8.0 gate placement correction.
-   Preserve approved pillars/crystals, locked v0.7.1 cattle guard, timber entrance,
+/* v0.8.1 gate placement correction.
+   Preserve approved pillar bodies, locked v0.7.1 cattle guard, timber entrance,
    hanging sign, road, controls, and look-around viewer.
-   Move the WHOLE professional double-gate assembly lower as one unit so it sits
-   centered between the stone pillars, close to the cattle guard, with a small
-   believable swing-gate clearance above the guard. Gate geometry and styling
-   remain unchanged in this pass. */
+   Move the WHOLE professional double-gate assembly slightly lower so it sits
+   inside the stone pillars and closer to the cattle guard with a small believable
+   swing-gate clearance. Gate geometry and styling remain unchanged. */
 
 .reference-layout::before{
   content:"";
   position:absolute;
   left:50%;
-  bottom:18.3%;
+  bottom:17.7%;
   width:min(69vw,398px);
   height:106px;
   transform:translateX(-50%);
@@ -38,7 +37,7 @@
   content:"AURORA";
   position:absolute;
   left:50%;
-  bottom:22.0%;
+  bottom:21.4%;
   width:62px;
   height:62px;
   transform:translateX(-50%) rotate(45deg);
@@ -68,14 +67,14 @@
 
 @media(max-width:520px){
   .reference-layout::before{
-    bottom:18.0%;
+    bottom:17.4%;
     width:68vw;
     height:96px;
     border-width:2px;
     border-bottom-width:4px;
   }
   .reference-layout::after{
-    bottom:21.6%;
+    bottom:21.0%;
     width:54px;
     height:54px;
     line-height:54px;
@@ -83,4 +82,4 @@
   }
 }
 
-.build-stamp::after{content:"AIC Living Site • v0.8.0"}
+.build-stamp::after{content:"AIC Living Site • v0.8.1"}
