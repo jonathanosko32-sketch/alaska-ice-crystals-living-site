@@ -1,0 +1,41 @@
+/* v0.6.7 first crystal-light pass.
+   Code only. Preserve v0.6.6 timber, sign, chains, pillars, cattle guard,
+   road, Headquarters, controls and property depth.
+   Add only small symmetrical crystal lamps to the two stone pillar caps. */
+
+.gate-pillar::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:-34px;
+  width:22px;
+  height:28px;
+  transform:translateX(-50%) rotate(45deg);
+  border:1px solid rgba(188,248,255,.95);
+  border-radius:4px;
+  background:
+    linear-gradient(135deg,rgba(238,255,255,.96) 0 13%,rgba(90,238,255,.9) 14% 44%,rgba(40,147,255,.82) 45% 68%,rgba(100,76,255,.72) 69% 100%);
+  box-shadow:
+    0 0 8px rgba(89,236,255,.9),
+    0 0 18px rgba(51,208,255,.64),
+    0 0 30px rgba(98,82,255,.34),
+    inset 0 0 8px rgba(255,255,255,.66);
+}
+
+/* Tiny base between cap and crystal, keeping the light physically grounded. */
+.gate-pillar-left{
+  filter:drop-shadow(0 0 1px rgba(95,224,255,.22));
+}
+.gate-pillar-right{
+  filter:drop-shadow(0 0 1px rgba(95,224,255,.22));
+}
+
+@media(max-width:520px){
+  .gate-pillar::after{
+    top:-30px;
+    width:19px;
+    height:24px;
+  }
+}
+
+.build-stamp::after{content:"AIC Living Site • v0.6.7"}
