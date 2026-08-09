@@ -1,0 +1,60 @@
+/* v0.5.4 Headquarters destination emphasis.
+   Code-only. Preserve the approved entrance, sign, chains, timber, road, cattle guard, and v0.5.2 phone controls.
+   This pass strengthens only the far-end Headquarters destination so the road has a clearer visual target. */
+
+/* Keep Headquarters distant, but make the destination read more clearly through the gate. */
+.headquarters-shell{
+  top:44.8%;
+  transform:translateX(-50%) scale(.38);
+  opacity:.66;
+  filter:
+    drop-shadow(0 7px 12px rgba(0,0,0,.40))
+    drop-shadow(0 0 14px rgba(84,224,255,.18));
+}
+.headquarters-shell::before{
+  width:235px;
+  height:82px;
+  background:radial-gradient(ellipse,
+    rgba(86,231,255,.20),
+    rgba(66,185,220,.08) 44%,
+    transparent 72%);
+}
+
+/* Give the distant Headquarters shell a little more readable face without turning it into a foreground object. */
+.hq-body{
+  background:linear-gradient(180deg,rgba(89,58,34,.92),rgba(38,27,20,.95));
+  border-color:rgba(107,232,255,.38);
+  box-shadow:0 0 10px rgba(77,222,255,.08);
+}
+.hq-roof{
+  background:linear-gradient(180deg,#795135,#3f2b1e);
+}
+.hq-window{
+  background:rgba(111,229,255,.28);
+  border-color:rgba(142,240,255,.42);
+  box-shadow:0 0 7px rgba(84,218,255,.22);
+}
+
+/* Keep the roadway connection subtle and centered on the Headquarters destination. */
+.road-glow{
+  width:7.8%;
+  height:72%;
+  opacity:.27;
+}
+
+/* Do not let side activity creep back into the road. */
+.skie-rock-display{left:12%;}
+.campfire-zone{left:72%;}
+
+/* v0.5.4 build stamp. */
+.build-stamp::after{content:"AIC Living Site • v0.5.4"}
+
+@media(max-width:520px){
+  .headquarters-shell{
+    top:45.4%;
+    transform:translateX(-50%) scale(.34);
+    opacity:.63;
+  }
+  .headquarters-shell::before{width:205px;height:72px}
+  .road-glow{width:7.4%;height:70%;opacity:.25}
+}
