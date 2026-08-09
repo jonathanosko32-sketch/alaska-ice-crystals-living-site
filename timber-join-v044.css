@@ -1,0 +1,68 @@
+/* v0.4.4 timber join correction.
+   Code-only geometry fix. No image generation and no approved OSKO asset replacement. */
+
+/* Make the two roof timbers physically meet and overlap at the center peak. */
+.timber-entrance{
+  overflow:visible;
+}
+.timber-beam{
+  top:30px;
+  width:51.5%;
+  height:20px;
+  border-radius:10px;
+}
+.beam-left{
+  left:1.5%;
+  transform:rotate(23deg);
+  transform-origin:100% 50%;
+}
+.beam-right{
+  right:1.5%;
+  transform:rotate(-23deg);
+  transform-origin:0 50%;
+}
+
+/* Small center join covers any sub-pixel seam so the frame reads as one structure. */
+.peak-cap{
+  top:56px;
+  left:50%;
+  width:26px;
+  height:22px;
+  transform:translateX(-50%) rotate(45deg);
+  border-radius:5px;
+  opacity:.98;
+  z-index:4;
+}
+
+/* Keep the hanging hardware centered under the joined timber peak. */
+.timber-crossbar{
+  top:120px;
+}
+.sign-chain{
+  top:128px;
+}
+
+@media(max-width:520px){
+  .timber-beam{
+    top:31px;
+    width:52%;
+    height:18px;
+  }
+  .beam-left{
+    left:1%;
+    transform:rotate(24deg);
+    transform-origin:100% 50%;
+  }
+  .beam-right{
+    right:1%;
+    transform:rotate(-24deg);
+    transform-origin:0 50%;
+  }
+  .peak-cap{
+    top:57px;
+    width:24px;
+    height:20px;
+  }
+  .timber-crossbar{top:119px}
+  .sign-chain{top:127px}
+}
