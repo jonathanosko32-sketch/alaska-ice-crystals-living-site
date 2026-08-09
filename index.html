@@ -39,7 +39,6 @@
           <div class="mountain mountain-front"></div>
         </div>
 
-        <!-- Legacy coded gate kept underneath for safe rollback. -->
         <div class="gate-frame" aria-hidden="true">
           <div class="gate-post left"></div>
           <div class="gate-post right"></div>
@@ -47,24 +46,34 @@
           <div class="gate-sign">ALASKA ICE CRYSTALS</div>
         </div>
 
-        <!-- v0.4.0 reference-layout layer. These are coded placement guides,
-             not replacements for the approved OSKO image assets. -->
         <div class="reference-layout" aria-hidden="true">
           <div class="timber-entrance">
-            <div class="timber-post timber-left"><span class="perch-label">EAGLE</span></div>
-            <div class="timber-post timber-right"><span class="perch-label">EAGLE</span></div>
+            <div class="timber-post timber-left"><span class="eagle-perch"></span></div>
+            <div class="timber-post timber-right"><span class="eagle-perch"></span></div>
             <div class="timber-beam beam-left"></div>
             <div class="timber-beam beam-right"></div>
-            <div class="timber-peak"></div>
-            <div class="entrance-sign">ALASKA ICE CRYSTALS</div>
+            <div class="timber-crossbar"></div>
+            <div class="peak-cap"></div>
+            <div class="sign-chain chain-left"></div>
+            <div class="sign-chain chain-right"></div>
+            <div class="entrance-sign">
+              <span class="sign-small">ORIGINAL LOGO</span>
+              <strong>ALASKA</strong>
+              <span>ICE CRYSTALS</span>
+            </div>
           </div>
 
-          <div class="fence-run fence-left">
-            <i></i><i></i><i></i>
+          <div class="light-post light-post-left">
+            <div class="concrete-column"></div>
+            <div class="crystal-lamp"></div>
           </div>
-          <div class="fence-run fence-right">
-            <i></i><i></i><i></i>
+          <div class="light-post light-post-right">
+            <div class="concrete-column"></div>
+            <div class="crystal-lamp"></div>
           </div>
+
+          <div class="fence-run fence-left"><i></i><i></i><i></i></div>
+          <div class="fence-run fence-right"><i></i><i></i><i></i></div>
 
           <div class="headquarters-shell">
             <div class="hq-roof"></div>
@@ -78,7 +87,7 @@
           <div class="skie-rock-display">
             <div class="rock-row rocks-back"><i></i><i></i><i></i><i></i><i></i></div>
             <div class="rock-row rocks-front"><i></i><i></i><i></i><i></i></div>
-            <div class="truck-reserve">TRUCK</div>
+            <div class="truck-reserve">OSKO TRUCK</div>
             <div class="skie-screen">SKIE 27</div>
           </div>
 
@@ -102,25 +111,10 @@
         <div class="road" aria-hidden="true"></div>
         <div class="road-glow" aria-hidden="true"></div>
 
-        <button class="world-node node-skie" data-place="SKIE 27" data-focus="skie" type="button">
-          <span class="node-dot"></span>
-          <span>SKIE 27</span>
-        </button>
-
-        <button class="world-node node-hq" data-place="Headquarters" data-focus="hq" type="button">
-          <span class="node-dot"></span>
-          <span>Headquarters</span>
-        </button>
-
-        <button class="world-node node-aurora" data-place="Aurora" data-focus="aurora" type="button">
-          <span class="node-dot"></span>
-          <span>Aurora</span>
-        </button>
-
-        <button class="world-node node-workshop" data-place="Workshop" data-focus="workshop" type="button">
-          <span class="node-dot"></span>
-          <span>Workshop</span>
-        </button>
+        <button class="world-node node-skie" data-place="SKIE 27" data-focus="skie" type="button"><span class="node-dot"></span><span>SKIE 27</span></button>
+        <button class="world-node node-hq" data-place="Headquarters" data-focus="hq" type="button"><span class="node-dot"></span><span>Headquarters</span></button>
+        <button class="world-node node-aurora" data-place="Aurora" data-focus="aurora" type="button"><span class="node-dot"></span><span>Aurora</span></button>
+        <button class="world-node node-workshop" data-place="Workshop" data-focus="workshop" type="button"><span class="node-dot"></span><span>Workshop</span></button>
       </div>
 
       <div class="interaction-panel" id="interactionPanel" hidden>
@@ -133,7 +127,7 @@
       <button class="back-button" id="backButton" type="button">Back to Entrance</button>
     </section>
 
-    <footer class="build-stamp">AIC Living Site • v0.4.0</footer>
+    <footer class="build-stamp">AIC Living Site • v0.4.1</footer>
   </main>
 
   <script src="app.js"></script>
