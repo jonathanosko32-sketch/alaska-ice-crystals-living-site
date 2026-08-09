@@ -1,0 +1,92 @@
+/* v0.7.8 professional double-gate concept test.
+   Code only. Preserve the approved v0.7.7 pillar/crystal placement and the
+   locked v0.7.1 cattle guard, timber entrance, sign, road and controls.
+   This pass adds a closed professional ranch/security gate as a visual test:
+   arched top, strong vertical bars, center seam, heavy lower rail, and a
+   faceted Alaska Ice Crystals diamond at the center. Aurora is represented by
+   name in the center emblem for this first coded test so no inaccurate tail or
+   generic dog silhouette is introduced. */
+
+.reference-layout::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:23.4%;
+  width:min(69vw,398px);
+  height:106px;
+  transform:translateX(-50%);
+  z-index:6;
+  pointer-events:none;
+  border:3px solid rgba(126,245,255,.95);
+  border-bottom-width:5px;
+  border-radius:48% 48% 7px 7px / 34% 34% 7px 7px;
+  background:
+    linear-gradient(90deg,transparent 49.35%,rgba(174,251,255,.95) 49.35% 50.65%,transparent 50.65%),
+    linear-gradient(180deg,transparent 30%,rgba(95,235,255,.88) 30% 33%,transparent 33% 76%,rgba(83,221,245,.9) 76% 81%,transparent 81%),
+    repeating-linear-gradient(90deg,
+      transparent 0 8.8%,
+      rgba(104,235,252,.88) 8.8% 9.8%,
+      rgba(213,253,255,.42) 9.8% 10.3%,
+      transparent 10.3% 17.5%),
+    linear-gradient(180deg,rgba(13,71,90,.28),rgba(4,28,41,.55));
+  box-shadow:
+    0 0 10px rgba(90,235,255,.55),
+    0 0 24px rgba(57,177,255,.24),
+    inset 0 0 16px rgba(115,238,255,.13);
+}
+
+.reference-layout::after{
+  content:"AURORA";
+  position:absolute;
+  left:50%;
+  bottom:27.1%;
+  width:62px;
+  height:62px;
+  transform:translateX(-50%) rotate(45deg);
+  z-index:7;
+  pointer-events:none;
+  display:grid;
+  place-items:center;
+  color:#06141d;
+  font-size:.54rem;
+  font-weight:1000;
+  letter-spacing:.08em;
+  text-shadow:0 1px 0 rgba(255,255,255,.45);
+  border:2px solid rgba(225,255,255,.98);
+  border-radius:8px;
+  background:
+    linear-gradient(135deg,rgba(245,255,255,.98) 0 14%,transparent 14% 36%,rgba(55,225,255,.82) 36% 56%,transparent 56% 72%,rgba(98,91,255,.86) 72% 100%),
+    linear-gradient(45deg,#16e9f4 0 27%,#79f8ff 27% 50%,#249bff 50% 73%,#725aff 73% 100%);
+  box-shadow:
+    0 0 8px rgba(184,253,255,.95),
+    0 0 20px rgba(57,224,255,.75),
+    0 0 32px rgba(94,83,255,.34),
+    inset 0 0 12px rgba(255,255,255,.58);
+}
+
+/* Keep the word upright while the crystal body is diamond-shaped. */
+.reference-layout::after{
+  line-height:62px;
+  text-align:center;
+  transform:translateX(-50%) rotate(45deg);
+  text-indent:-1px;
+}
+
+@media(max-width:520px){
+  .reference-layout::before{
+    bottom:23.1%;
+    width:68vw;
+    height:96px;
+    border-width:2px;
+    border-bottom-width:4px;
+  }
+  .reference-layout::after{
+    bottom:26.7%;
+    width:54px;
+    height:54px;
+    line-height:54px;
+    font-size:.47rem;
+  }
+}
+
+.build-stamp::after{content:"AIC Living Site • v0.7.8"}
