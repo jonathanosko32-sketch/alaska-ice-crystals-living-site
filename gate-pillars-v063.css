@@ -1,0 +1,58 @@
+/* v0.6.3 entrance pillar correction.
+   Code only. Preserve the approved v0.6.1 timber structure, hanging chains,
+   entrance sign, road, Headquarters depth, far-property layout and controls.
+   Correct v0.6.2 by removing pseudo-element masonry, using explicit left/right
+   ground pillars outside the timber posts, and tightening the cattle guard to
+   the actual vehicle opening. */
+
+/* Disable the v0.6.2 pseudo pillars so no masonry can appear in the center. */
+.timber-entrance::before,
+.timber-entrance::after{
+  content:none !important;
+  display:none !important;
+}
+
+/* Explicit masonry pillars: outside the timber posts, grounded at the base. */
+.gate-pillar{
+  position:absolute;
+  bottom:-3px;
+  width:48px;
+  height:82px;
+  border-radius:7px 7px 4px 4px;
+  border:1px solid rgba(150,190,202,.28);
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.07),transparent 24%,rgba(0,0,0,.18) 80%),
+    repeating-linear-gradient(0deg,#555b60 0 13px,#32373c 13px 16px),
+    repeating-linear-gradient(90deg,transparent 0 21px,rgba(16,20,24,.55) 21px 23px);
+  box-shadow:0 8px 16px rgba(0,0,0,.4),inset 0 0 10px rgba(209,237,244,.06);
+  z-index:1;
+}
+.gate-pillar-left{left:-5.8%}
+.gate-pillar-right{right:-5.8%}
+
+/* Keep the timber entrance visually in front of the masonry. */
+.timber-post,
+.timber-beam,
+.timber-crossbar,
+.sign-chain{z-index:2}
+.entrance-sign{z-index:3}
+.peak-cap{z-index:4}
+
+/* Cattle guard belongs inside the two timber posts, centered on the road. */
+.cattle-guard{
+  left:50%;
+  width:min(82vw,500px);
+  transform:translateX(-50%) perspective(300px) rotateX(61deg);
+}
+
+@media(max-width:520px){
+  .gate-pillar{
+    width:42px;
+    height:74px;
+  }
+  .gate-pillar-left{left:-4.8%}
+  .gate-pillar-right{right:-4.8%}
+  .cattle-guard{width:80vw}
+}
+
+.build-stamp::after{content:"AIC Living Site • v0.6.3"}
