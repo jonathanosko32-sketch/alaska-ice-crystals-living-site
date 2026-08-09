@@ -1,0 +1,23 @@
+/* v0.7.6 crystal recenter pass.
+   Code only. Preserve v0.7.5 pillar placement and the locked v0.7.1 cattle guard.
+   Move only the two visible crystal lamps so each sits centered over its finished
+   stone pillar cap. Keep crystal size, glow, pillar geometry, timber, sign, road,
+   buttons and all other world geometry unchanged. */
+
+.light-post-left .crystal-lamp{
+  left:calc(50% - 16px);
+}
+.light-post-right .crystal-lamp{
+  left:calc(50% + 16px);
+}
+
+@media(max-width:520px){
+  .light-post-left .crystal-lamp{
+    left:calc(50% - 16px);
+  }
+  .light-post-right .crystal-lamp{
+    left:calc(50% + 16px);
+  }
+}
+
+.build-stamp::after{content:"AIC Living Site • v0.7.6"}
