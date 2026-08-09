@@ -1,0 +1,14 @@
+/* v0.7.5 whole-pillar inward placement pass.
+   Code only. Preserve locked v0.7.1 cattle guard and all timber/sign/road/world geometry.
+   Move both complete stone pillars inward as units so their inside edges meet the
+   outside edges of the cattle guard. Crystals move with their pillars. */
+
+.gate-pillar-left{left:0.5%}
+.gate-pillar-right{right:0.5%}
+
+@media(max-width:520px){
+  .gate-pillar-left{left:1.5%}
+  .gate-pillar-right{right:1.5%}
+}
+
+.build-stamp::after{content:"AIC Living Site • v0.7.5"}
