@@ -182,3 +182,22 @@ Safety rule:
 - Code-only refinement; no image generation.
 - No approved OSKO asset was deleted, redrawn, replaced or imported from the internet.
 - The original Alaska Ice Crystals entrance sign remains reserved and unchanged.
+
+## 2026-08-08 — Timber Peak Join v0.4.4
+
+Status: LIVE DEVELOPMENT BUILD
+
+Reason for change:
+- Phone verification of v0.4.3 showed the upper timber beams were visually separated at the A-frame peak.
+
+Changed in this build:
+- Extended both upper timber beams toward the center.
+- Changed each beam transform origin to its inside end so both members meet at the peak instead of rotating away from one another.
+- Added a small coded center join/cap over the meeting point to prevent a visible seam on phone rendering.
+- Kept the hanging crossbar and sign-chain positions centered under the repaired peak.
+- Added `timber-join-v044.css` as a separate override so the v0.4.3 geometry remains recoverable.
+
+Safety rule:
+- Code only; no drawing or image generation.
+- No other property element was redesigned in this pass.
+- The approved Alaska Ice Crystals sign space remains reserved and unchanged.
