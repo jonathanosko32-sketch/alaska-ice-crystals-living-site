@@ -138,3 +138,25 @@ Important:
 - The coded oval is only a size/placement reserve for the original Alaska Ice Crystals sign; it is not a redesign of the approved sign.
 - The crystal lamps are structural lighting placeholders until the exact approved entrance-light assets are inserted.
 - Existing approved assets and protected checkpoints remain untouched.
+
+## 2026-08-08 — Phone Cleanup and Performance Pass v0.4.2
+
+Status: LIVE DEVELOPMENT BUILD
+
+Reason for change:
+- Phone verification of v0.4.1 showed the entrance was too crowded and interaction movement felt slow.
+
+Changed in this build:
+- Raised and opened the A-frame composition so the entrance reads more clearly on a phone screen.
+- Kept the center reserved for the exact approved Alaska Ice Crystals oval sign instead of showing a competing coded logo.
+- Pushed headquarters, SKIE 27 rocks and campfire deeper/smaller so the gate remains the main visual focus.
+- Moved the interactive SKIE 27, Headquarters, Workshop and Aurora controls away from the central sign area.
+- Reduced expensive blur/backdrop effects on the controls.
+- Reduced/simplified several continuous animations on mobile.
+- Shortened camera travel from 900ms to 450ms and exit transition from 500ms to 300ms.
+- Added `cleanup-v042.css` as a separate override file so the v0.4.1 structural CSS remains recoverable and easy to compare.
+
+Safety rule:
+- This pass changes placement and performance only.
+- No approved image asset was deleted, redrawn or replaced.
+- The exact original sign remains reserved for later insertion.
