@@ -1,0 +1,83 @@
+/* v0.5.7 far-property roadway split and yard opening.
+   Code-only. Preserve approved entrance, timber, chains, sign, road, cattle guard,
+   Headquarters destination, phone controls, and v0.5.6 far-property structures.
+   This pass suggests two distant branch drives while the main road still leads to Headquarters. */
+
+/* Use the existing road glow as the anchor for two faint branch drives.
+   They begin only in the far half of the property so the gate approach remains uncluttered. */
+.road-glow::before,
+.road-glow::after{
+  content:"";
+  position:absolute;
+  top:29%;
+  width:150px;
+  height:74px;
+  opacity:.28;
+  pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(67,105,121,.28),rgba(11,37,50,.58));
+  border-top:1px solid rgba(117,232,255,.12);
+  box-shadow:inset 0 0 20px rgba(95,231,255,.05),0 0 10px rgba(67,220,255,.04);
+  clip-path:polygon(42% 0,58% 0,100% 100%,0 100%);
+  transform-origin:50% 0;
+}
+
+/* Left branch: opens toward the SKIE / Aurora side yard while staying visually secondary. */
+.road-glow::before{
+  right:52%;
+  transform:rotate(24deg) skewX(-4deg) scaleX(.88);
+}
+
+/* Right branch: slightly clearer because it points toward the Workshop property area. */
+.road-glow::after{
+  left:52%;
+  opacity:.34;
+  transform:rotate(-24deg) skewX(4deg) scaleX(.92);
+}
+
+/* Faint yard pads at the far ends of the branch drives make the property feel wider. */
+.reference-layout .animal-left,
+.reference-layout .animal-right{
+  display:block;
+  top:50.5%;
+  width:84px;
+  height:30px;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  color:transparent;
+  background:radial-gradient(ellipse,rgba(61,104,121,.18),rgba(16,42,55,.11) 58%,transparent 74%);
+  box-shadow:0 0 12px rgba(78,222,255,.035);
+  opacity:.48;
+}
+.reference-layout .animal-left{left:17%}
+.reference-layout .animal-right{right:16%}
+
+/* Keep Headquarters as the strongest far destination and keep the main center guide continuous. */
+.headquarters-shell{opacity:.67}
+.road-glow{overflow:visible}
+
+/* v0.5.7 build stamp. */
+.build-stamp::after{content:"AIC Living Site • v0.5.7"}
+
+@media(max-width:520px){
+  .road-glow::before,
+  .road-glow::after{
+    top:31%;
+    width:118px;
+    height:62px;
+    opacity:.22;
+  }
+  .road-glow::before{right:51%;transform:rotate(23deg) skewX(-3deg) scaleX(.82)}
+  .road-glow::after{left:51%;opacity:.27;transform:rotate(-23deg) skewX(3deg) scaleX(.86)}
+  .reference-layout .animal-left,
+  .reference-layout .animal-right{
+    display:block;
+    top:51.2%;
+    width:64px;
+    height:24px;
+    opacity:.38;
+  }
+  .reference-layout .animal-left{left:15%}
+  .reference-layout .animal-right{right:14%}
+}
