@@ -1,0 +1,70 @@
+/* v0.7.2 stone-pillar + crystal-light finishing pass.
+   Code only. Preserve locked v0.7.1 cattle guard, timber, chains, sign,
+   road, controls and property depth. Finish only the two outside masonry
+   pillars and their crystal lights so they read clearly on the phone view. */
+
+.gate-pillar{
+  width:60px;
+  height:102px;
+  border-color:rgba(188,221,230,.46);
+  background:
+    linear-gradient(90deg,rgba(243,253,255,.16) 0 12%,transparent 28%,rgba(0,0,0,.26) 82% 100%),
+    repeating-linear-gradient(0deg,#616970 0 14px,#383f45 14px 17px),
+    repeating-linear-gradient(90deg,transparent 0 26px,rgba(15,20,24,.62) 26px 29px);
+  box-shadow:
+    0 10px 20px rgba(0,0,0,.48),
+    0 0 10px rgba(83,214,236,.10),
+    inset 8px 0 11px rgba(231,250,253,.07),
+    inset -10px 0 13px rgba(0,0,0,.24);
+}
+
+.gate-pillar::before{
+  left:-6px;
+  right:-6px;
+  top:-9px;
+  height:13px;
+  border-color:rgba(196,226,234,.42);
+  background:linear-gradient(180deg,#788188,#454c52);
+  box-shadow:
+    0 3px 8px rgba(0,0,0,.38),
+    inset 0 1px 2px rgba(255,255,255,.16);
+}
+
+/* Keep each crystal on the exposed outside half of its pillar so the timber
+   post does not visually bury the lamp. */
+.gate-pillar-left::after{left:28%}
+.gate-pillar-right::after{left:72%}
+
+.gate-pillar::after{
+  top:-38px;
+  width:24px;
+  height:30px;
+  border:1px solid rgba(217,252,255,.98);
+  background:
+    linear-gradient(135deg,
+      rgba(248,255,255,.98) 0 12%,
+      rgba(99,243,255,.96) 13% 42%,
+      rgba(44,164,255,.90) 43% 67%,
+      rgba(92,72,255,.80) 68% 100%);
+  box-shadow:
+    0 0 9px rgba(103,241,255,.96),
+    0 0 20px rgba(56,218,255,.76),
+    0 0 34px rgba(102,82,255,.42),
+    inset 0 0 9px rgba(255,255,255,.78);
+}
+
+@media(max-width:520px){
+  .gate-pillar{
+    width:52px;
+    height:94px;
+  }
+  .gate-pillar::after{
+    top:-34px;
+    width:21px;
+    height:26px;
+  }
+  .gate-pillar-left::after{left:24%}
+  .gate-pillar-right::after{left:76%}
+}
+
+.build-stamp::after{content:"AIC Living Site • v0.7.2"}
