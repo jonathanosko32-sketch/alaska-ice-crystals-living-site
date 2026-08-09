@@ -1,0 +1,16 @@
+/* v0.7.1 cattle-guard midpoint correction.
+   Code only. Preserve approved left/right alignment, width and perspective.
+   v0.6.8 was slightly too far forward; v0.7.0 was slightly too far back.
+   Move only the cattle guard to the midpoint between those two positions. */
+
+.cattle-guard{
+  bottom:20.5%;
+}
+
+@media(max-width:520px){
+  .cattle-guard{
+    bottom:20%;
+  }
+}
+
+.build-stamp::after{content:"AIC Living Site • v0.7.1"}
