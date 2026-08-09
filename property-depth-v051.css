@@ -1,0 +1,84 @@
+/* v0.5.1 road opening + depth cleanup.
+   Code-only. Preserve the approved v0.4.9 entrance/sign and v0.5.0 road foundation.
+   This pass opens the center of the property and pushes placeholders deeper/outward. */
+
+/* Keep the approved timber entrance and sign visually in front. */
+.timber-entrance{z-index:8}
+.entrance-sign{z-index:9}
+
+/* Open the roadway: slightly wider foreground, narrower distant throat, clearer snow shoulders. */
+.road{
+  bottom:-11%;
+  width:96%;
+  height:69%;
+  clip-path:polygon(45.5% 0,54.5% 0,99% 100%,1% 100%);
+  background:
+    linear-gradient(90deg,
+      rgba(230,248,255,.18) 0 1.35%,
+      transparent 1.35% 49.1%,
+      rgba(113,235,255,.18) 49.45% 50.55%,
+      transparent 50.9% 98.65%,
+      rgba(230,248,255,.18) 98.65% 100%),
+    linear-gradient(180deg,rgba(39,65,80,.26),rgba(7,27,40,.94));
+}
+.road::before,.road::after{width:16%;opacity:.82}
+.road-glow{bottom:-5%;width:9%;height:66%;opacity:.28;filter:blur(10px)}
+
+/* Headquarters becomes a distant destination instead of sitting inside the sign. */
+.headquarters-shell{
+  z-index:1;
+  top:48.5%;
+  transform:translateX(-50%) scale(.34);
+  opacity:.42;
+}
+.headquarters-shell::after{opacity:.45}
+
+/* Move the SKIE reserve outward and slightly deeper so the road center stays open. */
+.skie-rock-display{
+  z-index:2;
+  left:15%;
+  top:75.5%;
+  transform:translateX(-50%) scale(.50);
+  opacity:.78;
+}
+
+/* Keep the gathering area off the travel lane. */
+.campfire-zone{
+  z-index:2;
+  left:68%;
+  top:76%;
+  transform:translateX(-50%) scale(.52);
+}
+
+/* Pull fence runs toward the outer property edges and reduce foreground clutter. */
+.fence-left{left:-4%}
+.fence-right{right:-4%}
+.fence-run{width:20%;opacity:.40}
+
+/* Controls stay usable but hug the edges instead of covering the property. */
+.world-node{padding:5px 7px;font-size:.60rem;opacity:.92}
+.node-hq{left:.5%;bottom:31%}
+.node-skie{left:.5%;bottom:23%}
+.node-workshop{right:.5%;bottom:31%}
+.node-aurora{right:.5%;bottom:23%}
+
+/* Preserve the cattle guard and sign exactly; only keep the guard aligned to the widened road. */
+.cattle-guard{bottom:5.2%}
+
+/* v0.5.1 build stamp. */
+.build-stamp::after{content:"AIC Living Site • v0.5.1"}
+
+@media(max-width:520px){
+  .road{bottom:-10%;width:100%;height:69%;clip-path:polygon(46% 0,54% 0,100% 100%,0 100%)}
+  .road::before,.road::after{width:15%}
+  .road-glow{bottom:-4%;width:8%;height:64%}
+  .headquarters-shell{top:49.5%;transform:translateX(-50%) scale(.30);opacity:.38}
+  .skie-rock-display{left:13%;top:76%;transform:translateX(-50%) scale(.46)}
+  .campfire-zone{left:69%;top:77%;transform:translateX(-50%) scale(.48)}
+  .fence-run{width:18%;opacity:.34}
+  .world-node{font-size:.58rem;padding:5px 6px}
+  .node-hq{left:0;bottom:30%}
+  .node-skie{left:0;bottom:22%}
+  .node-workshop{right:0;bottom:30%}
+  .node-aurora{right:0;bottom:22%}
+}
