@@ -1,0 +1,88 @@
+/* v0.5.5 far-property side structure pass.
+   Code-only. Preserve the approved entrance, sign, chains, timber, road, cattle guard,
+   Headquarters destination, and phone controls.
+   This pass adds only subtle distant side structure so Headquarters no longer sits alone. */
+
+/* First distant property cluster: left side of the Headquarters approach.
+   Kept low-contrast so it reads as depth, not as a new foreground object. */
+.reference-layout::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  left:27%;
+  top:47.2%;
+  width:94px;
+  height:48px;
+  transform:translateX(-50%) perspective(180px) rotateY(8deg) scale(.72);
+  transform-origin:center bottom;
+  opacity:.34;
+  background:
+    linear-gradient(135deg,transparent 0 36%,rgba(77,52,35,.72) 37% 62%,transparent 63%) 8px 0/46px 25px no-repeat,
+    linear-gradient(45deg,transparent 0 36%,rgba(69,47,32,.65) 37% 62%,transparent 63%) 46px 4px/42px 23px no-repeat,
+    linear-gradient(180deg,rgba(43,31,24,.76),rgba(18,27,31,.82)) 10px 20px/38px 22px no-repeat,
+    linear-gradient(180deg,rgba(47,33,24,.70),rgba(18,27,31,.78)) 50px 22px/34px 20px no-repeat;
+  filter:drop-shadow(0 4px 6px rgba(0,0,0,.25)) drop-shadow(0 0 7px rgba(79,220,255,.06));
+  pointer-events:none;
+}
+
+/* First Workshop-side property cluster on the right. */
+.reference-layout::after{
+  content:"";
+  position:absolute;
+  z-index:0;
+  right:24%;
+  top:47.6%;
+  width:104px;
+  height:50px;
+  transform:translateX(50%) perspective(180px) rotateY(-8deg) scale(.74);
+  transform-origin:center bottom;
+  opacity:.36;
+  background:
+    linear-gradient(135deg,transparent 0 36%,rgba(77,52,35,.74) 37% 62%,transparent 63%) 6px 0/48px 26px no-repeat,
+    linear-gradient(45deg,transparent 0 36%,rgba(72,49,33,.68) 37% 62%,transparent 63%) 52px 5px/44px 23px no-repeat,
+    linear-gradient(180deg,rgba(45,31,23,.78),rgba(17,27,31,.84)) 9px 21px/40px 23px no-repeat,
+    linear-gradient(180deg,rgba(48,33,24,.72),rgba(17,27,31,.80)) 55px 23px/36px 20px no-repeat;
+  filter:drop-shadow(0 4px 6px rgba(0,0,0,.25)) drop-shadow(0 0 8px rgba(79,220,255,.07));
+  pointer-events:none;
+}
+
+/* Push the existing fence guides farther into perspective so they begin to frame the distant property. */
+.fence-run{
+  top:52.5%;
+  height:58px;
+  width:22%;
+  opacity:.24;
+}
+.fence-left{
+  left:-2%;
+  transform:perspective(260px) rotateY(34deg) scaleY(.78);
+  transform-origin:left center;
+}
+.fence-right{
+  right:-2%;
+  transform:perspective(260px) rotateY(-34deg) scaleY(.78);
+  transform-origin:right center;
+}
+
+/* Keep the destination hierarchy: Headquarters remains the strongest far object. */
+.headquarters-shell{z-index:1}
+.reference-layout::before,.reference-layout::after{mix-blend-mode:normal}
+
+/* v0.5.5 build stamp. */
+.build-stamp::after{content:"AIC Living Site • v0.5.5"}
+
+@media(max-width:520px){
+  .reference-layout::before{
+    left:25%;
+    top:48.1%;
+    transform:translateX(-50%) perspective(170px) rotateY(9deg) scale(.58);
+    opacity:.29;
+  }
+  .reference-layout::after{
+    right:22%;
+    top:48.3%;
+    transform:translateX(50%) perspective(170px) rotateY(-9deg) scale(.60);
+    opacity:.31;
+  }
+  .fence-run{top:53.5%;width:19%;height:52px;opacity:.20}
+}
