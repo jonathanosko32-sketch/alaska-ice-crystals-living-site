@@ -70,7 +70,7 @@
     window.setTimeout(() => {
       property.hidden = true;
       world.classList.remove('inside');
-    }, 500);
+    }, 300);
   };
 
   const travelTo = (focusKey) => {
@@ -94,7 +94,7 @@
       interactionText.textContent = copy.text;
       interactionPanel.hidden = false;
       travelTimer = null;
-    }, 900);
+    }, 450);
   };
 
   enterButton.addEventListener('click', enterProperty);
