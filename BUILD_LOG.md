@@ -112,3 +112,29 @@ Important:
 - The new coded shapes establish scale and placement only.
 - They are not substitutes for the approved OSKO gate, fence, truck, eagles, animals, headquarters or Aurora artwork.
 - Real approved assets will replace their matching guide one at a time without rebuilding the rest of the scene.
+
+## 2026-08-08 — Professional Entrance Refinement v0.4.1
+
+Status: LIVE STRUCTURAL BUILD
+
+Approved direction recorded before this change:
+- The quick phone-wallpaper entrance is a layout reference only, not the final entrance design.
+- The real entrance is a professional, high-end A-frame built around the original Alaska Ice Crystals oval sign.
+- The original oval sign stays as the main entrance identity. Its internal truck may later be replaced with the custom OSKO/SKIE truck so no outside manufacturer branding is used.
+- No manufacturer-branded truck graphics are to be introduced.
+
+Changed in this build:
+- Heavier symmetrical timber side posts.
+- Cleaner angled upper beams forming a stronger A-frame peak.
+- Added structural crossbar beneath the peak.
+- Added hanging-chain geometry and an oval sign reserve sized around the original logo.
+- Removed visible `EAGLE` text placeholders; perch positions remain reserved for the approved eagle assets.
+- Added two lower stone/concrete entrance-post placeholders with glowing crystal lamps.
+- Pushed headquarters slightly deeper/smaller to improve property depth.
+- Moved SKIE 27, workshop, Aurora and campfire placement guides to reduce crowding on the phone.
+- Preserved the turquoise cattle guard and existing living navigation.
+
+Important:
+- The coded oval is only a size/placement reserve for the original Alaska Ice Crystals sign; it is not a redesign of the approved sign.
+- The crystal lamps are structural lighting placeholders until the exact approved entrance-light assets are inserted.
+- Existing approved assets and protected checkpoints remain untouched.
