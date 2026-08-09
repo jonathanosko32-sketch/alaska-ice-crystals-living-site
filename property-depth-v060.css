@@ -1,0 +1,143 @@
+/* v0.6.0 property-footprint expansion pass.
+   Code-only. Preserve approved gate timber, chains, sign, cattle guard, phone controls,
+   and current gate-post geometry. This pass opens the world wider and deeper behind the gate. */
+
+/* Push the distant side property farther outward so the site reads as a larger compound. */
+.reference-layout::before{
+  top:45.4%;
+  left:29%;
+  transform:translateX(-50%) perspective(230px) rotateY(10deg) scale(.52);
+  opacity:.34;
+}
+.reference-layout::after{
+  top:45.7%;
+  right:27%;
+  transform:translateX(50%) perspective(230px) rotateY(-10deg) scale(.55);
+  opacity:.40;
+}
+
+/* Widen and deepen both side yards without moving the entrance posts yet. */
+.reference-layout .animal-left,
+.reference-layout .animal-right{
+  top:46.8%;
+  width:118px;
+  height:44px;
+  opacity:.40;
+}
+.reference-layout .animal-left{left:8%}
+.reference-layout .animal-right{right:7%;opacity:.46}
+
+/* Existing branch roads flare farther outward toward the expanded yards. */
+.road-glow::before{
+  right:53%;
+  width:170px;
+  height:82px;
+  transform:rotate(28deg) skewX(-4deg) scaleX(.94);
+  opacity:.24;
+}
+.road-glow::after{
+  left:53%;
+  width:176px;
+  height:84px;
+  transform:rotate(-28deg) skewX(4deg) scaleX(.98);
+  opacity:.30;
+}
+
+/* The secondary road segments now continue farther toward the distant side yards. */
+.reference-layout .animal-left::before,
+.reference-layout .animal-right::before{
+  width:126px;
+  height:62px;
+  top:45%;
+  opacity:.27;
+}
+.reference-layout .animal-left::before{
+  left:50%;
+  transform:rotate(-20deg) scaleX(.76);
+}
+.reference-layout .animal-right::before{
+  right:50%;
+  opacity:.33;
+  transform:rotate(20deg) scaleX(.80);
+}
+
+/* Pull fences farther outward and lower their visual weight so the center remains open. */
+.fence-run{
+  top:50.2%;
+  width:29%;
+  height:58px;
+  opacity:.20;
+}
+.fence-left{left:-4%;transform:perspective(340px) rotateY(43deg) scaleY(.64)}
+.fence-right{right:-4%;transform:perspective(340px) rotateY(-43deg) scaleY(.64)}
+
+/* Headquarters stays straight ahead but a touch farther back to reinforce scale. */
+.headquarters-shell{
+  top:47.2%;
+  transform:translateX(-50%) scale(.54);
+  opacity:.60;
+}
+
+/* Slightly broaden the distant yard floor so the far property does not feel pinched. */
+.camera-stage::before{
+  width:82%;
+  height:30%;
+  top:37.8%;
+  clip-path:polygon(32% 0,68% 0,100% 100%,0 100%);
+  opacity:.55;
+}
+.camera-stage::after{
+  width:62%;
+  top:42.4%;
+  opacity:.34;
+}
+
+/* Foreground gate geometry remains locked in v0.6.0. */
+.timber-entrance,.entrance-sign,.cattle-guard,.road{
+  /* no geometry changes */
+}
+
+.build-stamp::after{content:"AIC Living Site • v0.6.0"}
+
+@media(max-width:520px){
+  .reference-layout::before{
+    top:46.4%;
+    left:25%;
+    transform:translateX(-50%) perspective(220px) rotateY(11deg) scale(.46);
+    opacity:.29;
+  }
+  .reference-layout::after{
+    top:46.7%;
+    right:23%;
+    transform:translateX(50%) perspective(220px) rotateY(-11deg) scale(.48);
+    opacity:.34;
+  }
+  .reference-layout .animal-left,
+  .reference-layout .animal-right{
+    top:47.8%;
+    width:90px;
+    height:34px;
+    opacity:.31;
+  }
+  .reference-layout .animal-left{left:5%}
+  .reference-layout .animal-right{right:4%;opacity:.36}
+  .road-glow::before,
+  .road-glow::after{
+    width:132px;
+    height:68px;
+    top:30.5%;
+  }
+  .road-glow::before{right:52%;transform:rotate(27deg) skewX(-3deg) scaleX(.88);opacity:.19}
+  .road-glow::after{left:52%;transform:rotate(-27deg) skewX(3deg) scaleX(.91);opacity:.24}
+  .reference-layout .animal-left::before,
+  .reference-layout .animal-right::before{
+    width:96px;
+    height:50px;
+    opacity:.20;
+  }
+  .reference-layout .animal-right::before{opacity:.25}
+  .headquarters-shell{top:48.2%;transform:translateX(-50%) scale(.50);opacity:.58}
+  .fence-run{top:51.2%;width:25%;height:50px;opacity:.17}
+  .camera-stage::before{top:38.8%;width:90%;height:28%;opacity:.47}
+  .camera-stage::after{top:43.6%;width:68%;opacity:.28}
+}
