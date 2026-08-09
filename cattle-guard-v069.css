@@ -1,0 +1,17 @@
+/* v0.6.9 cattle-guard forward-position pass.
+   Code only. Preserve v0.6.8 left/right alignment, width, perspective,
+   timber, sign, chains, pillars, crystal lights, road, Headquarters,
+   controls and property depth.
+   Move only the cattle guard slightly forward toward the viewer. */
+
+.cattle-guard{
+  bottom:16%;
+}
+
+@media(max-width:520px){
+  .cattle-guard{
+    bottom:15.5%;
+  }
+}
+
+.build-stamp::after{content:"AIC Living Site • v0.6.9"}
