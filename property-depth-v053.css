@@ -1,0 +1,68 @@
+/* v0.5.3 deeper-property opening pass.
+   Code-only. Preserve the approved gate, timber, chains, sign, cattle guard and v0.5.2 phone controls.
+   This pass gives the road a clearer distant destination and establishes the first Headquarters approach zone. */
+
+/* Make the road read farther into the property without changing the foreground entrance. */
+.road{
+  clip-path:polygon(46.5% 0,53.5% 0,100% 100%,0 100%);
+  background:
+    linear-gradient(90deg,
+      rgba(230,248,255,.18) 0 1.35%,
+      transparent 1.35% 49.15%,
+      rgba(111,236,255,.18) 49.48% 50.52%,
+      transparent 50.85% 98.65%,
+      rgba(230,248,255,.18) 98.65% 100%),
+    linear-gradient(180deg,
+      rgba(62,92,108,.34) 0%,
+      rgba(31,58,73,.34) 18%,
+      rgba(13,37,51,.72) 48%,
+      rgba(7,27,40,.95) 100%);
+}
+
+/* A faint destination glow gives the eye somewhere to travel beyond the hanging sign. */
+.headquarters-shell{
+  top:45.8%;
+  transform:translateX(-50%) scale(.34);
+  opacity:.54;
+  filter:drop-shadow(0 6px 10px rgba(0,0,0,.35)) drop-shadow(0 0 10px rgba(84,224,255,.12));
+}
+.headquarters-shell::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:48%;
+  width:210px;
+  height:72px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:radial-gradient(ellipse,rgba(77,222,255,.14),rgba(77,222,255,.045) 45%,transparent 72%);
+  z-index:-1;
+}
+
+/* Extend the center guide deeper so the road visually connects cattle guard to Headquarters. */
+.road-glow{
+  bottom:-5%;
+  width:7.5%;
+  height:71%;
+  opacity:.24;
+  filter:blur(10px);
+}
+
+/* Keep the side activity areas outside the travel lane while the center opens farther inward. */
+.skie-rock-display{left:13%;top:76.5%;transform:translateX(-50%) scale(.45)}
+.campfire-zone{left:71%;top:76.5%;transform:translateX(-50%) scale(.47)}
+
+/* Slightly soften fence guides so they frame the property instead of closing it in. */
+.fence-run{opacity:.28}
+
+/* v0.5.3 build stamp. */
+.build-stamp::after{content:"AIC Living Site • v0.5.3"}
+
+@media(max-width:520px){
+  .road{clip-path:polygon(47% 0,53% 0,100% 100%,0 100%)}
+  .road-glow{width:7%;height:69%;opacity:.22}
+  .headquarters-shell{top:46.5%;transform:translateX(-50%) scale(.30);opacity:.50}
+  .headquarters-shell::before{width:185px;height:64px}
+  .skie-rock-display{left:12%;top:76.8%;transform:translateX(-50%) scale(.43)}
+  .campfire-zone{left:72%;top:77%;transform:translateX(-50%) scale(.45)}
+}
