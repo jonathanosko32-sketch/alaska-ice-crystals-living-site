@@ -1,0 +1,151 @@
+/* v0.4.8 Alaska Ice Crystals entrance sign pass.
+   Code-only. Keeps the approved oval-logo concept and reserves the center for the custom OSKO truck.
+   No manufacturer branding or truck model is introduced here. */
+
+/* Make the hanging hardware feel like real dark chain instead of guide lines. */
+.sign-chain{
+  top:116px;
+  width:3px;
+  height:38px;
+  border-radius:2px;
+  background:repeating-linear-gradient(
+    to bottom,
+    #8b8177 0 3px,
+    #2a2521 3px 6px
+  );
+  box-shadow:0 1px 3px rgba(0,0,0,.55);
+  opacity:.95;
+}
+.chain-left{left:38.5%}
+.chain-right{right:38.5%}
+
+/* Restore the sign from the earlier dashed placeholder into a finished hanging oval. */
+.entrance-sign{
+  top:151px;
+  width:196px;
+  height:96px;
+  border-radius:50%;
+  overflow:hidden;
+  border:2px solid rgba(211,235,244,.88);
+  background:
+    radial-gradient(ellipse at 50% 18%,rgba(47,132,153,.52),transparent 42%),
+    linear-gradient(180deg,#102c42 0%,#071a2a 62%,#03111d 100%);
+  color:#eef8fb;
+  opacity:1;
+  box-shadow:
+    0 7px 13px rgba(0,0,0,.46),
+    0 0 12px rgba(72,204,233,.18),
+    inset 0 0 12px rgba(168,232,246,.08);
+}
+.entrance-sign *{visibility:visible}
+
+/* Thin inner metal rim. */
+.entrance-sign::before{
+  content:"";
+  position:absolute;
+  inset:5px;
+  border-radius:50%;
+  border:1px solid rgba(127,199,220,.4);
+  pointer-events:none;
+}
+
+/* Subtle mountain silhouette behind the custom truck reserve. */
+.entrance-sign::after{
+  content:"";
+  position:absolute;
+  left:22px;
+  right:22px;
+  top:38px;
+  height:31px;
+  background:linear-gradient(135deg,transparent 0 20%,rgba(114,169,190,.34) 20% 36%,transparent 36% 42%,rgba(101,151,175,.28) 42% 61%,transparent 61% 67%,rgba(83,138,165,.3) 67% 82%,transparent 82%);
+  opacity:.85;
+  pointer-events:none;
+}
+
+/* The historic ALASKA heading remains the dominant top line. */
+.entrance-sign strong{
+  position:absolute;
+  z-index:3;
+  top:12px;
+  left:0;
+  right:0;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.12rem;
+  line-height:1;
+  letter-spacing:.055em;
+  color:#e8edf0;
+  text-shadow:0 2px 1px #152531,0 0 5px rgba(221,244,251,.28);
+}
+
+/* Hide the old construction label. */
+.entrance-sign .sign-small{display:none}
+
+/* Center reserve for Osko's own custom SKIE/CB truck artwork.
+   This is intentionally generic until the approved custom truck asset is inserted. */
+.sign-truck{
+  position:absolute;
+  z-index:4;
+  left:50%;
+  top:43px;
+  width:70px;
+  height:24px;
+  transform:translateX(-50%);
+  display:grid;
+  place-items:center;
+  border-radius:5px 8px 5px 5px;
+  border:1px solid rgba(125,221,240,.45);
+  background:linear-gradient(180deg,#19465a,#0b2a3a);
+  color:#8deeff;
+  font-size:.34rem;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  box-shadow:0 2px 5px rgba(0,0,0,.4);
+}
+.sign-truck::before,
+.sign-truck::after{
+  content:"";
+  position:absolute;
+  bottom:-5px;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#071017;
+  border:1px solid #6e8994;
+}
+.sign-truck::before{left:12px}
+.sign-truck::after{right:12px}
+
+/* Ice Crystals script line at the bottom of the oval. */
+.entrance-sign > span:last-child{
+  position:absolute;
+  z-index:4;
+  left:0;
+  right:0;
+  bottom:10px;
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
+  font-style:italic;
+  font-size:.72rem;
+  letter-spacing:.025em;
+  color:#e4eef1;
+  text-shadow:0 1px 2px rgba(0,0,0,.85);
+}
+
+/* Slightly separate the sign from the distant property so it reads as foreground. */
+.headquarters-shell{top:56%}
+
+/* Version stamp without disturbing the stable HTML structure. */
+.build-stamp{font-size:0}
+.build-stamp::after{content:"AIC Living Site • v0.4.8";font-size:1rem}
+
+@media(max-width:520px){
+  .sign-chain{top:112px;height:34px}
+  .chain-left{left:37.5%}
+  .chain-right{right:37.5%}
+  .entrance-sign{top:144px;width:178px;height:88px}
+  .entrance-sign strong{top:11px;font-size:1rem}
+  .sign-truck{top:39px;width:64px;height:22px;font-size:.31rem}
+  .entrance-sign > span:last-child{bottom:9px;font-size:.66rem}
+  .entrance-sign::after{left:20px;right:20px;top:35px;height:28px}
+}
