@@ -1,0 +1,16 @@
+/* v0.7.0 cattle-guard upward correction.
+   Code only. Preserve v0.6.9 left/right alignment, width and perspective.
+   Reverse the mistaken downward move and move only the cattle guard upward
+   toward the timber posts so it sits deeper in the gate threshold. */
+
+.cattle-guard{
+  bottom:22%;
+}
+
+@media(max-width:520px){
+  .cattle-guard{
+    bottom:21.5%;
+  }
+}
+
+.build-stamp::after{content:"AIC Living Site • v0.7.0"}
