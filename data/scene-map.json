@@ -1,0 +1,15 @@
+{
+  "version": "0.3.0",
+  "scene": "gate-approach",
+  "rules": {
+    "replaceApprovedAssets": false,
+    "useGenericInternetAssets": false,
+    "preserveUnrelatedLockedPieces": true
+  },
+  "nodes": [
+    {"id":"skie","label":"SKIE 27","status":"reserved","asset":null,"behavior":"camera-focus"},
+    {"id":"hq","label":"Headquarters","status":"reserved","asset":null,"behavior":"camera-focus"},
+    {"id":"aurora","label":"Aurora","status":"reserved","asset":null,"behavior":"camera-focus"},
+    {"id":"workshop","label":"Workshop","status":"reserved","asset":null,"behavior":"camera-focus"}
+  ]
+}
