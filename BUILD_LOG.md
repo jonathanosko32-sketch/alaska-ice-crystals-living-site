@@ -43,7 +43,28 @@ Important:
 - Final gate, animals, buildings, Aurora, truck, fire, eagles and other elements must be added from approved OSKO-created assets piece by piece.
 - The site remains mobile-first and is tested through Chrome/GitHub Pages.
 
+Protected checkpoint:
+- `checkpoint-v0.2.0`
+
+## 2026-08-08 — Living Camera Navigation v0.3.0
+
+Status: WORKING DEVELOPMENT BUILD
+
+Added:
+- Camera-style glide movement when a visitor selects SKIE 27, Headquarters, Aurora, or Workshop.
+- Each destination now has its own reserved focus position and return-to-gate behavior.
+- Travel status appears while the camera moves.
+- Gate glow, road shimmer and subtle horizon movement added to strengthen the living-world feeling without importing outside assets.
+- Destination panels explain exactly what approved OSKO asset belongs in each reserved location.
+- Existing entrance and gate scene remain in place.
+
+Important:
+- No generic internet imagery was added.
+- No approved OSKO visual asset was replaced.
+- All new visual elements in this version are code-only structural effects and placeholders.
+- The real truck, Aurora, headquarters, workshop, animals, fence, cattle guard, eagles, fire and other master pieces remain to be inserted from approved OSKO-created assets.
+
 Next planned step:
-- Review v0.2.0 on the phone.
-- Preserve it if approved.
-- Then begin inserting the first approved visual asset without changing the rest of the world.
+- Test v0.3.0 in Chrome on the phone.
+- Preserve this version as a checkpoint.
+- Begin adding approved property assets one at a time while keeping the navigation engine intact.
