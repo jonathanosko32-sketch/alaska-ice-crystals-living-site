@@ -1,0 +1,23 @@
+ALASKA ICE CRYSTALS LIVING SITE — v0.5.0
+Date: 2026-08-08
+
+CODE-ONLY PROPERTY DEPTH PASS
+
+Approved direction:
+- Preserve the working v0.4.9 gate, timber, chains, oval sign, 3D ALASKA lettering, cursive Ice Crystals lettering, and cattle guard.
+- Build the road into the property and clean up the first depth layer before adding major new assets.
+
+Changed:
+- Added property-depth-v050.css as a separate recoverable override layer.
+- Extended and narrowed the road so it visibly continues from the cattle guard into the property.
+- Added coded snow shoulders/road edges for depth without using image generation.
+- Adjusted road glow so the centerline reads farther into the property.
+- Grounded Headquarters, SKIE 27 display, and campfire with subtle coded shadows.
+- Refined first-depth placement for Headquarters, SKIE 27, Workshop, and Aurora controls while keeping them readable on the phone.
+- Updated live build stamp and VERSION to v0.5.0.
+
+Safety:
+- No drawing or image generation.
+- No approved asset deleted or replaced.
+- Existing timber, chains, sign, and entrance geometry preserved.
+- Build forward from protected checkpoints; do not rebuild from scratch.
