@@ -1,0 +1,44 @@
+/* v0.4.7 peak refinement.
+   Code-only. Keeps the approved v0.4.6 structure and tightens only the center joint. */
+
+/* Bring the two roof timbers slightly closer together at the center without changing the overall A-frame. */
+.beam-left{
+  width:47.8%;
+  left:4.7%;
+}
+.beam-right{
+  width:47.8%;
+  right:4.7%;
+}
+
+/* Replace the large block-like cap with a smaller joiner that reads as a timber connection. */
+.peak-cap{
+  top:14px;
+  width:16px;
+  height:16px;
+  border-radius:3px;
+  background:linear-gradient(135deg,#7a5033,#4b2f1d 72%,#2b190f);
+  box-shadow:0 3px 6px rgba(0,0,0,.32), inset 0 0 3px rgba(255,255,255,.08);
+}
+
+/* Give the meeting point a subtle dark seam so it looks constructed, not pasted together. */
+.timber-entrance::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:78px;
+  width:3px;
+  height:18px;
+  transform:translateX(-50%);
+  border-radius:2px;
+  background:rgba(31,18,11,.72);
+  box-shadow:0 0 3px rgba(0,0,0,.28);
+  z-index:5;
+}
+
+@media(max-width:520px){
+  .beam-left{width:48%;left:4.5%}
+  .beam-right{width:48%;right:4.5%}
+  .peak-cap{top:13px;width:15px;height:15px}
+  .timber-entrance::after{top:74px;height:16px}
+}
