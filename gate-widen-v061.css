@@ -1,0 +1,55 @@
+/* v0.6.1 dedicated gate-widening pass.
+   Code-only. Preserve the hanging sign, chains, road, cattle guard, Headquarters,
+   far property, phone controls, and all v0.6.0 depth work.
+   This pass widens the timber entrance as one connected structural assembly. */
+
+/* Move the two main timber posts outward without changing their height or character. */
+.timber-left{left:2%}
+.timber-right{right:2%}
+
+/* Extend each roof timber from the newly widened posts back to the same center peak. */
+.beam-left{
+  left:2%;
+  width:50.4%;
+  transform:rotate(-18deg);
+  transform-origin:0 50%;
+}
+.beam-right{
+  right:2%;
+  width:50.4%;
+  transform:rotate(18deg);
+  transform-origin:100% 50%;
+}
+
+/* Widen the structural crossbar with the posts. */
+.timber-crossbar{
+  left:2%;
+  right:2%;
+}
+
+/* Keep the center joint, sign, chains and foreground travel geometry locked. */
+.peak-cap,
+.sign-chain,
+.entrance-sign,
+.cattle-guard,
+.road,
+.road-glow{
+  /* intentionally unchanged in v0.6.1 */
+}
+
+/* The wider opening needs a touch more total frame width on larger screens only. */
+@media(min-width:521px){
+  .timber-entrance{width:min(97vw,790px)}
+}
+
+.build-stamp::after{content:"AIC Living Site • v0.6.1"}
+
+@media(max-width:520px){
+  /* On phone, widen carefully so the timbers stay fully visible and the sign remains centered. */
+  .timber-entrance{width:98vw}
+  .timber-left{left:1.5%}
+  .timber-right{right:1.5%}
+  .beam-left{left:1.5%;width:50.7%}
+  .beam-right{right:1.5%;width:50.7%}
+  .timber-crossbar{left:1.5%;right:1.5%}
+}
