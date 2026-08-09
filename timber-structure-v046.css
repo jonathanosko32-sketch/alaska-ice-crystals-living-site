@@ -1,0 +1,87 @@
+/* v0.4.6 reference-structure correction.
+   Code-only. Rebuilds the A-frame as one connected entrance assembly. */
+
+/* One unified entrance structure: posts, roof timbers, crossbar and hanging sign hardware. */
+.timber-entrance{
+  top:27%;
+  width:min(94vw,760px);
+  height:300px;
+  overflow:visible;
+}
+
+/* Substantial vertical supports. */
+.timber-post{
+  bottom:0;
+  width:30px;
+  height:220px;
+  border-radius:12px 12px 6px 6px;
+}
+.timber-left{left:5%}
+.timber-right{right:5%}
+
+/* Roof timbers now rise from each post to a true A-shaped peak. */
+.timber-beam{
+  top:87px;
+  width:47%;
+  height:20px;
+  border-radius:10px;
+  z-index:3;
+}
+.beam-left{
+  left:5%;
+  transform:rotate(-18deg);
+  transform-origin:0 50%;
+}
+.beam-right{
+  right:5%;
+  transform:rotate(18deg);
+  transform-origin:100% 50%;
+}
+
+/* Real center joint, restrained so it reads as timber joinery rather than a floating ornament. */
+.peak-cap{
+  top:11px;
+  left:50%;
+  width:24px;
+  height:24px;
+  transform:translateX(-50%) rotate(45deg);
+  border-radius:4px;
+  background:linear-gradient(135deg,#6b452d,#3d2618 70%,#24160f);
+  box-shadow:0 4px 8px rgba(0,0,0,.35);
+  opacity:1;
+  z-index:4;
+}
+
+/* Crossbar belongs to the same frame and spans between the uprights. */
+.timber-crossbar{
+  left:5%;
+  right:5%;
+  top:104px;
+  height:14px;
+  border-radius:7px;
+  opacity:.9;
+  z-index:2;
+}
+
+/* Hanging hardware stays directly under the structural crossbar. */
+.sign-chain{top:116px;height:34px}
+.chain-left{left:40%}
+.chain-right{right:40%}
+.entrance-sign{top:148px}
+
+/* Eagle perch positions remain on the post tops. */
+.eagle-perch{top:-7px;width:34px;height:7px}
+
+@media(max-width:520px){
+  .timber-entrance{top:28%;width:96vw;height:286px}
+  .timber-post{width:27px;height:210px}
+  .timber-left{left:5%}
+  .timber-right{right:5%}
+  .timber-beam{top:82px;width:47%;height:18px}
+  .beam-left{left:5%;transform:rotate(-18deg);transform-origin:0 50%}
+  .beam-right{right:5%;transform:rotate(18deg);transform-origin:100% 50%}
+  .peak-cap{top:9px;width:22px;height:22px}
+  .timber-crossbar{left:5%;right:5%;top:100px;height:13px}
+  .sign-chain{top:112px;height:32px}
+  .entrance-sign{top:143px}
+}
