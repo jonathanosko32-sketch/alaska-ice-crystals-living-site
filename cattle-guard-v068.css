@@ -1,0 +1,23 @@
+/* v0.6.8 cattle-guard threshold correction.
+   Code only. Preserve v0.6.7 timber, sign, chains, stone pillars, crystal lights,
+   road, Headquarters, controls and property depth.
+   Move only the cattle guard back to the gate threshold and center it between
+   the two main timber posts. */
+
+.cattle-guard{
+  left:50%;
+  transform:translateX(-50%) perspective(260px) rotateX(58deg);
+  width:72%;
+  bottom:19%;
+  transform-origin:center bottom;
+}
+
+@media(max-width:520px){
+  .cattle-guard{
+    left:50%;
+    width:70%;
+    bottom:18.5%;
+  }
+}
+
+.build-stamp::after{content:"AIC Living Site • v0.6.8"}
