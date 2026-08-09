@@ -1,0 +1,23 @@
+ALASKA ICE CRYSTALS LIVING SITE — v0.5.1
+Date: 2026-08-08
+
+CODE-ONLY ROAD OPENING / DEPTH CLEANUP
+
+Preserved without redesign:
+- approved timber A-frame
+- hanging chains
+- v0.4.9 entrance sign and lettering
+- cattle guard design
+
+Changed:
+- widened/opened the foreground road while keeping a narrow distant throat for perspective
+- clarified snow shoulders along both road edges
+- reduced center road glow so the travel lane reads cleaner
+- pushed Headquarters much deeper/smaller so it no longer sits visually inside the sign
+- moved the SKIE 27 reserve farther left/outward
+- moved the campfire farther right/out of the travel lane
+- pulled fence runs outward and reduced their visual weight
+- tightened property controls to the outer edges
+
+Safety:
+No drawing or image generation. This is a separate CSS override file and can be removed without damaging the approved entrance/sign work.
