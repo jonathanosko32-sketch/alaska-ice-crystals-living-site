@@ -1,0 +1,16 @@
+Alaska Ice Crystals Living Site — v0.4.9
+Date: 2026-08-08
+
+Code-only sign lettering refinement.
+
+Approved direction preserved:
+- Timber unchanged.
+- Chains unchanged.
+- Sign size, position, oval body, mountains, truck reserve, and property layout unchanged.
+
+Changes:
+- ALASKA lettering given raised 3D/extruded treatment with icy highlight and dark depth.
+- Lower text changed to a more decorative cursive/script treatment reading "Ice Crystals".
+- Lower script also given 3D depth so it feels integrated and finished instead of flat.
+
+No image generation used.
