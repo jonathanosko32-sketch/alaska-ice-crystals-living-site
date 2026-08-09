@@ -1,0 +1,58 @@
+/* v0.5.6 far-property definition pass.
+   Code-only. Preserve the approved entrance, sign, chains, timber, road, cattle guard,
+   Headquarters destination, phone controls, and v0.5.5 side-placement.
+   This pass only makes the distant side property read more clearly, especially Workshop. */
+
+/* Left property cluster: slightly clearer walls and roof edge, still secondary to Headquarters. */
+.reference-layout::before{
+  opacity:.43;
+  background:
+    linear-gradient(135deg,transparent 0 34%,rgba(98,66,43,.88) 35% 63%,transparent 64%) 7px 0/48px 26px no-repeat,
+    linear-gradient(45deg,transparent 0 34%,rgba(84,57,39,.80) 35% 63%,transparent 64%) 47px 4px/44px 24px no-repeat,
+    linear-gradient(180deg,rgba(58,39,28,.88),rgba(19,30,35,.92)) 10px 20px/39px 24px no-repeat,
+    linear-gradient(180deg,rgba(61,41,29,.84),rgba(19,30,35,.90)) 51px 22px/35px 22px no-repeat,
+    linear-gradient(90deg,rgba(105,229,255,.18),rgba(105,229,255,.04)) 18px 31px/8px 6px no-repeat,
+    linear-gradient(90deg,rgba(105,229,255,.14),rgba(105,229,255,.03)) 62px 32px/7px 6px no-repeat;
+  filter:drop-shadow(0 5px 7px rgba(0,0,0,.30)) drop-shadow(0 0 8px rgba(79,220,255,.08));
+}
+
+/* Workshop side: make this cluster the clearer of the two side areas without overtaking Headquarters. */
+.reference-layout::after{
+  opacity:.50;
+  background:
+    linear-gradient(135deg,transparent 0 34%,rgba(104,70,45,.92) 35% 63%,transparent 64%) 5px 0/50px 27px no-repeat,
+    linear-gradient(45deg,transparent 0 34%,rgba(92,61,41,.86) 35% 63%,transparent 64%) 52px 4px/46px 25px no-repeat,
+    linear-gradient(180deg,rgba(62,41,29,.92),rgba(18,30,35,.94)) 8px 21px/42px 25px no-repeat,
+    linear-gradient(180deg,rgba(65,43,30,.88),rgba(18,30,35,.92)) 55px 22px/38px 23px no-repeat,
+    linear-gradient(90deg,rgba(113,235,255,.24),rgba(113,235,255,.06)) 18px 32px/9px 6px no-repeat,
+    linear-gradient(90deg,rgba(113,235,255,.20),rgba(113,235,255,.05)) 67px 33px/9px 6px no-repeat;
+  filter:drop-shadow(0 5px 8px rgba(0,0,0,.32)) drop-shadow(0 0 10px rgba(79,220,255,.11));
+}
+
+/* A touch more structure in the distant fence lines keeps the side areas connected to the property. */
+.fence-run{
+  opacity:.30;
+  filter:drop-shadow(0 0 4px rgba(86,225,255,.07));
+}
+.fence-run i{
+  opacity:.72;
+}
+
+/* Headquarters remains the strongest destination in the far property. */
+.headquarters-shell{
+  opacity:.67;
+}
+
+/* Keep the center road and travel lane untouched. */
+.road,.road-glow,.cattle-guard,.timber-entrance,.entrance-sign{
+  /* intentionally no geometry changes in v0.5.6 */
+}
+
+.build-stamp::after{content:"AIC Living Site • v0.5.6"}
+
+@media(max-width:520px){
+  .reference-layout::before{opacity:.37}
+  .reference-layout::after{opacity:.43}
+  .fence-run{opacity:.25}
+  .headquarters-shell{opacity:.65}
+}
