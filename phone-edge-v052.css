@@ -1,0 +1,35 @@
+/* v0.5.2 phone-edge cleanup.
+   Code-only. Keeps approved gate, sign, timber, road, cattle guard and property depth intact.
+   Only brings the four interactive location controls inward so their full names stay visible on phone screens. */
+
+@media(max-width:520px){
+  .node-hq{
+    left:3.5%;
+    bottom:30%;
+    max-width:44%;
+  }
+  .node-skie{
+    left:3.5%;
+    bottom:22%;
+    max-width:40%;
+  }
+  .node-workshop{
+    right:3.5%;
+    bottom:30%;
+    max-width:40%;
+  }
+  .node-aurora{
+    right:3.5%;
+    bottom:22%;
+    max-width:36%;
+  }
+
+  .world-node{
+    box-sizing:border-box;
+    white-space:nowrap;
+    overflow:visible;
+  }
+}
+
+/* v0.5.2 build stamp. */
+.build-stamp::after{content:"AIC Living Site • v0.5.2"}
