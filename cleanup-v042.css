@@ -1,0 +1,99 @@
+/* v0.4.2 phone cleanup + performance pass.
+   This file only overrides placement/performance. It does not replace approved OSKO assets. */
+
+/* Clearer, taller entrance composition */
+.timber-entrance{
+  top:24%;
+  width:min(96vw,780px);
+  height:270px;
+}
+.timber-post{
+  width:30px;
+  height:220px;
+}
+.timber-left{left:5%}
+.timber-right{right:5%}
+.timber-beam{
+  top:35px;
+  width:49%;
+  height:24px;
+}
+.beam-left{left:5%;transform:rotate(18deg)}
+.beam-right{right:5%;transform:rotate(-18deg)}
+.timber-crossbar{
+  left:12%;
+  right:12%;
+  top:107px;
+  height:15px;
+  opacity:.9;
+}
+.peak-cap{top:19px}
+.eagle-perch{top:-10px;width:32px}
+
+/* Keep the center open for the exact approved oval sign asset. */
+.sign-chain{top:112px;height:23px}
+.chain-left{left:40%}
+.chain-right{right:40%}
+.entrance-sign{
+  top:132px;
+  width:168px;
+  height:72px;
+  background:rgba(2,18,31,.26);
+  border:1px dashed rgba(112,235,255,.38);
+  box-shadow:none;
+  color:transparent;
+  opacity:.48;
+}
+.entrance-sign *{visibility:hidden}
+
+/* Keep the entrance lamps low and outside the sign sight line. */
+.light-post{top:60%;transform:scale(.82)}
+.light-post-left{left:5%}
+.light-post-right{right:5%}
+
+/* Push the property deeper so the gate is the first thing the eye sees. */
+.headquarters-shell{top:54%;transform:translateX(-50%) scale(.62);opacity:.66}
+.skie-rock-display{left:19%;top:69%;transform:translateX(-50%) scale(.72)}
+.campfire-zone{left:61%;top:70%;transform:translateX(-50%) scale(.70)}
+.fence-run{top:59%;width:24%;opacity:.55}
+
+/* Keep touch controls off the central sign/building view. */
+.world-node{padding:7px 9px;font-size:.69rem;backdrop-filter:none}
+.node-skie{left:5%;bottom:25%}
+.node-hq{left:50%;bottom:31%;transform:translateX(-50%)}
+.node-workshop{right:3%;bottom:36%}
+.node-aurora{right:3%;bottom:23%}
+
+/* Lighter effects for the phone. */
+.aurora{filter:blur(16px)}
+.snow{opacity:.25;animation-duration:16s}
+.horizon{animation:none}
+.road-glow{animation:none;opacity:.34}
+.crystal-lamp{animation:none}
+.fire-glow,.fire-flame{animation-duration:1.4s}
+
+.camera-stage{
+  transition:transform .55s cubic-bezier(.2,.78,.2,1),filter .25s ease;
+}
+.camera-stage.is-traveling{filter:none}
+.property{transition:opacity .35s ease,transform .45s ease}
+
+@media(max-width:520px){
+  .timber-entrance{top:25%;height:255px;width:98vw}
+  .timber-post{height:205px;width:27px}
+  .timber-beam{top:36px;height:21px}
+  .timber-crossbar{top:105px;height:14px}
+  .entrance-sign{top:130px;width:150px;height:64px}
+  .sign-chain{top:110px;height:22px}
+  .light-post{top:61%;transform:scale(.72)}
+  .light-post-left{left:2%}
+  .light-post-right{right:2%}
+  .headquarters-shell{top:55%;transform:translateX(-50%) scale(.56)}
+  .skie-rock-display{left:17%;top:70%;transform:translateX(-50%) scale(.64)}
+  .campfire-zone{left:62%;top:71%;transform:translateX(-50%) scale(.62)}
+  .cattle-guard{bottom:8%;width:78vw;height:64px}
+  .node-skie{left:3%;bottom:24%}
+  .node-hq{bottom:30%}
+  .node-workshop{right:2%;bottom:35%}
+  .node-aurora{right:2%;bottom:22%}
+}
