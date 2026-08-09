@@ -88,3 +88,27 @@ Asset safety rule:
 - Do not import generic internet artwork.
 - If an approved asset file is not yet in the repository, keep its placeholder and wait for the exact approved file to be supplied or recovered.
 - Replace only one reserved placeholder at a time; do not alter unrelated approved scene elements.
+
+## 2026-08-08 — Reference Property Layout v0.4.0
+
+Status: LIVE STRUCTURAL BUILD
+
+Source used:
+- Osko's overall property reference showing the view from the cattle guard through the timber entrance toward the headquarters, SKIE 27 rock display, campfire gathering area, fenced animal zones, mountains and aurora.
+- Previously supplied crystal fence, closed gate and cattle-guard references remain the visual masters for those components.
+
+Added as code-only placement guides:
+- High-end timber entrance with angled upper beams and reserved eagle perches.
+- Center hanging Alaska Ice Crystals sign location.
+- Fence runs extending left and right from the entrance.
+- Turquoise cattle guard placement at the front of the road with blue edge lighting.
+- Headquarters shell centered deeper in the property.
+- SKIE 27 rock display reserved left-of-center with screen location.
+- Campfire/pot/people-ring motion placeholder near center-right.
+- Left and right animal-area reserves.
+- Existing camera navigation and live atmosphere preserved.
+
+Important:
+- The new coded shapes establish scale and placement only.
+- They are not substitutes for the approved OSKO gate, fence, truck, eagles, animals, headquarters or Aurora artwork.
+- Real approved assets will replace their matching guide one at a time without rebuilding the rest of the scene.
