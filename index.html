@@ -26,55 +26,60 @@
     </section>
 
     <section class="property" id="property" hidden aria-label="Gate approach">
-      <div class="property-hud">
-        <span class="hud-kicker">GATE APPROACH</span>
-        <strong>Alaska Ice Crystals</strong>
-        <span class="hud-note">Living property foundation</span>
+      <div class="camera-stage" id="cameraStage">
+        <div class="property-hud">
+          <span class="hud-kicker">GATE APPROACH</span>
+          <strong id="hudTitle">Alaska Ice Crystals</strong>
+          <span class="hud-note" id="hudNote">Living property foundation</span>
+        </div>
+
+        <div class="horizon" aria-hidden="true">
+          <div class="mountain mountain-back"></div>
+          <div class="mountain mountain-front"></div>
+        </div>
+
+        <div class="gate-frame" aria-hidden="true">
+          <div class="gate-post left"></div>
+          <div class="gate-post right"></div>
+          <div class="gate-beam"></div>
+          <div class="gate-sign">ALASKA ICE CRYSTALS</div>
+        </div>
+
+        <div class="road" aria-hidden="true"></div>
+        <div class="road-glow" aria-hidden="true"></div>
+
+        <button class="world-node node-skie" data-place="SKIE 27" data-focus="skie" type="button">
+          <span class="node-dot"></span>
+          <span>SKIE 27</span>
+        </button>
+
+        <button class="world-node node-hq" data-place="Headquarters" data-focus="hq" type="button">
+          <span class="node-dot"></span>
+          <span>Headquarters</span>
+        </button>
+
+        <button class="world-node node-aurora" data-place="Aurora" data-focus="aurora" type="button">
+          <span class="node-dot"></span>
+          <span>Aurora</span>
+        </button>
+
+        <button class="world-node node-workshop" data-place="Workshop" data-focus="workshop" type="button">
+          <span class="node-dot"></span>
+          <span>Workshop</span>
+        </button>
       </div>
-
-      <div class="horizon" aria-hidden="true">
-        <div class="mountain mountain-back"></div>
-        <div class="mountain mountain-front"></div>
-      </div>
-
-      <div class="gate-frame" aria-hidden="true">
-        <div class="gate-post left"></div>
-        <div class="gate-post right"></div>
-        <div class="gate-beam"></div>
-        <div class="gate-sign">ALASKA ICE CRYSTALS</div>
-      </div>
-
-      <div class="road" aria-hidden="true"></div>
-
-      <button class="world-node node-skie" data-place="SKIE 27" type="button">
-        <span class="node-dot"></span>
-        <span>SKIE 27</span>
-      </button>
-
-      <button class="world-node node-hq" data-place="Headquarters" type="button">
-        <span class="node-dot"></span>
-        <span>Headquarters</span>
-      </button>
-
-      <button class="world-node node-aurora" data-place="Aurora" type="button">
-        <span class="node-dot"></span>
-        <span>Aurora</span>
-      </button>
-
-      <button class="world-node node-workshop" data-place="Workshop" type="button">
-        <span class="node-dot"></span>
-        <span>Workshop</span>
-      </button>
 
       <div class="interaction-panel" id="interactionPanel" hidden>
         <strong id="interactionTitle">Property node</strong>
         <span id="interactionText">This location is ready for its approved OSKO asset.</span>
+        <button class="close-panel" id="closePanel" type="button">Return to Gate View</button>
       </div>
 
+      <div class="travel-status" id="travelStatus" aria-live="polite"></div>
       <button class="back-button" id="backButton" type="button">Back to Entrance</button>
     </section>
 
-    <footer class="build-stamp">AIC Living Site • v0.2.0</footer>
+    <footer class="build-stamp">AIC Living Site • v0.3.0</footer>
   </main>
 
   <script src="app.js"></script>
