@@ -1,0 +1,120 @@
+/* v0.5.8 deeper-property perspective pass.
+   Code-only. Preserve the approved entrance, timber, chains, sign, main road, cattle guard,
+   phone controls, Headquarters destination, v0.5.6 side structures, and v0.5.7 branch drives.
+   This pass makes the property feel longer without moving the gate posts yet. */
+
+/* Extend the visual property beyond Headquarters with a distant basin / yard floor. */
+.camera-stage::before{
+  content:"";
+  position:absolute;
+  z-index:1;
+  left:50%;
+  top:38.5%;
+  width:70%;
+  height:27%;
+  transform:translateX(-50%) perspective(320px) rotateX(67deg);
+  transform-origin:center top;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at 50% 18%,rgba(77,220,255,.10),transparent 40%),
+    linear-gradient(180deg,rgba(31,57,70,.20),rgba(7,28,40,.34));
+  clip-path:polygon(37% 0,63% 0,96% 100%,4% 100%);
+  opacity:.62;
+  filter:drop-shadow(0 0 10px rgba(72,217,255,.04));
+}
+
+/* Tiny far-yard edge lights create scale and make the road feel much longer. */
+.camera-stage::after{
+  content:"";
+  position:absolute;
+  z-index:2;
+  left:50%;
+  top:43.8%;
+  width:48%;
+  height:5px;
+  transform:translateX(-50%);
+  pointer-events:none;
+  opacity:.42;
+  background:
+    radial-gradient(circle at 4% 50%,rgba(110,240,255,.8) 0 1px,transparent 2px),
+    radial-gradient(circle at 17% 50%,rgba(110,240,255,.65) 0 1px,transparent 2px),
+    radial-gradient(circle at 31% 50%,rgba(110,240,255,.55) 0 1px,transparent 2px),
+    radial-gradient(circle at 69% 50%,rgba(110,240,255,.55) 0 1px,transparent 2px),
+    radial-gradient(circle at 83% 50%,rgba(110,240,255,.65) 0 1px,transparent 2px),
+    radial-gradient(circle at 96% 50%,rgba(110,240,255,.8) 0 1px,transparent 2px);
+  filter:drop-shadow(0 0 4px rgba(86,227,255,.36));
+}
+
+/* Pull the distant buildings visually farther back without changing their left/right placement. */
+.reference-layout::before{
+  top:45.9%;
+  transform:translateX(-50%) perspective(210px) rotateY(8deg) scale(.58);
+  opacity:.39;
+}
+.reference-layout::after{
+  top:46.2%;
+  transform:translateX(50%) perspective(210px) rotateY(-8deg) scale(.60);
+  opacity:.45;
+}
+
+/* Headquarters becomes a little smaller and higher to strengthen distance. */
+.headquarters-shell{
+  top:47.8%;
+  transform:translateX(-50%) scale(.66);
+  opacity:.64;
+}
+
+/* Fence lines converge deeper toward the destination. */
+.fence-run{
+  top:50.7%;
+  width:24%;
+  height:54px;
+  opacity:.26;
+}
+.fence-left{
+  left:1%;
+  transform:perspective(300px) rotateY(40deg) scaleY(.68);
+  transform-origin:left center;
+}
+.fence-right{
+  right:1%;
+  transform:perspective(300px) rotateY(-40deg) scaleY(.68);
+  transform-origin:right center;
+}
+
+/* Keep foreground geometry untouched in this pass. */
+.timber-entrance,.entrance-sign,.cattle-guard,.road{
+  /* no geometry changes in v0.5.8 */
+}
+
+.build-stamp::after{content:"AIC Living Site • v0.5.8"}
+
+@media(max-width:520px){
+  .camera-stage::before{
+    top:39.6%;
+    width:76%;
+    height:25%;
+    opacity:.52;
+  }
+  .camera-stage::after{
+    top:45%;
+    width:54%;
+    opacity:.34;
+  }
+  .reference-layout::before{
+    top:46.9%;
+    transform:translateX(-50%) perspective(200px) rotateY(9deg) scale(.50);
+    opacity:.33;
+  }
+  .reference-layout::after{
+    top:47.1%;
+    transform:translateX(50%) perspective(200px) rotateY(-9deg) scale(.52);
+    opacity:.38;
+  }
+  .headquarters-shell{
+    top:48.8%;
+    transform:translateX(-50%) scale(.58);
+    opacity:.62;
+  }
+  .fence-run{top:51.8%;width:21%;height:48px;opacity:.22}
+}
