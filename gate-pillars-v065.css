@@ -1,0 +1,13 @@
+/* v0.6.5 pillar placement correction.
+   Code only. Preserve v0.6.4 pillar size/depth/caps and all other entrance/world geometry.
+   Move only the two masonry pillars inward enough to be fully readable beside the timber posts. */
+
+.gate-pillar-left{left:-6.2%}
+.gate-pillar-right{right:-6.2%}
+
+@media(max-width:520px){
+  .gate-pillar-left{left:-4.9%}
+  .gate-pillar-right{right:-4.9%}
+}
+
+.build-stamp::after{content:"AIC Living Site • v0.6.5"}
