@@ -1,0 +1,145 @@
+/* v0.4.3 entrance proportion + depth refinement.
+   Code-only placement pass. No approved OSKO image asset is replaced. */
+
+/* Taller, cleaner professional A-frame. */
+.timber-entrance{
+  top:20%;
+  width:min(96vw,800px);
+  height:305px;
+}
+.timber-post{
+  width:28px;
+  height:232px;
+  border-radius:10px 10px 5px 5px;
+}
+.timber-left{left:4%}
+.timber-right{right:4%}
+.timber-beam{
+  top:28px;
+  width:49%;
+  height:20px;
+  border-radius:10px;
+}
+.beam-left{left:4%;transform:rotate(23deg)}
+.beam-right{right:4%;transform:rotate(-23deg)}
+.timber-crossbar{
+  left:16%;
+  right:16%;
+  top:119px;
+  height:11px;
+  opacity:.72;
+}
+.peak-cap{
+  top:7px;
+  width:15px;
+  height:15px;
+  opacity:.9;
+}
+.eagle-perch{
+  top:-7px;
+  width:30px;
+  height:6px;
+}
+
+/* Exact original sign will be inserted later; keep its space clear now. */
+.sign-chain{top:126px;height:28px}
+.chain-left{left:40%}
+.chain-right{right:40%}
+.entrance-sign{
+  top:151px;
+  width:178px;
+  height:76px;
+  opacity:0;
+}
+
+/* Crystal light posts frame the approach rather than crowding the sign. */
+.light-post{
+  top:64%;
+  transform:scale(.72);
+}
+.light-post-left{left:1.5%}
+.light-post-right{right:1.5%}
+
+/* Fence begins farther back from the main entrance posts. */
+.fence-run{
+  top:63%;
+  width:22%;
+  opacity:.48;
+}
+
+/* Increase visible depth behind the entrance. */
+.headquarters-shell{
+  top:58%;
+  transform:translateX(-50%) scale(.50);
+  opacity:.58;
+}
+.skie-rock-display{
+  left:20%;
+  top:74%;
+  transform:translateX(-50%) scale(.58);
+}
+.campfire-zone{
+  left:60%;
+  top:75%;
+  transform:translateX(-50%) scale(.56);
+}
+
+/* Put controls on the outer edges and leave the property center unobstructed. */
+.world-node{
+  padding:6px 8px;
+  gap:6px;
+  font-size:.64rem;
+  background:rgba(2,19,31,.64);
+  border-color:rgba(112,233,255,.30);
+  box-shadow:none;
+}
+.node-dot{
+  width:7px;
+  height:7px;
+  animation:none;
+}
+.node-skie{left:1.5%;bottom:23%}
+.node-hq{left:1.5%;bottom:31%;transform:none}
+.node-workshop{right:1.5%;bottom:31%}
+.node-aurora{right:1.5%;bottom:23%}
+
+/* Make the cattle guard sit flatter/lower on the roadway. */
+.cattle-guard{
+  bottom:5%;
+  width:min(68vw,390px);
+  height:56px;
+  transform:translateX(-50%) perspective(360px) rotateX(67deg);
+  box-shadow:0 0 12px rgba(65,223,255,.24),inset 0 0 12px rgba(70,231,255,.12);
+}
+.cattle-guard:before{top:18px}
+.cattle-guard:after{bottom:16px}
+
+/* Keep interaction travel quick on the phone. */
+.camera-stage{
+  transition:transform .42s cubic-bezier(.2,.78,.2,1),filter .2s ease;
+}
+
+@media(max-width:520px){
+  .timber-entrance{top:21%;height:292px;width:99vw}
+  .timber-post{height:224px;width:25px}
+  .timber-beam{top:30px;height:18px}
+  .beam-left{left:4%;transform:rotate(24deg)}
+  .beam-right{right:4%;transform:rotate(-24deg)}
+  .timber-crossbar{left:17%;right:17%;top:118px;height:10px}
+  .peak-cap{top:8px;width:14px;height:14px}
+  .sign-chain{top:125px;height:25px}
+  .entrance-sign{top:148px;width:160px;height:68px;opacity:0}
+  .light-post{top:65%;transform:scale(.66)}
+  .light-post-left{left:0}
+  .light-post-right{right:0}
+  .fence-run{top:64%;width:21%}
+  .headquarters-shell{top:59%;transform:translateX(-50%) scale(.46)}
+  .skie-rock-display{left:19%;top:75%;transform:translateX(-50%) scale(.53)}
+  .campfire-zone{left:60%;top:76%;transform:translateX(-50%) scale(.50)}
+  .cattle-guard{bottom:5.5%;width:69vw;height:52px}
+  .world-node{font-size:.61rem;padding:6px 7px}
+  .node-skie{left:1%;bottom:22%}
+  .node-hq{left:1%;bottom:30%}
+  .node-workshop{right:1%;bottom:30%}
+  .node-aurora{right:1%;bottom:22%}
+}
