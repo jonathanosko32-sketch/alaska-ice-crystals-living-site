@@ -1,0 +1,15 @@
+/* v0.6.6 pillar visibility pass.
+   Code only. Preserve all v0.6.5 entrance/world geometry except the two stone pillars.
+   Bring both pillars slightly farther inward and lift them slightly so the cap and face read clearly on phone. */
+
+.gate-pillar-left{left:-3.8%}
+.gate-pillar-right{right:-3.8%}
+.gate-pillar{bottom:3px}
+
+@media(max-width:520px){
+  .gate-pillar-left{left:-2.7%}
+  .gate-pillar-right{right:-2.7%}
+  .gate-pillar{bottom:6px}
+}
+
+.build-stamp::after{content:"AIC Living Site • v0.6.6"}
