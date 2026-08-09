@@ -1,0 +1,50 @@
+/* v0.6.4 stone-pillar depth pass.
+   Code only. Preserve v0.6.3 timber, roof, crossbar, chains, sign, road,
+   cattle guard, Headquarters, far property and controls.
+   Make only the two outside masonry pillars more substantial and readable. */
+
+.gate-pillar{
+  bottom:-5px;
+  width:58px;
+  height:96px;
+  border-radius:9px 9px 5px 5px;
+  border:1px solid rgba(173,205,214,.34);
+  background:
+    linear-gradient(90deg,rgba(236,248,250,.12) 0 12%,transparent 27%,rgba(0,0,0,.24) 82% 100%),
+    repeating-linear-gradient(0deg,#596168 0 14px,#343a40 14px 17px),
+    repeating-linear-gradient(90deg,transparent 0 25px,rgba(15,19,23,.62) 25px 28px);
+  box-shadow:
+    0 10px 18px rgba(0,0,0,.46),
+    inset 7px 0 10px rgba(225,245,248,.05),
+    inset -9px 0 12px rgba(0,0,0,.22);
+}
+
+/* Pull the masonry clearly outside the timber instead of hiding behind it. */
+.gate-pillar-left{left:-9.6%}
+.gate-pillar-right{right:-9.6%}
+
+/* A simple cap gives each pillar a finished ranch-gate top and reserves
+   the top surface for the approved crystal lights in a later pass. */
+.gate-pillar::before{
+  content:"";
+  position:absolute;
+  left:-5px;
+  right:-5px;
+  top:-8px;
+  height:12px;
+  border-radius:7px 7px 3px 3px;
+  border:1px solid rgba(181,214,222,.3);
+  background:linear-gradient(180deg,#697178,#3d444a);
+  box-shadow:0 3px 7px rgba(0,0,0,.35);
+}
+
+@media(max-width:520px){
+  .gate-pillar{
+    width:50px;
+    height:88px;
+  }
+  .gate-pillar-left{left:-8.2%}
+  .gate-pillar-right{right:-8.2%}
+}
+
+.build-stamp::after{content:"AIC Living Site • v0.6.4"}
