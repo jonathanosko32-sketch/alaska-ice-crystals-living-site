@@ -1,0 +1,55 @@
+/* v0.4.5 A-frame alignment pass.
+   Code-only geometry correction. No image generation. */
+
+/* Lower the roof assembly and narrow it so it visually lands on the posts. */
+.timber-entrance{
+  top:24%;
+  width:min(90vw,720px);
+  height:292px;
+}
+.timber-left{left:6%}
+.timber-right{right:6%}
+.timber-beam{
+  top:44px;
+  width:47.5%;
+  height:19px;
+}
+.beam-left{
+  left:5.5%;
+  transform:rotate(22deg);
+  transform-origin:100% 50%;
+}
+.beam-right{
+  right:5.5%;
+  transform:rotate(-22deg);
+  transform-origin:0 50%;
+}
+.peak-cap{
+  top:68px;
+  width:24px;
+  height:20px;
+}
+.timber-crossbar{
+  left:17%;
+  right:17%;
+  top:132px;
+}
+.sign-chain{top:140px}
+
+/* Move the center crystal down under the peak so it reads as hanging beneath the structure. */
+.reference-layout > .peak-crystal,
+.peak-crystal{
+  top:38%;
+}
+
+@media(max-width:520px){
+  .timber-entrance{top:25%;width:94vw;height:286px}
+  .timber-left{left:6%}
+  .timber-right{right:6%}
+  .timber-beam{top:45px;width:47%;height:18px}
+  .beam-left{left:5.5%;transform:rotate(22deg)}
+  .beam-right{right:5.5%;transform:rotate(-22deg)}
+  .peak-cap{top:68px;width:22px;height:19px}
+  .timber-crossbar{left:18%;right:18%;top:131px}
+  .sign-chain{top:139px}
+}
