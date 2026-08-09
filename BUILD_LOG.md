@@ -64,7 +64,27 @@ Important:
 - All new visual elements in this version are code-only structural effects and placeholders.
 - The real truck, Aurora, headquarters, workshop, animals, fence, cattle guard, eagles, fire and other master pieces remain to be inserted from approved OSKO-created assets.
 
-Next planned step:
-- Test v0.3.0 in Chrome on the phone.
-- Preserve this version as a checkpoint.
-- Begin adding approved property assets one at a time while keeping the navigation engine intact.
+Protected checkpoint:
+- `checkpoint-v0.3.0`
+
+## 2026-08-08 — Phone verification v0.3.1
+
+Status: VERIFIED ON PHONE
+
+Verified from Osko's Chrome screenshots:
+- Entrance renders correctly.
+- Enter the Property opens the gate approach.
+- Gate, road, mountains, moving atmosphere and all four location controls are visible on the phone.
+- Existing working scene is now the baseline and must not be rebuilt from scratch.
+
+Next asset order agreed:
+1. Approved entrance/gate asset.
+2. Approved turquoise cattle guard with blue side lighting.
+3. Approved SKIE 27 three-track truck-on-rocks asset.
+4. Then headquarters/building, fire, eagles, wolves, Aurora and remaining approved property pieces.
+
+Asset safety rule:
+- Do not fabricate replacements for approved visual assets.
+- Do not import generic internet artwork.
+- If an approved asset file is not yet in the repository, keep its placeholder and wait for the exact approved file to be supplied or recovered.
+- Replace only one reserved placeholder at a time; do not alter unrelated approved scene elements.
