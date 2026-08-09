@@ -1,0 +1,58 @@
+/* v0.6.2 entrance alignment pass.
+   Code-only. Preserve v0.6.1 gate width, roof timbers, chains, sign, road,
+   Headquarters depth and far-property layout.
+   Adds low stone/brick gate pillars OUTSIDE the timber posts and widens the
+   cattle guard so the drivable grate reads as centered between the posts. */
+
+/* Permanent masonry bases outside the timber frame. They can later support
+   an optional physical gate without changing the timber entrance itself. */
+.timber-entrance::before,
+.timber-entrance::after{
+  content:"";
+  position:absolute;
+  bottom:-3px;
+  width:46px;
+  height:76px;
+  border-radius:6px 6px 4px 4px;
+  border:1px solid rgba(150,190,202,.24);
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.06),transparent 22%,rgba(0,0,0,.16) 78%),
+    repeating-linear-gradient(0deg,#50555a 0 13px,#30353a 13px 15px),
+    repeating-linear-gradient(90deg,transparent 0 20px,rgba(16,20,24,.55) 20px 22px);
+  box-shadow:0 7px 14px rgba(0,0,0,.38),inset 0 0 10px rgba(209,237,244,.05);
+  z-index:0;
+}
+.timber-entrance::before{left:-5.2%}
+.timber-entrance::after{right:-5.2%}
+
+/* Keep timber members visually in front of their masonry bases. */
+.timber-post,
+.timber-beam,
+.timber-crossbar,
+.peak-cap,
+.sign-chain,
+.entrance-sign{z-index:2}
+.entrance-sign{z-index:3}
+.peak-cap{z-index:4}
+
+/* The grate belongs in the vehicle opening. After v0.6.1 widened the posts,
+   widen the cattle guard to follow that opening while keeping it centered on
+   the road. */
+.cattle-guard{
+  left:50%;
+  width:min(90vw,560px);
+  transform:translateX(-50%) perspective(300px) rotateX(61deg);
+}
+
+@media(max-width:520px){
+  .timber-entrance::before,
+  .timber-entrance::after{
+    width:38px;
+    height:68px;
+  }
+  .timber-entrance::before{left:-3.9%}
+  .timber-entrance::after{right:-3.9%}
+  .cattle-guard{width:91vw}
+}
+
+.build-stamp::after{content:"AIC Living Site • v0.6.2"}
