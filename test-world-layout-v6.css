@@ -1,0 +1,36 @@
+/* LAND TEST v6 — organize permanent zones on locked acreage. Test page only. */
+
+/* RIGHT 90° — workshop district */
+.sector-right .sector-zone.primary{left:50%!important;top:43%!important;min-width:150px}
+.sector-right .sector-zone.left-zone{left:5%!important;top:62%!important;min-width:115px}
+.sector-right .sector-zone.right-zone{right:5%!important;top:62%!important;min-width:115px}
+.sector-right .workshop-building{left:50%!important;top:42%!important;transform:translateX(-50%)!important;width:min(54vw,420px)!important}
+.sector-right .freight-dock{right:4%!important;top:60%!important;width:24%!important}
+
+/* BACK 180° — headquarters / campfire / Outfitters district */
+.sector-back .sector-zone.primary{left:33%!important;top:45%!important;transform:translateX(-50%)!important;min-width:150px}
+.sector-back .sector-zone.left-zone{left:6%!important;top:65%!important;min-width:118px}
+.sector-back .sector-zone.right-zone{right:5%!important;top:66%!important;min-width:120px;opacity:.35}
+.sector-back .store-building{right:4%!important;top:39%!important;width:44%!important;height:29%!important}
+.sector-back .store-path{right:1%!important;width:48%!important;bottom:7%!important}
+.sector-back .store-light{right:48%!important}
+
+/* LEFT 270° — Aurora / animals / future cabin district */
+.sector-left .sector-zone.primary{left:50%!important;top:45%!important;min-width:150px}
+.sector-left .sector-zone.left-zone{left:5%!important;top:64%!important;min-width:116px}
+.sector-left .sector-zone.right-zone{right:5%!important;top:64%!important;min-width:126px}
+
+/* Give every district breathing room from the road center. */
+.property-sector .sector-zone{box-shadow:0 10px 24px rgba(0,0,0,.28),inset 0 0 18px rgba(86,221,255,.05)}
+
+/* Keep controls and entry buttons above district visuals. */
+.look-toggle,.look-controls,.back-button,.store-open-v088,.store-panel-v088{z-index:120!important}
+
+@media(max-width:520px){
+  .sector-right .workshop-building{width:56vw!important}
+  .sector-right .sector-zone.left-zone{left:3%!important}.sector-right .sector-zone.right-zone{right:3%!important}
+  .sector-back .sector-zone.primary{left:28%!important}
+  .sector-back .store-building{right:2%!important;width:48%!important}
+  .sector-back .sector-zone.left-zone{left:3%!important}
+  .sector-left .sector-zone.left-zone{left:3%!important}.sector-left .sector-zone.right-zone{right:3%!important}
+}
