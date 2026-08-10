@@ -5,6 +5,14 @@ Project: Alaska Ice Crystals Living Website
 Repository: `jonathanosko32-sketch/alaska-ice-crystals-living-site`
 Primary test page: `land-test.html`
 
+## READ THIS BEFORE WORKING
+
+The current build status is in this file, but Osko's long-term plans for the entire living world are now preserved separately in:
+
+- `SKIE_HANDOFF/WORLD_VISION_MASTER.md`
+
+A replacement AI must read that file before making design decisions. It contains the character, work/coins, safety-through-consequences, trucking, hospital/injury, games, ocean/boats, commerce, Command Center, camera/calculator/layover/OS integration, security, legal and long-term expansion plans.
+
 ## What works now
 
 - Entry screen opens the living property.
@@ -14,7 +22,6 @@ Primary test page: `land-test.html`
 - Finger swipe navigation is active.
 - Up/down finger movement is currently good.
 - Side-to-side movement is being tuned slower for control.
-- Current horizontal settings in `land-test-v9-finger-nav.js`: `STEP_X=22`, `TURN_GAP=32`.
 - Existing districts/builds include:
   - entrance/gate approach
   - OSKO log workshop
@@ -69,13 +76,13 @@ Current status:
 - acreage approved
 - finger navigation working
 - vertical movement approved
-- horizontal movement slowed again and needs phone verification
+- horizontal movement still being slowed/tuned and needs phone verification
 - district spacing still being refined
 
 ## Next step
 
-1. Have Osko test the newly slowed side-to-side swipe.
-2. If speed is right, do not touch navigation speed again.
+1. Continue slowing side-to-side swipe until Osko says it feels right.
+2. Do not disturb the approved up/down feel unless Osko asks.
 3. Continue spacing the front gate and back districts without changing acreage.
 4. Build outward district by district instead of stacking new objects on the road.
 5. Record every meaningful change here and in `BUILD_LOG.md` before ending a work session.
@@ -84,6 +91,7 @@ Current status:
 
 - `SKIE_READ_THIS_FIRST.md`
 - `SKIE_HANDOFF/CURRENT_STATE.md`
+- `SKIE_HANDOFF/WORLD_VISION_MASTER.md`
 - `BUILD_LOG.md`
 - `land-test.html`
 - `land-test-v8.js`
