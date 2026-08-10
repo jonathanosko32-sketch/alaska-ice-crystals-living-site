@@ -20,6 +20,13 @@
     .store-panel-v088{position:fixed;z-index:200;inset:10% 7% 12%;max-width:720px;margin:auto;border:1px solid rgba(117,234,255,.5);border-radius:22px;padding:18px;background:linear-gradient(180deg,rgba(3,23,36,.98),rgba(4,16,25,.99));color:#ecfcff;box-shadow:0 24px 60px rgba(0,0,0,.65),0 0 24px rgba(70,221,248,.14);overflow:auto}
     .store-panel-v088[hidden]{display:none!important}.store-panel-v088 h2{margin:0 0 5px;font-size:1.1rem;letter-spacing:.08em}.store-panel-v088 p{margin:0 0 14px;color:#a9dce5;font-size:.82rem}.store-grid-v088{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.store-card-v088{border:1px solid rgba(115,229,248,.25);border-radius:14px;padding:14px 9px;background:rgba(16,47,61,.72);text-align:center}.store-card-v088 strong{display:block;margin-bottom:5px}.store-card-v088 span{font-size:.7rem;color:#9ddce8}.store-close-v088{margin-top:15px;width:100%;border:1px solid rgba(113,234,255,.45);border-radius:12px;padding:10px;background:rgba(24,72,91,.9);color:#fff;font-weight:900}
     body.store-panel-open-v088 #cameraStage,body.store-panel-open-v088 .sector-world{filter:brightness(.42) saturate(.8)}
+
+    /* v0.9.8: when Back Property is fully centered, show the store cleanly by itself. */
+    .property.store-centered-v098 .camera-stage{opacity:0!important;pointer-events:none!important}
+    .property.store-centered-v098 .sector-right,.property.store-centered-v098 .sector-left{opacity:0!important;pointer-events:none!important}
+    .property.store-centered-v098 .sector-back .sector-zone,.property.store-centered-v098 .sector-back .sector-crystal{opacity:0!important;visibility:hidden!important}
+    .property.store-centered-v098 .sector-back .store-v088{opacity:1!important;visibility:visible!important}
+
     @media(max-width:520px){.sector-back .store-building{right:3%;width:50%;top:37%;height:28%}.sector-back .store-merch{left:2%;right:31%}.store-open-v088{left:9px;bottom:124px;font-size:.7rem}.store-panel-v088{inset:8% 4% 10%;padding:14px}.store-grid-v088{grid-template-columns:1fr}.store-card-v088{padding:11px}}
   `;
   document.head.appendChild(style);
@@ -39,17 +46,25 @@
 
   const property = document.getElementById('property');
   const compass = document.getElementById('lookCompass');
-  const updateButton = () => {
+  const isCenteredBack = () => {
     const text = (compass?.textContent || '').trim();
-    open.hidden = !property || property.hidden || !text.startsWith('BACK PROPERTY') || !panel.hidden;
+    const match = text.match(/BACK PROPERTY\s*•\s*(\d+)/i);
+    if (!match) return false;
+    const deg = Number(match[1]);
+    return Math.abs(deg - 180) <= 1;
+  };
+  const updateButton = () => {
+    const centered = !!property && !property.hidden && isCenteredBack();
+    property?.classList.toggle('store-centered-v098', centered && panel.hidden);
+    open.hidden = !centered || !panel.hidden;
   };
 
-  open.addEventListener('click', e => { e.preventDefault(); panel.hidden = false; document.body.classList.add('store-panel-open-v088'); updateButton(); });
+  open.addEventListener('click', e => { e.preventDefault(); panel.hidden = false; document.body.classList.add('store-panel-open-v088'); property?.classList.remove('store-centered-v098'); updateButton(); });
   panel.querySelector('.store-close-v088').addEventListener('click', e => { e.preventDefault(); panel.hidden = true; document.body.classList.remove('store-panel-open-v088'); updateButton(); });
   document.addEventListener('click', () => requestAnimationFrame(updateButton));
   document.addEventListener('pointerup', () => requestAnimationFrame(updateButton));
   if (compass) new MutationObserver(updateButton).observe(compass,{childList:true,characterData:true,subtree:true});
   updateButton();
 
-  const stamp = document.querySelector('.build-stamp'); if (stamp) stamp.textContent = 'AIC Living Site • v0.9.6';
+  const stamp = document.querySelector('.build-stamp'); if (stamp) stamp.textContent = 'AIC Living Site • v0.9.8';
 })();
