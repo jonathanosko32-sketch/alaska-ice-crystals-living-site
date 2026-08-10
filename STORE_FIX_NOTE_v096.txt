@@ -1,0 +1,7 @@
+v0.9.6 performance cleanup
+- Removed stacked store/navigation patch scripts v089-v095 from page loading.
+- Rebuilt OSKO Outfitters behavior into one store script.
+- Store is anchored inside Back Property sector only.
+- No rapid setInterval loops and no broad attribute MutationObserver on cameraStage.
+- Store layer cannot intercept 360 controls.
+- Enter/return uses one simple panel state.
