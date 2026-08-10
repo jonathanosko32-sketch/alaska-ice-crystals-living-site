@@ -1,0 +1,35 @@
+ALASKA ICE CRYSTALS LIVING WEBSITE — HANDOFF BUILD LOG v15
+Date: 2026-08-09
+
+CURRENT VERIFIED/APPROVED STATE
+- Large property acreage added after discovering the original build only had a narrow road.
+- Osko approved the current amount of land and wants to keep it for future expansion.
+- Gate approach is visible and working.
+- Store entry/exit is smooth and no longer freezing during current phone tests.
+- Current districts include workshop/freight, Outfitters/campfire/headquarters, and farm/animal/home reserve areas.
+- OSKO farm includes two code-built log structures: OSKO LOG BARN and OSKO FARM SHOP.
+- Major property buildings should remain log-style unless Osko changes direction.
+- Front and back districts need breathing room, but should not be moved so far apart that navigation feels lost.
+- Old 360 control panel is hidden; finger swipe navigation is the active control method.
+- Up/down swipe is approved as good.
+- Side-to-side swipe needed more slowing.
+
+NAVIGATION CHANGE IN THIS PASS
+File: land-test-v9-finger-nav.js
+- STEP_X changed from 15 to 22.
+- TURN_GAP changed from 22ms to 32ms.
+- STEP_Y remains 9 because vertical movement is currently approved.
+- Axis lock remains 5.
+- Goal: slower, more controllable horizontal movement without damaging the good vertical movement.
+
+CONTINUITY/HANDOFF
+- Updated SKIE_READ_THIS_FIRST.md with current project state and navigation settings.
+- Added SKIE_HANDOFF/CURRENT_STATE.md with working areas, prior failures, current rules, next steps, and first files a replacement AI should inspect.
+- Do not rebuild from scratch.
+- Do not shrink the acreage.
+- Do not generate/redraw images unless Osko explicitly asks.
+- Continue recording meaningful changes before ending each work session.
+
+NEXT TEST
+- Osko tests side-to-side swipe speed on phone.
+- If speed is right, lock navigation and continue property spacing/building.
