@@ -1,0 +1,67 @@
+/* LAND TEST v2 — acreage expansion only. Live index.html does not load this file. */
+.property{isolation:isolate;overflow:hidden}
+.property::before,.property::after{pointer-events:none!important}
+
+/* Large property floor: road is only the center path, not the whole property. */
+.property::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  left:-95vw;
+  right:-95vw;
+  top:27%;
+  bottom:-22%;
+  background:
+    radial-gradient(ellipse at 50% 9%,rgba(62,118,111,.26),transparent 40%),
+    linear-gradient(180deg,rgba(27,67,67,.76),rgba(7,30,36,.99));
+  clip-path:polygon(4% 2%,96% 2%,100% 100%,0 100%);
+  border-top:1px solid rgba(111,230,239,.11);
+}
+
+/* Background ridge masks the edge of the buildable land. */
+.property::after{
+  content:"";
+  position:absolute;
+  z-index:0;
+  left:-20%;right:-20%;top:20%;height:30%;
+  opacity:.48;
+  background:linear-gradient(180deg,rgba(4,18,30,.08),rgba(7,29,39,.78));
+  clip-path:polygon(0 78%,6% 53%,13% 72%,20% 34%,28% 71%,35% 44%,43% 74%,51% 29%,59% 73%,67% 39%,75% 72%,83% 35%,91% 69%,100% 48%,100% 100%,0 100%);
+}
+
+/* Never let acreage intercept controls. */
+.crystal-button,.look-toggle,.look-controls,.back-button,.store-enter,.store-modal,.world-node{pointer-events:auto!important}
+
+/* Right-property buildable acreage. */
+.sector-right .sector-ground{
+  left:-115%!important;
+  right:-115%!important;
+  top:37%!important;
+  height:78%!important;
+  background:
+    radial-gradient(ellipse at 50% 7%,rgba(58,111,105,.22),transparent 45%),
+    linear-gradient(180deg,rgba(28,70,69,.72),rgba(6,27,33,.99))!important;
+  clip-path:polygon(3% 0,97% 0,100% 100%,0 100%)!important;
+}
+
+/* Keep road narrow through the much wider land. */
+.sector-right .sector-road{width:min(34vw,300px)!important}
+.sector-right .sector-fence.left{left:-18%!important}
+.sector-right .sector-fence.right{right:-18%!important}
+
+/* Add subtle side-field guides only; these are land, not buildings. */
+.sector-right::before,
+.sector-right::after{content:"";position:absolute;pointer-events:none;z-index:1;top:49%;bottom:-8%;width:36%;border-top:1px solid rgba(102,221,231,.07);background:linear-gradient(180deg,rgba(28,66,64,.10),rgba(6,27,31,.40))}
+.sector-right::before{left:0;clip-path:polygon(0 7%,100% 0,80% 100%,0 100%)}
+.sector-right::after{right:0;clip-path:polygon(0 0,100% 7%,100% 100%,20% 100%)}
+
+/* Preserve existing working content above decorative land. */
+.sector-right .workshop-building,.sector-right .freight-dock,.sector-right .sector-card,.sector-right .yard-box,.sector-right .yard-post,.sector-back .store-building{z-index:7!important}
+
+@media(max-width:520px){
+  .property::before{left:-150vw;right:-150vw;top:26%}
+  .sector-right .sector-ground{left:-145%!important;right:-145%!important}
+  .sector-right .sector-road{width:31vw!important}
+  .sector-right .sector-fence.left{left:-24%!important}
+  .sector-right .sector-fence.right{right:-24%!important}
+}
