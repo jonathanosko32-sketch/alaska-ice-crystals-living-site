@@ -5,7 +5,7 @@
 
   const style=document.createElement('style');
   style.textContent=`
-    /* v13 test: horizontal slowed slightly; vertical kept as-is. */
+    /* v15 test: horizontal slowed more; vertical kept as approved. */
     .look-controls,.look-toggle{display:none!important}
     .stable-swipe-v097{pointer-events:none!important}
     .finger-nav-v9{position:absolute;z-index:70;left:0;right:0;top:72px;bottom:82px;display:none;touch-action:none;background:transparent}
@@ -41,11 +41,11 @@
   enter.addEventListener('click',()=>setTimeout(enableFingerView,40));
 
   let active=false,lastX=0,lastY=0,accumX=0,accumY=0,axis='';
-  const STEP_X=15;
+  const STEP_X=22;
   const STEP_Y=9;
   const AXIS_LOCK=5;
   let lastTurn=0;
-  const TURN_GAP=22;
+  const TURN_GAP=32;
 
   const turn=(dir)=>{
     const now=performance.now();
@@ -97,5 +97,5 @@
 
   document.querySelectorAll('.store-open-v088,.store-enter,.back-button,#backButton,.store-modal').forEach(el=>{el.style.position=el.style.position||'relative';el.style.zIndex='90';});
   const stamp=document.querySelector('.build-stamp');
-  if(stamp)stamp.textContent='LAND TEST • v13 horizontal slightly slower';
+  if(stamp)stamp.textContent='LAND TEST • v15 horizontal slower';
 })();
