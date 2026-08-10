@@ -1,4 +1,4 @@
-/* LAND TEST v5 — fix front gate trench and remove green land cast. Test page only. */
+/* LAND TEST v6 — locked acreage, organized districts, visible campfire. Test page only. */
 .property{isolation:isolate;overflow:hidden;background:linear-gradient(180deg,rgba(4,20,35,.08),rgba(5,24,34,.25))}
 .property::before,.property::after{pointer-events:none!important}
 
@@ -15,7 +15,7 @@
   border-top:1px solid rgba(102,210,232,.08);
 }
 
-/* Distant blue ridge, not a green wall. */
+/* Distant blue ridge. */
 .property::after{
   content:"";
   position:absolute;
@@ -26,7 +26,7 @@
   clip-path:polygon(0 82%,5% 54%,11% 74%,17% 38%,24% 72%,31% 46%,38% 76%,46% 31%,54% 75%,62% 41%,70% 74%,78% 35%,86% 72%,93% 44%,100% 70%,100% 100%,0 100%);
 }
 
-/* Front approach: explicitly fill both sides of the road so no V-shaped hole/trench can show. */
+/* Front approach remains filled: no trench in front of the gate. */
 .camera-stage::before{
   content:"";position:absolute;pointer-events:none;z-index:-1;
   left:-80vw;right:-80vw;top:42%;bottom:-35%;
@@ -39,7 +39,7 @@
   background:linear-gradient(90deg,rgba(16,31,38,.9),rgba(49,64,68,.72) 48%,rgba(95,215,232,.16) 49.4% 50.6%,rgba(49,64,68,.72) 52%,rgba(16,31,38,.9));
 }
 
-/* All sector acreage uses blue/charcoal ground rather than green. */
+/* Locked master acreage. */
 .property-sector .sector-ground,
 .sector-right .sector-ground,.sector-back .sector-ground,.sector-left .sector-ground{
   left:-280%!important;right:-280%!important;top:32%!important;height:105%!important;
@@ -48,10 +48,55 @@
 }
 .sector-right .sector-road,.sector-back .sector-road,.sector-left .sector-road{width:min(27vw,250px)!important}
 
-/* Keep controls and working content above land. */
+/* ORGANIZED DISTRICTS — keep objects off the road and give each area permanent breathing room. */
+.sector-right .sector-zone.primary{left:50%!important;top:44%!important;min-width:150px!important}
+.sector-right .sector-zone.left-zone{left:5%!important;top:64%!important;min-width:115px!important}
+.sector-right .sector-zone.right-zone{right:5%!important;top:64%!important;min-width:115px!important}
+.sector-right .workshop-building{left:50%!important;top:43%!important;transform:translateX(-50%)!important;width:min(54vw,420px)!important}
+.sector-right .freight-dock{right:4%!important;top:61%!important;width:24%!important}
+
+.sector-back .sector-zone.primary{left:31%!important;top:45%!important;transform:translateX(-50%)!important;min-width:145px!important}
+.sector-back .sector-zone.left-zone{left:5%!important;top:69%!important;min-width:120px!important;overflow:visible!important}
+.sector-back .sector-zone.right-zone{right:4%!important;top:70%!important;min-width:120px!important;opacity:.25!important}
+.sector-back .store-building{right:3%!important;top:40%!important;width:45%!important;height:29%!important}
+.sector-back .store-path{right:0!important;bottom:7%!important;width:48%!important}
+.sector-back .store-light{right:48%!important}
+
+.sector-left .sector-zone.primary{left:50%!important;top:45%!important;min-width:150px!important}
+.sector-left .sector-zone.left-zone{left:5%!important;top:65%!important;min-width:115px!important}
+.sector-left .sector-zone.right-zone{right:5%!important;top:65%!important;min-width:125px!important}
+
+/* CAMPFIRE — visible animated fire above the Campfire zone on Back Property. */
+.sector-back .sector-zone.left-zone::before{
+  content:"";
+  position:absolute;
+  left:50%;top:-92px;
+  width:54px;height:78px;
+  transform:translateX(-50%);
+  transform-origin:50% 100%;
+  clip-path:polygon(50% 0,70% 28%,92% 56%,76% 100%,24% 100%,8% 56%,30% 30%);
+  background:linear-gradient(180deg,#fff0a4 0%,#ffd15b 28%,#ff8d28 58%,#d94718 100%);
+  filter:drop-shadow(0 0 9px rgba(255,121,35,.78));
+  animation:aicFire .72s ease-in-out infinite alternate;
+}
+.sector-back .sector-zone.left-zone::after{
+  content:"";
+  position:absolute;
+  left:50%;top:-30px;
+  width:92px;height:30px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  border:8px solid rgba(91,88,82,.95);
+  background:repeating-linear-gradient(25deg,#3b2418 0 10px,#6b4027 10px 18px,#2a1a13 18px 26px);
+  box-shadow:0 0 28px rgba(255,109,30,.30),0 7px 11px rgba(0,0,0,.42);
+}
+@keyframes aicFire{from{scale:.92 1;rotate:-2deg}to{scale:1.06 .92;rotate:2deg}}
+
+/* Keep working content above the land. */
 .camera-stage,.sector-world,.interaction-panel,.travel-status,.back-button,.look-toggle,.look-controls,.store-enter,.store-modal{z-index:5}
 .crystal-button,.look-toggle,.look-controls,.back-button,.store-enter,.store-modal,.world-node{pointer-events:auto!important}
 .sector-right .workshop-building,.sector-right .freight-dock,.sector-right .sector-card,.sector-right .yard-box,.sector-right .yard-post,.sector-back .store-building{z-index:7!important}
+.look-toggle,.look-controls,.back-button,.store-open-v088,.store-panel-v088{z-index:120!important}
 
 /* Phone controls remain isolated from swipe area. */
 .property.viewer-360-active .stable-swipe-v097{right:220px!important}
@@ -68,4 +113,10 @@
   .property.viewer-360-active .stable-swipe-v097{right:205px!important}
   .look-controls{width:194px!important;right:6px!important}
   .look-grid button{min-height:48px!important;min-width:46px!important}
+  .sector-right .workshop-building{width:56vw!important}
+  .sector-back .sector-zone.primary{left:27%!important}
+  .sector-back .store-building{right:2%!important;width:48%!important}
+  .sector-back .sector-zone.left-zone{left:3%!important}
+  .sector-back .sector-zone.left-zone::before{top:-82px;width:48px;height:68px}
+  .sector-back .sector-zone.left-zone::after{top:-26px;width:82px;height:26px}
 }
