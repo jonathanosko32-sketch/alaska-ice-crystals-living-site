@@ -5,7 +5,7 @@
 
   const style=document.createElement('style');
   style.textContent=`
-    /* v9 test: finger-first property navigation. Hide the 360 control box. */
+    /* v10 test: finger-first property navigation with smoother vertical movement. */
     .look-controls,.look-toggle{display:none!important}
     .stable-swipe-v097{pointer-events:none!important}
     .finger-nav-v9{position:absolute;z-index:70;left:0;right:0;top:72px;bottom:82px;display:none;touch-action:none;background:transparent}
@@ -17,7 +17,7 @@
 
   const surface=document.createElement('div');
   surface.className='finger-nav-v9';
-  surface.setAttribute('aria-label','Swipe left or right to move around the property');
+  surface.setAttribute('aria-label','Swipe around the property');
   property.appendChild(surface);
 
   const hint=document.createElement('div');
@@ -27,6 +27,8 @@
 
   const rightBtn=()=>document.querySelector('button[data-look="right"]');
   const leftBtn=()=>document.querySelector('button[data-look="left"]');
+  const upBtn=()=>document.querySelector('button[data-look="up"]');
+  const downBtn=()=>document.querySelector('button[data-look="down"]');
   const lookToggle=()=>document.querySelector('.look-toggle');
 
   const enableFingerView=()=>{
@@ -37,37 +39,67 @@
 
   enter.addEventListener('click',()=>setTimeout(enableFingerView,40));
 
-  let active=false,lastX=0,accum=0;
-  const STEP_PX=24;
+  let active=false,lastX=0,lastY=0,accumX=0,accumY=0,axis='';
+  const STEP_X=24;
+  const STEP_Y=15;
+  const AXIS_LOCK=8;
+
   const turn=(dir)=>{
     const b=dir>0?rightBtn():leftBtn();
     if(b)b.click();
   };
+  const moveVertical=(dir)=>{
+    /* Natural finger drag: drag up moves the view up; drag down moves it down. */
+    const b=dir<0?downBtn():upBtn();
+    if(b)b.click();
+  };
+
   surface.addEventListener('pointerdown',e=>{
-    active=true;lastX=e.clientX;accum=0;
+    active=true;
+    lastX=e.clientX;lastY=e.clientY;
+    accumX=0;accumY=0;axis='';
     surface.setPointerCapture?.(e.pointerId);
   });
+
   surface.addEventListener('pointermove',e=>{
     if(!active)return;
     const dx=e.clientX-lastX;
-    lastX=e.clientX;
-    accum+=dx;
-    while(Math.abs(accum)>=STEP_PX){
-      /* Finger left turns view right; finger right turns view left. */
-      turn(accum<0?1:-1);
-      accum+=accum<0?STEP_PX:-STEP_PX;
+    const dy=e.clientY-lastY;
+    lastX=e.clientX;lastY=e.clientY;
+
+    accumX+=dx;
+    accumY+=dy;
+
+    if(!axis && (Math.abs(accumX)>=AXIS_LOCK || Math.abs(accumY)>=AXIS_LOCK)){
+      axis=Math.abs(accumX)>=Math.abs(accumY)?'x':'y';
+    }
+
+    if(axis==='x'){
+      while(Math.abs(accumX)>=STEP_X){
+        /* Finger left turns view right; finger right turns view left. */
+        turn(accumX<0?1:-1);
+        accumX+=accumX<0?STEP_X:-STEP_X;
+      }
+      accumY=0;
+    }else if(axis==='y'){
+      while(Math.abs(accumY)>=STEP_Y){
+        moveVertical(accumY<0?-1:1);
+        accumY+=accumY<0?STEP_Y:-STEP_Y;
+      }
+      accumX=0;
     }
   });
+
   const stop=e=>{
-    active=false;accum=0;
+    active=false;accumX=0;accumY=0;axis='';
     try{surface.releasePointerCapture?.(e.pointerId);}catch(_){}
   };
   surface.addEventListener('pointerup',stop);
-  surface.addEventListener('pointercancel',()=>{active=false;accum=0});
+  surface.addEventListener('pointercancel',()=>{active=false;accumX=0;accumY=0;axis=''});
 
   /* Keep things the user must tap above the finger navigation sheet. */
   document.querySelectorAll('.store-open-v088,.store-enter,.back-button,#backButton,.store-modal').forEach(el=>{el.style.position=el.style.position||'relative';el.style.zIndex='90';});
 
   const stamp=document.querySelector('.build-stamp');
-  if(stamp)stamp.textContent='LAND TEST • v9 finger navigation + spread property';
+  if(stamp)stamp.textContent='LAND TEST • v10 finger navigation + smoother up/down';
 })();
