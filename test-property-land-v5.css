@@ -1,0 +1,71 @@
+/* LAND TEST v5 — fix front gate trench and remove green land cast. Test page only. */
+.property{isolation:isolate;overflow:hidden;background:linear-gradient(180deg,rgba(4,20,35,.08),rgba(5,24,34,.25))}
+.property::before,.property::after{pointer-events:none!important}
+
+/* Dark blue Alaska ground begins below the distant horizon and stays continuous to the phone edge. */
+.property::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  left:-320vw;right:-320vw;
+  top:34%;bottom:-55%;
+  background:
+    radial-gradient(ellipse at 50% 8%,rgba(31,72,83,.22),transparent 44%),
+    linear-gradient(180deg,#123747 0%,#0a2937 34%,#061d29 72%,#041722 100%);
+  border-top:1px solid rgba(102,210,232,.08);
+}
+
+/* Distant blue ridge, not a green wall. */
+.property::after{
+  content:"";
+  position:absolute;
+  z-index:1;
+  left:-65%;right:-65%;top:25%;height:24%;
+  opacity:.42;
+  background:linear-gradient(180deg,rgba(11,38,58,.08),rgba(7,29,43,.76));
+  clip-path:polygon(0 82%,5% 54%,11% 74%,17% 38%,24% 72%,31% 46%,38% 76%,46% 31%,54% 75%,62% 41%,70% 74%,78% 35%,86% 72%,93% 44%,100% 70%,100% 100%,0 100%);
+}
+
+/* Front approach: explicitly fill both sides of the road so no V-shaped hole/trench can show. */
+.camera-stage::before{
+  content:"";position:absolute;pointer-events:none;z-index:-1;
+  left:-80vw;right:-80vw;top:42%;bottom:-35%;
+  background:linear-gradient(180deg,rgba(17,52,63,.96),rgba(5,25,34,.995));
+}
+.camera-stage::after{
+  content:"";position:absolute;pointer-events:none;z-index:-1;
+  left:50%;top:46%;bottom:-28%;width:min(34vw,300px);transform:translateX(-50%);
+  clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);
+  background:linear-gradient(90deg,rgba(16,31,38,.9),rgba(49,64,68,.72) 48%,rgba(95,215,232,.16) 49.4% 50.6%,rgba(49,64,68,.72) 52%,rgba(16,31,38,.9));
+}
+
+/* All sector acreage uses blue/charcoal ground rather than green. */
+.property-sector .sector-ground,
+.sector-right .sector-ground,.sector-back .sector-ground,.sector-left .sector-ground{
+  left:-280%!important;right:-280%!important;top:32%!important;height:105%!important;
+  background:linear-gradient(180deg,#123745 0%,#0a2935 38%,#061d28 100%)!important;
+  clip-path:none!important;
+}
+.sector-right .sector-road,.sector-back .sector-road,.sector-left .sector-road{width:min(27vw,250px)!important}
+
+/* Keep controls and working content above land. */
+.camera-stage,.sector-world,.interaction-panel,.travel-status,.back-button,.look-toggle,.look-controls,.store-enter,.store-modal{z-index:5}
+.crystal-button,.look-toggle,.look-controls,.back-button,.store-enter,.store-modal,.world-node{pointer-events:auto!important}
+.sector-right .workshop-building,.sector-right .freight-dock,.sector-right .sector-card,.sector-right .yard-box,.sector-right .yard-post,.sector-back .store-building{z-index:7!important}
+
+/* Phone controls remain isolated from swipe area. */
+.property.viewer-360-active .stable-swipe-v097{right:220px!important}
+.look-controls{width:210px!important;padding:12px!important;touch-action:manipulation!important}
+.look-grid{gap:8px!important}
+.look-grid button{min-height:50px!important;min-width:50px!important;font-size:1.08rem!important;touch-action:manipulation!important}
+.look-toggle{touch-action:manipulation!important}
+
+@media(max-width:520px){
+  .property::before{left:-360vw;right:-360vw;top:33%}
+  .camera-stage::before{left:-120vw;right:-120vw;top:40%}
+  .camera-stage::after{width:32vw}
+  .property-sector .sector-ground,.sector-right .sector-ground,.sector-back .sector-ground,.sector-left .sector-ground{left:-320%!important;right:-320%!important}
+  .property.viewer-360-active .stable-swipe-v097{right:205px!important}
+  .look-controls{width:194px!important;right:6px!important}
+  .look-grid button{min-height:48px!important;min-width:46px!important}
+}
