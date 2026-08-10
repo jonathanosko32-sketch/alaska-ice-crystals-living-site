@@ -1,0 +1,76 @@
+/* LAND TEST v4 — fill front hole + improve 360 touch controls. Isolated test only. */
+.property{isolation:isolate;overflow:hidden}
+.property::before,.property::after{pointer-events:none!important}
+
+/* Continuous master property floor: no clipped 'hole' in front of the gate. */
+.property::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  left:-190vw;
+  right:-190vw;
+  top:21%;
+  bottom:-40%;
+  background:
+    radial-gradient(ellipse at 50% 10%,rgba(60,112,105,.24),transparent 42%),
+    linear-gradient(180deg,rgba(24,61,62,.82),rgba(7,29,35,.995));
+  border-top:1px solid rgba(111,230,239,.08);
+}
+
+/* Mountain/tree ridge hides the distant edge while keeping the ground continuous. */
+.property::after{
+  content:"";
+  position:absolute;
+  z-index:1;
+  left:-55%;right:-55%;top:17%;height:29%;
+  opacity:.42;
+  background:linear-gradient(180deg,rgba(4,18,30,.03),rgba(7,29,39,.68));
+  clip-path:polygon(0 82%,5% 54%,11% 74%,17% 38%,24% 72%,31% 46%,38% 76%,46% 31%,54% 75%,62% 41%,70% 74%,78% 35%,86% 72%,93% 44%,100% 70%,100% 100%,0 100%);
+}
+
+/* Preserve all working layers above decorative land. */
+.camera-stage,.sector-world,.interaction-panel,.travel-status,.back-button,.look-toggle,.look-controls,.store-enter,.store-modal{z-index:5}
+.crystal-button,.look-toggle,.look-controls,.back-button,.store-enter,.store-modal,.world-node{pointer-events:auto!important}
+
+/* Large workshop-side acreage, still centered around a narrow road. */
+.sector-right .sector-ground{
+  left:-250%!important;
+  right:-250%!important;
+  top:31%!important;
+  height:100%!important;
+  background:
+    radial-gradient(ellipse at 50% 7%,rgba(58,111,105,.20),transparent 46%),
+    linear-gradient(180deg,rgba(28,69,68,.74),rgba(6,27,33,.995))!important;
+  clip-path:none!important;
+}
+.sector-right .sector-road{width:min(27vw,250px)!important}
+.sector-right .sector-fence.left{left:-48%!important}
+.sector-right .sector-fence.right{right:-48%!important}
+
+.sector-right::before,.sector-right::after{
+  content:"";position:absolute;pointer-events:none;z-index:1;top:43%;bottom:-20%;width:48%;
+  border-top:1px solid rgba(102,221,231,.06);
+  background:linear-gradient(180deg,rgba(28,66,64,.09),rgba(6,27,31,.34));
+}
+.sector-right::before{left:-6%;clip-path:polygon(0 7%,100% 0,77% 100%,0 100%)}
+.sector-right::after{right:-6%;clip-path:polygon(0 0,100% 7%,100% 100%,23% 100%)}
+
+/* Make phone controls easier to press and keep the swipe layer away from them. */
+.property.viewer-360-active .stable-swipe-v097{right:220px!important}
+.look-controls{width:210px!important;padding:12px!important;touch-action:manipulation!important}
+.look-grid{gap:8px!important}
+.look-grid button{min-height:50px!important;min-width:50px!important;font-size:1.08rem!important;touch-action:manipulation!important}
+.look-toggle{touch-action:manipulation!important}
+
+.sector-right .workshop-building,.sector-right .freight-dock,.sector-right .sector-card,.sector-right .yard-box,.sector-right .yard-post,.sector-back .store-building{z-index:7!important}
+
+@media(max-width:520px){
+  .property::before{left:-300vw;right:-300vw;top:20%}
+  .sector-right .sector-ground{left:-280%!important;right:-280%!important}
+  .sector-right .sector-road{width:25vw!important}
+  .sector-right .sector-fence.left{left:-54%!important}
+  .sector-right .sector-fence.right{right:-54%!important}
+  .property.viewer-360-active .stable-swipe-v097{right:205px!important}
+  .look-controls{width:194px!important;right:6px!important}
+  .look-grid button{min-height:48px!important;min-width:46px!important}
+}
