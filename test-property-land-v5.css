@@ -120,3 +120,27 @@
   .sector-back .sector-zone.left-zone::before{top:-82px;width:48px;height:68px}
   .sector-back .sector-zone.left-zone::after{top:-26px;width:82px;height:26px}
 }
+
+/* v21 — repair the visible ground seam. Do not change acreage or district spacing. */
+.property::before,
+.camera-stage::before,
+.property-sector .sector-ground,
+.sector-right .sector-ground,
+.sector-back .sector-ground,
+.sector-left .sector-ground{
+  background:linear-gradient(180deg,#123745 0%,#0a2935 38%,#061d28 100%)!important;
+  border-top:0!important;
+  box-shadow:none!important;
+}
+.property-sector .sector-ground,
+.sector-right .sector-ground,
+.sector-back .sector-ground,
+.sector-left .sector-ground{
+  top:32%!important;
+  opacity:1!important;
+}
+.property-sector,.sector-world,.sector-right,.sector-back,.sector-left{background-color:transparent!important}
+@media(max-width:520px){
+  .property::before{top:32%!important}
+  .camera-stage::before{top:32%!important}
+}
