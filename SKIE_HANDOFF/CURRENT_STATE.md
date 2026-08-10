@@ -4,60 +4,86 @@ Date: 2026-08-09
 Project: Alaska Ice Crystals Living Website
 Repository: `jonathanosko32-sketch/alaska-ice-crystals-living-site`
 Primary test page: `land-test.html`
+Current property layout test: v19
 
 ## READ THIS BEFORE WORKING
 
-The current build status is in this file, but Osko's long-term plans for the entire living world are now preserved separately in:
+The current build status is in this file, but Osko's long-term plans for the entire living world are preserved separately in:
 
 - `SKIE_HANDOFF/WORLD_VISION_MASTER.md`
 
-A replacement AI must read that file before making design decisions. It contains the character, work/coins, safety-through-consequences, trucking, hospital/injury, games, ocean/boats, commerce, Command Center, camera/calculator/layover/OS integration, security, legal and long-term expansion plans.
+A replacement AI must read that file before making design decisions.
+
+## LAND DECISION — LOCKED
+
+Osko has approved the current property acreage and explicitly said there is enough land for a long time.
+
+**DO NOT ADD MORE LAND OR ENLARGE THE PROPERTY unless Osko explicitly reverses this decision.**
+
+The job now is to organize the existing acreage with roads, districts, buildings, landmarks and usable spacing.
 
 ## What works now
 
 - Entry screen opens the living property.
 - Gate approach works.
-- Property acreage is now much larger than the original road-only build and Osko approved the amount of land.
+- Current acreage is approved and locked.
 - Store can be entered and exited smoothly.
 - Finger swipe navigation is active.
-- Up/down finger movement is currently good.
-- Side-to-side movement is being tuned slower for control.
+- Up/down finger movement is working well.
+- Side-to-side movement has been slowed and is usable; leave speed alone unless Osko asks for another adjustment.
+- A property map exists for orientation.
+- Main roads and branch roads are being used to organize destinations.
 - Existing districts/builds include:
   - entrance/gate approach
   - OSKO log workshop
+  - truck service
   - freight dock
+  - freight office
   - truck yard
   - freight area
   - OSKO Outfitters store
   - campfire
   - headquarters reserve
+  - cabin office
   - Aurora area reserve
   - OSKO farm
   - OSKO log barn
   - OSKO farm shop
   - animal/pasture/future cabin areas
 
-## Important current layout direction
+## v19 property organization
+
+Phone screenshots showed that the acreage itself was no longer the problem. The problem was crowding inside the 90° and 180° districts.
+
+v19 reorganizes the property without changing acreage:
+- Front / 0°: gate approach stays clear; old node markers are hidden in active property view.
+- Right / 90°: workshop is fully on-screen; truck service, freight dock and freight office are assigned separate lots/road branches.
+- Back / 180°: Headquarters is moved left, Outfitters right, campfire into its own clearing, and cabin office into a separate middle/rear lot.
+- Left / 270°: farm layout is preserved because it was the clearest district; barn and farm shop remain separated with field/pasture lots.
+- Branch roads are aimed toward each destination instead of crossing or stacking through buildings.
+
+Current override file: `land-test-v19-property-fix.js`
+
+## Important layout direction
 
 Osko wants the property organized like a large real place, not a narrow road with everything piled on top of each other.
 
 Keep:
-- the large acreage
-- room for roads
-- room for mountains and trees
-- room for more log buildings
-- room for animals and equipment
+- current locked acreage
 - a clear front gate approach
-- front and back destinations separated enough to avoid overlap
+- readable main roads
+- branch roads to every destination
+- enough separation to add future buildings
+- districts close enough that Osko does not get lost
+- major buildings as log buildings unless Osko says otherwise
 
-Do not spread destinations so far apart that Osko gets lost or has to swipe repeatedly just to find the next area.
+Use the farm layout as the spacing model: a readable center road with destinations on separate lots to either side.
 
 ## Visual/build rules
 
 - Current property work is code/layout work. Do not generate or redraw images unless Osko explicitly asks.
 - Do not replace approved OSKO artwork with generic internet assets.
 - Existing code-built structures are working structural pieces/placeholders and should not be casually deleted.
-- Major property buildings are to remain log buildings unless Osko explicitly changes that direction.
 - Preserve the Alaska Ice Crystals entrance identity and existing gate work.
 
 ## Problems already found and fixed/partly fixed
@@ -73,19 +99,18 @@ Earlier builds had these failures:
 
 Current status:
 - store entry/exit smooth
-- acreage approved
+- acreage approved and locked
 - finger navigation working
-- vertical movement approved
-- horizontal movement still being slowed/tuned and needs phone verification
-- district spacing still being refined
+- roads + property map added
+- v19 district spacing installed for phone testing
 
 ## Next step
 
-1. Continue slowing side-to-side swipe until Osko says it feels right.
-2. Do not disturb the approved up/down feel unless Osko asks.
-3. Continue spacing the front gate and back districts without changing acreage.
-4. Build outward district by district instead of stacking new objects on the road.
-5. Record every meaningful change here and in `BUILD_LOG.md` before ending a work session.
+1. Have Osko phone-test v19 at 0°, 90°, 180° and 270°.
+2. Adjust only individual lot positions if something still overlaps; do NOT enlarge land.
+3. Once spacing is approved, continue adding roads and additional log builds district by district.
+4. Keep visual landmarks so Osko always knows where he is.
+5. Record every meaningful change here and in the build records.
 
 ## Files a replacement AI should inspect first
 
@@ -94,11 +119,11 @@ Current status:
 - `SKIE_HANDOFF/WORLD_VISION_MASTER.md`
 - `BUILD_LOG.md`
 - `land-test.html`
-- `land-test-v8.js`
 - `land-test-v9-finger-nav.js`
+- `land-test-v16-roads-map.js`
+- `land-test-v18-buildings-roads.js`
+- `land-test-v19-property-fix.js`
 - `first-store-v088.js`
 - `workshop-log-v087.js`
-- `back-property-spacing-v091.js`
-- `stable-swipe-v097.js`
 
 Do not rebuild from scratch. Continue from the working files.
