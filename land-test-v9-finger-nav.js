@@ -5,7 +5,7 @@
 
   const style=document.createElement('style');
   style.textContent=`
-    /* v10 test: finger-first property navigation with smoother vertical movement. */
+    /* v11 test: faster finger-first property navigation. */
     .look-controls,.look-toggle{display:none!important}
     .stable-swipe-v097{pointer-events:none!important}
     .finger-nav-v9{position:absolute;z-index:70;left:0;right:0;top:72px;bottom:82px;display:none;touch-action:none;background:transparent}
@@ -40,16 +40,16 @@
   enter.addEventListener('click',()=>setTimeout(enableFingerView,40));
 
   let active=false,lastX=0,lastY=0,accumX=0,accumY=0,axis='';
-  const STEP_X=24;
-  const STEP_Y=15;
-  const AXIS_LOCK=8;
+  /* Lower thresholds make one finger swipe travel much farther around the property. */
+  const STEP_X=10;
+  const STEP_Y=7;
+  const AXIS_LOCK=6;
 
   const turn=(dir)=>{
     const b=dir>0?rightBtn():leftBtn();
     if(b)b.click();
   };
   const moveVertical=(dir)=>{
-    /* Natural finger drag: drag up moves the view up; drag down moves it down. */
     const b=dir<0?downBtn():upBtn();
     if(b)b.click();
   };
@@ -66,7 +66,6 @@
     const dx=e.clientX-lastX;
     const dy=e.clientY-lastY;
     lastX=e.clientX;lastY=e.clientY;
-
     accumX+=dx;
     accumY+=dy;
 
@@ -76,7 +75,6 @@
 
     if(axis==='x'){
       while(Math.abs(accumX)>=STEP_X){
-        /* Finger left turns view right; finger right turns view left. */
         turn(accumX<0?1:-1);
         accumX+=accumX<0?STEP_X:-STEP_X;
       }
@@ -97,9 +95,8 @@
   surface.addEventListener('pointerup',stop);
   surface.addEventListener('pointercancel',()=>{active=false;accumX=0;accumY=0;axis=''});
 
-  /* Keep things the user must tap above the finger navigation sheet. */
   document.querySelectorAll('.store-open-v088,.store-enter,.back-button,#backButton,.store-modal').forEach(el=>{el.style.position=el.style.position||'relative';el.style.zIndex='90';});
 
   const stamp=document.querySelector('.build-stamp');
-  if(stamp)stamp.textContent='LAND TEST • v10 finger navigation + smoother up/down';
+  if(stamp)stamp.textContent='LAND TEST • v11 faster finger navigation + reset layout';
 })();
