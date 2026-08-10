@@ -10,8 +10,10 @@
   const setVis=(el,on)=>{
     el.style.setProperty('opacity',on?'1':'0','important');
     el.style.setProperty('visibility',on?'visible':'hidden','important');
-    el.style.setProperty('pointer-events',on?'auto':'none','important');
+    /* Sector layers are scenery only. Never let a full-screen sector capture taps. */
+    el.style.setProperty('pointer-events','none','important');
   };
+
   const sync=()=>{
     const text=(document.querySelector('#lookCompass')?.textContent||'').trim();
     const isBack=text.startsWith('BACK PROPERTY');
@@ -27,8 +29,11 @@
     cameraStage.style.setProperty('opacity',isGate?'1':'0','important');
 
     if(storeBtn){
-      storeBtn.hidden=!isBack || property.hidden;
+      const panel=document.querySelector('.store-panel-v088');
+      const panelOpen=panel && !panel.hidden;
+      storeBtn.hidden=!isBack || property.hidden || panelOpen;
       storeBtn.style.setProperty('display',(!storeBtn.hidden)?'block':'none','important');
+      storeBtn.style.setProperty('pointer-events',(!storeBtn.hidden)?'auto':'none','important');
     }
 
     if(isBack) cameraStage.classList.add('back-property-active');
