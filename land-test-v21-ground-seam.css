@@ -1,0 +1,34 @@
+/* v21 — ground seam repair. Same acreage and object spacing; make all property ground use one continuous Alaska ground palette. */
+.property::before,
+.camera-stage::before,
+.property-sector .sector-ground,
+.sector-right .sector-ground,
+.sector-back .sector-ground,
+.sector-left .sector-ground{
+  background:linear-gradient(180deg,#123745 0%,#0a2935 38%,#061d28 100%)!important;
+  border-top:0!important;
+  box-shadow:none!important;
+}
+
+/* Keep the sector ground beginning at exactly the same visual horizon so the upper/lower green-blue bands cannot split. */
+.property-sector .sector-ground,
+.sector-right .sector-ground,
+.sector-back .sector-ground,
+.sector-left .sector-ground{
+  top:32%!important;
+  opacity:1!important;
+}
+
+/* Remove any translucent tint on the sector wrapper that can create a second green shade. */
+.property-sector,
+.sector-world,
+.sector-right,
+.sector-back,
+.sector-left{
+  background-color:transparent!important;
+}
+
+@media(max-width:520px){
+  .property::before{top:32%!important}
+  .camera-stage::before{top:32%!important}
+}
