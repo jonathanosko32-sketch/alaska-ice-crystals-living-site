@@ -59,6 +59,28 @@
  }
  `;
  document.head.appendChild(style);
+
+ /* Keep the smooth finger motion exactly as it feels now, but limit vertical camera
+    travel so the buildings cannot be pushed almost completely off the screen. */
+ const controls=document.querySelector('.look-controls');
+ if(controls){
+  let verticalSteps=0;
+  const MAX_UP=4, MAX_DOWN=4;
+  controls.addEventListener('click',event=>{
+   const b=event.target.closest('button[data-look]');
+   if(!b)return;
+   const action=b.dataset.look;
+   if(action==='reset'||action==='wide'){verticalSteps=0;return;}
+   if(action==='up'){
+    if(verticalSteps>=MAX_UP){event.preventDefault();event.stopImmediatePropagation();return;}
+    verticalSteps++;
+   }else if(action==='down'){
+    if(verticalSteps<=-MAX_DOWN){event.preventDefault();event.stopImmediatePropagation();return;}
+    verticalSteps--;
+   }
+  },true);
+ }
+
  const stamp=document.querySelector('.build-stamp');
- if(stamp)stamp.textContent='LAND TEST • v22 single ground • acreage unchanged';
+ if(stamp)stamp.textContent='LAND TEST • v23 single ground + camera bounds';
 })();
