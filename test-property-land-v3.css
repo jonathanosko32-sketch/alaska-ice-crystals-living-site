@@ -1,0 +1,78 @@
+/* LAND TEST v3 — more acreage, still isolated from live index.html. */
+.property{isolation:isolate;overflow:hidden}
+.property::before,.property::after{pointer-events:none!important}
+
+/* Much larger master property floor. */
+.property::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  left:-165vw;
+  right:-165vw;
+  top:24%;
+  bottom:-34%;
+  background:
+    radial-gradient(ellipse at 50% 8%,rgba(62,118,111,.26),transparent 40%),
+    linear-gradient(180deg,rgba(27,67,67,.76),rgba(7,30,36,.99));
+  clip-path:polygon(2% 1%,98% 1%,100% 100%,0 100%);
+  border-top:1px solid rgba(111,230,239,.11);
+}
+
+/* Wider background ridge so the land feels enclosed, not cut off. */
+.property::after{
+  content:"";
+  position:absolute;
+  z-index:0;
+  left:-45%;right:-45%;top:16%;height:34%;
+  opacity:.50;
+  background:linear-gradient(180deg,rgba(4,18,30,.08),rgba(7,29,39,.80));
+  clip-path:polygon(0 80%,5% 54%,11% 72%,17% 37%,24% 70%,31% 44%,38% 75%,46% 30%,54% 74%,62% 40%,70% 72%,78% 34%,86% 70%,93% 43%,100% 68%,100% 100%,0 100%);
+}
+
+/* Decorative land never blocks controls. */
+.crystal-button,.look-toggle,.look-controls,.back-button,.store-enter,.store-modal,.world-node{pointer-events:auto!important}
+
+/* Right Property: large buildable workshop/freight acreage. */
+.sector-right .sector-ground{
+  left:-210%!important;
+  right:-210%!important;
+  top:34%!important;
+  height:92%!important;
+  background:
+    radial-gradient(ellipse at 50% 7%,rgba(58,111,105,.22),transparent 45%),
+    linear-gradient(180deg,rgba(28,70,69,.72),rgba(6,27,33,.99))!important;
+  clip-path:polygon(1.5% 0,98.5% 0,100% 100%,0 100%)!important;
+}
+
+/* Road remains a road through the acreage. */
+.sector-right .sector-road{width:min(28vw,260px)!important}
+.sector-right .sector-fence.left{left:-38%!important}
+.sector-right .sector-fence.right{right:-38%!important}
+
+/* More visible side fields for future workshop, freight, parking, trees and side roads. */
+.sector-right::before,
+.sector-right::after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  z-index:1;
+  top:45%;
+  bottom:-18%;
+  width:45%;
+  border-top:1px solid rgba(102,221,231,.07);
+  background:linear-gradient(180deg,rgba(28,66,64,.12),rgba(6,27,31,.44));
+}
+.sector-right::before{left:-4%;clip-path:polygon(0 8%,100% 0,76% 100%,0 100%)}
+.sector-right::after{right:-4%;clip-path:polygon(0 0,100% 8%,100% 100%,24% 100%)}
+
+/* Keep all working objects above the new land. */
+.sector-right .workshop-building,.sector-right .freight-dock,.sector-right .sector-card,.sector-right .yard-box,.sector-right .yard-post,.sector-back .store-building{z-index:7!important}
+
+@media(max-width:520px){
+  .property::before{left:-260vw;right:-260vw;top:23%}
+  .sector-right .sector-ground{left:-235%!important;right:-235%!important}
+  .sector-right .sector-road{width:26vw!important}
+  .sector-right .sector-fence.left{left:-45%!important}
+  .sector-right .sector-fence.right{right:-45%!important}
+  .sector-right::before,.sector-right::after{width:48%}
+}
