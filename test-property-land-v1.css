@@ -1,0 +1,65 @@
+/* ISOLATED TEST ONLY — not loaded by live index.html */
+/* Goal: add real-looking ground around the existing road without touching controls. */
+
+.property{isolation:isolate;overflow:hidden}
+.property::before,
+.property::after{pointer-events:none!important}
+
+/* Broad front acreage behind the working gate/camera objects. */
+.property::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  left:-42vw;
+  right:-42vw;
+  top:31%;
+  bottom:-12%;
+  background:
+    radial-gradient(ellipse at 50% 10%,rgba(54,105,103,.24),transparent 42%),
+    linear-gradient(180deg,rgba(22,58,61,.72),rgba(5,26,33,.98));
+  clip-path:polygon(8% 3%,92% 3%,100% 100%,0 100%);
+  border-top:1px solid rgba(105,229,240,.10);
+}
+
+/* Distant dark ridge so the new acreage has an edge/background. */
+.property::after{
+  content:"";
+  position:absolute;
+  z-index:0;
+  left:-8%;right:-8%;top:25%;height:25%;
+  opacity:.42;
+  background:linear-gradient(180deg,rgba(5,19,31,.12),rgba(8,32,41,.72));
+  clip-path:polygon(0 78%,8% 48%,15% 70%,24% 32%,31% 72%,40% 42%,49% 75%,58% 28%,68% 71%,77% 39%,86% 73%,94% 43%,100% 69%,100% 100%,0 100%);
+}
+
+/* Existing interactive/property systems stay above the acreage. */
+.camera-stage,.sector-world,.interaction-panel,.travel-status,.back-button,.look-toggle,.look-controls,.store-enter,.store-modal{position:relative;z-index:5}
+.look-toggle,.look-controls,.back-button,.store-enter,.store-modal,.crystal-button{pointer-events:auto!important}
+
+/* Widen only the RIGHT PROPERTY ground itself; road remains a road. */
+.sector-right .sector-ground{
+  left:-48%!important;
+  right:-48%!important;
+  height:70%!important;
+  background:
+    radial-gradient(ellipse at 50% 8%,rgba(51,102,99,.20),transparent 44%),
+    linear-gradient(180deg,rgba(25,65,66,.68),rgba(5,25,32,.98))!important;
+  clip-path:polygon(5% 0,95% 0,100% 100%,0 100%)!important;
+}
+
+/* Keep the center road narrower than the usable land. */
+.sector-right .sector-road{width:min(48vw,380px)!important}
+
+/* Make clear side acreage without adding new buildings. */
+.sector-right .sector-fence.left{left:2%!important}
+.sector-right .sector-fence.right{right:2%!important}
+
+/* Keep current workshop/store graphics where stable v0.9.7 expects them. */
+.sector-right .workshop-building,
+.sector-back .store-building{z-index:7!important}
+
+@media(max-width:520px){
+  .property::before{left:-70vw;right:-70vw;top:30%}
+  .sector-right .sector-ground{left:-70%!important;right:-70%!important}
+  .sector-right .sector-road{width:42vw!important}
+}
