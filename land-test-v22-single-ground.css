@@ -1,0 +1,58 @@
+/* v22 — one continuous property ground + keep buildings inside the camera view. */
+
+/* ONE LAND PLANE.
+   Older test layers were each drawing their own green ground and the finger camera
+   could move those layers independently, creating visible horizontal bands. */
+.property::before{
+  left:-420vw!important;
+  right:-420vw!important;
+  top:32%!important;
+  bottom:-120%!important;
+  background:linear-gradient(180deg,#123747 0%,#0a2937 34%,#061d29 72%,#041722 100%)!important;
+  border-top:0!important;
+}
+
+/* Sector ground remains as geometry/acreage only; it no longer paints a second land color. */
+.property-sector .sector-ground,
+.sector-right .sector-ground,
+.sector-back .sector-ground,
+.sector-left .sector-ground{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+/* The old gate approach filler was a third painted ground layer. The master land now fills it. */
+.camera-stage::before{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+/* Keep road geometry, but never let it create a full-width ground band. */
+.sector-right .sector-road,
+.sector-back .sector-road,
+.sector-left .sector-road{
+  z-index:2!important;
+}
+
+/* Right-property workshop was intentionally pushed offscreen during spacing tests.
+   Bring it back inside the usable phone camera while preserving the extra spacing. */
+.sector-right .workshop-building{
+  left:2%!important;
+  width:27%!important;
+}
+
+/* Prevent the large buildings from being clipped by their sector containers. */
+.property-sector,
+.sector-world,
+.sector-right,
+.sector-back,
+.sector-left{
+  overflow:visible!important;
+}
+
+@media(max-width:520px){
+  .property::before{left:-480vw!important;right:-480vw!important;top:31%!important}
+  .sector-right .workshop-building{left:1%!important;width:27%!important}
+}
