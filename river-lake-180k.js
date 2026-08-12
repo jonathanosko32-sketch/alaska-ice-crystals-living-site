@@ -9,27 +9,27 @@
 #riverLake180 svg{width:100%;height:100%;display:block;overflow:visible}
 .river-bank{fill:none;stroke:#2f6d7b;stroke-width:46;stroke-linecap:round;stroke-linejoin:round}
 .river-water{fill:none;stroke:#19a9c8;stroke-width:34;stroke-linecap:round;stroke-linejoin:round}
-.river-segments{fill:none;stroke:#70d4df;stroke-width:18;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:38 28;opacity:.96;animation:riverFlow 2.2s linear infinite}
+.river-segments{fill:none;stroke:#70d4df;stroke-width:18;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:38 28;opacity:.96;animation:riverFlow 1.25s linear infinite}
 .lake-bank{fill:#87c8d1;opacity:.92}
-.lake-water{fill:url(#lakeGrad);animation:lakeBreathe 4.8s ease-in-out infinite}
-.lake-ripple{fill:none;stroke:rgba(201,247,250,.50);stroke-width:3;transform-box:fill-box;transform-origin:center;animation:lakeRipple 3.6s ease-out infinite}
-.lake-ripple.r2{animation-delay:1.8s}
+.lake-water{fill:url(#lakeGrad);animation:lakeBreathe 2.8s ease-in-out infinite}
+.lake-ripple{fill:none;stroke:rgba(201,247,250,.58);stroke-width:3;transform-box:fill-box;transform-origin:center;animation:lakeRipple 2.5s ease-out infinite}
+.lake-ripple.r2{animation-delay:1.2s}
 .drop-dark{fill:#17657b}.drop-water{fill:url(#dropGrad)}.drop-foam{fill:#d9fbff;opacity:.9}
 .water-label{font:900 20px system-ui,sans-serif;letter-spacing:.14em;fill:rgba(230,253,255,.92)}
 .camp-ring{fill:#66574a;stroke:#3e342d;stroke-width:4}.camp-stone{fill:#7b746d;stroke:#4c4945;stroke-width:2}.camp-log{fill:#654126;stroke:#3b2819;stroke-width:3}
 .camp-flame-outer,.camp-flame-mid,.camp-flame-inner{transform-box:fill-box;transform-origin:50% 100%}
-.camp-flame-outer{fill:#ff7b22;animation:fireOuter .55s ease-in-out infinite alternate}
-.camp-flame-mid{fill:#ffb32d;animation:fireMid .42s ease-in-out infinite alternate-reverse}
-.camp-flame-inner{fill:#fff0a3;animation:fireInner .34s ease-in-out infinite alternate}
+.camp-flame-outer{fill:#ff7b22;animation:fireOuter .36s ease-in-out infinite alternate}
+.camp-flame-mid{fill:#ffb32d;animation:fireMid .28s ease-in-out infinite alternate-reverse}
+.camp-flame-inner{fill:#fff0a3;animation:fireInner .24s ease-in-out infinite alternate}
 .camp-label{font:900 14px system-ui,sans-serif;letter-spacing:.08em;fill:#243e3d}
-.ocean-left:before{animation:oceanMove 5s linear infinite!important;background-position:0 0!important}
-@keyframes riverFlow{to{stroke-dashoffset:-66}}
-@keyframes lakeBreathe{0%,100%{opacity:1}50%{opacity:.88}}
-@keyframes lakeRipple{0%{transform:scale(.78);opacity:.62}70%{opacity:.25}100%{transform:scale(1.22);opacity:0}}
+.ocean-left:before{animation:oceanMove 2.2s linear infinite!important;background-position:0 0!important}
+@keyframes riverFlow{from{stroke-dashoffset:0}to{stroke-dashoffset:-132}}
+@keyframes lakeBreathe{0%,100%{opacity:1;filter:brightness(1)}50%{opacity:.82;filter:brightness(1.18)}}
+@keyframes lakeRipple{0%{transform:scale(.72);opacity:.72}100%{transform:scale(1.28);opacity:0}}
 @keyframes oceanMove{from{background-position:0 0}to{background-position:0 156px}}
-@keyframes fireOuter{from{transform:scaleX(.88) scaleY(.94) rotate(-2deg)}to{transform:scaleX(1.08) scaleY(1.13) rotate(2deg)}}
-@keyframes fireMid{from{transform:scaleX(.90) scaleY(.92) rotate(2deg)}to{transform:scaleX(1.06) scaleY(1.10) rotate(-2deg)}}
-@keyframes fireInner{from{transform:scale(.90)}to{transform:scale(1.10)}}
+@keyframes fireOuter{from{transform:scaleX(.82) scaleY(.90) rotate(-4deg)}to{transform:scaleX(1.12) scaleY(1.18) rotate(4deg)}}
+@keyframes fireMid{from{transform:scaleX(.86) scaleY(.88) rotate(3deg)}to{transform:scaleX(1.10) scaleY(1.14) rotate(-3deg)}}
+@keyframes fireInner{from{transform:scale(.84)}to{transform:scale(1.16)}}
 `;
   document.head.appendChild(style);
 
@@ -41,14 +41,14 @@
     <linearGradient id="dropGrad"><stop offset="0%" stop-color="#d7fbff"/><stop offset="20%" stop-color="#49cde1"/><stop offset="100%" stop-color="#0e7695"/></linearGradient>
   </defs>
 
-  <!-- Both rivers are drawn first so the lake overlays their rounded ends and makes clean shoreline inlets. -->
   <path class="river-bank" d="M935 112 C905 155 926 205 895 247 C867 286 821 301 802 345 C780 396 791 427 760 449 C744 461 730 466 716 471"/>
   <path class="river-water" d="M935 112 C905 155 926 205 895 247 C867 286 821 301 802 345 C780 396 791 427 760 449 C744 461 730 466 716 471"/>
   <path class="river-segments" d="M935 112 C905 155 926 205 895 247 C867 286 821 301 802 345 C780 396 791 427 760 449 C744 461 730 466 716 471"/>
 
-  <path class="river-bank" d="M344 628 C333 642 322 655 308 669 C287 691 273 718 260 744 C255 754 253 770 253 786"/>
-  <path class="river-water" d="M344 628 C333 642 322 655 308 669 C287 691 273 718 260 744 C255 754 253 770 253 786"/>
-  <path class="river-segments" d="M344 628 C333 642 322 655 308 669 C287 691 273 718 260 744 C255 754 253 770 253 786"/>
+  <!-- LEFT RIVER: endpoint pulled farther away from lake so the rounded cap ends cleanly outside the shoreline. -->
+  <path class="river-bank" d="M321 649 C311 660 299 670 287 683 C272 701 263 724 257 747 C254 760 253 773 253 786"/>
+  <path class="river-water" d="M321 649 C311 660 299 670 287 683 C272 701 263 724 257 747 C254 760 253 773 253 786"/>
+  <path class="river-segments" d="M321 649 C311 660 299 670 287 683 C272 701 263 724 257 747 C254 760 253 773 253 786"/>
 
   <path class="lake-bank" d="M334 467 C350 423 393 395 447 390 C495 385 536 400 575 395 C626 389 675 399 703 431 C733 465 731 509 709 543 C694 566 671 578 664 602 C653 637 622 657 581 663 C537 670 500 657 459 660 C414 663 371 651 347 621 C329 599 331 574 318 550 C298 514 309 491 334 467 Z"/>
   <path class="lake-water" d="M343 472 C359 434 398 410 449 405 C494 401 535 414 574 409 C621 403 664 413 689 440 C716 469 713 505 695 534 C680 558 657 568 651 591 C641 621 615 638 578 644 C537 650 501 638 461 642 C420 645 382 635 360 609 C343 589 345 565 333 543 C315 512 321 491 343 472 Z"/>
