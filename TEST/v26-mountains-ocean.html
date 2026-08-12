@@ -3,29 +3,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Alaska Ice Crystals — V26 Open View Test</title>
-<style>html,body{margin:0;width:100%;height:100%;height:100dvh;overflow:hidden;background:#020b14}#base{display:block;border:0;width:100vw;height:100dvh}</style>
+<title>Alaska Ice Crystals — V26 Open World Carnival Test</title>
+<style>
+html,body{margin:0;width:100%;height:100%;height:100dvh;overflow:hidden;background:#020b14}
+#base{display:block;border:0;width:100vw;height:100dvh}
+</style>
 </head>
 <body>
-<iframe id="base" src="../PERMANENT_BASE/v25/alaska-180k-open-land.html?v=26-open-camera-6"></iframe>
+<iframe id="base" src="../PERMANENT_BASE/v25/alaska-180k-open-land.html?v=26-open-camera-7"></iframe>
 <script>
 (()=>{
- const frame=document.getElementById('base');
- frame.addEventListener('load',()=>{
-   const d=frame.contentDocument;if(!d)return;
-   const oldWin=d.getElementById('worldWindow');if(!oldWin)return;
+const frame=document.getElementById('base');
+frame.addEventListener('load',()=>{
+ const d=frame.contentDocument;if(!d)return;
+ const oldWin=d.getElementById('worldWindow');if(!oldWin)return;
+ const win=oldWin.cloneNode(true);oldWin.replaceWith(win);
+ const plane=win.querySelector('#worldPlane');if(!plane)return;
+ d.querySelectorAll('.mountains,#mountainWallV26,#mountainOceanReflectionV26,#carnivalV26').forEach(el=>el.remove());
 
-   const win=oldWin.cloneNode(true);
-   oldWin.replaceWith(win);
-   const plane=win.querySelector('#worldPlane');if(!plane)return;
-
-   d.querySelectorAll('.mountains,#mountainWallV26,#mountainOceanReflectionV26,#carnivalV26').forEach(el=>el.remove());
-   const style=d.createElement('style');
-   style.id='openCameraV26Style';
-   style.textContent=`
+ const style=d.createElement('style');
+ style.textContent=`
 #worldWindow{background:linear-gradient(135deg,#aebfbd 0%,#dfe8e5 36%,#b8cbc7 68%,#e2e9e6 100%);overflow:hidden;touch-action:none}
 #worldPlane{transform-origin:center center!important}
-#leftOcean{bottom:auto!important;height:70%!important;border-right:0!important;clip-path:polygon(0 0,100% 0,100% 72%,97% 79%,92% 85%,85% 90%,74% 94%,60% 97%,43% 99%,25% 100%,0 100%);box-shadow:inset -18px 0 rgba(225,248,242,.92)}
+/* Ocean stays continuous to the bottom. Upper sea remains wide, lower sea narrows to leave carnival land while preserving the river mouth. */
+#leftOcean{display:block!important;visibility:visible!important;opacity:1!important;top:0!important;bottom:0!important;height:auto!important;width:24%!important;border-right:0!important;clip-path:polygon(0 0,100% 0,100% 62%,94% 68%,82% 73%,66% 77%,52% 80%,47% 84%,47% 100%,0 100%);box-shadow:inset -18px 0 rgba(225,248,242,.92)}
+
 #mountainWallV26{position:absolute;left:-1.5%;right:-1.5%;top:-7.5%;height:17.5%;z-index:13;pointer-events:none;overflow:hidden}
 #mountainWallV26 .far,#mountainWallV26 .rock,#mountainWallV26 .snow{position:absolute;left:0;right:0;bottom:0}
 #mountainWallV26 .far{height:100%;background:linear-gradient(#84989c,#6d8388);opacity:.80;clip-path:polygon(0 100%,0 84%,3% 66%,6% 76%,10% 31%,13% 73%,17% 51%,20% 80%,25% 19%,29% 71%,33% 43%,37% 82%,42% 12%,47% 69%,51% 39%,55% 79%,60% 17%,65% 72%,69% 45%,73% 82%,78% 10%,83% 67%,87% 38%,91% 78%,95% 20%,100% 62%,100% 100%)}
@@ -33,132 +35,80 @@
 #mountainWallV26 .snow{height:88%;background:#eef5f4;opacity:.98;clip-path:polygon(0 92%,4% 72%,6% 79%,8% 82%,12% 22%,14% 40%,16% 79%,20% 50%,22% 62%,24% 88%,29% 13%,31% 34%,34% 77%,39% 41%,41% 57%,43% 89%,48% 8%,50% 30%,53% 76%,58% 34%,60% 51%,63% 87%,68% 15%,70% 36%,73% 80%,78% 43%,80% 59%,82% 90%,87% 12%,89% 33%,92% 70%,96% 31%,98% 49%,100% 73%,100% 82%,96% 48%,92% 79%,87% 35%,82% 96%,78% 61%,73% 89%,68% 38%,63% 94%,58% 52%,53% 85%,48% 31%,43% 95%,39% 59%,34% 87%,29% 37%,24% 95%,20% 65%,16% 88%,12% 44%,8% 90%,4% 82%,0 97%)}
 #mountainOceanReflectionV26{position:absolute;left:0;top:10.1%;width:24%;height:9.5%;z-index:5;pointer-events:none;overflow:hidden;opacity:.34;filter:blur(3px);mask-image:linear-gradient(to bottom,rgba(0,0,0,.72),transparent 92%);-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.72),transparent 92%)}
 #mountainOceanReflectionV26:before{content:'';position:absolute;left:-5%;right:-5%;top:-80%;height:180%;background:#183d49;transform:scaleY(-1);transform-origin:center top;clip-path:polygon(0 92%,4% 72%,8% 82%,12% 22%,16% 79%,20% 50%,24% 88%,29% 13%,34% 77%,39% 41%,43% 89%,48% 8%,53% 76%,58% 34%,63% 87%,68% 15%,73% 80%,78% 43%,82% 90%,87% 12%,92% 70%,96% 31%,100% 73%,100% 100%,0 100%)}
-#mountainOceanReflectionV26:after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(175deg,transparent 0 13px,rgba(130,220,230,.17) 14px 16px,transparent 17px 29px)}
 
-/* REAL CODED CARNIVAL: every attraction is a separate world object, not one picture. */
-#carnivalV26{position:absolute;left:1.7%;bottom:2.2%;width:32%;height:28%;z-index:8;pointer-events:none}
-#carnivalV26 .grounds{position:absolute;inset:0;border-radius:32px;background:radial-gradient(circle at 20% 20%,rgba(224,220,196,.92),rgba(175,169,145,.92) 64%,rgba(131,126,108,.94));box-shadow:inset 0 0 0 6px rgba(74,80,70,.28),inset 0 0 45px rgba(51,56,49,.16)}
-#carnivalV26 .shorewalk{position:absolute;left:0;right:2%;top:5%;height:11%;border-radius:999px;background:#8f846e;box-shadow:inset 0 0 0 5px rgba(224,217,191,.48);transform:rotate(-2deg)}
-#carnivalV26 .mainwalk{position:absolute;left:8%;right:7%;top:48%;height:10%;border-radius:999px;background:#766c5a;box-shadow:inset 0 0 0 5px rgba(214,205,181,.48);transform:rotate(-4deg)}
-#carnivalV26 .crosswalk{position:absolute;left:47%;top:14%;width:8%;height:72%;border-radius:999px;background:#7e735f;box-shadow:inset 0 0 0 5px rgba(214,205,181,.44);transform:rotate(2deg)}
-#carnivalV26 .object{position:absolute;pointer-events:auto;filter:drop-shadow(0 8px 6px rgba(0,0,0,.22))}
-#carnivalV26 .object:after{position:absolute;left:50%;top:104%;transform:translateX(-50%);padding:4px 7px;border-radius:7px;background:rgba(3,25,31,.82);color:#efffff;font:800 13px system-ui,sans-serif;white-space:nowrap}
-
-#carnivalV26 .ferris{left:7%;top:17%;width:25%;aspect-ratio:1;border:10px solid #475a60;border-radius:50%;background:radial-gradient(circle,#cddbd5 0 5%,transparent 6% 100%)}
-#carnivalV26 .ferris:before{content:'';position:absolute;inset:5%;border-radius:50%;background:repeating-conic-gradient(from 0deg,transparent 0 13deg,#50666b 14deg 16deg,transparent 17deg 43deg)}
-#carnivalV26 .ferris:after{content:'FERRIS WHEEL'}
-#carnivalV26 .ferrisHub{position:absolute;left:50%;top:50%;width:14%;aspect-ratio:1;border-radius:50%;background:#dfe8e4;border:6px solid #40545a;transform:translate(-50%,-50%)}
-#carnivalV26 .ferrisStand{position:absolute;left:26%;right:26%;top:82%;height:42%;border-left:9px solid #475a60;border-right:9px solid #475a60;transform:perspective(200px) rotateX(-8deg) skewX(-12deg)}
-
-#carnivalV26 .carousel{left:36%;top:21%;width:20%;height:19%;border-radius:50% 50% 15% 15%;background:repeating-conic-gradient(from 0deg,#8f3f35 0 15deg,#e5c881 15deg 30deg);border:7px solid #5a4131}
-#carnivalV26 .carousel:before{content:'';position:absolute;left:10%;right:10%;bottom:-35%;height:50%;border-left:6px solid #5a4131;border-right:6px solid #5a4131;background:repeating-linear-gradient(90deg,transparent 0 12%,#7c5b38 13% 16%,transparent 17% 29%)}
-#carnivalV26 .carousel:after{content:'CAROUSEL'}
-
-#carnivalV26 .bumper{right:7%;top:18%;width:27%;height:23%;border-radius:18px;background:linear-gradient(145deg,#56656a,#c3cbc4);border:7px solid #4c5659;overflow:hidden}
-#carnivalV26 .bumper:before{content:'';position:absolute;inset:12%;background:radial-gradient(circle at 20% 30%,#8d4f40 0 5%,transparent 6%),radial-gradient(circle at 60% 60%,#44677a 0 5%,transparent 6%),radial-gradient(circle at 78% 26%,#b28b43 0 5%,transparent 6%),radial-gradient(circle at 38% 78%,#5a714b 0 5%,transparent 6%);border:3px dashed rgba(235,242,236,.72)}
-#carnivalV26 .bumper:after{content:'BUMPER CARS'}
-
-#carnivalV26 .games{left:7%;bottom:8%;width:62%;height:19%;display:flex;gap:2%;align-items:flex-end}
-#carnivalV26 .booth{position:relative;flex:1;height:75%;background:#6e4f3c;border:5px solid #49372d;border-radius:8px 8px 3px 3px;pointer-events:auto;filter:drop-shadow(0 6px 5px rgba(0,0,0,.2))}
-#carnivalV26 .booth:before{content:'';position:absolute;left:-5px;right:-5px;top:-38%;height:42%;background:repeating-linear-gradient(90deg,#b64e43 0 14%,#eee0b8 14% 28%);clip-path:polygon(0 100%,10% 10%,20% 100%,30% 10%,40% 100%,50% 10%,60% 100%,70% 10%,80% 100%,90% 10%,100% 100%)}
-#carnivalV26 .booth span{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);color:#fff;font:800 11px system-ui,sans-serif;white-space:nowrap}
-
-#carnivalV26 .food{right:5%;bottom:8%;width:22%;height:20%;background:#875d3e;border:6px solid #513a2c;border-radius:10px;pointer-events:auto;filter:drop-shadow(0 6px 5px rgba(0,0,0,.2))}
-#carnivalV26 .food:before{content:'';position:absolute;left:-6px;right:-6px;top:-31%;height:34%;background:repeating-linear-gradient(90deg,#d05a43 0 18%,#f0dfae 18% 36%);border-radius:7px 7px 0 0}
-#carnivalV26 .food:after{content:'FOOD';position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);color:#fff;font:900 13px system-ui,sans-serif}
-
-#carnivalV26 .entrance{position:absolute;left:37%;bottom:-1%;width:29%;height:17%;pointer-events:auto}
-#carnivalV26 .entrance:before,#carnivalV26 .entrance:after{content:'';position:absolute;bottom:0;width:13%;height:100%;background:#52473a;border-radius:5px}
+/* Carnival is built from independent coded world pieces. No flat picture/block. */
+#carnivalV26{position:absolute;left:12%;bottom:2.4%;width:27%;height:28%;z-index:8;pointer-events:none}
+#carnivalV26 .path{position:absolute;background:#81745f;border-radius:999px;box-shadow:inset 0 0 0 5px rgba(218,208,181,.42)}
+#carnivalV26 .main{left:4%;right:3%;top:48%;height:10%;transform:rotate(-4deg)}
+#carnivalV26 .cross{left:48%;top:14%;width:8%;height:72%;transform:rotate(2deg)}
+#carnivalV26 .shore{left:0;right:8%;top:7%;height:8%;transform:rotate(-2deg)}
+#carnivalV26 .obj{position:absolute;pointer-events:auto;filter:drop-shadow(0 7px 5px rgba(0,0,0,.25))}
+#carnivalV26 .tag{position:absolute;left:50%;top:104%;transform:translateX(-50%);padding:3px 6px;border-radius:6px;background:rgba(3,25,31,.84);color:#efffff;font:800 11px system-ui,sans-serif;white-space:nowrap}
+#carnivalV26 .ferris{left:4%;top:17%;width:27%;aspect-ratio:1;border:10px solid #475a60;border-radius:50%;background:radial-gradient(circle,#dce7e3 0 5%,transparent 6% 100%)}
+#carnivalV26 .ferris:before{content:'';position:absolute;inset:7%;border-radius:50%;background:repeating-conic-gradient(from 0deg,transparent 0 13deg,#50666b 14deg 16deg,transparent 17deg 43deg)}
+#carnivalV26 .ferrisHub{position:absolute;left:50%;top:50%;width:15%;aspect-ratio:1;border-radius:50%;background:#dce7e3;border:6px solid #40545a;transform:translate(-50%,-50%)}
+#carnivalV26 .ferrisLegs{position:absolute;left:28%;right:28%;top:82%;height:45%;border-left:9px solid #475a60;border-right:9px solid #475a60;transform:skewX(-12deg)}
+#carnivalV26 .carousel{left:36%;top:22%;width:20%;height:18%;border-radius:50% 50% 15% 15%;background:repeating-conic-gradient(#964d3e 0 15deg,#edd795 15deg 30deg);border:7px solid #5b4032}
+#carnivalV26 .carousel:before{content:'';position:absolute;left:12%;right:12%;bottom:-38%;height:48%;border-left:6px solid #5b4032;border-right:6px solid #5b4032;background:repeating-linear-gradient(90deg,transparent 0 12%,#7c5b38 13% 16%,transparent 17% 29%)}
+#carnivalV26 .bumper{right:3%;top:18%;width:29%;height:24%;border-radius:15px;background:linear-gradient(145deg,#536369,#c7cec8);border:7px solid #49575b;overflow:hidden}
+#carnivalV26 .bumper:before{content:'';position:absolute;inset:10%;border:3px dashed rgba(239,246,240,.72);background:radial-gradient(circle at 20% 30%,#9b5143 0 5%,transparent 6%),radial-gradient(circle at 62% 64%,#45687b 0 5%,transparent 6%),radial-gradient(circle at 80% 25%,#b18b45 0 5%,transparent 6%),radial-gradient(circle at 38% 78%,#60774f 0 5%,transparent 6%)}
+#carnivalV26 .booths{left:5%;bottom:9%;width:61%;height:18%;display:flex;gap:3%}
+#carnivalV26 .booth{position:relative;flex:1;background:#75523d;border:5px solid #49362c;border-radius:7px;pointer-events:auto}
+#carnivalV26 .booth:before{content:'';position:absolute;left:-5px;right:-5px;top:-37%;height:40%;background:repeating-linear-gradient(90deg,#b65348 0 14%,#eee0b9 14% 28%);clip-path:polygon(0 100%,10% 10%,20% 100%,30% 10%,40% 100%,50% 10%,60% 100%,70% 10%,80% 100%,90% 10%,100% 100%)}
+#carnivalV26 .booth span{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);color:#fff;font:800 10px system-ui,sans-serif;white-space:nowrap}
+#carnivalV26 .food{right:3%;bottom:8%;width:23%;height:19%;background:#875d3e;border:6px solid #513a2c;border-radius:9px}
+#carnivalV26 .food:before{content:'';position:absolute;left:-6px;right:-6px;top:-31%;height:34%;background:repeating-linear-gradient(90deg,#d05a43 0 18%,#f0dfae 18% 36%)}
+#carnivalV26 .food:after{content:'FOOD';position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);color:#fff;font:900 12px system-ui,sans-serif}
+#carnivalV26 .entrance{position:absolute;left:36%;bottom:-1%;width:30%;height:18%}
+#carnivalV26 .entrance:before,#carnivalV26 .entrance:after{content:'';position:absolute;bottom:0;width:13%;height:100%;background:#51463a;border-radius:5px}
 #carnivalV26 .entrance:before{left:0}#carnivalV26 .entrance:after{right:0}
-#carnivalV26 .arch{position:absolute;left:4%;right:4%;top:0;height:42%;border:10px solid #52473a;border-bottom:0;border-radius:50% 50% 0 0;color:#e9ffff;text-align:center;font:900 13px system-ui,sans-serif;padding-top:4px}
-
-#carnivalV26 .light{position:absolute;width:8px;height:8px;border-radius:50%;background:#fff4a3;box-shadow:0 0 18px 8px rgba(255,232,129,.45)}
-#carnivalV26 .l1{left:13%;top:12%}.l2{left:31%;top:49%}.l3{left:58%;top:12%}.l4{left:76%;top:48%}.l5{left:91%;top:14%}.l6{left:48%;bottom:6%}
-#carnivalV26 .zoneLabel{position:absolute;left:50%;top:-3%;transform:translateX(-50%);padding:7px 14px;border-radius:999px;background:rgba(3,25,31,.86);color:#efffff;font:900 18px system-ui,sans-serif;letter-spacing:.08em;white-space:nowrap}
+#carnivalV26 .arch{position:absolute;left:4%;right:4%;top:0;height:45%;border:9px solid #51463a;border-bottom:0;border-radius:50% 50% 0 0;color:#eaffff;text-align:center;font:900 11px system-ui,sans-serif;padding-top:4px}
+#carnivalV26 .light{position:absolute;width:8px;height:8px;border-radius:50%;background:#fff2a1;box-shadow:0 0 16px 7px rgba(255,232,129,.42)}
+#carnivalV26 .l1{left:12%;top:12%}.l2{left:33%;top:50%}.l3{left:58%;top:12%}.l4{left:78%;top:49%}.l5{left:92%;top:14%}.l6{left:50%;bottom:7%}
+#carnivalV26 .zone{position:absolute;left:50%;top:-3%;transform:translateX(-50%);padding:6px 12px;border-radius:999px;background:rgba(3,25,31,.86);color:#efffff;font:900 15px system-ui,sans-serif;white-space:nowrap}
 `;
-   d.head.appendChild(style);
+ d.head.appendChild(style);
 
-   const reflection=d.createElement('div');reflection.id='mountainOceanReflectionV26';
-   const ocean=plane.querySelector('#leftOcean');
-   if(ocean&&ocean.nextSibling)plane.insertBefore(reflection,ocean.nextSibling);else plane.appendChild(reflection);
-   const mountains=d.createElement('div');mountains.id='mountainWallV26';mountains.innerHTML='<div class="far"></div><div class="rock"></div><div class="snow"></div>';plane.appendChild(mountains);
+ const reflection=d.createElement('div');reflection.id='mountainOceanReflectionV26';
+ const ocean=plane.querySelector('#leftOcean');
+ if(ocean&&ocean.nextSibling)plane.insertBefore(reflection,ocean.nextSibling);else plane.appendChild(reflection);
+ const mountains=d.createElement('div');mountains.id='mountainWallV26';mountains.innerHTML='<div class="far"></div><div class="rock"></div><div class="snow"></div>';plane.appendChild(mountains);
 
-   const svg=plane.querySelector('#riverLake180 svg');
-   if(svg){
-     const bank=svg.querySelector('.lake-bank'),water=svg.querySelector('.lake-water');
-     if(bank)bank.setAttribute('d','M330 470 C347 438 377 417 416 407 C451 398 481 404 510 397 C548 388 586 391 616 405 C649 420 675 445 686 474 C697 502 690 526 674 546 C659 565 640 574 629 590 C613 613 589 624 558 626 C528 628 504 620 479 624 C446 630 412 625 387 612 C361 599 347 581 343 558 C340 540 327 528 319 511 C311 494 316 481 330 470 Z');
-     if(water)water.setAttribute('d','M340 474 C357 447 383 430 418 421 C451 413 480 418 511 411 C546 403 579 406 607 418 C637 431 659 452 670 476 C680 499 674 519 660 537 C646 554 628 563 617 578 C603 597 582 608 556 610 C527 612 503 604 478 609 C447 614 418 610 395 599 C372 588 359 572 356 553 C353 535 341 524 334 509 C327 495 329 484 340 474 Z');
+ const svg=plane.querySelector('#riverLake180 svg');
+ if(svg){
+   const bank=svg.querySelector('.lake-bank'),water=svg.querySelector('.lake-water');
+   if(bank)bank.setAttribute('d','M330 470 C347 438 377 417 416 407 C451 398 481 404 510 397 C548 388 586 391 616 405 C649 420 675 445 686 474 C697 502 690 526 674 546 C659 565 640 574 629 590 C613 613 589 624 558 626 C528 628 504 620 479 624 C446 630 412 625 387 612 C361 599 347 581 343 558 C340 540 327 528 319 511 C311 494 316 481 330 470 Z');
+   if(water)water.setAttribute('d','M340 474 C357 447 383 430 418 421 C451 413 480 418 511 411 C546 403 579 406 607 418 C637 431 659 452 670 476 C680 499 674 519 660 537 C646 554 628 563 617 578 C603 597 582 608 556 610 C527 612 503 604 478 609 C447 614 418 610 395 599 C372 588 359 572 356 553 C353 535 341 524 334 509 C327 495 329 484 340 474 Z');
+   const banks=svg.querySelectorAll('.river-bank'),waters=svg.querySelectorAll('.river-water'),flows=svg.querySelectorAll('.river-segments');
+   const rightRiver='M935 112 C905 155 926 205 895 247 C867 286 821 301 802 345 C780 396 791 427 760 449 C732 470 704 486 666 500';
+   const leftRiver='M410 590 C385 607 359 627 335 650 C307 677 275 705 238 733 C198 763 155 792 110 820';
+   [banks[0],waters[0],flows[0]].forEach(el=>el&&el.setAttribute('d',rightRiver));
+   [banks[1],waters[1],flows[1]].forEach(el=>el&&el.setAttribute('d',leftRiver));
+ }
 
-     const banks=svg.querySelectorAll('.river-bank');
-     const waters=svg.querySelectorAll('.river-water');
-     const flows=svg.querySelectorAll('.river-segments');
-     const rightRiver='M935 112 C905 155 926 205 895 247 C867 286 821 301 802 345 C780 396 791 427 760 449 C732 470 704 486 666 500';
-     const leftRiver='M410 590 C388 605 367 621 347 640 C324 661 305 684 290 709 C274 736 260 763 253 786';
-     if(banks[0])banks[0].setAttribute('d',rightRiver);
-     if(waters[0])waters[0].setAttribute('d',rightRiver);
-     if(flows[0])flows[0].setAttribute('d',rightRiver);
-     if(banks[1])banks[1].setAttribute('d',leftRiver);
-     if(waters[1])waters[1].setAttribute('d',leftRiver);
-     if(flows[1])flows[1].setAttribute('d',leftRiver);
-   }
+ const carnival=d.createElement('div');carnival.id='carnivalV26';
+ carnival.innerHTML=`
+ <div class="path shore"></div><div class="path main"></div><div class="path cross"></div>
+ <div class="zone">OCEAN-SIDE CARNIVAL</div>
+ <div class="obj ferris"><div class="ferrisHub"></div><div class="ferrisLegs"></div><div class="tag">FERRIS WHEEL</div></div>
+ <div class="obj carousel"><div class="tag">CAROUSEL</div></div>
+ <div class="obj bumper"><div class="tag">BUMPER CARS</div></div>
+ <div class="obj booths"><div class="booth"><span>GAME 1</span></div><div class="booth"><span>GAME 2</span></div><div class="booth"><span>GAME 3</span></div></div>
+ <div class="obj food"></div>
+ <div class="entrance"><div class="arch">CARNIVAL</div></div>
+ <div class="light l1"></div><div class="light l2"></div><div class="light l3"></div><div class="light l4"></div><div class="light l5"></div><div class="light l6"></div>`;
+ plane.appendChild(carnival);
 
-   /* TEST ONLY: actual carnival objects, each independently addressable for later interaction/game logic. */
-   const carnival=d.createElement('div');
-   carnival.id='carnivalV26';
-   carnival.innerHTML=`
-     <div class="grounds"></div>
-     <div class="shorewalk"></div>
-     <div class="mainwalk"></div>
-     <div class="crosswalk"></div>
-     <div class="zoneLabel">OCEAN-SIDE CARNIVAL</div>
-
-     <div class="object ferris" data-feature="ferris-wheel"><div class="ferrisHub"></div><div class="ferrisStand"></div></div>
-     <div class="object carousel" data-feature="carousel"></div>
-     <div class="object bumper" data-feature="bumper-cars"></div>
-
-     <div class="games" data-zone="games-midway">
-       <div class="booth" data-feature="ring-toss"><span>RING TOSS</span></div>
-       <div class="booth" data-feature="ball-game"><span>BALL GAME</span></div>
-       <div class="booth" data-feature="prize-game"><span>PRIZES</span></div>
-       <div class="booth" data-feature="ticket-booth"><span>TICKETS</span></div>
-     </div>
-
-     <div class="food" data-feature="food-stand"></div>
-     <div class="entrance" data-feature="carnival-entrance"><div class="arch">CARNIVAL</div></div>
-
-     <div class="light l1"></div><div class="light l2"></div><div class="light l3"></div>
-     <div class="light l4"></div><div class="light l5"></div><div class="light l6"></div>`;
-   plane.appendChild(carnival);
-
-   const readout=d.getElementById('position');
-   const pts=new Map();
-   let scale=.07,tx=0,ty=0,drag=null,pinch=null;
-   const MIN=.03,MAX=.99,SPEED=1.55,WORLD=180000;
-   const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
-   function render(){
-     plane.style.transform=`translate(calc(-50% + ${tx}px),calc(-50% + ${ty}px)) scale(${scale})`;
-     if(readout){
-       const x=Math.round((.5-tx/(plane.offsetWidth*scale))*WORLD);
-       const y=Math.round((.5-ty/(plane.offsetHeight*scale))*WORLD);
-       readout.textContent=`X ${x} • Y ${y} • ZOOM ${Math.round(scale*100)}% • OPEN WORLD`;
-     }
-   }
-   function dist(){const a=[...pts.values()];return a.length<2?0:Math.hypot(a[1].x-a[0].x,a[1].y-a[0].y)}
-   win.addEventListener('pointerdown',e=>{
-     e.preventDefault();pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
-     try{win.setPointerCapture(e.pointerId)}catch(_e){}
-     if(pts.size===1)drag={x:e.clientX,y:e.clientY,tx,ty};
-     else if(pts.size===2)pinch={d:dist(),s:scale};
-   },{passive:false});
-   win.addEventListener('pointermove',e=>{
-     if(!pts.has(e.pointerId))return;e.preventDefault();pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
-     if(pts.size===1&&drag){tx=drag.tx+(e.clientX-drag.x)*SPEED;ty=drag.ty+(e.clientY-drag.y)*SPEED;render()}
-     else if(pts.size===2&&pinch){const ratio=dist()/Math.max(1,pinch.d);scale=clamp(pinch.s*Math.pow(ratio,1.25),MIN,MAX);render()}
-   },{passive:false});
-   function end(e){pts.delete(e.pointerId);if(pts.size===1){const a=[...pts.values()][0];drag={x:a.x,y:a.y,tx,ty}}else{drag=null;pinch=null}}
-   win.addEventListener('pointerup',end);win.addEventListener('pointercancel',end);
-   render();
- });
+ const readout=d.getElementById('position'),pts=new Map();
+ let scale=.07,tx=0,ty=0,drag=null,pinch=null;
+ const MIN=.03,MAX=.99,SPEED=1.55,WORLD=180000,clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+ function render(){plane.style.transform=`translate(calc(-50% + ${tx}px),calc(-50% + ${ty}px)) scale(${scale})`;if(readout){const x=Math.round((.5-tx/(plane.offsetWidth*scale))*WORLD),y=Math.round((.5-ty/(plane.offsetHeight*scale))*WORLD);readout.textContent=`X ${x} • Y ${y} • ZOOM ${Math.round(scale*100)}% • OPEN WORLD`}}
+ function dist(){const a=[...pts.values()];return a.length<2?0:Math.hypot(a[1].x-a[0].x,a[1].y-a[0].y)}
+ win.addEventListener('pointerdown',e=>{e.preventDefault();pts.set(e.pointerId,{x:e.clientX,y:e.clientY});try{win.setPointerCapture(e.pointerId)}catch(_e){}if(pts.size===1)drag={x:e.clientX,y:e.clientY,tx,ty};else if(pts.size===2)pinch={d:dist(),s:scale}},{passive:false});
+ win.addEventListener('pointermove',e=>{if(!pts.has(e.pointerId))return;e.preventDefault();pts.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pts.size===1&&drag){tx=drag.tx+(e.clientX-drag.x)*SPEED;ty=drag.ty+(e.clientY-drag.y)*SPEED;render()}else if(pts.size===2&&pinch){scale=clamp(pinch.s*Math.pow(dist()/Math.max(1,pinch.d),1.25),MIN,MAX);render()}},{passive:false});
+ function end(e){pts.delete(e.pointerId);if(pts.size===1){const a=[...pts.values()][0];drag={x:a.x,y:a.y,tx,ty}}else{drag=null;pinch=null}}
+ win.addEventListener('pointerup',end);win.addEventListener('pointercancel',end);render();
+});
 })();
 </script>
 </body>
