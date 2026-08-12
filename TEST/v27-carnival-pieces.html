@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Alaska Ice Crystals — V27 Carnival Pieces Test</title>
+<title>Alaska Ice Crystals — V27 Ocean-Side Carnival</title>
 <style>html,body{margin:0;width:100%;height:100%;height:100dvh;overflow:hidden;background:#020b14}#base{display:block;border:0;width:100vw;height:100dvh}</style>
 </head>
 <body>
@@ -12,74 +12,94 @@
 (()=>{
  const outer=document.getElementById('base');
  outer.addEventListener('load',()=>{
-   const outerDoc=outer.contentDocument;
-   if(!outerDoc)return;
-   const innerFrame=outerDoc.getElementById('base');
-   if(!innerFrame)return;
-   const install=()=>{
-     const d=innerFrame.contentDocument;
-     if(!d)return;
-     const plane=d.getElementById('worldPlane');
-     if(!plane)return;
+  const outerDoc=outer.contentDocument;if(!outerDoc)return;
+  const innerFrame=outerDoc.getElementById('base');if(!innerFrame)return;
+  const install=()=>{
+   const d=innerFrame.contentDocument;if(!d)return;
+   const plane=d.getElementById('worldPlane');if(!plane)return;
 
-     /* Remove the old carnival presentation completely. Keep every other V26 feature. */
-     const old=plane.querySelector('#carnivalV26');
-     if(old)old.remove();
-     const oldStyle=d.getElementById('carnivalPiecesV27Style');
-     if(oldStyle)oldStyle.remove();
-     plane.querySelectorAll('[data-carnival-piece="v27"]').forEach(el=>el.remove());
+   const old=plane.querySelector('#carnivalV26');if(old)old.remove();
+   const oldStyle=d.getElementById('carnivalPiecesV27Style');if(oldStyle)oldStyle.remove();
+   plane.querySelectorAll('[data-carnival-piece="v27"]').forEach(el=>el.remove());
 
-     const style=d.createElement('style');
-     style.id='carnivalPiecesV27Style';
-     style.textContent=`
-       [data-carnival-piece="v27"]{position:absolute;z-index:9;pointer-events:auto;box-sizing:border-box;filter:drop-shadow(0 7px 5px rgba(0,0,0,.20))}
-       .cv27-label{position:absolute;left:50%;top:104%;transform:translateX(-50%);padding:3px 6px;border-radius:6px;background:rgba(2,24,30,.86);color:#efffff;font:800 12px system-ui,sans-serif;white-space:nowrap}
-       .cv27-path{background:#776f61;border:4px solid rgba(217,208,185,.55);border-radius:999px;z-index:7!important;filter:none!important;pointer-events:none!important}
-       .cv27-ferris{width:9.4%;aspect-ratio:1;left:2.2%;top:76.8%;border:8px solid #475a60;border-radius:50%;background:transparent}
-       .cv27-ferris .spokes{position:absolute;inset:8%;border-radius:50%;background:repeating-conic-gradient(from 0deg,transparent 0 13deg,#50666b 14deg 16deg,transparent 17deg 43deg)}
-       .cv27-ferris .hub{position:absolute;left:50%;top:50%;width:15%;aspect-ratio:1;border-radius:50%;background:#dfe8e4;border:5px solid #40545a;transform:translate(-50%,-50%)}
-       .cv27-ferris .leg{position:absolute;top:80%;width:8%;height:62%;background:#475a60;transform-origin:top}.cv27-ferris .leg.a{left:32%;transform:rotate(18deg)}.cv27-ferris .leg.b{right:32%;transform:rotate(-18deg)}
-       .cv27-ferris .car{position:absolute;width:11%;height:8%;border-radius:4px;background:#a94b3d;border:2px solid #5e342e}.cv27-ferris .c1{left:45%;top:-5%}.cv27-ferris .c2{right:-4%;top:44%}.cv27-ferris .c3{left:45%;bottom:-5%}.cv27-ferris .c4{left:-4%;top:44%}
-       .cv27-carousel{left:13%;top:80%;width:8.6%;height:7.5%;border-radius:50% 50% 14% 14%;background:repeating-conic-gradient(from 0deg,#8f3f35 0 15deg,#ead398 15deg 30deg);border:6px solid #5a4131}
-       .cv27-carousel .deck{position:absolute;left:4%;right:4%;bottom:-28%;height:35%;background:#6b4d38;border:4px solid #4f392c;border-radius:8px}
-       .cv27-carousel .pole{position:absolute;top:20%;width:4px;height:80%;background:#6a563c}.cv27-carousel .p1{left:22%}.cv27-carousel .p2{left:48%}.cv27-carousel .p3{left:74%}
-       .cv27-bumper{left:23%;top:78%;width:10.8%;height:9.7%;border-radius:16px;background:#c1c9c2;border:7px solid #4c5659;overflow:hidden}
-       .cv27-bumper .arena{position:absolute;inset:11%;border:3px dashed rgba(70,86,91,.65)}
-       .cv27-bumper .car{position:absolute;width:10%;aspect-ratio:1.4;border-radius:50%;background:#8d4f40}.cv27-bumper .b1{left:22%;top:28%}.cv27-bumper .b2{left:57%;top:59%;background:#44677a}.cv27-bumper .b3{left:73%;top:23%;background:#b28b43}.cv27-bumper .b4{left:38%;top:72%;background:#5a714b}
-       .cv27-booth{width:5.5%;height:5.4%;top:89%;background:#74513d;border:5px solid #49372d;border-radius:7px 7px 3px 3px}
-       .cv27-booth:before{content:'';position:absolute;left:-5px;right:-5px;top:-30%;height:34%;background:repeating-linear-gradient(90deg,#b64e43 0 14%,#eee0b8 14% 28%);clip-path:polygon(0 100%,10% 10%,20% 100%,30% 10%,40% 100%,50% 10%,60% 100%,70% 10%,80% 100%,90% 10%,100% 100%)}
-       .cv27-booth .name{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font:800 10px system-ui,sans-serif;text-align:center}
-       .cv27-ring{left:2.5%}.cv27-ball{left:8.8%}.cv27-prize{left:15.1%}.cv27-ticket{left:21.4%}
-       .cv27-food{left:27.8%;top:88.5%;width:6.4%;height:6.4%;background:#875d3e;border:5px solid #513a2c;border-radius:8px}
-       .cv27-food:before{content:'';position:absolute;left:-5px;right:-5px;top:-28%;height:30%;background:repeating-linear-gradient(90deg,#d05a43 0 18%,#f0dfae 18% 36%)}
-       .cv27-food .name{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font:900 11px system-ui,sans-serif}
-       .cv27-entry{left:14.5%;top:96%;width:8%;height:3.5%;filter:none!important}
-       .cv27-entry .post{position:absolute;bottom:0;width:12%;height:100%;background:#52473a}.cv27-entry .post.l{left:0}.cv27-entry .post.r{right:0}.cv27-entry .arch{position:absolute;left:5%;right:5%;top:0;height:60%;border:7px solid #52473a;border-bottom:0;border-radius:50% 50% 0 0;color:#eefeff;text-align:center;font:900 9px system-ui,sans-serif;padding-top:2px}
-       .cv27-light{width:7px;height:7px;border-radius:50%;background:#fff4a3;box-shadow:0 0 16px 7px rgba(255,232,129,.45);z-index:10!important;filter:none!important;pointer-events:none!important}
-     `;
-     d.head.appendChild(style);
+   const style=d.createElement('style');
+   style.id='carnivalPiecesV27Style';
+   style.textContent=`
+[data-carnival-piece="v27"]{position:absolute;box-sizing:border-box;z-index:9;pointer-events:auto;filter:drop-shadow(0 8px 6px rgba(0,0,0,.23))}
+.cv27-label{position:absolute;left:50%;top:104%;transform:translateX(-50%);padding:4px 7px;border-radius:7px;background:rgba(2,24,30,.88);color:#efffff;font:900 11px system-ui,sans-serif;white-space:nowrap;letter-spacing:.02em}
+.cv27-path,.cv27-boardwalk,.cv27-service{filter:none!important;pointer-events:none!important;z-index:7!important}
+.cv27-boardwalk{background:repeating-linear-gradient(90deg,#8b735a 0 22px,#705b48 22px 26px);border:5px solid #5d4b3c;border-radius:18px;box-shadow:inset 0 0 0 4px rgba(220,194,151,.2)}
+.cv27-path{background:#827765;border:4px solid rgba(225,214,188,.62);border-radius:999px}
+.cv27-service{background:#4f5556;border:5px solid #353c3e;border-radius:999px}
 
-     const add=(cls,html='')=>{const el=d.createElement('div');el.dataset.carnivalPiece='v27';el.className=cls;el.innerHTML=html;plane.appendChild(el);return el};
+.cv27-ferris{left:3.2%;top:72.8%;width:11.2%;aspect-ratio:1;border:9px solid #3f5359;border-radius:50%;background:rgba(230,239,235,.08)}
+.cv27-ferris .spokes{position:absolute;inset:6%;border-radius:50%;background:repeating-conic-gradient(from 0deg,transparent 0 13deg,#50666b 14deg 16deg,transparent 17deg 43deg)}
+.cv27-ferris .rim2{position:absolute;inset:18%;border:5px solid #60767b;border-radius:50%}
+.cv27-ferris .hub{position:absolute;left:50%;top:50%;width:16%;aspect-ratio:1;border-radius:50%;background:#dfe8e4;border:5px solid #40545a;transform:translate(-50%,-50%)}
+.cv27-ferris .leg{position:absolute;top:82%;width:8%;height:64%;background:#475a60;transform-origin:top}.cv27-ferris .leg.a{left:31%;transform:rotate(17deg)}.cv27-ferris .leg.b{right:31%;transform:rotate(-17deg)}
+.cv27-ferris .car{position:absolute;width:12%;height:9%;border-radius:5px;border:2px solid #5e342e}.cv27-ferris .c1{left:44%;top:-6%;background:#a94b3d}.cv27-ferris .c2{right:-5%;top:44%;background:#d8a43e}.cv27-ferris .c3{left:44%;bottom:-6%;background:#4f7182}.cv27-ferris .c4{left:-5%;top:44%;background:#68804d}.cv27-ferris .c5{left:8%;top:8%;background:#8d5a87}.cv27-ferris .c6{right:8%;top:8%;background:#4d8584}
 
-     /* Separate walkways laid directly on the world. */
-     const p1=add('cv27-path');Object.assign(p1.style,{left:'1.5%',top:'85.8%',width:'33%',height:'2.6%',transform:'rotate(-2deg)'});
-     const p2=add('cv27-path');Object.assign(p2.style,{left:'16.4%',top:'82.2%',width:'2.7%',height:'15%',transform:'rotate(2deg)'});
+.cv27-carousel{left:16.3%;top:78.3%;width:9%;height:8.2%;border-radius:50% 50% 12% 12%;background:repeating-conic-gradient(from 0deg,#9a4238 0 15deg,#edd89b 15deg 30deg);border:6px solid #5a4131}
+.cv27-carousel .deck{position:absolute;left:4%;right:4%;bottom:-32%;height:40%;background:#6b4d38;border:4px solid #4f392c;border-radius:8px}
+.cv27-carousel .pole{position:absolute;top:17%;width:4px;height:88%;background:#6a563c}.cv27-carousel .p1{left:20%}.cv27-carousel .p2{left:40%}.cv27-carousel .p3{left:60%}.cv27-carousel .p4{left:80%}
 
-     add('cv27-ferris','<div class="spokes"></div><div class="hub"></div><div class="leg a"></div><div class="leg b"></div><div class="car c1"></div><div class="car c2"></div><div class="car c3"></div><div class="car c4"></div><div class="cv27-label">FERRIS WHEEL</div>');
-     add('cv27-carousel','<div class="deck"></div><div class="pole p1"></div><div class="pole p2"></div><div class="pole p3"></div><div class="cv27-label">CAROUSEL</div>');
-     add('cv27-bumper','<div class="arena"></div><div class="car b1"></div><div class="car b2"></div><div class="car b3"></div><div class="car b4"></div><div class="cv27-label">BUMPER CARS</div>');
-     add('cv27-booth cv27-ring','<div class="name">RING TOSS</div>');
-     add('cv27-booth cv27-ball','<div class="name">BALL GAME</div>');
-     add('cv27-booth cv27-prize','<div class="name">PRIZES</div>');
-     add('cv27-booth cv27-ticket','<div class="name">TICKETS</div>');
-     add('cv27-food','<div class="name">FOOD</div>');
-     add('cv27-entry','<div class="post l"></div><div class="post r"></div><div class="arch">CARNIVAL</div>');
+.cv27-bumper{left:27.1%;top:75.7%;width:12.2%;height:10.8%;border-radius:16px;background:linear-gradient(145deg,#667477,#b8c1bc);border:7px solid #434f53;overflow:hidden}
+.cv27-bumper .roof{position:absolute;left:5%;right:5%;top:5%;height:12%;background:repeating-linear-gradient(90deg,#ece7d4 0 10%,#9f4f42 10% 20%);border-radius:8px}
+.cv27-bumper .arena{position:absolute;left:8%;right:8%;top:24%;bottom:10%;border:3px dashed rgba(70,86,91,.65);background:rgba(233,240,234,.36)}
+.cv27-bumper .car{position:absolute;width:11%;aspect-ratio:1.45;border-radius:50%;border:2px solid rgba(0,0,0,.25)}.cv27-bumper .b1{left:22%;top:38%;background:#8d4f40}.cv27-bumper .b2{left:57%;top:61%;background:#44677a}.cv27-bumper .b3{left:73%;top:34%;background:#b28b43}.cv27-bumper .b4{left:38%;top:68%;background:#5a714b}
 
-     const lights=[['4.4%','84.9%'],['10.7%','85.5%'],['16.8%','85.1%'],['23.4%','85.4%'],['30.2%','84.8%'],['18.1%','93.8%']];
-     lights.forEach(([l,t])=>{const x=add('cv27-light');x.style.left=l;x.style.top=t});
-   };
-   if(innerFrame.contentDocument?.readyState==='complete')install();
-   else innerFrame.addEventListener('load',install,{once:true});
+.cv27-swing{left:40.6%;top:74.8%;width:9.2%;height:11%;}
+.cv27-swing .tower{position:absolute;left:47%;top:10%;width:7%;height:72%;background:#4f5c60}
+.cv27-swing .cap{position:absolute;left:15%;right:15%;top:3%;height:18%;background:repeating-conic-gradient(#b34c42 0 18deg,#edd59a 18deg 36deg);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.cv27-swing .arm{position:absolute;left:48%;top:26%;width:4px;height:52%;background:#4a565a;transform-origin:top}.cv27-swing .a1{transform:rotate(28deg)}.cv27-swing .a2{transform:rotate(-28deg)}.cv27-swing .seat{position:absolute;width:12%;height:8%;background:#775648;border-radius:3px}.cv27-swing .s1{left:72%;top:69%}.cv27-swing .s2{left:16%;top:69%}
+
+.cv27-booth{width:5.8%;height:5.7%;top:88.5%;background:#76513e;border:5px solid #49372d;border-radius:7px 7px 3px 3px}
+.cv27-booth:before{content:'';position:absolute;left:-5px;right:-5px;top:-31%;height:35%;background:repeating-linear-gradient(90deg,#b64e43 0 14%,#eee0b8 14% 28%);clip-path:polygon(0 100%,10% 10%,20% 100%,30% 10%,40% 100%,50% 10%,60% 100%,70% 10%,80% 100%,90% 10%,100% 100%)}
+.cv27-booth .name{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font:900 10px system-ui,sans-serif;text-align:center;padding:4px}
+.cv27-ring{left:4%}.cv27-ball{left:10.8%}.cv27-prize{left:17.6%}.cv27-ticket{left:24.4%}.cv27-photo{left:31.2%}.cv27-ice{left:38%}
+
+.cv27-food{left:45%;top:87.8%;width:7%;height:6.7%;background:#8a5f40;border:5px solid #513a2c;border-radius:8px}
+.cv27-food:before{content:'';position:absolute;left:-5px;right:-5px;top:-29%;height:31%;background:repeating-linear-gradient(90deg,#d05a43 0 18%,#f0dfae 18% 36%)}
+.cv27-food .name{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font:900 11px system-ui,sans-serif;text-align:center}
+
+.cv27-entry{left:21.5%;top:96%;width:10%;height:3.5%;filter:none!important}
+.cv27-entry .post{position:absolute;bottom:0;width:11%;height:100%;background:#514439}.cv27-entry .post.l{left:0}.cv27-entry .post.r{right:0}.cv27-entry .arch{position:absolute;left:4%;right:4%;top:0;height:62%;border:7px solid #514439;border-bottom:0;border-radius:50% 50% 0 0;color:#efffff;text-align:center;font:900 9px system-ui,sans-serif;padding-top:2px}
+
+.cv27-light{width:8px;height:8px;border-radius:50%;background:#fff1a0;box-shadow:0 0 18px 8px rgba(255,232,129,.48);z-index:10!important;filter:none!important;pointer-events:none!important}
+.cv27-flag{width:10px;height:18px;background:#b64e43;clip-path:polygon(0 0,100% 20%,0 40%);filter:none!important;pointer-events:none!important}
+`;
+   d.head.appendChild(style);
+
+   const add=(cls,html='')=>{const el=d.createElement('div');el.dataset.carnivalPiece='v27';el.className=cls;el.innerHTML=html;plane.appendChild(el);return el};
+
+   /* Ocean-side boardwalk running parallel to the coast. */
+   const board=add('cv27-boardwalk');Object.assign(board.style,{left:'1.2%',top:'69.5%',width:'49.5%',height:'3.2%',transform:'rotate(-1deg)'});
+   const midway=add('cv27-path');Object.assign(midway.style,{left:'2.5%',top:'86.2%',width:'50%',height:'2.8%',transform:'rotate(-1deg)'});
+   const cross1=add('cv27-path');Object.assign(cross1.style,{left:'13.8%',top:'72.5%',width:'2.5%',height:'17%',transform:'rotate(2deg)'});
+   const cross2=add('cv27-path');Object.assign(cross2.style,{left:'25.2%',top:'73%',width:'2.5%',height:'16%',transform:'rotate(-1deg)'});
+   const cross3=add('cv27-path');Object.assign(cross3.style,{left:'38.2%',top:'72.5%',width:'2.5%',height:'17%',transform:'rotate(1deg)'});
+   const service=add('cv27-service');Object.assign(service.style,{left:'3%',top:'95%',width:'49%',height:'1.9%',transform:'rotate(0deg)'});
+
+   add('cv27-ferris','<div class="spokes"></div><div class="rim2"></div><div class="hub"></div><div class="leg a"></div><div class="leg b"></div><div class="car c1"></div><div class="car c2"></div><div class="car c3"></div><div class="car c4"></div><div class="car c5"></div><div class="car c6"></div><div class="cv27-label">FERRIS WHEEL</div>');
+   add('cv27-carousel','<div class="deck"></div><div class="pole p1"></div><div class="pole p2"></div><div class="pole p3"></div><div class="pole p4"></div><div class="cv27-label">CAROUSEL</div>');
+   add('cv27-bumper','<div class="roof"></div><div class="arena"></div><div class="car b1"></div><div class="car b2"></div><div class="car b3"></div><div class="car b4"></div><div class="cv27-label">BUMPER CARS</div>');
+   add('cv27-swing','<div class="tower"></div><div class="cap"></div><div class="arm a1"></div><div class="arm a2"></div><div class="seat s1"></div><div class="seat s2"></div><div class="cv27-label">SWING RIDE</div>');
+
+   add('cv27-booth cv27-ring','<div class="name">RING TOSS</div>');
+   add('cv27-booth cv27-ball','<div class="name">BALL GAME</div>');
+   add('cv27-booth cv27-prize','<div class="name">PRIZE BOOTH</div>');
+   add('cv27-booth cv27-ticket','<div class="name">TICKETS</div>');
+   add('cv27-booth cv27-photo','<div class="name">PHOTO BOOTH</div>');
+   add('cv27-booth cv27-ice','<div class="name">ICE TREATS</div>');
+   add('cv27-food','<div class="name">FOOD & DRINKS</div>');
+   add('cv27-entry','<div class="post l"></div><div class="post r"></div><div class="arch">OCEAN-SIDE CARNIVAL</div>');
+
+   const lights=[['3.4%','70.7%'],['8.2%','70.5%'],['13.2%','70.4%'],['18.2%','70.4%'],['23.2%','70.4%'],['28.2%','70.4%'],['33.2%','70.4%'],['38.2%','70.4%'],['43.2%','70.4%'],['48.2%','70.4%'],['6%','85.5%'],['16%','85.4%'],['26%','85.5%'],['36%','85.4%'],['46%','85.5%']];
+   lights.forEach(([l,t])=>{const x=add('cv27-light');x.style.left=l;x.style.top=t});
+   const flags=[['2.3%','68.9%'],['12.3%','68.9%'],['22.3%','68.9%'],['32.3%','68.9%'],['42.3%','68.9%'],['50%','68.9%']];
+   flags.forEach(([l,t])=>{const x=add('cv27-flag');x.style.left=l;x.style.top=t});
+  };
+  if(innerFrame.contentDocument?.readyState==='complete')install();else innerFrame.addEventListener('load',install,{once:true});
  });
 })();
 </script>
