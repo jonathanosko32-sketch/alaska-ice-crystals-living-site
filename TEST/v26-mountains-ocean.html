@@ -46,6 +46,18 @@ html,body{margin:0;width:100%;height:100%;height:100dvh;overflow:hidden;backgrou
     mountains.id='mountainWallV26';
     mountains.innerHTML='<div class="far"></div><div class="rock"></div><div class="snow"></div>';
     plane.appendChild(mountains);
+
+    /* TEST ONLY: extend the existing world zoom down to 5% without changing V25. */
+    const win=d.getElementById('worldWindow');
+    const readout=d.getElementById('position');
+    if(win && readout){
+      const zoomStyle=d.createElement('style');
+      zoomStyle.textContent='#worldPlane{transform-origin:center!important}';
+      d.head.appendChild(zoomStyle);
+      let testScale=.05;
+      plane.style.transform='translate(calc(-50% + 0px),calc(-50% + 0px)) scale(.05)';
+      readout.textContent='X 90000 • Y 90000 • ZOOM 5% • WORLD 180000 × 180000';
+    }
   });
 })();
 </script>
