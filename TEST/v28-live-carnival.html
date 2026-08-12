@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Alaska Ice Crystals — V28 Live Ocean-Side Carnival</title>
+<style>
+html,body{margin:0;width:100%;height:100%;height:100dvh;overflow:hidden;background:#020b14}
+#base{display:block;border:0;width:100vw;height:100dvh}
+#status{position:fixed;left:10px;right:10px;bottom:10px;z-index:9999;pointer-events:none;display:flex;justify-content:center}
+#status span{max-width:680px;padding:8px 12px;border-radius:14px;background:rgba(2,19,27,.88);border:1px solid rgba(121,223,238,.4);color:#efffff;font:700 13px system-ui,sans-serif;box-shadow:0 7px 22px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+<iframe id="base" src="./v27-carnival-pieces.html?v=28"></iframe>
+<div id="status"><span>LIVE CARNIVAL • tap a ride, booth, game, or food stand</span></div>
+<script>
+(()=>{
+ const rootFrame=document.getElementById('base');
+ const status=document.querySelector('#status span');
+ let installed=false;
+
+ function findWorld(doc,depth=0){
+   if(!doc||depth>6)return null;
+   const plane=doc.getElementById?.('worldPlane');
+   if(plane)return {doc,plane};
+   const frames=[...(doc.querySelectorAll?.('iframe')||[])];
+   for(const f of frames){
+     try{const hit=findWorld(f.contentDocument,depth+1);if(hit)return hit;}catch(e){}
+   }
+   return null;
+ }
+
+ function install(){
+  if(installed)return;
+  let hit;
+  try{hit=findWorld(rootFrame.contentDocument);}catch(e){return;}
+  if(!hit){setTimeout(install,350);return;}
+  const {doc:d,plane}=hit;
+  if(!plane.querySelector('[data-carnival-piece="v27"]')){setTimeout(install,350);return;}
+  installed=true;
+
+  const style=d.createElement('style');
+  style.id='carnivalLiveV28Style';
+  style.textContent=`
+  [data-carnival-piece="v27"]{touch-action:manipulation}
+  .cv28-live{cursor:pointer;transition:transform .18s ease,filter .18s ease;outline:none}
+  .cv28-live:active{transform:scale(.97)}
+  .cv28-live.cv28-running{filter:drop-shadow(0 0 16px rgba(255,230,112,.88)) drop-shadow(0 8px 6px rgba(0,0,0,.23))}
+  .cv28-panel{position:absolute;z-index:80;width:min(360px,78vw);padding:16px;border-radius:18px;background:rgba(2,25,34,.96);border:2px solid rgba(123,227,239,.75);color:#efffff;font:700 14px system-ui,sans-serif;box-shadow:0 18px 42px rgba(0,0,0,.5);transform:translate(-50%,-108%)}
+  .cv28-panel h3{margin:0 0 8px;font-size:18px;color:#baf8ff}.cv28-panel p{margin:5px 0 10px;line-height:1.35;font-weight:600}
+  .cv28-actions{display:flex;flex-wrap:wrap;gap:8px}.cv28-actions button{border:0;border-radius:12px;padding:9px 12px;background:#dafbff;color:#06222b;font:900 13px system-ui,sans-serif}.cv28-actions button.secondary{background:#654b3b;color:white}
+  .cv28-ticket{position:absolute;z-index:75;left:22.2%;top:91.8%;min-width:150px;padding:8px 10px;border-radius:12px;background:rgba(43,33,24,.92);border:2px solid #e2c377;color:#fff8d3;font:900 11px system-ui,sans-serif;box-shadow:0 8px 18px rgba(0,0,0,.28)}
+  .cv28-ferris-spin .spokes,.cv28-ferris-spin .rim2{animation:cv28spin 8s linear infinite}.cv28-carousel-spin{animation:cv28pulseSpin 4s linear infinite}.cv28-swing-spin .cap{animation:cv28spin 2.7s linear infinite}.cv28-bumper-run .car{animation:cv28bumper 1.5s ease-in-out infinite alternate}
+  @keyframes cv28spin{to{transform:rotate(360deg)}}
+  @keyframes cv28pulseSpin{50%{filter:brightness(1.18)}to{transform:rotate(360deg)}}
+  @keyframes cv28bumper{to{transform:translate(24px,-15px) rotate(14deg)}}
+  .cv28-gate-open .post.l{transform:translateX(-45%)}.cv28-gate-open .post.r{transform:translateX(45%)}
+  `;
+  d.head.appendChild(style);
+
+  const state={tickets:20,prizes:0,rides:{}};
+  const ticket=d.createElement('div');ticket.className='cv28-ticket';ticket.innerHTML='🎟️ TICKETS: <b>20</b> &nbsp; 🏆 PRIZES: <i>0</i>';plane.appendChild(ticket);
+  const sync=()=>{ticket.querySelector('b').textContent=state.tickets;ticket.querySelector('i').textContent=state.prizes;};
+
+  let panel=null;
+  function closePanel(){panel?.remove();panel=null;}
+  function spend(n){if(state.tickets<n){announce('You need more tickets. Visit the ticket booth.');return false;}state.tickets-=n;sync();return true;}
+  function announce(msg){status.textContent=msg;clearTimeout(announce.t);announce.t=setTimeout(()=>status.textContent='LIVE CARNIVAL • tap a ride, booth, game, or food stand',3300)}
+  function show(el,title,body,actions){closePanel();panel=d.createElement('div');panel.className='cv28-panel';const r=el.getBoundingClientRect();const pr=plane.getBoundingClientRect();panel.style.left=((r.left-pr.left+r.width/2)/pr.width*100)+'%';panel.style.top=((r.top-pr.top)/pr.height*100)+'%';panel.innerHTML=`<h3>${title}</h3><p>${body}</p><div class="cv28-actions"></div>`;const box=panel.querySelector('.cv28-actions');actions.forEach(a=>{const b=d.createElement('button');b.textContent=a.label;if(a.secondary)b.className='secondary';b.onclick=e=>{e.stopPropagation();a.run();};box.appendChild(b)});const x=d.createElement('button');x.textContent='CLOSE';x.className='secondary';x.onclick=e=>{e.stopPropagation();closePanel()};box.appendChild(x);plane.appendChild(panel);}
+
+  function ride(selector,title,cost,runClass,body){
+   const el=plane.querySelector(selector);if(!el)return;
+   el.classList.add('cv28-live');el.tabIndex=0;
+   const open=()=>show(el,title,body,[{label:`RIDE • ${cost} TICKETS`,run:()=>{if(!spend(cost))return;el.classList.toggle(runClass);el.classList.add('cv28-running');setTimeout(()=>el.classList.remove('cv28-running'),2500);announce(`${title} is running.`);closePanel()}},{label:'STOP / RESET',secondary:true,run:()=>{el.classList.remove(runClass);announce(`${title} stopped.`);closePanel()}}]);
+   el.onclick=e=>{e.stopPropagation();open()};el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}};
+  }
+
+  ride('.cv27-ferris','Ferris Wheel',4,'cv28-ferris-spin','A working seaside wheel. Start it with tickets, then stop it when you want.');
+  ride('.cv27-carousel','Carousel',3,'cv28-carousel-spin','Classic family carousel with a live ride state.');
+  ride('.cv27-swing','Swing Ride',4,'cv28-swing-spin','Chair-swing attraction with live animated operation.');
+  ride('.cv27-bumper','Bumper Cars',4,'cv28-bumper-run','Enter the bumper-car arena and start a driving session.');
+
+  const entry=plane.querySelector('.cv27-entry');if(entry){entry.classList.add('cv28-live');entry.onclick=e=>{e.stopPropagation();entry.classList.toggle('cv28-gate-open');announce(entry.classList.contains('cv28-gate-open')?'Carnival gate opened. Welcome in.':'Carnival gate closed.')}}
+
+  function booth(selector,title,body,actions){const el=plane.querySelector(selector);if(!el)return;el.classList.add('cv28-live');el.onclick=e=>{e.stopPropagation();show(el,title,body,actions(el))};}
+  booth('.cv27-ticket','Ticket Booth','Buy carnival tickets for rides and games.',()=>[{label:'BUY 10 TICKETS',run:()=>{state.tickets+=10;sync();announce('10 carnival tickets added.');closePanel()}},{label:'BUY 25 TICKETS',run:()=>{state.tickets+=25;sync();announce('25 carnival tickets added.');closePanel()}}]);
+  booth('.cv27-ring','Ring Toss','A playable skill booth. Spend tickets for a chance to win a prize.',()=>[{label:'PLAY • 2 TICKETS',run:()=>{if(!spend(2))return;const win=Math.random()<.48;if(win){state.prizes++;sync()}announce(win?'Ring landed — you won a prize!':'Missed this round — try again.');closePanel()}}]);
+  booth('.cv27-ball','Ball Game','Throw for the target and try to win a carnival prize.',()=>[{label:'PLAY • 2 TICKETS',run:()=>{if(!spend(2))return;const win=Math.random()<.42;if(win){state.prizes++;sync()}announce(win?'Target hit — prize won!':'Close shot. Try another round.');closePanel()}}]);
+  booth('.cv27-prize','Prize Booth','Redeem the prizes you have won at carnival games.',()=>[{label:'REDEEM 1 PRIZE',run:()=>{if(state.prizes<1){announce('Win a prize at a game first.');return;}state.prizes--;sync();announce('Prize redeemed.');closePanel()}}]);
+  booth('.cv27-photo','Photo Booth','Interactive photo-stop placeholder, ready for Osko’s later custom photo/camera system.',()=>[{label:'OPEN PHOTO STOP',run:()=>{announce('Photo stop opened. Camera connection can be added later.');closePanel()}}]);
+  booth('.cv27-ice','Ice Treats','Choose a cold carnival treat.',()=>[{label:'GET TREAT • 1 TICKET',run:()=>{if(!spend(1))return;announce('Ice treat served.');closePanel()}}]);
+  booth('.cv27-food','Food & Drinks','Carnival food counter with working order interaction.',()=>[{label:'ORDER FOOD • 2 TICKETS',run:()=>{if(!spend(2))return;announce('Food order placed.');closePanel()}},{label:'GET DRINK • 1 TICKET',run:()=>{if(!spend(1))return;announce('Drink served.');closePanel()}}]);
+
+  plane.addEventListener('click',e=>{if(panel&&!panel.contains(e.target)&&!e.target.closest('.cv28-live'))closePanel()});
+  announce('V28 live carnival loaded. Tap the entrance, rides, games, tickets, prizes, or food.');
+ }
+ rootFrame.addEventListener('load',()=>setTimeout(install,500));
+ setTimeout(install,1200);
+})();
+</script>
+</body>
+</html>
