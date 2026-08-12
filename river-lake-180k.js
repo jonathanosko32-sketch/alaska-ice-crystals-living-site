@@ -10,7 +10,7 @@
     .river-bank{fill:none;stroke:#2f6d7b;stroke-width:38;stroke-linecap:round;stroke-linejoin:round;opacity:.96}
     .river-water{fill:none;stroke:#18a8c5;stroke-width:27;stroke-linecap:round;stroke-linejoin:round}
     .river-shine{fill:none;stroke:rgba(180,241,247,.72);stroke-width:6;stroke-linecap:round;stroke-dasharray:26 38}
-    .lake-bank{fill:#397b86;opacity:.92}
+    .lake-bank{fill:#87c8d1;opacity:.92}
     .lake-water{fill:url(#lakeGrad)}
     .lake-ripple{fill:none;stroke:rgba(201,247,250,.40);stroke-width:3}
     .drop-dark{fill:#17657b;opacity:.96}
@@ -26,10 +26,10 @@
   layer.innerHTML=`
     <svg viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
       <defs>
-        <radialGradient id="lakeGrad" cx="43%" cy="38%" r="70%">
-          <stop offset="0%" stop-color="#35b8cf"/>
-          <stop offset="58%" stop-color="#168aa8"/>
-          <stop offset="100%" stop-color="#0c6786"/>
+        <radialGradient id="lakeGrad" cx="43%" cy="37%" r="72%">
+          <stop offset="0%" stop-color="#38b9d0"/>
+          <stop offset="55%" stop-color="#168eac"/>
+          <stop offset="100%" stop-color="#0c6d8b"/>
         </radialGradient>
         <linearGradient id="dropGrad" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%" stop-color="#d7fbff"/>
@@ -38,24 +38,21 @@
         </linearGradient>
       </defs>
 
-      <!-- Upper river: starts at upper-right, bends down and left into the lake. -->
       <path class="river-bank" d="M935 112 C905 155 926 205 895 247 C867 286 821 301 802 345 C780 396 796 434 748 462 C712 483 680 468 652 487"/>
       <path class="river-water" d="M935 112 C905 155 926 205 895 247 C867 286 821 301 802 345 C780 396 796 434 748 462 C712 483 680 468 652 487"/>
       <path class="river-shine" d="M935 112 C905 155 926 205 895 247 C867 286 821 301 802 345 C780 396 796 434 748 462 C712 483 680 468 652 487"/>
 
-      <!-- Lake: broad center body matching the old layout, with river entering at upper-right. -->
-      <path class="lake-bank" d="M421 470 C438 428 494 407 554 414 C609 420 667 439 691 478 C714 514 695 558 663 586 C630 614 587 624 537 615 C490 607 446 588 423 556 C403 529 404 498 421 470 Z"/>
-      <path class="lake-water" d="M431 474 C448 440 496 422 550 428 C601 433 651 448 673 481 C692 510 677 545 649 568 C621 591 584 601 542 594 C500 587 461 572 440 545 C422 522 417 497 431 474 Z"/>
-      <ellipse class="lake-ripple" cx="555" cy="510" rx="86" ry="48"/>
-      <ellipse class="lake-ripple" cx="555" cy="510" rx="48" ry="27"/>
-      <text class="water-label" x="523" y="518">LAKE</text>
+      <!-- Lake centered exactly on the 180,000 property midpoint. Shape follows the reference: broad, irregular, wider than tall, fuller on left, tapered lower-right. -->
+      <path class="lake-bank" d="M334 467 C350 423 393 395 447 390 C495 385 536 400 575 395 C626 389 675 399 703 431 C733 465 731 509 709 543 C694 566 671 578 664 602 C653 637 622 657 581 663 C537 670 500 657 459 660 C414 663 371 651 347 621 C329 599 331 574 318 550 C298 514 309 491 334 467 Z"/>
+      <path class="lake-water" d="M343 472 C359 434 398 410 449 405 C494 401 535 414 574 409 C621 403 664 413 689 440 C716 469 713 505 695 534 C680 558 657 568 651 591 C641 621 615 638 578 644 C537 650 501 638 461 642 C420 645 382 635 360 609 C343 589 345 565 333 543 C315 512 321 491 343 472 Z"/>
+      <ellipse class="lake-ripple" cx="500" cy="500" rx="96" ry="52"/>
+      <ellipse class="lake-ripple" cx="500" cy="500" rx="54" ry="29"/>
+      <text class="water-label" x="472" y="512">LAKE</text>
 
-      <!-- Lower river: leaves the lake southwest, loops down/left, then reaches the ocean. -->
       <path class="river-bank" d="M461 568 C441 596 447 626 423 652 C394 684 350 688 324 720 C304 744 292 770 253 786"/>
       <path class="river-water" d="M461 568 C441 596 447 626 423 652 C394 684 350 688 324 720 C304 744 292 770 253 786"/>
       <path class="river-shine" d="M461 568 C441 596 447 626 423 652 C394 684 350 688 324 720 C304 744 292 770 253 786"/>
 
-      <!-- Drop-off / falls at the shoreline into the left ocean. Ocean edge is near x=240. -->
       <path class="drop-dark" d="M257 767 C245 768 236 775 228 787 L208 825 C201 838 207 850 220 853 L241 857 C252 859 261 853 265 842 L278 800 C283 784 274 770 257 767 Z"/>
       <path class="drop-water" d="M257 772 C248 774 241 781 236 791 L219 822 C214 832 218 840 228 843 L240 846 C248 848 255 842 258 833 L269 799 C273 785 268 775 257 772 Z"/>
       <path class="drop-foam" d="M242 783 C234 780 226 783 221 790 C214 799 218 808 228 811 C236 814 242 811 248 806 C255 800 255 788 242 783 Z"/>
