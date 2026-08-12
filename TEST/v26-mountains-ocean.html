@@ -7,7 +7,7 @@
 <style>html,body{margin:0;width:100%;height:100%;height:100dvh;overflow:hidden;background:#020b14}#base{display:block;border:0;width:100vw;height:100dvh}</style>
 </head>
 <body>
-<iframe id="base" src="../PERMANENT_BASE/v25/alaska-180k-open-land.html?v=26-open-camera-2"></iframe>
+<iframe id="base" src="../PERMANENT_BASE/v25/alaska-180k-open-land.html?v=26-open-camera-3"></iframe>
 <script>
 (()=>{
  const frame=document.getElementById('base');
@@ -15,12 +15,10 @@
    const d=frame.contentDocument;if(!d)return;
    const oldWin=d.getElementById('worldWindow');if(!oldWin)return;
 
-   /* VIEW-ONLY FIX: clone the viewport so the V25 bounded camera listeners stay attached to the detached old copy. */
    const win=oldWin.cloneNode(true);
    oldWin.replaceWith(win);
    const plane=win.querySelector('#worldPlane');if(!plane)return;
 
-   /* Keep all existing world content. Only the TEST camera and already-approved TEST overlays are applied here. */
    d.querySelectorAll('.mountains,#mountainWallV26,#mountainOceanReflectionV26').forEach(el=>el.remove());
    const style=d.createElement('style');
    style.id='openCameraV26Style';
@@ -43,15 +41,22 @@
    if(ocean&&ocean.nextSibling)plane.insertBefore(reflection,ocean.nextSibling);else plane.appendChild(reflection);
    const mountains=d.createElement('div');mountains.id='mountainWallV26';mountains.innerHTML='<div class="far"></div><div class="rock"></div><div class="snow"></div>';plane.appendChild(mountains);
 
-   /* Keep approved lake shape exactly as previously approved. */
    const svg=plane.querySelector('#riverLake180 svg');
    if(svg){
      const bank=svg.querySelector('.lake-bank'),water=svg.querySelector('.lake-water');
      if(bank)bank.setAttribute('d','M330 470 C347 438 377 417 416 407 C451 398 481 404 510 397 C548 388 586 391 616 405 C649 420 675 445 686 474 C697 502 690 526 674 546 C659 565 640 574 629 590 C613 613 589 624 558 626 C528 628 504 620 479 624 C446 630 412 625 387 612 C361 599 347 581 343 558 C340 540 327 528 319 511 C311 494 316 481 330 470 Z');
      if(water)water.setAttribute('d','M340 474 C357 447 383 430 418 421 C451 413 480 418 511 411 C546 403 579 406 607 418 C637 431 659 452 670 476 C680 499 674 519 660 537 C646 554 628 563 617 578 C603 597 582 608 556 610 C527 612 503 604 478 609 C447 614 418 610 395 599 C372 588 359 572 356 553 C353 535 341 524 334 509 C327 495 329 484 340 474 Z');
+
+     /* TEST ONLY: connect the left/lower river directly into the approved lake shoreline. */
+     const banks=svg.querySelectorAll('.river-bank');
+     const waters=svg.querySelectorAll('.river-water');
+     const flows=svg.querySelectorAll('.river-segments');
+     const leftRiver='M392 602 C374 613 357 626 342 642 C322 662 304 684 290 709 C274 736 260 763 253 786';
+     if(banks[1])banks[1].setAttribute('d',leftRiver);
+     if(waters[1])waters[1].setAttribute('d',leftRiver);
+     if(flows[1])flows[1].setAttribute('d',leftRiver);
    }
 
-   /* Unrestricted TEST camera: no boundary clamp. Coordinates may go below 0 or above 180000. */
    const readout=d.getElementById('position');
    const pts=new Map();
    let scale=.07,tx=0,ty=0,drag=null,pinch=null;
