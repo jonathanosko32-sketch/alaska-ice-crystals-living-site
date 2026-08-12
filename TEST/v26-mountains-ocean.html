@@ -7,7 +7,7 @@
 <style>html,body{margin:0;width:100%;height:100%;height:100dvh;overflow:hidden;background:#020b14}#base{display:block;border:0;width:100vw;height:100dvh}</style>
 </head>
 <body>
-<iframe id="base" src="../PERMANENT_BASE/v25/alaska-180k-open-land.html?v=26-open-camera-5"></iframe>
+<iframe id="base" src="../PERMANENT_BASE/v25/alaska-180k-open-land.html?v=26-open-camera-6"></iframe>
 <script>
 (()=>{
  const frame=document.getElementById('base');
@@ -34,19 +34,47 @@
 #mountainOceanReflectionV26{position:absolute;left:0;top:10.1%;width:24%;height:9.5%;z-index:5;pointer-events:none;overflow:hidden;opacity:.34;filter:blur(3px);mask-image:linear-gradient(to bottom,rgba(0,0,0,.72),transparent 92%);-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.72),transparent 92%)}
 #mountainOceanReflectionV26:before{content:'';position:absolute;left:-5%;right:-5%;top:-80%;height:180%;background:#183d49;transform:scaleY(-1);transform-origin:center top;clip-path:polygon(0 92%,4% 72%,8% 82%,12% 22%,16% 79%,20% 50%,24% 88%,29% 13%,34% 77%,39% 41%,43% 89%,48% 8%,53% 76%,58% 34%,63% 87%,68% 15%,73% 80%,78% 43%,82% 90%,87% 12%,92% 70%,96% 31%,100% 73%,100% 100%,0 100%)}
 #mountainOceanReflectionV26:after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(175deg,transparent 0 13px,rgba(130,220,230,.17) 14px 16px,transparent 17px 29px)}
-#carnivalV26{position:absolute;left:1.8%;bottom:2.5%;width:30%;height:27%;z-index:8;pointer-events:none;border:5px solid rgba(82,92,78,.55);border-radius:26px;background:linear-gradient(145deg,rgba(197,204,184,.92),rgba(158,170,151,.94));box-shadow:0 0 0 14px rgba(92,102,88,.15) inset,0 16px 30px rgba(0,0,0,.16);overflow:hidden}
-#carnivalV26 .shorepath{position:absolute;left:-3%;top:4%;width:106%;height:22%;border-bottom:18px solid rgba(92,82,69,.72);border-radius:50%}
-#carnivalV26 .midway{position:absolute;left:12%;right:8%;top:44%;height:16%;border-radius:999px;background:#857b69;box-shadow:0 0 0 7px rgba(214,207,186,.55) inset;transform:rotate(-5deg)}
-#carnivalV26 .wheel{position:absolute;left:8%;top:24%;width:28%;aspect-ratio:1;border:10px solid #4d5e64;border-radius:50%;box-shadow:inset 0 0 0 7px rgba(235,240,235,.72)}
-#carnivalV26 .wheel:before,#carnivalV26 .wheel:after{content:'';position:absolute;left:50%;top:4%;bottom:4%;width:7px;background:#4d5e64;transform-origin:center}
-#carnivalV26 .wheel:before{transform:translateX(-50%) rotate(45deg)}#carnivalV26 .wheel:after{transform:translateX(-50%) rotate(-45deg)}
-#carnivalV26 .hub{position:absolute;left:21%;top:37%;width:34px;height:34px;border-radius:50%;background:#273a40;border:7px solid #c8d8d4}
-#carnivalV26 .carousel{position:absolute;left:43%;top:24%;width:22%;height:24%;border-radius:50% 50% 18% 18%;background:repeating-conic-gradient(from 0deg,#745c4a 0 16deg,#d8c7a8 16deg 32deg);border:7px solid #5b4a3d}
-#carnivalV26 .ride{position:absolute;right:8%;top:18%;width:23%;height:28%;border:8px solid #59666a;border-radius:28px 28px 12px 12px;background:linear-gradient(#d2d8cf,#6e7f80)}
-#carnivalV26 .ride:after{content:'';position:absolute;left:20%;right:20%;bottom:-24%;height:28%;border-left:8px solid #59666a;border-right:8px solid #59666a;transform:skewX(-12deg)}
-#carnivalV26 .tent{position:absolute;width:14%;height:16%;bottom:10%;background:#705441;border:5px solid #4f4035;clip-path:polygon(50% 0,100% 36%,92% 100%,8% 100%,0 36%)}
-#carnivalV26 .t1{left:14%}.t2{left:33%}.t3{left:52%}.t4{left:71%}
-#carnivalV26 .label{position:absolute;left:50%;bottom:2%;transform:translateX(-50%);padding:8px 16px;border-radius:999px;background:rgba(4,29,36,.86);color:#eaffff;font:900 24px system-ui,sans-serif;letter-spacing:.08em;white-space:nowrap}
+
+/* REAL CODED CARNIVAL: every attraction is a separate world object, not one picture. */
+#carnivalV26{position:absolute;left:1.7%;bottom:2.2%;width:32%;height:28%;z-index:8;pointer-events:none}
+#carnivalV26 .grounds{position:absolute;inset:0;border-radius:32px;background:radial-gradient(circle at 20% 20%,rgba(224,220,196,.92),rgba(175,169,145,.92) 64%,rgba(131,126,108,.94));box-shadow:inset 0 0 0 6px rgba(74,80,70,.28),inset 0 0 45px rgba(51,56,49,.16)}
+#carnivalV26 .shorewalk{position:absolute;left:0;right:2%;top:5%;height:11%;border-radius:999px;background:#8f846e;box-shadow:inset 0 0 0 5px rgba(224,217,191,.48);transform:rotate(-2deg)}
+#carnivalV26 .mainwalk{position:absolute;left:8%;right:7%;top:48%;height:10%;border-radius:999px;background:#766c5a;box-shadow:inset 0 0 0 5px rgba(214,205,181,.48);transform:rotate(-4deg)}
+#carnivalV26 .crosswalk{position:absolute;left:47%;top:14%;width:8%;height:72%;border-radius:999px;background:#7e735f;box-shadow:inset 0 0 0 5px rgba(214,205,181,.44);transform:rotate(2deg)}
+#carnivalV26 .object{position:absolute;pointer-events:auto;filter:drop-shadow(0 8px 6px rgba(0,0,0,.22))}
+#carnivalV26 .object:after{position:absolute;left:50%;top:104%;transform:translateX(-50%);padding:4px 7px;border-radius:7px;background:rgba(3,25,31,.82);color:#efffff;font:800 13px system-ui,sans-serif;white-space:nowrap}
+
+#carnivalV26 .ferris{left:7%;top:17%;width:25%;aspect-ratio:1;border:10px solid #475a60;border-radius:50%;background:radial-gradient(circle,#cddbd5 0 5%,transparent 6% 100%)}
+#carnivalV26 .ferris:before{content:'';position:absolute;inset:5%;border-radius:50%;background:repeating-conic-gradient(from 0deg,transparent 0 13deg,#50666b 14deg 16deg,transparent 17deg 43deg)}
+#carnivalV26 .ferris:after{content:'FERRIS WHEEL'}
+#carnivalV26 .ferrisHub{position:absolute;left:50%;top:50%;width:14%;aspect-ratio:1;border-radius:50%;background:#dfe8e4;border:6px solid #40545a;transform:translate(-50%,-50%)}
+#carnivalV26 .ferrisStand{position:absolute;left:26%;right:26%;top:82%;height:42%;border-left:9px solid #475a60;border-right:9px solid #475a60;transform:perspective(200px) rotateX(-8deg) skewX(-12deg)}
+
+#carnivalV26 .carousel{left:36%;top:21%;width:20%;height:19%;border-radius:50% 50% 15% 15%;background:repeating-conic-gradient(from 0deg,#8f3f35 0 15deg,#e5c881 15deg 30deg);border:7px solid #5a4131}
+#carnivalV26 .carousel:before{content:'';position:absolute;left:10%;right:10%;bottom:-35%;height:50%;border-left:6px solid #5a4131;border-right:6px solid #5a4131;background:repeating-linear-gradient(90deg,transparent 0 12%,#7c5b38 13% 16%,transparent 17% 29%)}
+#carnivalV26 .carousel:after{content:'CAROUSEL'}
+
+#carnivalV26 .bumper{right:7%;top:18%;width:27%;height:23%;border-radius:18px;background:linear-gradient(145deg,#56656a,#c3cbc4);border:7px solid #4c5659;overflow:hidden}
+#carnivalV26 .bumper:before{content:'';position:absolute;inset:12%;background:radial-gradient(circle at 20% 30%,#8d4f40 0 5%,transparent 6%),radial-gradient(circle at 60% 60%,#44677a 0 5%,transparent 6%),radial-gradient(circle at 78% 26%,#b28b43 0 5%,transparent 6%),radial-gradient(circle at 38% 78%,#5a714b 0 5%,transparent 6%);border:3px dashed rgba(235,242,236,.72)}
+#carnivalV26 .bumper:after{content:'BUMPER CARS'}
+
+#carnivalV26 .games{left:7%;bottom:8%;width:62%;height:19%;display:flex;gap:2%;align-items:flex-end}
+#carnivalV26 .booth{position:relative;flex:1;height:75%;background:#6e4f3c;border:5px solid #49372d;border-radius:8px 8px 3px 3px;pointer-events:auto;filter:drop-shadow(0 6px 5px rgba(0,0,0,.2))}
+#carnivalV26 .booth:before{content:'';position:absolute;left:-5px;right:-5px;top:-38%;height:42%;background:repeating-linear-gradient(90deg,#b64e43 0 14%,#eee0b8 14% 28%);clip-path:polygon(0 100%,10% 10%,20% 100%,30% 10%,40% 100%,50% 10%,60% 100%,70% 10%,80% 100%,90% 10%,100% 100%)}
+#carnivalV26 .booth span{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);color:#fff;font:800 11px system-ui,sans-serif;white-space:nowrap}
+
+#carnivalV26 .food{right:5%;bottom:8%;width:22%;height:20%;background:#875d3e;border:6px solid #513a2c;border-radius:10px;pointer-events:auto;filter:drop-shadow(0 6px 5px rgba(0,0,0,.2))}
+#carnivalV26 .food:before{content:'';position:absolute;left:-6px;right:-6px;top:-31%;height:34%;background:repeating-linear-gradient(90deg,#d05a43 0 18%,#f0dfae 18% 36%);border-radius:7px 7px 0 0}
+#carnivalV26 .food:after{content:'FOOD';position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);color:#fff;font:900 13px system-ui,sans-serif}
+
+#carnivalV26 .entrance{position:absolute;left:37%;bottom:-1%;width:29%;height:17%;pointer-events:auto}
+#carnivalV26 .entrance:before,#carnivalV26 .entrance:after{content:'';position:absolute;bottom:0;width:13%;height:100%;background:#52473a;border-radius:5px}
+#carnivalV26 .entrance:before{left:0}#carnivalV26 .entrance:after{right:0}
+#carnivalV26 .arch{position:absolute;left:4%;right:4%;top:0;height:42%;border:10px solid #52473a;border-bottom:0;border-radius:50% 50% 0 0;color:#e9ffff;text-align:center;font:900 13px system-ui,sans-serif;padding-top:4px}
+
+#carnivalV26 .light{position:absolute;width:8px;height:8px;border-radius:50%;background:#fff4a3;box-shadow:0 0 18px 8px rgba(255,232,129,.45)}
+#carnivalV26 .l1{left:13%;top:12%}.l2{left:31%;top:49%}.l3{left:58%;top:12%}.l4{left:76%;top:48%}.l5{left:91%;top:14%}.l6{left:48%;bottom:6%}
+#carnivalV26 .zoneLabel{position:absolute;left:50%;top:-3%;transform:translateX(-50%);padding:7px 14px;border-radius:999px;background:rgba(3,25,31,.86);color:#efffff;font:900 18px system-ui,sans-serif;letter-spacing:.08em;white-space:nowrap}
 `;
    d.head.appendChild(style);
 
@@ -74,10 +102,32 @@
      if(flows[1])flows[1].setAttribute('d',leftRiver);
    }
 
-   /* TEST ONLY: first ocean-side carnival foundation below the shortened ocean. */
+   /* TEST ONLY: actual carnival objects, each independently addressable for later interaction/game logic. */
    const carnival=d.createElement('div');
    carnival.id='carnivalV26';
-   carnival.innerHTML='<div class="shorepath"></div><div class="midway"></div><div class="wheel"></div><div class="hub"></div><div class="carousel"></div><div class="ride"></div><div class="tent t1"></div><div class="tent t2"></div><div class="tent t3"></div><div class="tent t4"></div><div class="label">OCEAN-SIDE CARNIVAL</div>';
+   carnival.innerHTML=`
+     <div class="grounds"></div>
+     <div class="shorewalk"></div>
+     <div class="mainwalk"></div>
+     <div class="crosswalk"></div>
+     <div class="zoneLabel">OCEAN-SIDE CARNIVAL</div>
+
+     <div class="object ferris" data-feature="ferris-wheel"><div class="ferrisHub"></div><div class="ferrisStand"></div></div>
+     <div class="object carousel" data-feature="carousel"></div>
+     <div class="object bumper" data-feature="bumper-cars"></div>
+
+     <div class="games" data-zone="games-midway">
+       <div class="booth" data-feature="ring-toss"><span>RING TOSS</span></div>
+       <div class="booth" data-feature="ball-game"><span>BALL GAME</span></div>
+       <div class="booth" data-feature="prize-game"><span>PRIZES</span></div>
+       <div class="booth" data-feature="ticket-booth"><span>TICKETS</span></div>
+     </div>
+
+     <div class="food" data-feature="food-stand"></div>
+     <div class="entrance" data-feature="carnival-entrance"><div class="arch">CARNIVAL</div></div>
+
+     <div class="light l1"></div><div class="light l2"></div><div class="light l3"></div>
+     <div class="light l4"></div><div class="light l5"></div><div class="light l6"></div>`;
    plane.appendChild(carnival);
 
    const readout=d.getElementById('position');
