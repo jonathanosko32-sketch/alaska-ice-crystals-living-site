@@ -3,63 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Alaska Ice Crystals — V26 Mountain/Ocean Test</title>
-<style>
-html,body{margin:0;width:100%;height:100%;height:100dvh;overflow:hidden;background:#020b14}
-#base{display:block;border:0;width:100vw;height:100dvh}
-</style>
-</head>
-<body>
-<iframe id="base" src="../PERMANENT_BASE/v25/alaska-180k-open-land.html?v=26mountains"></iframe>
-<script>
-(()=>{
-  const frame=document.getElementById('base');
-  frame.addEventListener('load',()=>{
-    const d=frame.contentDocument;
-    if(!d) return;
-    const plane=d.getElementById('worldPlane');
-    if(!plane) return;
-
-    /* V25 stays untouched. This test only adds a mountain/ocean layer at runtime. */
-    d.querySelectorAll('.mountains,#mountainWallV26,#mountainOceanReflectionV26').forEach(el=>el.remove());
-
-    const style=d.createElement('style');
-    style.id='mountainOceanV26Style';
-    style.textContent=`
-#mountainWallV26{position:absolute;left:-1.5%;right:-1.5%;top:-12.5%;height:17.5%;z-index:13;pointer-events:none;overflow:hidden}
-#mountainWallV26 .far,#mountainWallV26 .rock,#mountainWallV26 .snow{position:absolute;left:0;right:0;bottom:0}
-#mountainWallV26 .far{height:100%;background:linear-gradient(#84989c,#6d8388);opacity:.80;clip-path:polygon(0 100%,0 84%,3% 66%,6% 76%,10% 31%,13% 73%,17% 51%,20% 80%,25% 19%,29% 71%,33% 43%,37% 82%,42% 12%,47% 69%,51% 39%,55% 79%,60% 17%,65% 72%,69% 45%,73% 82%,78% 10%,83% 67%,87% 38%,91% 78%,95% 20%,100% 62%,100% 100%)}
-#mountainWallV26 .rock{height:88%;background:linear-gradient(#536a6e,#394e52);clip-path:polygon(0 100%,0 92%,4% 72%,8% 82%,12% 22%,16% 79%,20% 50%,24% 88%,29% 13%,34% 77%,39% 41%,43% 89%,48% 8%,53% 76%,58% 34%,63% 87%,68% 15%,73% 80%,78% 43%,82% 90%,87% 12%,92% 70%,96% 31%,100% 73%,100% 100%,0 100%)}
-#mountainWallV26 .snow{height:88%;background:#eef5f4;opacity:.98;clip-path:polygon(0 92%,4% 72%,6% 79%,8% 82%,12% 22%,14% 40%,16% 79%,20% 50%,22% 62%,24% 88%,29% 13%,31% 34%,34% 77%,39% 41%,41% 57%,43% 89%,48% 8%,50% 30%,53% 76%,58% 34%,60% 51%,63% 87%,68% 15%,70% 36%,73% 80%,78% 43%,80% 59%,82% 90%,87% 12%,89% 33%,92% 70%,96% 31%,98% 49%,100% 73%,100% 82%,96% 48%,92% 79%,87% 35%,82% 96%,78% 61%,73% 89%,68% 38%,63% 94%,58% 52%,53% 85%,48% 31%,43% 95%,39% 59%,34% 87%,29% 37%,24% 95%,20% 65%,16% 88%,12% 44%,8% 90%,4% 82%,0 97%)}
-#mountainOceanReflectionV26{position:absolute;left:0;top:13.6%;width:24%;height:9.5%;z-index:5;pointer-events:none;overflow:hidden;opacity:.34;filter:blur(3px);mask-image:linear-gradient(to bottom,rgba(0,0,0,.72),transparent 92%);-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.72),transparent 92%)}
-#mountainOceanReflectionV26:before{content:'';position:absolute;left:-5%;right:-5%;top:-80%;height:180%;background:#183d49;transform:scaleY(-1);transform-origin:center top;clip-path:polygon(0 92%,4% 72%,8% 82%,12% 22%,16% 79%,20% 50%,24% 88%,29% 13%,34% 77%,39% 41%,43% 89%,48% 8%,53% 76%,58% 34%,63% 87%,68% 15%,73% 80%,78% 43%,82% 90%,87% 12%,92% 70%,96% 31%,100% 73%,100% 100%,0 100%)}
-#mountainOceanReflectionV26:after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(175deg,transparent 0 13px,rgba(130,220,230,.17) 14px 16px,transparent 17px 29px)}
-`;
-    d.head.appendChild(style);
-
-    const reflection=d.createElement('div');
-    reflection.id='mountainOceanReflectionV26';
-    const ocean=d.getElementById('leftOcean');
-    if(ocean && ocean.nextSibling) plane.insertBefore(reflection,ocean.nextSibling); else plane.appendChild(reflection);
-
-    const mountains=d.createElement('div');
-    mountains.id='mountainWallV26';
-    mountains.innerHTML='<div class="far"></div><div class="rock"></div><div class="snow"></div>';
-    plane.appendChild(mountains);
-
-    /* TEST ONLY: extend the existing world zoom down to 5% without changing V25. */
-    const win=d.getElementById('worldWindow');
-    const readout=d.getElementById('position');
-    if(win && readout){
-      const zoomStyle=d.createElement('style');
-      zoomStyle.textContent='#worldPlane{transform-origin:center!important}';
-      d.head.appendChild(zoomStyle);
-      let testScale=.05;
-      plane.style.transform='translate(calc(-50% + 0px),calc(-50% + 0px)) scale(.05)';
-      readout.textContent='X 90000 • Y 90000 • ZOOM 5% • WORLD 180000 × 180000';
-    }
-  });
-})();
-</script>
-</body>
-</html>
+<title>Alaska Ice Crystals — V26 Mountain/Ocean/Lake Test</title>
+<style>html,body{margin:0;width:100%;height:100%;height:100dvh;overflow:hidden;background:#020b14}#base{display:block;border:0;width:100vw;height:100dvh}</style>
+</head><body><iframe id="base" src="../PERMANENT_BASE/v25/alaska-180k-open-land.html?v=26lake"></iframe><script>(()=>{const frame=document.getElementById('base');frame.addEventListener('load',()=>{const d=frame.contentDocument;if(!d)return;const plane=d.getElementById('worldPlane');if(!plane)return;
+/* V25 stays untouched. TEST-only mountains plus approved lake-shape pass. */
+d.querySelectorAll('.mountains,#mountainWallV26,#mountainOceanReflectionV26').forEach(el=>el.remove());
+const style=d.createElement('style');style.id='mountainOceanV26Style';style.textContent=`#mountainWallV26{position:absolute;left:-1.5%;right:-1.5%;top:-12.5%;height:17.5%;z-index:13;pointer-events:none;overflow:hidden}#mountainWallV26 .far,#mountainWallV26 .rock,#mountainWallV26 .snow{position:absolute;left:0;right:0;bottom:0}#mountainWallV26 .far{height:100%;background:linear-gradient(#84989c,#6d8388);opacity:.80;clip-path:polygon(0 100%,0 84%,3% 66%,6% 76%,10% 31%,13% 73%,17% 51%,20% 80%,25% 19%,29% 71%,33% 43%,37% 82%,42% 12%,47% 69%,51% 39%,55% 79%,60% 17%,65% 72%,69% 45%,73% 82%,78% 10%,83% 67%,87% 38%,91% 78%,95% 20%,100% 62%,100% 100%)}#mountainWallV26 .rock{height:88%;background:linear-gradient(#536a6e,#394e52);clip-path:polygon(0 100%,0 92%,4% 72%,8% 82%,12% 22%,16% 79%,20% 50%,24% 88%,29% 13%,34% 77%,39% 41%,43% 89%,48% 8%,53% 76%,58% 34%,63% 87%,68% 15%,73% 80%,78% 43%,82% 90%,87% 12%,92% 70%,96% 31%,100% 73%,100% 100%,0 100%)}#mountainWallV26 .snow{height:88%;background:#eef5f4;opacity:.98;clip-path:polygon(0 92%,4% 72%,6% 79%,8% 82%,12% 22%,14% 40%,16% 79%,20% 50%,22% 62%,24% 88%,29% 13%,31% 34%,34% 77%,39% 41%,41% 57%,43% 89%,48% 8%,50% 30%,53% 76%,58% 34%,60% 51%,63% 87%,68% 15%,70% 36%,73% 80%,78% 43%,80% 59%,82% 90%,87% 12%,89% 33%,92% 70%,96% 31%,98% 49%,100% 73%,100% 82%,96% 48%,92% 79%,87% 35%,82% 96%,78% 61%,73% 89%,68% 38%,63% 94%,58% 52%,53% 85%,48% 31%,43% 95%,39% 59%,34% 87%,29% 37%,24% 95%,20% 65%,16% 88%,12% 44%,8% 90%,4% 82%,0 97%)}#mountainOceanReflectionV26{position:absolute;left:0;top:13.6%;width:24%;height:9.5%;z-index:5;pointer-events:none;overflow:hidden;opacity:.34;filter:blur(3px);mask-image:linear-gradient(to bottom,rgba(0,0,0,.72),transparent 92%);-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.72),transparent 92%)}#mountainOceanReflectionV26:before{content:'';position:absolute;left:-5%;right:-5%;top:-80%;height:180%;background:#183d49;transform:scaleY(-1);transform-origin:center top;clip-path:polygon(0 92%,4% 72%,8% 82%,12% 22%,16% 79%,20% 50%,24% 88%,29% 13%,34% 77%,39% 41%,43% 89%,48% 8%,53% 76%,58% 34%,63% 87%,68% 15%,73% 80%,78% 43%,82% 90%,87% 12%,92% 70%,96% 31%,100% 73%,100% 100%,0 100%)}#mountainOceanReflectionV26:after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(175deg,transparent 0 13px,rgba(130,220,230,.17) 14px 16px,transparent 17px 29px)}`;d.head.appendChild(style);
+const reflection=d.createElement('div');reflection.id='mountainOceanReflectionV26';const ocean=d.getElementById('leftOcean');if(ocean&&ocean.nextSibling)plane.insertBefore(reflection,ocean.nextSibling);else plane.appendChild(reflection);const mountains=d.createElement('div');mountains.id='mountainWallV26';mountains.innerHTML='<div class="far"></div><div class="rock"></div><div class="snow"></div>';plane.appendChild(mountains);
+/* Replace only the two lake shoreline paths. River, ocean, fire and all other V25 systems remain unchanged. */
+const svg=d.querySelector('#riverLake180 svg');if(svg){const bank=svg.querySelector('.lake-bank'),water=svg.querySelector('.lake-water');if(bank)bank.setAttribute('d','M330 470 C347 438 377 417 416 407 C451 398 481 404 510 397 C548 388 586 391 616 405 C649 420 675 445 686 474 C697 502 690 526 674 546 C659 565 640 574 629 590 C613 613 589 624 558 626 C528 628 504 620 479 624 C446 630 412 625 387 612 C361 599 347 581 343 558 C340 540 327 528 319 511 C311 494 316 481 330 470 Z');if(water)water.setAttribute('d','M340 474 C357 447 383 430 418 421 C451 413 480 418 511 411 C546 403 579 406 607 418 C637 431 659 452 670 476 C680 499 674 519 660 537 C646 554 628 563 617 578 C603 597 582 608 556 610 C527 612 503 604 478 609 C447 614 418 610 395 599 C372 588 359 572 356 553 C353 535 341 524 334 509 C327 495 329 484 340 474 Z')}
+})();</script></body></html>
