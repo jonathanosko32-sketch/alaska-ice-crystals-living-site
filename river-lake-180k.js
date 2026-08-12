@@ -7,9 +7,9 @@
   style.textContent=`
     #riverLake180{position:absolute;inset:0;z-index:5;pointer-events:none;overflow:visible}
     #riverLake180 svg{width:100%;height:100%;display:block;overflow:visible}
-    .river-bank{fill:none;stroke:#2f6d7b;stroke-width:38;stroke-linecap:round;stroke-linejoin:round;opacity:.96}
-    .river-water{fill:none;stroke:#18a8c5;stroke-width:27;stroke-linecap:round;stroke-linejoin:round}
-    .river-shine{fill:none;stroke:rgba(180,241,247,.72);stroke-width:6;stroke-linecap:round;stroke-dasharray:26 38}
+    .river-bank{fill:none;stroke:#2f6d7b;stroke-width:46;stroke-linecap:round;stroke-linejoin:round;opacity:1}
+    .river-water{fill:none;stroke:#19a9c8;stroke-width:34;stroke-linecap:round;stroke-linejoin:round}
+    .river-segments{fill:none;stroke:#70d4df;stroke-width:18;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:38 28;opacity:.96}
     .lake-bank{fill:#87c8d1;opacity:.92}
     .lake-water{fill:url(#lakeGrad)}
     .lake-ripple{fill:none;stroke:rgba(201,247,250,.40);stroke-width:3}
@@ -40,9 +40,8 @@
 
       <path class="river-bank" d="M935 112 C905 155 926 205 895 247 C867 286 821 301 802 345 C780 396 796 434 748 462 C712 483 680 468 652 487"/>
       <path class="river-water" d="M935 112 C905 155 926 205 895 247 C867 286 821 301 802 345 C780 396 796 434 748 462 C712 483 680 468 652 487"/>
-      <path class="river-shine" d="M935 112 C905 155 926 205 895 247 C867 286 821 301 802 345 C780 396 796 434 748 462 C712 483 680 468 652 487"/>
+      <path class="river-segments" d="M935 112 C905 155 926 205 895 247 C867 286 821 301 802 345 C780 396 796 434 748 462 C712 483 680 468 652 487"/>
 
-      <!-- Lake centered exactly on the 180,000 property midpoint. Shape follows the reference: broad, irregular, wider than tall, fuller on left, tapered lower-right. -->
       <path class="lake-bank" d="M334 467 C350 423 393 395 447 390 C495 385 536 400 575 395 C626 389 675 399 703 431 C733 465 731 509 709 543 C694 566 671 578 664 602 C653 637 622 657 581 663 C537 670 500 657 459 660 C414 663 371 651 347 621 C329 599 331 574 318 550 C298 514 309 491 334 467 Z"/>
       <path class="lake-water" d="M343 472 C359 434 398 410 449 405 C494 401 535 414 574 409 C621 403 664 413 689 440 C716 469 713 505 695 534 C680 558 657 568 651 591 C641 621 615 638 578 644 C537 650 501 638 461 642 C420 645 382 635 360 609 C343 589 345 565 333 543 C315 512 321 491 343 472 Z"/>
       <ellipse class="lake-ripple" cx="500" cy="500" rx="96" ry="52"/>
@@ -51,7 +50,7 @@
 
       <path class="river-bank" d="M461 568 C441 596 447 626 423 652 C394 684 350 688 324 720 C304 744 292 770 253 786"/>
       <path class="river-water" d="M461 568 C441 596 447 626 423 652 C394 684 350 688 324 720 C304 744 292 770 253 786"/>
-      <path class="river-shine" d="M461 568 C441 596 447 626 423 652 C394 684 350 688 324 720 C304 744 292 770 253 786"/>
+      <path class="river-segments" d="M461 568 C441 596 447 626 423 652 C394 684 350 688 324 720 C304 744 292 770 253 786"/>
 
       <path class="drop-dark" d="M257 767 C245 768 236 775 228 787 L208 825 C201 838 207 850 220 853 L241 857 C252 859 261 853 265 842 L278 800 C283 784 274 770 257 767 Z"/>
       <path class="drop-water" d="M257 772 C248 774 241 781 236 791 L219 822 C214 832 218 840 228 843 L240 846 C248 848 255 842 258 833 L269 799 C273 785 268 775 257 772 Z"/>
