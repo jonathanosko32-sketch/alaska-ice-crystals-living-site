@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Alaska Ice Crystals — V29 Carnival On Land</title>
+<style>
+html,body{margin:0;width:100%;height:100%;height:100dvh;overflow:hidden;background:#020b14}
+#base{display:block;border:0;width:100vw;height:100dvh}
+#status{position:fixed;left:10px;right:10px;bottom:10px;z-index:9999;display:flex;justify-content:center;pointer-events:none}
+#status span{padding:8px 12px;border-radius:14px;background:rgba(2,19,27,.9);border:1px solid rgba(121,223,238,.4);color:#efffff;font:700 13px system-ui,sans-serif;box-shadow:0 7px 22px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+<iframe id="base" src="./v27-carnival-pieces.html?v=29"></iframe>
+<div id="status"><span>V29 LIVE CARNIVAL • DRY LAND • TAP RIDES & BOOTHS</span></div>
+<script>
+(()=>{
+ const root=document.getElementById('base');
+ const status=document.querySelector('#status span');
+ let installed=false;
+
+ function findWorld(doc,depth=0){
+   if(!doc||depth>7)return null;
+   const plane=doc.getElementById?.('worldPlane');
+   if(plane)return {doc,plane};
+   for(const frame of [...(doc.querySelectorAll?.('iframe')||[])]){
+     try{const hit=findWorld(frame.contentDocument,depth+1);if(hit)return hit;}catch(e){}
+   }
+   return null;
+ }
+
+ function announce(msg){status.textContent=msg;clearTimeout(announce.t);announce.t=setTimeout(()=>status.textContent='V29 LIVE CARNIVAL • DRY LAND • TAP RIDES & BOOTHS',3200)}
+
+ function install(){
+   if(installed)return;
+   let hit;try{hit=findWorld(root.contentDocument)}catch(e){return}
+   if(!hit){setTimeout(install,300);return}
+   const {doc:d,plane}=hit;
+   if(!plane.querySelector('[data-carnival-piece="v27"]')){setTimeout(install,300);return}
+   installed=true;
+
+   const old=d.getElementById('carnivalLandV29Style');if(old)old.remove();
+   const style=d.createElement('style');style.id='carnivalLandV29Style';style.textContent=`
+   #leftOcean{width:8.5%!important;clip-path:polygon(0 0,100% 0,100% 65%,92% 71%,82% 77%,72% 82%,66% 88%,66% 100%,0 100%)!important;box-shadow:inset -13px 0 rgba(225,248,242,.88)!important}
+   #mountainOceanReflectionV26{width:8.5%!important}
+   #carnivalGroundV29{position:absolute;left:1.8%;top:67.3%;width:52.4%;height:31.5%;z-index:6;pointer-events:none;border-radius:30px 42px 24px 20px;background:linear-gradient(155deg,#b7aa8b 0%,#c9bea1 42%,#aaa084 100%);border:7px solid rgba(91,80,60,.35);box-shadow:inset 0 0 0 9px rgba(235,226,199,.13),0 10px 25px rgba(0,0,0,.17)}
+   #carnivalGroundV29:before{content:'';position:absolute;left:-1.5%;top:-3%;bottom:-1%;width:6%;background:linear-gradient(90deg,#668b86,#90aaa0 52%,#d8d1b8);clip-path:polygon(0 0,55% 1%,74% 8%,65% 18%,82% 30%,68% 42%,86% 55%,72% 68%,87% 82%,70% 100%,0 100%)}
+   [data-carnival-piece="v27"]{z-index:10!important;touch-action:manipulation}
+   .cv29-live{cursor:pointer;outline:none}
+   .cv29-live.cv29-running{filter:drop-shadow(0 0 18px rgba(255,231,113,.9)) drop-shadow(0 8px 6px rgba(0,0,0,.23))!important}
+   .cv29-panel{position:absolute;z-index:90;width:min(340px,76vw);padding:15px;border-radius:17px;background:rgba(2,25,34,.97);border:2px solid rgba(123,227,239,.75);color:#efffff;font:700 14px system-ui,sans-serif;box-shadow:0 18px 42px rgba(0,0,0,.5);transform:translate(-50%,-108%)}
+   .cv29-panel h3{margin:0 0 7px;color:#baf8ff;font-size:18px}.cv29-panel p{margin:5px 0 10px;line-height:1.35}
+   .cv29-actions{display:flex;flex-wrap:wrap;gap:8px}.cv29-actions button{border:0;border-radius:11px;padding:9px 11px;background:#dafbff;color:#06222b;font:900 13px system-ui,sans-serif}.cv29-actions button.secondary{background:#654b3b;color:#fff}
+   .cv29-wallet{position:absolute;left:22%;top:92%;z-index:76;min-width:155px;padding:8px 10px;border-radius:12px;background:rgba(43,33,24,.93);border:2px solid #e2c377;color:#fff8d3;font:900 11px system-ui,sans-serif}
+   .cv29-ferris .spokes,.cv29-ferris .rim2{animation:cv29spin 8s linear infinite}.cv29-carousel{animation:cv29spin 5s linear infinite}.cv29-swing .cap{animation:cv29spin 2.8s linear infinite}.cv29-bumper .car{animation:cv29bump 1.4s ease-in-out infinite alternate}
+   @keyframes cv29spin{to{transform:rotate(360deg)}}@keyframes cv29bump{to{transform:translate(20px,-12px) rotate(12deg)}}
+   `;d.head.appendChild(style);
+
+   let ground=plane.querySelector('#carnivalGroundV29');if(ground)ground.remove();
+   ground=d.createElement('div');ground.id='carnivalGroundV29';
+   const firstCarnival=plane.querySelector('[data-carnival-piece="v27"]');
+   if(firstCarnival)plane.insertBefore(ground,firstCarnival);else plane.appendChild(ground);
+
+   const state={tickets:20,prizes:0};
+   const wallet=d.createElement('div');wallet.className='cv29-wallet';wallet.innerHTML='🎟️ <b>20</b> TICKETS &nbsp; 🏆 <i>0</i> PRIZES';plane.appendChild(wallet);
+   const sync=()=>{wallet.querySelector('b').textContent=state.tickets;wallet.querySelector('i').textContent=state.prizes};
+   const spend=n=>{if(state.tickets<n){announce('You need more tickets. Use the ticket booth.');return false}state.tickets-=n;sync();return true};
+
+   let panel=null;
+   const close=()=>{panel?.remove();panel=null};
+   function show(el,title,text,actions){
+     close();panel=d.createElement('div');panel.className='cv29-panel';
+     const r=el.getBoundingClientRect(),pr=plane.getBoundingClientRect();
+     panel.style.left=((r.left-pr.left+r.width/2)/pr.width*100)+'%';panel.style.top=((r.top-pr.top)/pr.height*100)+'%';
+     panel.innerHTML=`<h3>${title}</h3><p>${text}</p><div class="cv29-actions"></div>`;
+     const box=panel.querySelector('.cv29-actions');
+     actions.forEach(a=>{const b=d.createElement('button');b.textContent=a.label;if(a.secondary)b.className='secondary';b.onclick=e=>{e.stopPropagation();a.run()};box.appendChild(b)});
+     const x=d.createElement('button');x.textContent='CLOSE';x.className='secondary';x.onclick=e=>{e.stopPropagation();close()};box.appendChild(x);plane.appendChild(panel);
+   }
+
+   function ride(sel,title,cost,runClass){const el=plane.querySelector(sel);if(!el)return;el.classList.add('cv29-live');el.onclick=e=>{e.stopPropagation();show(el,title,'Start or stop this working carnival ride.',[{label:`RIDE • ${cost} TICKETS`,run:()=>{if(!spend(cost))return;el.classList.toggle(runClass);el.classList.add('cv29-running');setTimeout(()=>el.classList.remove('cv29-running'),2200);announce(title+' started.');close()}},{label:'STOP',secondary:true,run:()=>{el.classList.remove(runClass);announce(title+' stopped.');close()}}])}}
+   ride('.cv27-ferris','Ferris Wheel',4,'cv29-ferris');ride('.cv27-carousel','Carousel',3,'cv29-carousel');ride('.cv27-swing','Swing Ride',4,'cv29-swing');ride('.cv27-bumper','Bumper Cars',4,'cv29-bumper');
+
+   function booth(sel,title,text,actions){const el=plane.querySelector(sel);if(!el)return;el.classList.add('cv29-live');el.onclick=e=>{e.stopPropagation();show(el,title,text,actions())}}
+   booth('.cv27-ticket','Ticket Booth','Add carnival tickets for rides, games, food and treats.',()=>[{label:'GET 10 TICKETS',run:()=>{state.tickets+=10;sync();announce('10 tickets added.');close()}},{label:'GET 25 TICKETS',run:()=>{state.tickets+=25;sync();announce('25 tickets added.');close()}}]);
+   booth('.cv27-ring','Ring Toss','Play the ring toss for a prize.',()=>[{label:'PLAY • 2 TICKETS',run:()=>{if(!spend(2))return;const win=Math.random()<.48;if(win)state.prizes++;sync();announce(win?'You won a prize!':'Missed this round.');close()}}]);
+   booth('.cv27-ball','Ball Game','Throw at the target for a prize.',()=>[{label:'PLAY • 2 TICKETS',run:()=>{if(!spend(2))return;const win=Math.random()<.43;if(win)state.prizes++;sync();announce(win?'Target hit — prize won!':'Close shot.');close()}}]);
+   booth('.cv27-prize','Prize Booth','Redeem prizes won at the games.',()=>[{label:'REDEEM 1',run:()=>{if(state.prizes<1){announce('Win a prize first.');return}state.prizes--;sync();announce('Prize redeemed.');close()}}]);
+   booth('.cv27-food','Food & Drinks','Order from the carnival food stand.',()=>[{label:'FOOD • 2 TICKETS',run:()=>{if(spend(2)){announce('Food served.');close()}}},{label:'DRINK • 1 TICKET',run:()=>{if(spend(1)){announce('Drink served.');close()}}}]);
+   booth('.cv27-ice','Ice Treats','Get a cold carnival treat.',()=>[{label:'TREAT • 1 TICKET',run:()=>{if(spend(1)){announce('Treat served.');close()}}}]);
+   booth('.cv27-photo','Photo Booth','Working interaction point ready for the OSKO camera connection later.',()=>[{label:'OPEN',run:()=>{announce('Photo stop opened.');close()}}]);
+
+   const gate=plane.querySelector('.cv27-entry');if(gate){gate.classList.add('cv29-live');gate.onclick=e=>{e.stopPropagation();announce('Carnival entrance opened. Welcome in.')}}
+   plane.addEventListener('click',e=>{if(panel&&!panel.contains(e.target)&&!e.target.closest('.cv29-live'))close()});
+   announce('V29 loaded: the ocean has been pulled back and the carnival is on dry land.');
+ }
+ root.addEventListener('load',()=>setTimeout(install,500));setTimeout(install,1300);
+})();
+</script>
+</body>
+</html>
