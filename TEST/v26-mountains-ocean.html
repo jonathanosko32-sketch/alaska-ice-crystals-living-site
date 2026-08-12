@@ -7,7 +7,7 @@
 <style>html,body{margin:0;width:100%;height:100%;height:100dvh;overflow:hidden;background:#020b14}#base{display:block;border:0;width:100vw;height:100dvh}</style>
 </head>
 <body>
-<iframe id="base" src="../PERMANENT_BASE/v25/alaska-180k-open-land.html?v=26-open-camera-4"></iframe>
+<iframe id="base" src="../PERMANENT_BASE/v25/alaska-180k-open-land.html?v=26-open-camera-5"></iframe>
 <script>
 (()=>{
  const frame=document.getElementById('base');
@@ -19,12 +19,13 @@
    oldWin.replaceWith(win);
    const plane=win.querySelector('#worldPlane');if(!plane)return;
 
-   d.querySelectorAll('.mountains,#mountainWallV26,#mountainOceanReflectionV26').forEach(el=>el.remove());
+   d.querySelectorAll('.mountains,#mountainWallV26,#mountainOceanReflectionV26,#carnivalV26').forEach(el=>el.remove());
    const style=d.createElement('style');
    style.id='openCameraV26Style';
    style.textContent=`
 #worldWindow{background:linear-gradient(135deg,#aebfbd 0%,#dfe8e5 36%,#b8cbc7 68%,#e2e9e6 100%);overflow:hidden;touch-action:none}
 #worldPlane{transform-origin:center center!important}
+#leftOcean{bottom:auto!important;height:70%!important;border-right:0!important;clip-path:polygon(0 0,100% 0,100% 72%,97% 79%,92% 85%,85% 90%,74% 94%,60% 97%,43% 99%,25% 100%,0 100%);box-shadow:inset -18px 0 rgba(225,248,242,.92)}
 #mountainWallV26{position:absolute;left:-1.5%;right:-1.5%;top:-7.5%;height:17.5%;z-index:13;pointer-events:none;overflow:hidden}
 #mountainWallV26 .far,#mountainWallV26 .rock,#mountainWallV26 .snow{position:absolute;left:0;right:0;bottom:0}
 #mountainWallV26 .far{height:100%;background:linear-gradient(#84989c,#6d8388);opacity:.80;clip-path:polygon(0 100%,0 84%,3% 66%,6% 76%,10% 31%,13% 73%,17% 51%,20% 80%,25% 19%,29% 71%,33% 43%,37% 82%,42% 12%,47% 69%,51% 39%,55% 79%,60% 17%,65% 72%,69% 45%,73% 82%,78% 10%,83% 67%,87% 38%,91% 78%,95% 20%,100% 62%,100% 100%)}
@@ -33,6 +34,19 @@
 #mountainOceanReflectionV26{position:absolute;left:0;top:10.1%;width:24%;height:9.5%;z-index:5;pointer-events:none;overflow:hidden;opacity:.34;filter:blur(3px);mask-image:linear-gradient(to bottom,rgba(0,0,0,.72),transparent 92%);-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.72),transparent 92%)}
 #mountainOceanReflectionV26:before{content:'';position:absolute;left:-5%;right:-5%;top:-80%;height:180%;background:#183d49;transform:scaleY(-1);transform-origin:center top;clip-path:polygon(0 92%,4% 72%,8% 82%,12% 22%,16% 79%,20% 50%,24% 88%,29% 13%,34% 77%,39% 41%,43% 89%,48% 8%,53% 76%,58% 34%,63% 87%,68% 15%,73% 80%,78% 43%,82% 90%,87% 12%,92% 70%,96% 31%,100% 73%,100% 100%,0 100%)}
 #mountainOceanReflectionV26:after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(175deg,transparent 0 13px,rgba(130,220,230,.17) 14px 16px,transparent 17px 29px)}
+#carnivalV26{position:absolute;left:1.8%;bottom:2.5%;width:30%;height:27%;z-index:8;pointer-events:none;border:5px solid rgba(82,92,78,.55);border-radius:26px;background:linear-gradient(145deg,rgba(197,204,184,.92),rgba(158,170,151,.94));box-shadow:0 0 0 14px rgba(92,102,88,.15) inset,0 16px 30px rgba(0,0,0,.16);overflow:hidden}
+#carnivalV26 .shorepath{position:absolute;left:-3%;top:4%;width:106%;height:22%;border-bottom:18px solid rgba(92,82,69,.72);border-radius:50%}
+#carnivalV26 .midway{position:absolute;left:12%;right:8%;top:44%;height:16%;border-radius:999px;background:#857b69;box-shadow:0 0 0 7px rgba(214,207,186,.55) inset;transform:rotate(-5deg)}
+#carnivalV26 .wheel{position:absolute;left:8%;top:24%;width:28%;aspect-ratio:1;border:10px solid #4d5e64;border-radius:50%;box-shadow:inset 0 0 0 7px rgba(235,240,235,.72)}
+#carnivalV26 .wheel:before,#carnivalV26 .wheel:after{content:'';position:absolute;left:50%;top:4%;bottom:4%;width:7px;background:#4d5e64;transform-origin:center}
+#carnivalV26 .wheel:before{transform:translateX(-50%) rotate(45deg)}#carnivalV26 .wheel:after{transform:translateX(-50%) rotate(-45deg)}
+#carnivalV26 .hub{position:absolute;left:21%;top:37%;width:34px;height:34px;border-radius:50%;background:#273a40;border:7px solid #c8d8d4}
+#carnivalV26 .carousel{position:absolute;left:43%;top:24%;width:22%;height:24%;border-radius:50% 50% 18% 18%;background:repeating-conic-gradient(from 0deg,#745c4a 0 16deg,#d8c7a8 16deg 32deg);border:7px solid #5b4a3d}
+#carnivalV26 .ride{position:absolute;right:8%;top:18%;width:23%;height:28%;border:8px solid #59666a;border-radius:28px 28px 12px 12px;background:linear-gradient(#d2d8cf,#6e7f80)}
+#carnivalV26 .ride:after{content:'';position:absolute;left:20%;right:20%;bottom:-24%;height:28%;border-left:8px solid #59666a;border-right:8px solid #59666a;transform:skewX(-12deg)}
+#carnivalV26 .tent{position:absolute;width:14%;height:16%;bottom:10%;background:#705441;border:5px solid #4f4035;clip-path:polygon(50% 0,100% 36%,92% 100%,8% 100%,0 36%)}
+#carnivalV26 .t1{left:14%}.t2{left:33%}.t3{left:52%}.t4{left:71%}
+#carnivalV26 .label{position:absolute;left:50%;bottom:2%;transform:translateX(-50%);padding:8px 16px;border-radius:999px;background:rgba(4,29,36,.86);color:#eaffff;font:900 24px system-ui,sans-serif;letter-spacing:.08em;white-space:nowrap}
 `;
    d.head.appendChild(style);
 
@@ -47,7 +61,6 @@
      if(bank)bank.setAttribute('d','M330 470 C347 438 377 417 416 407 C451 398 481 404 510 397 C548 388 586 391 616 405 C649 420 675 445 686 474 C697 502 690 526 674 546 C659 565 640 574 629 590 C613 613 589 624 558 626 C528 628 504 620 479 624 C446 630 412 625 387 612 C361 599 347 581 343 558 C340 540 327 528 319 511 C311 494 316 481 330 470 Z');
      if(water)water.setAttribute('d','M340 474 C357 447 383 430 418 421 C451 413 480 418 511 411 C546 403 579 406 607 418 C637 431 659 452 670 476 C680 499 674 519 660 537 C646 554 628 563 617 578 C603 597 582 608 556 610 C527 612 503 604 478 609 C447 614 418 610 395 599 C372 588 359 572 356 553 C353 535 341 524 334 509 C327 495 329 484 340 474 Z');
 
-     /* TEST ONLY: run BOTH rivers inside the lake so there is no visible gap at either shoreline. */
      const banks=svg.querySelectorAll('.river-bank');
      const waters=svg.querySelectorAll('.river-water');
      const flows=svg.querySelectorAll('.river-segments');
@@ -60,6 +73,12 @@
      if(waters[1])waters[1].setAttribute('d',leftRiver);
      if(flows[1])flows[1].setAttribute('d',leftRiver);
    }
+
+   /* TEST ONLY: first ocean-side carnival foundation below the shortened ocean. */
+   const carnival=d.createElement('div');
+   carnival.id='carnivalV26';
+   carnival.innerHTML='<div class="shorepath"></div><div class="midway"></div><div class="wheel"></div><div class="hub"></div><div class="carousel"></div><div class="ride"></div><div class="tent t1"></div><div class="tent t2"></div><div class="tent t3"></div><div class="tent t4"></div><div class="label">OCEAN-SIDE CARNIVAL</div>';
+   plane.appendChild(carnival);
 
    const readout=d.getElementById('position');
    const pts=new Map();
