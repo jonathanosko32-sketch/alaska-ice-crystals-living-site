@@ -7,7 +7,7 @@
 <style>html,body{margin:0;width:100%;height:100%;height:100dvh;overflow:hidden;background:#020b14}#base{display:block;border:0;width:100vw;height:100dvh}</style>
 </head>
 <body>
-<iframe id="base" src="../PERMANENT_BASE/v25/alaska-180k-open-land.html?v=26-open-camera-3"></iframe>
+<iframe id="base" src="../PERMANENT_BASE/v25/alaska-180k-open-land.html?v=26-open-camera-4"></iframe>
 <script>
 (()=>{
  const frame=document.getElementById('base');
@@ -47,11 +47,15 @@
      if(bank)bank.setAttribute('d','M330 470 C347 438 377 417 416 407 C451 398 481 404 510 397 C548 388 586 391 616 405 C649 420 675 445 686 474 C697 502 690 526 674 546 C659 565 640 574 629 590 C613 613 589 624 558 626 C528 628 504 620 479 624 C446 630 412 625 387 612 C361 599 347 581 343 558 C340 540 327 528 319 511 C311 494 316 481 330 470 Z');
      if(water)water.setAttribute('d','M340 474 C357 447 383 430 418 421 C451 413 480 418 511 411 C546 403 579 406 607 418 C637 431 659 452 670 476 C680 499 674 519 660 537 C646 554 628 563 617 578 C603 597 582 608 556 610 C527 612 503 604 478 609 C447 614 418 610 395 599 C372 588 359 572 356 553 C353 535 341 524 334 509 C327 495 329 484 340 474 Z');
 
-     /* TEST ONLY: connect the left/lower river directly into the approved lake shoreline. */
+     /* TEST ONLY: run BOTH rivers inside the lake so there is no visible gap at either shoreline. */
      const banks=svg.querySelectorAll('.river-bank');
      const waters=svg.querySelectorAll('.river-water');
      const flows=svg.querySelectorAll('.river-segments');
-     const leftRiver='M392 602 C374 613 357 626 342 642 C322 662 304 684 290 709 C274 736 260 763 253 786';
+     const rightRiver='M935 112 C905 155 926 205 895 247 C867 286 821 301 802 345 C780 396 791 427 760 449 C732 470 704 486 666 500';
+     const leftRiver='M410 590 C388 605 367 621 347 640 C324 661 305 684 290 709 C274 736 260 763 253 786';
+     if(banks[0])banks[0].setAttribute('d',rightRiver);
+     if(waters[0])waters[0].setAttribute('d',rightRiver);
+     if(flows[0])flows[0].setAttribute('d',rightRiver);
      if(banks[1])banks[1].setAttribute('d',leftRiver);
      if(waters[1])waters[1].setAttribute('d',leftRiver);
      if(flows[1])flows[1].setAttribute('d',leftRiver);
