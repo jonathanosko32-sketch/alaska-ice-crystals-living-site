@@ -40,7 +40,7 @@ class MainActivity : Activity() {
     }
 
     private fun cardBg(): GradientDrawable = GradientDrawable().apply {
-        color = panel
+        setColor(panel)
         cornerRadius = 30f
         setStroke(3, blue)
     }
