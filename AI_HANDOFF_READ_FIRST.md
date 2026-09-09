@@ -184,6 +184,24 @@ AI may help with engineering, research, organization, coding, testing, compatibi
 
 When in doubt: PRESERVE FIRST, SEARCH SECOND, ASK THIRD, CHANGE LAST.
 
+## 14. MANDATORY NEXT-AI HANDOFF NOTE RULE
+
+This rule applies to every ChatGPT/AI/model/tool that works on this project.
+
+Before ending a substantial work session, changing models, handing the task to another AI, or reaching a stopping point, the current AI MUST leave a dated handoff note in every current handoff record for each project area it changed.
+
+Each note must include:
+1. what was inspected/read before work started,
+2. what was changed,
+3. the exact current working version, branch, file, build, or checkpoint,
+4. what was tested and the result,
+5. what was NOT changed and must remain protected,
+6. every remaining problem, uncertainty, failed attempt, or risk,
+7. the next recommended step,
+8. any direct phone-safe link Osko needs to open the current build.
+
+Never erase an older handoff note. Append the new dated note and preserve the full history. If a discussion materially changes project direction even when no project file was changed, leave a short dated decision note. Every new handoff file created in the future MUST contain this same rule.
+
 ---
 
 ### NEXT ROBOT STEP
