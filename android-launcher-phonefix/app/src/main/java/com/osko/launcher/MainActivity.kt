@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
 import android.view.Gravity
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -72,9 +73,7 @@ class MainActivity : Activity() {
 
         root.addView(top, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.TOP))
 
-        val skieCb = chip("SKIE CB") { openSkie() }.apply {
-            textSize = 14f
-        }
+        val skieCb = chip("SKIE CB") { showSkieCB() }.apply { textSize = 14f }
         root.addView(skieCb, FrameLayout.LayoutParams(dp(112), dp(44), Gravity.END or Gravity.CENTER_VERTICAL).apply {
             setMargins(0, 0, dp(18), dp(20))
         })
@@ -102,15 +101,144 @@ class MainActivity : Activity() {
         setContentView(root)
     }
 
+    private fun showSkieCB() {
+        val root = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            gravity = Gravity.CENTER_HORIZONTAL
+            setPadding(dp(18), dp(28), dp(18), dp(18))
+            background = GradientDrawable().apply {
+                setColor(Color.rgb(7, 14, 24))
+                cornerRadius = dp(24).toFloat()
+                setStroke(dp(2), blue)
+            }
+        }
+
+        root.addView(TextView(this).apply {
+            text = "ALASKA ICE CRYSTALS"
+            textSize = 15f
+            setTextColor(blue)
+            gravity = Gravity.CENTER
+        })
+        root.addView(TextView(this).apply {
+            text = "SKIE CB RADIO"
+            textSize = 28f
+            setTextColor(white)
+            gravity = Gravity.CENTER
+            setPadding(0, dp(4), 0, dp(18))
+        })
+
+        val display = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER
+            setPadding(dp(14), dp(12), dp(14), dp(12))
+            background = GradientDrawable().apply {
+                setColor(Color.rgb(1, 35, 30))
+                cornerRadius = dp(12).toFloat()
+                setStroke(dp(1), Color.rgb(54, 255, 192))
+            }
+        }
+        val channel = TextView(this).apply {
+            text = "CH 19"
+            textSize = 30f
+            setTextColor(Color.rgb(83, 255, 197))
+            gravity = Gravity.CENTER
+        }
+        val signal = TextView(this).apply {
+            text = "  S  ▂ ▃ ▅ ▆ █"
+            textSize = 17f
+            setTextColor(Color.rgb(83, 255, 197))
+            gravity = Gravity.CENTER
+        }
+        display.addView(channel, LinearLayout.LayoutParams(0, dp(58), 1f))
+        display.addView(signal, LinearLayout.LayoutParams(0, dp(58), 1.4f))
+        root.addView(display, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
+
+        val lamps = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER
+            setPadding(0, dp(18), 0, dp(12))
+        }
+        val rxLamp = lamp("RX", Color.rgb(40, 190, 90))
+        val txLamp = lamp("TX", Color.rgb(90, 30, 30))
+        lamps.addView(rxLamp, LinearLayout.LayoutParams(0, dp(52), 1f).apply { setMargins(dp(5), 0, dp(5), 0) })
+        lamps.addView(txLamp, LinearLayout.LayoutParams(0, dp(52), 1f).apply { setMargins(dp(5), 0, dp(5), 0) })
+        root.addView(lamps, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
+
+        root.addView(TextView(this).apply {
+            text = "Skie is connected through ChatGPT for now. Hold the mic button to light TX, then release to open Skie. The next stage will connect live voice so the radio lights react while we talk."
+            textSize = 14f
+            setTextColor(Color.LTGRAY)
+            gravity = Gravity.CENTER
+            setPadding(dp(10), dp(4), dp(10), dp(18))
+        })
+
+        val ptt = TextView(this).apply {
+            text = "🎙  HOLD TO TALK TO SKIE"
+            textSize = 18f
+            setTextColor(white)
+            gravity = Gravity.CENTER
+            background = GradientDrawable().apply {
+                setColor(Color.rgb(28, 65, 92))
+                cornerRadius = dp(18).toFloat()
+                setStroke(dp(2), blue)
+            }
+            setOnTouchListener { _, event ->
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        setLampState(txLamp, "TX • TRANSMIT", Color.rgb(255, 70, 55))
+                        setLampState(rxLamp, "RX", Color.rgb(25, 85, 45))
+                        true
+                    }
+                    MotionEvent.ACTION_UP -> {
+                        setLampState(txLamp, "TX", Color.rgb(90, 30, 30))
+                        setLampState(rxLamp, "RX • READY", Color.rgb(40, 190, 90))
+                        openSkie()
+                        true
+                    }
+                    MotionEvent.ACTION_CANCEL -> {
+                        setLampState(txLamp, "TX", Color.rgb(90, 30, 30))
+                        true
+                    }
+                    else -> true
+                }
+            }
+        }
+        root.addView(ptt, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(64)).apply { setMargins(0, 0, 0, dp(12)) })
+
+        val home = chip("BACK TO HOME") { showHome() }
+        root.addView(home, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(48)))
+
+        val outer = FrameLayout(this).apply {
+            setBackgroundColor(Color.argb(235, 0, 0, 0))
+            addView(root, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER).apply {
+                setMargins(dp(14), dp(18), dp(14), dp(18))
+            })
+        }
+        setContentView(outer)
+    }
+
+    private fun lamp(text: String, color: Int): TextView = TextView(this).apply {
+        this.text = text
+        textSize = 15f
+        setTextColor(white)
+        gravity = Gravity.CENTER
+        background = GradientDrawable().apply {
+            setColor(color)
+            cornerRadius = dp(14).toFloat()
+        }
+    }
+
+    private fun setLampState(view: TextView, text: String, color: Int) {
+        view.text = text
+        view.background = GradientDrawable().apply {
+            setColor(color)
+            cornerRadius = dp(14).toFloat()
+        }
+    }
+
     private fun weighted() = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
 
-    private fun shortcut(
-        label: String,
-        packages: List<String>,
-        fallbackIcon: Int,
-        lp: LinearLayout.LayoutParams,
-        action: () -> Unit
-    ): View {
+    private fun shortcut(label: String, packages: List<String>, fallbackIcon: Int, lp: LinearLayout.LayoutParams, action: () -> Unit): View {
         val box = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             gravity = Gravity.CENTER
@@ -136,9 +264,7 @@ class MainActivity : Activity() {
 
     private fun findIcon(packages: List<String>): Drawable? {
         for (pkg in packages) {
-            try {
-                return packageManager.getApplicationIcon(pkg)
-            } catch (_: Exception) { }
+            try { return packageManager.getApplicationIcon(pkg) } catch (_: Exception) { }
         }
         return null
     }
@@ -161,20 +287,9 @@ class MainActivity : Activity() {
         val items = arrayOf("Business & Office", "Work & Daily Tools", "Skie CB", "Truck", "Builder", "Aurora", "Notes")
         AlertDialog.Builder(this).setTitle("Alaska Ice Crystals Headquarters").setItems(items) { _, i ->
             when (i) {
-                0 -> showRoom("Business & Office", listOf(
-                    "Gmail" to listOf("com.google.android.gm"),
-                    "Outlook" to listOf("com.microsoft.office.outlook"),
-                    "Google Drive" to listOf("com.google.android.apps.docs"),
-                    "ChatGPT" to listOf("com.openai.chatgpt"),
-                    "GitHub" to listOf("com.github.android")
-                ))
-                1 -> showRoom("Work & Daily Tools", listOf(
-                    "Camera" to listOf("com.sec.android.app.camera"),
-                    "Maps" to listOf("com.google.android.apps.maps"),
-                    "Starlink" to listOf("com.starlink.mobile"),
-                    "Clock" to listOf("com.sec.android.app.clockpackage", "com.google.android.deskclock")
-                ))
-                2 -> openSkie()
+                0 -> showRoom("Business & Office", listOf("Gmail" to listOf("com.google.android.gm"), "Outlook" to listOf("com.microsoft.office.outlook"), "Google Drive" to listOf("com.google.android.apps.docs"), "ChatGPT" to listOf("com.openai.chatgpt"), "GitHub" to listOf("com.github.android")))
+                1 -> showRoom("Work & Daily Tools", listOf("Camera" to listOf("com.sec.android.app.camera"), "Maps" to listOf("com.google.android.apps.maps"), "Starlink" to listOf("com.starlink.mobile"), "Clock" to listOf("com.sec.android.app.clockpackage", "com.google.android.deskclock")))
+                2 -> showSkieCB()
                 3 -> showTruck()
                 4 -> showBuilder()
                 5 -> showAurora()
@@ -188,7 +303,7 @@ class MainActivity : Activity() {
         AlertDialog.Builder(this).setTitle("OSKO Command Center").setItems(items) { _, i ->
             when (i) {
                 0 -> showAppDrawer()
-                1 -> openSkie()
+                1 -> showSkieCB()
                 2 -> launchAny(listOf("com.android.chrome"), "Chrome")
                 3 -> openFiles()
                 4 -> openCamera()
@@ -211,18 +326,9 @@ class MainActivity : Activity() {
         }.setNegativeButton("Close", null).show()
     }
 
-    private fun showBuilder() = AlertDialog.Builder(this)
-        .setTitle("OSKO Builder")
-        .setMessage("Builder is connected and ready for project tools.")
-        .setPositiveButton("Open Files") { _, _ -> openFiles() }
-        .setNegativeButton("Close", null).show()
+    private fun showBuilder() = AlertDialog.Builder(this).setTitle("OSKO Builder").setMessage("Builder is connected and ready for project tools.").setPositiveButton("Open Files") { _, _ -> openFiles() }.setNegativeButton("Close", null).show()
 
-    private fun showAurora() = AlertDialog.Builder(this)
-        .setTitle("Aurora")
-        .setMessage("Aurora quick access")
-        .setPositiveButton("Pictures") { _, _ -> launchAny(listOf("com.sec.android.gallery3d", "com.google.android.apps.photos"), "Pictures") }
-        .setNeutralButton("Camera") { _, _ -> openCamera() }
-        .setNegativeButton("Close", null).show()
+    private fun showAurora() = AlertDialog.Builder(this).setTitle("Aurora").setMessage("Aurora quick access").setPositiveButton("Pictures") { _, _ -> launchAny(listOf("com.sec.android.gallery3d", "com.google.android.apps.photos"), "Pictures") }.setNeutralButton("Camera") { _, _ -> openCamera() }.setNegativeButton("Close", null).show()
 
     private fun showNotes() {
         val prefs = getSharedPreferences("osko_launcher", MODE_PRIVATE)
@@ -231,15 +337,11 @@ class MainActivity : Activity() {
             minLines = 5
             hint = "Write a quick note"
         }
-        AlertDialog.Builder(this).setTitle("OSKO Quick Notes").setView(input)
-            .setPositiveButton("Save") { _, _ -> prefs.edit().putString("quick_note", input.text.toString()).apply() }
-            .setNegativeButton("Close", null).show()
+        AlertDialog.Builder(this).setTitle("OSKO Quick Notes").setView(input).setPositiveButton("Save") { _, _ -> prefs.edit().putString("quick_note", input.text.toString()).apply() }.setNegativeButton("Close", null).show()
     }
 
     private fun showRoom(title: String, apps: List<Pair<String, List<String>>>) {
-        AlertDialog.Builder(this).setTitle(title).setItems(apps.map { it.first }.toTypedArray()) { _, i ->
-            launchAny(apps[i].second, apps[i].first)
-        }.setNeutralButton("All Apps") { _, _ -> showAppDrawer() }.setNegativeButton("Close", null).show()
+        AlertDialog.Builder(this).setTitle(title).setItems(apps.map { it.first }.toTypedArray()) { _, i -> launchAny(apps[i].second, apps[i].first) }.setNeutralButton("All Apps") { _, _ -> showAppDrawer() }.setNegativeButton("Close", null).show()
     }
 
     private fun showAppDrawer() {
@@ -252,33 +354,13 @@ class MainActivity : Activity() {
         }.setNegativeButton("Close", null).show()
     }
 
-    private fun openSkie() {
-        launchAny(listOf("com.openai.chatgpt"), "ChatGPT")
-    }
-
-    private fun openPhone() {
-        try { startActivity(Intent(Intent.ACTION_DIAL)) } catch (_: Exception) { toast("Phone app unavailable") }
-    }
-
-    private fun openMessages() {
-        try { startActivity(Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:"))) } catch (_: Exception) { toast("Messages app unavailable") }
-    }
-
-    private fun openCamera() {
-        try { startActivity(Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)) } catch (_: Exception) { toast("Camera unavailable") }
-    }
-
-    private fun openFiles() {
-        try { startActivity(Intent(Intent.ACTION_OPEN_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("*/*")) } catch (_: Exception) { toast("Files unavailable") }
-    }
-
-    private fun openSettings() {
-        try { startActivity(Intent(Settings.ACTION_SETTINGS)) } catch (_: Exception) { toast("Settings unavailable") }
-    }
-
-    private fun openHomeSettings() {
-        try { startActivity(Intent(Settings.ACTION_HOME_SETTINGS)) } catch (_: Exception) { openSettings() }
-    }
+    private fun openSkie() { launchAny(listOf("com.openai.chatgpt"), "ChatGPT") }
+    private fun openPhone() { try { startActivity(Intent(Intent.ACTION_DIAL)) } catch (_: Exception) { toast("Phone app unavailable") } }
+    private fun openMessages() { try { startActivity(Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:"))) } catch (_: Exception) { toast("Messages app unavailable") } }
+    private fun openCamera() { try { startActivity(Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)) } catch (_: Exception) { toast("Camera unavailable") } }
+    private fun openFiles() { try { startActivity(Intent(Intent.ACTION_OPEN_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("*/*")) } catch (_: Exception) { toast("Files unavailable") } }
+    private fun openSettings() { try { startActivity(Intent(Settings.ACTION_SETTINGS)) } catch (_: Exception) { toast("Settings unavailable") } }
+    private fun openHomeSettings() { try { startActivity(Intent(Settings.ACTION_HOME_SETTINGS)) } catch (_: Exception) { openSettings() } }
 
     private fun launchAny(packages: List<String>, label: String) {
         for (pkg in packages) {
