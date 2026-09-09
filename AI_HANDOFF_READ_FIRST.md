@@ -222,3 +222,16 @@ Do not start that schematic until Osko says to begin.
 6. Remaining issue: hotspot coordinates are first-pass estimates and need Osko's phone test. The Layover CB doorway is labeled Channel 27, while the older live Skie CB screen still displays its previous internal channel text and needs a controlled follow-up change if Osko approves this direction.
 7. Next step: install the TEST APK, open `OSKO Layover TEST`, test drag, pinch zoom, snow, lock/reset, and each scene hotspot, then adjust from Osko's feedback before promoting anything into the permanent HOME.
 8. Phone-safe build link: https://drive.google.com/file/d/1GV_2uMKfP5p55JDcDM75cdJOJMtRN5A-/view?usp=drivesdk
+
+---
+
+## HANDOFF NOTE — SEPTEMBER 9, 2026 — LAYOVER SCENE TEST V2 BACKGROUND FIX
+
+1. Inspected/read before work: Osko's phone screenshot showing the TEST app with falling snow but a dark/blank scene, the current Layover test source, and the preserved clean Alaska Ice Crystals artwork `4680.png`.
+2. Changed: preserved the separate `layover-scene-test` branch; bundled a preserved copy of the clean Layover artwork into the TEST app and changed the scene renderer to draw that bundled image instead of trying to read Samsung/Android wallpaper pixels. Drag, pinch zoom, snow, lock/reset, hotspots, and All Apps remain.
+3. Exact checkpoint: branch `layover-scene-test`; source commit `fa01deef4094d9076e89742c433d2ff3a6d31c01`; image `android-launcher-phonefix/app/src/main/res/drawable/layover_background.jpg`; activity `android-launcher-phonefix/app/src/main/java/com/osko/launcher/LayoverSceneTestActivity.kt`; Drive APK `OSKO-Layover-Scene-TEST-v2.apk`.
+4. Tested: GitHub Actions run `34418491082` completed successfully. Final APK was signed with the permanent OSKO launcher certificate and signature verification passed.
+5. Protected/not changed: permanent HOME launcher and `launcher-usability-fix` were not replaced, deleted, or promoted. Prior TEST APK remains preserved.
+6. Remaining issue: v2 still needs Osko's phone visual test. Hotspot positions remain first-pass estimates. The bundled image is a reduced-size preserved copy for this TEST round; use the higher-resolution master after behavior is approved. The CB doorway is Channel 27 while the older Skie CB interior may still display its previous internal channel text.
+7. Next step: install/open v2 and verify the Alaska Ice Crystals scene appears behind the falling snow, then test drag and pinch zoom before adjusting object hotspots.
+8. Phone-safe build link: https://drive.google.com/file/d/1SLAmawED6oH7Dr9uDK5F8tIibeKryXGV/view?usp=drivesdk
