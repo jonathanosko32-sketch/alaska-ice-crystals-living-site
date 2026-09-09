@@ -2,11 +2,9 @@ package com.osko.launcher
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.app.WallpaperManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.*
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -22,7 +20,6 @@ import kotlin.math.min
 
 class LayoverSceneTestActivity : Activity() {
     private lateinit var scene: LayoverSceneView
-    private val blue = Color.rgb(83, 227, 255)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -178,7 +175,8 @@ private class LayoverSceneView(
     context: Context,
     private val onHotspot: (String) -> Unit
 ) : View(context) {
-    private val wallpaper: Drawable? = try { WallpaperManager.getInstance(context).drawable } catch (_: Exception) { null }
+    private val backgroundBitmap: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.layover_background)
+    private val bgPaint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
     private val snowPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE }
     private val random = Random(27L)
     private val flakes = List(85) {
@@ -188,10 +186,11 @@ private class LayoverSceneView(
         override fun onScale(detector: ScaleGestureDetector): Boolean {
             if (locked) return false
             val old = userScale
-            userScale = (userScale * detector.scaleFactor).coerceIn(1f, 2.8f)
+            userScale = (userScale * detector.scaleFactor).coerceIn(1f, 3.2f)
             val factor = userScale / old
             offsetX = detector.focusX - (detector.focusX - offsetX) * factor
             offsetY = detector.focusY - (detector.focusY - offsetY) * factor
+            clampOffsets()
             invalidate()
             return true
         }
@@ -212,33 +211,40 @@ private class LayoverSceneView(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        drawWallpaper(canvas)
+        drawBackground(canvas)
         if (snowOn) drawSnow(canvas)
         if (snowOn) postInvalidateDelayed(33)
     }
 
-    private fun drawWallpaper(canvas: Canvas) {
-        val d = wallpaper
-        if (d == null || width == 0 || height == 0) {
-            canvas.drawColor(Color.rgb(4, 12, 27)); return
-        }
-        val iw = max(1, d.intrinsicWidth)
-        val ih = max(1, d.intrinsicHeight)
-        val cover = max(width.toFloat() / iw, height.toFloat() / ih)
-        val total = cover * userScale
-        val dw = iw * total
-        val dh = ih * total
+    private fun totalScale(): Float {
+        val cover = max(width.toFloat() / backgroundBitmap.width, height.toFloat() / backgroundBitmap.height)
+        return cover * userScale
+    }
+
+    private fun drawBackground(canvas: Canvas) {
+        if (width == 0 || height == 0) return
+        val total = totalScale()
+        val dw = backgroundBitmap.width * total
+        val dh = backgroundBitmap.height * total
         if (!initialized) {
             offsetX = (width - dw) / 2f
             offsetY = (height - dh) / 2f
             initialized = true
         }
-        canvas.save()
-        canvas.translate(offsetX, offsetY)
-        canvas.scale(total, total)
-        d.setBounds(0, 0, iw, ih)
-        d.draw(canvas)
-        canvas.restore()
+        clampOffsets()
+        val dst = RectF(offsetX, offsetY, offsetX + dw, offsetY + dh)
+        canvas.drawBitmap(backgroundBitmap, null, dst, bgPaint)
+    }
+
+    private fun clampOffsets() {
+        if (width == 0 || height == 0) return
+        val total = totalScale()
+        val dw = backgroundBitmap.width * total
+        val dh = backgroundBitmap.height * total
+        val minX = min(0f, width - dw)
+        val minY = min(0f, height - dh)
+        offsetX = offsetX.coerceIn(minX, 0f)
+        offsetY = offsetY.coerceIn(minY, 0f)
     }
 
     private fun drawSnow(canvas: Canvas) {
@@ -265,6 +271,7 @@ private class LayoverSceneView(
                     if (abs(event.x - downX) > 12f || abs(event.y - downY) > 12f) dragging = true
                     offsetX += dx; offsetY += dy
                     lastX = event.x; lastY = event.y
+                    clampOffsets()
                     invalidate()
                 }
                 return true
@@ -278,19 +285,17 @@ private class LayoverSceneView(
     }
 
     private fun detectTap(screenX: Float, screenY: Float) {
-        val d = wallpaper ?: return
-        val iw = max(1, d.intrinsicWidth)
-        val ih = max(1, d.intrinsicHeight)
-        val cover = max(width.toFloat() / iw, height.toFloat() / ih)
-        val total = cover * userScale
-        val nx = ((screenX - offsetX) / total) / iw
-        val ny = ((screenY - offsetY) / total) / ih
+        val total = totalScale()
+        val nx = ((screenX - offsetX) / total) / backgroundBitmap.width
+        val ny = ((screenY - offsetY) / total) / backgroundBitmap.height
         val hit = HOTSPOTS.firstOrNull { nx in it.left..it.right && ny in it.top..it.bottom }
         if (hit != null) onHotspot(hit.id)
     }
 
     fun resetView() {
-        userScale = 1.15f; initialized = false; invalidate()
+        userScale = 1.15f
+        initialized = false
+        invalidate()
     }
 
     fun toggleSnow() {
