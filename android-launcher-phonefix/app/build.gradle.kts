@@ -3,11 +3,11 @@ android {
     namespace = "com.osko.launcher"
     compileSdk = 35
     defaultConfig {
-        applicationId = "com.osko.launcher.visual"
+        applicationId = "com.osko.launcher.visual.skie"
         minSdk = 26
         targetSdk = 35
-        versionCode = 15
-        versionName = "1.5.0-skie-cb"
+        versionCode = 16
+        versionName = "1.6.0-skie-cb-separate"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
