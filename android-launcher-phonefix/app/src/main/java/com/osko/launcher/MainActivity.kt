@@ -72,6 +72,13 @@ class MainActivity : Activity() {
 
         root.addView(top, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.TOP))
 
+        val skieCb = chip("SKIE CB") { openSkie() }.apply {
+            textSize = 14f
+        }
+        root.addView(skieCb, FrameLayout.LayoutParams(dp(112), dp(44), Gravity.END or Gravity.CENTER_VERTICAL).apply {
+            setMargins(0, 0, dp(18), dp(20))
+        })
+
         val dockPanel = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER
@@ -151,7 +158,7 @@ class MainActivity : Activity() {
     }
 
     private fun showHQ() {
-        val items = arrayOf("Business & Office", "Work & Daily Tools", "Truck", "Builder", "Aurora", "Notes")
+        val items = arrayOf("Business & Office", "Work & Daily Tools", "Skie CB", "Truck", "Builder", "Aurora", "Notes")
         AlertDialog.Builder(this).setTitle("Alaska Ice Crystals Headquarters").setItems(items) { _, i ->
             when (i) {
                 0 -> showRoom("Business & Office", listOf(
@@ -167,25 +174,27 @@ class MainActivity : Activity() {
                     "Starlink" to listOf("com.starlink.mobile"),
                     "Clock" to listOf("com.sec.android.app.clockpackage", "com.google.android.deskclock")
                 ))
-                2 -> showTruck()
-                3 -> showBuilder()
-                4 -> showAurora()
-                5 -> showNotes()
+                2 -> openSkie()
+                3 -> showTruck()
+                4 -> showBuilder()
+                5 -> showAurora()
+                6 -> showNotes()
             }
         }.setNegativeButton("Close", null).show()
     }
 
     private fun showCommand() {
-        val items = arrayOf("All Apps", "Chrome", "Files", "Camera", "Phone", "Normal Android Home Settings", "Emergency Dialer")
+        val items = arrayOf("All Apps", "Skie CB", "Chrome", "Files", "Camera", "Phone", "Normal Android Home Settings", "Emergency Dialer")
         AlertDialog.Builder(this).setTitle("OSKO Command Center").setItems(items) { _, i ->
             when (i) {
                 0 -> showAppDrawer()
-                1 -> launchAny(listOf("com.android.chrome"), "Chrome")
-                2 -> openFiles()
-                3 -> openCamera()
-                4 -> openPhone()
-                5 -> openHomeSettings()
-                6 -> startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:911")))
+                1 -> openSkie()
+                2 -> launchAny(listOf("com.android.chrome"), "Chrome")
+                3 -> openFiles()
+                4 -> openCamera()
+                5 -> openPhone()
+                6 -> openHomeSettings()
+                7 -> startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:911")))
             }
         }.setNegativeButton("Close", null).show()
     }
@@ -241,6 +250,10 @@ class MainActivity : Activity() {
             val info = apps[i].activityInfo
             startActivity(Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER).setClassName(info.packageName, info.name).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
         }.setNegativeButton("Close", null).show()
+    }
+
+    private fun openSkie() {
+        launchAny(listOf("com.openai.chatgpt"), "ChatGPT")
     }
 
     private fun openPhone() {
