@@ -165,7 +165,7 @@ class MainActivity : Activity() {
         root.addView(lamps, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
 
         root.addView(TextView(this).apply {
-            text = "Skie is connected through ChatGPT for now. Hold the mic button to light TX, then release to open Skie. The next stage will connect live voice so the radio lights react while we talk."
+            text = "Skie now stays inside the launcher. Hold the mic button to enter the live CB room."
             textSize = 14f
             setTextColor(Color.LTGRAY)
             gravity = Gravity.CENTER
@@ -354,7 +354,7 @@ class MainActivity : Activity() {
         }.setNegativeButton("Close", null).show()
     }
 
-    private fun openSkie() { launchAny(listOf("com.openai.chatgpt"), "ChatGPT") }
+    private fun openSkie() { startActivity(Intent(this, SkieCbActivity::class.java)) }
     private fun openPhone() { try { startActivity(Intent(Intent.ACTION_DIAL)) } catch (_: Exception) { toast("Phone app unavailable") } }
     private fun openMessages() { try { startActivity(Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:"))) } catch (_: Exception) { toast("Messages app unavailable") } }
     private fun openCamera() { try { startActivity(Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)) } catch (_: Exception) { toast("Camera unavailable") } }
