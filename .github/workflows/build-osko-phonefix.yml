@@ -1,7 +1,7 @@
 name: Build OSKO Living Launcher Phone Fix
 on:
   push:
-    branches: ["launcher-usability-fix"]
+    branches: ["launcher-usability-fix", "layover-scene-test"]
     paths:
       - "android-launcher-phonefix/**"
       - ".github/workflows/build-osko-phonefix.yml"
