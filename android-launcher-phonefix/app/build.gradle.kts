@@ -6,8 +6,8 @@ android {
         applicationId = "com.osko.launcher.home"
         minSdk = 26
         targetSdk = 35
-        versionCode = 101
-        versionName = "2.1.0-skie-cb-room"
+        versionCode = 102
+        versionName = "2.2.0-skie-cb-live"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
