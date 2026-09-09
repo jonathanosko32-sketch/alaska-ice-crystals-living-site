@@ -209,3 +209,16 @@ Never erase an older handoff note. Append the new dated note and preserve the fu
 The next planned robot task, when Osko explicitly authorizes drawing/schematic work, is the first schematic layer: overall body measurements, proportions and joint locations.
 
 Do not start that schematic until Osko says to begin.
+
+---
+
+## HANDOFF NOTE — SEPTEMBER 9, 2026 — LAYOVER SCENE TEST BUILD
+
+1. Inspected/read before work: current Layover Drive handoff, current launcher branch `launcher-usability-fix`, current `MainActivity.kt`, `AndroidManifest.xml`, `SkieCbActivity.kt`, and the launcher build workflow.
+2. Changed: created separate branch `layover-scene-test` and added `LayoverSceneTestActivity.kt` with drag-to-pan, pinch-to-zoom, animated falling snow, lock/reset controls, invisible scene hotspots, and test doorways for HQ, truck, workshop, CB, Aurora, gate/settings, lake/maps, plus All Apps. Existing launcher HOME was not replaced.
+3. Exact checkpoint: branch `layover-scene-test`; build commit `68b63f90a67697ee91b14fcba95b54df9a869da5`; source `android-launcher-phonefix/app/src/main/java/com/osko/launcher/LayoverSceneTestActivity.kt`; Drive test APK `OSKO-Layover-Scene-TEST-signed.apk`.
+4. Tested: GitHub Actions run `34417219890` completed successfully. APK was re-signed with the permanent OSKO launcher certificate and signature verification passed.
+5. Protected/not changed: `launcher-usability-fix` remains preserved; existing `MainActivity` HOME remains intact; known-good launcher builds were not deleted or overwritten.
+6. Remaining issue: hotspot coordinates are first-pass estimates and need Osko's phone test. The Layover CB doorway is labeled Channel 27, while the older live Skie CB screen still displays its previous internal channel text and needs a controlled follow-up change if Osko approves this direction.
+7. Next step: install the TEST APK, open `OSKO Layover TEST`, test drag, pinch zoom, snow, lock/reset, and each scene hotspot, then adjust from Osko's feedback before promoting anything into the permanent HOME.
+8. Phone-safe build link: https://drive.google.com/file/d/1GV_2uMKfP5p55JDcDM75cdJOJMtRN5A-/view?usp=drivesdk
