@@ -3,11 +3,11 @@ android {
     namespace = "com.osko.launcher"
     compileSdk = 35
     defaultConfig {
-        applicationId = "com.osko.launcher.fixed"
+        applicationId = "com.osko.launcher.visual"
         minSdk = 26
         targetSdk = 35
-        versionCode = 13
-        versionName = "1.3.0-phonefix-separate"
+        versionCode = 14
+        versionName = "1.4.0-visual"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
