@@ -28,3 +28,12 @@ jobs:
         with:
           name: OSKO-Living-Launcher-FIXED
           path: OSKO-Living-Launcher-FIXED.apk
+      - name: Package APK signer tool
+        run: |
+          BUILD_TOOLS_DIR=$(find "$ANDROID_HOME/build-tools" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -1)
+          echo "Using $BUILD_TOOLS_DIR"
+          tar -czf android-apksigner-tool.tar.gz -C "$BUILD_TOOLS_DIR" apksigner lib/apksigner.jar
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ANDROID-APKSIGNER-TOOL
+          path: android-apksigner-tool.tar.gz
