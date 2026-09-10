@@ -1,133 +1,40 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#03111f" />
 <title>SKIE CB CH 27 — PTT Test</title>
 <style>
-  :root{color-scheme:dark;font-family:system-ui,-apple-system,Segoe UI,sans-serif}
-  *{box-sizing:border-box}
-  body{margin:0;background:#071019;color:#e9f7ff;min-height:100vh;display:grid;place-items:center;padding:18px}
-  .radio{width:min(100%,430px);background:#0c1822;border:1px solid #284353;border-radius:22px;padding:18px}
-  .brand{text-align:center;font-size:.82rem;letter-spacing:.14em;color:#9fd9ef}
-  h1{text-align:center;font-size:1.35rem;margin:.35rem 0 1rem}
-  .display{border:2px solid #2c4e5b;border-radius:16px;padding:16px;text-align:center;background:#06100d;transition:.16s}
-  .channel{font:700 3.6rem/1 ui-monospace,SFMono-Regular,monospace;color:#4cff9a;text-shadow:0 0 12px currentColor;transition:.16s}
-  .display.tx .channel{color:#ff795f}.display.rx .channel{color:#6ee8ff}.display.error .channel{color:#ffca66}
-  .lamps{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
-  .lamp{border:1px solid #37515d;border-radius:12px;padding:11px;text-align:center;font-weight:800;opacity:.45;transition:.14s}
-  .lamp.on{opacity:1;box-shadow:inset 0 0 18px rgba(255,255,255,.08)}
-  #rx.on{color:#6ee8ff;border-color:#6ee8ff} #tx.on{color:#ff795f;border-color:#ff795f}
-  #status{min-height:3em;text-align:center;color:#c7d9e2;margin:10px 0 14px}
-  button{width:100%;min-height:52px;border:1px solid #45616f;border-radius:14px;background:#132634;color:#eefaff;font-weight:800;font-size:1rem;margin:5px 0;touch-action:manipulation}
-  button:disabled{opacity:.45}
-  #ptt{min-height:88px;font-size:1.12rem;background:#19303a}
-  #ptt.active{background:#4a1f18;border-color:#ff795f}
-  .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .note{font-size:.78rem;color:#8ea8b4;text-align:center;margin-top:10px}
+*{box-sizing:border-box}body{margin:0;background:#07131d;color:#eef8ff;font-family:Arial,sans-serif;min-height:100vh;display:flex;justify-content:center}.radio{width:min(100%,520px);padding:18px}.brand{text-align:center;font-size:13px;letter-spacing:2px}.title{text-align:center;font-size:26px;font-weight:800;margin:6px 0 14px}.channel{font-size:58px;font-weight:900;text-align:center;color:#4ef4bd;border:2px solid #2b5360;border-radius:20px;padding:12px;background:#0b1f2b;box-shadow:inset 0 0 24px #0009;transition:.18s}.lamps{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}.lamp{padding:16px;border-radius:14px;text-align:center;font-weight:900;transition:.18s}.rx{background:#164d2b}.tx{background:#431c1c}.rx.on{background:#20bd61;box-shadow:0 0 22px #35ff7b}.tx.on{background:#ff4438;box-shadow:0 0 22px #ff5c4f}.status{min-height:58px;padding:12px;border:1px solid #284955;border-radius:12px;background:#0b1a24;margin-bottom:12px;display:flex;align-items:center}.ptt{width:100%;min-height:92px;border:0;border-radius:20px;background:#165f77;color:#fff;font-size:22px;font-weight:900;touch-action:none}.ptt:active{transform:scale(.99)}.buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.buttons button{min-height:48px;border-radius:12px;border:1px solid #315766;background:#102c3a;color:#fff;font-weight:800}.foot{text-align:center;margin-top:16px;font-size:11px;opacity:.7;letter-spacing:1px}
 </style>
 </head>
 <body>
 <main class="radio">
-  <div class="brand">ALASKA ICE CRYSTALS</div>
-  <h1>SKIE CB RADIO</h1>
-  <section id="display" class="display" aria-live="polite">
-    <div class="channel">CH 27</div>
-  </section>
-  <div class="lamps"><div id="rx" class="lamp">RX • READY</div><div id="tx" class="lamp">TX</div></div>
-  <div id="status" role="status">Disconnected. Tap CONNECT SKIE.</div>
-  <button id="ptt" type="button" disabled>🎙 HOLD TO TALK TO SKIE</button>
-  <div class="row"><button id="connect" type="button">CONNECT SKIE</button><button id="disconnect" type="button" disabled>DISCONNECT</button></div>
-  <div class="note">SAFE PTT TEST • CH 27 • V11 BASELINE UNCHANGED</div>
-  <audio id="remoteAudio" autoplay></audio>
+<div class="brand">ALASKA ICE CRYSTALS</div>
+<div class="title">SKIE CB RADIO</div>
+<div class="channel" id="channel">CH 27</div>
+<div class="lamps"><div class="lamp rx" id="rx">RX • READY</div><div class="lamp tx" id="tx">TX</div></div>
+<div class="status" id="status">SKIE is on Channel 27. Tap CONNECT SKIE, then hold the mic while you talk.</div>
+<button class="ptt" id="ptt">🎙 HOLD TO TALK TO SKIE</button>
+<div class="buttons"><button id="connect">CONNECT SKIE</button><button id="disconnect">DISCONNECT</button></div>
+<audio id="remoteAudio" autoplay playsinline></audio>
+<div class="foot">OSKO PRIVATE RADIO • REALTIME VOICE ENGINE</div>
 </main>
 <script>
-(() => {
-  'use strict';
-  const SESSION_ENDPOINT='https://alaska-ice-crystals-living-site.vercel.app/api/skie-session-ptt';
-  const OPENAI_CALLS='https://api.openai.com/v1/realtime/calls';
-  const $=id=>document.getElementById(id);
-  const display=$('display'),rx=$('rx'),tx=$('tx'),statusEl=$('status'),ptt=$('ptt'),connectBtn=$('connect'),disconnectBtn=$('disconnect'),audio=$('remoteAudio');
-  let pc=null,dc=null,stream=null,track=null,connected=false,pressing=false,responseActive=false;
-
-  function setState(state,message){
-    display.classList.remove('tx','rx','error'); rx.classList.remove('on'); tx.classList.remove('on'); ptt.classList.remove('active');
-    if(state==='tx'){display.classList.add('tx');tx.classList.add('on');ptt.classList.add('active')}
-    else if(state==='rx'){display.classList.add('rx');rx.classList.add('on')}
-    else if(state==='ready'){rx.classList.add('on')}
-    else if(state==='error'){display.classList.add('error')}
-    if(message)statusEl.textContent=message;
-  }
-  function send(type,extra={}){if(dc?.readyState==='open')dc.send(JSON.stringify({type,...extra}))}
-  function cleanup(message='Radio disconnected.'){
-    pressing=false;responseActive=false;connected=false;
-    try{track&&(track.enabled=false);stream?.getTracks().forEach(t=>t.stop());dc?.close();pc?.close()}catch(_){}
-    pc=dc=stream=track=null;audio.srcObject=null;
-    connectBtn.disabled=false;connectBtn.textContent='CONNECT SKIE';disconnectBtn.disabled=true;ptt.disabled=true;
-    setState('idle',message);
-  }
-  async function getSecret(){
-    const r=await fetch(SESSION_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({purpose:'osko-skie-cb-ptt'})});
-    const raw=await r.text(); let data={}; try{data=JSON.parse(raw)}catch(_){}
-    if(!r.ok)throw new Error(data.error||`Secure SKIE server returned ${r.status}`);
-    const secret=data.value||data.client_secret?.value||data.client_secret||data.secret||data.token;
-    if(!secret)throw new Error('Secure server did not return a Realtime client secret.');
-    return secret;
-  }
-  function handleEvent(event){
-    const t=event?.type||'';
-    if(t==='error'){
-      responseActive=false;setState('error','Radio error: '+(event.error?.message||'unknown error'));return;
-    }
-    if(t==='response.created'){responseActive=true;setState('rx','SKIE is answering on Channel 27…');}
-    if(t.includes('response.output_audio')||t.includes('response.audio')){responseActive=true;setState('rx','Receiving SKIE • CH 27');}
-    if(t==='response.done'){
-      responseActive=false;
-      if(!pressing)setState('ready','SKIE ready • CH 27 • Hold the mic to talk.');
-    }
-  }
-  async function connectSkie(){
-    if(connected||connectBtn.disabled)return;
-    connectBtn.disabled=true;connectBtn.textContent='CONNECTING…';setState('idle','Connecting secure SKIE session…');
-    try{
-      const secret=await getSecret();
-      pc=new RTCPeerConnection();
-      pc.ontrack=e=>{audio.srcObject=e.streams[0];audio.play().catch(()=>{})};
-      pc.onconnectionstatechange=()=>{if(pc&&['failed','disconnected','closed'].includes(pc.connectionState)&&connected)cleanup('SKIE connection lost.')};
-      stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}});
-      track=stream.getAudioTracks()[0];track.enabled=false;pc.addTrack(track,stream);
-      dc=pc.createDataChannel('oai-events');
-      dc.onmessage=e=>{try{handleEvent(JSON.parse(e.data))}catch(_){}};
-      const dcOpen=new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(new Error('SKIE event channel timed out.')),12000);dc.onopen=()=>{clearTimeout(timer);resolve()};dc.onerror=()=>{clearTimeout(timer);reject(new Error('SKIE event channel failed.'))}});
-      const offer=await pc.createOffer();await pc.setLocalDescription(offer);
-      const r=await fetch(OPENAI_CALLS,{method:'POST',headers:{Authorization:'Bearer '+secret,'Content-Type':'application/sdp'},body:offer.sdp});
-      const answer=await r.text();if(!r.ok)throw new Error('Realtime connection returned '+r.status+': '+answer.slice(0,180));
-      await pc.setRemoteDescription({type:'answer',sdp:answer});await dcOpen;
-      connected=true;connectBtn.textContent='SKIE CONNECTED';disconnectBtn.disabled=false;ptt.disabled=false;
-      setState('ready','SKIE connected • CH 27 • Hold the mic to talk.');
-    }catch(err){cleanup(err?.message||String(err));setState('error',err?.message||String(err));}
-  }
-  function startTalk(e){
-    if(!connected||!track||pressing)return;
-    e?.preventDefault();pressing=true;
-    if(responseActive){send('response.cancel');send('output_audio_buffer.clear');responseActive=false;}
-    send('input_audio_buffer.clear');track.enabled=true;
-    setState('tx','TRANSMITTING • CH 27');
-    try{ptt.setPointerCapture?.(e.pointerId)}catch(_){}
-  }
-  function stopTalk(e){
-    if(!pressing)return;
-    e?.preventDefault();pressing=false;if(track)track.enabled=false;
-    send('input_audio_buffer.commit');send('response.create');
-    setState('idle','Transmission sent • waiting for SKIE…');
-  }
-  ptt.addEventListener('pointerdown',startTalk);
-  ptt.addEventListener('pointerup',stopTalk);
-  ptt.addEventListener('pointercancel',stopTalk);
-  connectBtn.addEventListener('click',connectSkie);
-  disconnectBtn.addEventListener('click',()=>cleanup());
-  window.addEventListener('pagehide',()=>cleanup(''));
-})();
+let pc=null,dc=null,stream=null,connected=false,responseActive=false,pttHeld=false;
+const statusEl=document.getElementById('status'),rx=document.getElementById('rx'),tx=document.getElementById('tx'),channel=document.getElementById('channel'),ptt=document.getElementById('ptt'),connectBtn=document.getElementById('connect'),disconnectBtn=document.getElementById('disconnect'),audio=document.getElementById('remoteAudio');
+const endpoint='/api/skie-session-ptt';
+function status(t){statusEl.textContent=t}
+function setTX(on){tx.classList.toggle('on',!!on);if(on){channel.style.color='#ff7d72';channel.style.boxShadow='0 0 24px #ff443855, inset 0 0 24px #0009'}else if(!rx.classList.contains('on')){channel.style.color='#4ef4bd';channel.style.boxShadow='inset 0 0 24px #0009'}}
+function setRX(on){rx.classList.toggle('on',!!on);if(on){channel.style.color='#7dff9f';channel.style.boxShadow='0 0 24px #20bd6155, inset 0 0 24px #0009'}else if(!tx.classList.contains('on')){channel.style.color='#4ef4bd';channel.style.boxShadow='inset 0 0 24px #0009'}}
+function send(type,extra={}){if(dc&&dc.readyState==='open')dc.send(JSON.stringify({type,...extra}))}
+async function getSecret(){const r=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({purpose:'osko-skie-cb',model:'gpt-realtime-2.1'})});if(!r.ok){let msg='Secure session endpoint returned '+r.status;try{const j=await r.json();if(j.error)msg=j.error}catch(_){}throw new Error(msg)}const j=await r.json();return j.value||j.client_secret?.value||j.client_secret||j.secret||j.token}
+async function connectSkie(){if(connected||pc)return;try{status('Connecting to SKIE on Channel 27…');connectBtn.disabled=true;const secret=await getSecret();pc=new RTCPeerConnection();pc.ontrack=e=>{audio.srcObject=e.streams[0]};stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}});stream.getAudioTracks().forEach(t=>{t.enabled=false;pc.addTrack(t,stream)});dc=pc.createDataChannel('oai-events');dc.onopen=()=>{connected=true;status('SKIE Channel 27 connected. Hold the mic to talk.');setRX(false);setTX(false)};dc.onclose=()=>{if(connected)status('SKIE data channel closed.');connected=false};dc.onerror=()=>status('SKIE radio data-channel error.');dc.onmessage=e=>{let evt;try{evt=JSON.parse(e.data)}catch(_){return}const t=evt.type||'';if(t==='response.created'){responseActive=true;setTX(false);setRX(true);status('SKIE receiving…')}else if(t.includes('response.output_audio')){setRX(true);status('SKIE receiving…')}else if(t==='response.done'){responseActive=false;setRX(false);status('SKIE Channel 27 connected. Hold the mic to talk.')}else if(t==='error'){responseActive=false;setRX(false);status('SKIE error: '+(evt.error?.message||'Realtime error'))}};const offer=await pc.createOffer();await pc.setLocalDescription(offer);const r=await fetch('https://api.openai.com/v1/realtime/calls',{method:'POST',headers:{Authorization:'Bearer '+secret,'Content-Type':'application/sdp'},body:offer.sdp});if(!r.ok)throw new Error('Realtime connection returned '+r.status);const answer=await r.text();await pc.setRemoteDescription({type:'answer',sdp:answer})}catch(err){status('Could not connect SKIE: '+err.message);disconnect();}finally{connectBtn.disabled=false}}
+function startTalk(){if(pttHeld)return;pttHeld=true;if(!connected){status('Connect SKIE first.');pttHeld=false;return}if(responseActive){send('response.cancel');send('output_audio_buffer.clear');responseActive=false}send('input_audio_buffer.clear');setRX(false);setTX(true);stream?.getAudioTracks().forEach(t=>t.enabled=true);status('Transmitting to SKIE…')}
+function stopTalk(){if(!pttHeld)return;pttHeld=false;if(!connected)return;stream?.getAudioTracks().forEach(t=>t.enabled=false);setTX(false);send('input_audio_buffer.commit');send('response.create');status('Transmission sent. Waiting for SKIE…')}
+function disconnect(){pttHeld=false;connected=false;responseActive=false;setTX(false);setRX(false);try{stream?.getTracks().forEach(t=>t.stop())}catch(_){}try{dc?.close()}catch(_){}try{pc?.close()}catch(_){}stream=null;dc=null;pc=null;audio.srcObject=null;status('Disconnected. Tap CONNECT SKIE to reconnect.')}
+connectBtn.addEventListener('click',connectSkie);disconnectBtn.addEventListener('click',disconnect);ptt.addEventListener('pointerdown',e=>{e.preventDefault();try{ptt.setPointerCapture(e.pointerId)}catch(_){}startTalk()});ptt.addEventListener('pointerup',e=>{e.preventDefault();stopTalk()});ptt.addEventListener('pointercancel',stopTalk);ptt.addEventListener('lostpointercapture',stopTalk);window.addEventListener('pagehide',disconnect);
 </script>
 </body>
 </html>
