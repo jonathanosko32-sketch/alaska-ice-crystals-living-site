@@ -6,8 +6,8 @@ android {
         applicationId = "com.osko.launcher.home"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1009
-        versionName = "2.8.0-living-layover-v9-motion"
+        versionCode = 1010
+        versionName = "2.9.0-living-layover-v10-school-library"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
