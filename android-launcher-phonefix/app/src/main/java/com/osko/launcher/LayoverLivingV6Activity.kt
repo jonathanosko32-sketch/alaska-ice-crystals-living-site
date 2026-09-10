@@ -18,9 +18,20 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sin
 
+/**
+ * V11 CODED DUPLICATE — CONSOLIDATED LIVING LAYOVER MASTER
+ *
+ * IMPORTANT:
+ * - This file exists only on branch v11-coded-duplicate.
+ * - Protected V11 is not to be edited from this work.
+ * - One world-coordinate system drives the background, roads, buildings,
+ *   hotspots, Aurora route, life animation, zoom and pan.
+ * - Future AI/voice and robot routing should address named destinations in
+ *   this world instead of screen pixels.
+ */
 class LayoverLivingV6Activity : Activity() {
     private lateinit var root: FrameLayout
-    private lateinit var scene: LivingYardV6View
+    private lateinit var scene: LivingWorldMasterView
     private var openPanel: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,49 +48,69 @@ class LayoverLivingV6Activity : Activity() {
 
     private fun showScene() {
         root = FrameLayout(this).apply { setBackgroundColor(Color.BLACK) }
-        scene = LivingYardV6View(this) { id -> handleHotspot(id) }
+        scene = LivingWorldMasterView(this) { id -> handleHotspot(id) }
         root.addView(scene, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
 
         val header = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             gravity = Gravity.CENTER
             setPadding(dp(8), dp(6), dp(8), dp(6))
-            background = GradientDrawable().apply {
-                setColor(Color.argb(140, 0, 9, 20)); cornerRadius = dp(18).toFloat(); setStroke(dp(1), cyan)
-            }
+            background = panelBg(140)
         }
         header.addView(TextView(this).apply {
-            text = "WELCOME HOME  •  OSKO"; textSize = 17f; setTextColor(Color.WHITE); gravity = Gravity.CENTER; setShadowLayer(8f, 0f, 0f, cyan)
+            text = "WELCOME HOME  •  OSKO"
+            textSize = 17f
+            setTextColor(Color.WHITE)
+            gravity = Gravity.CENTER
+            setShadowLayer(8f, 0f, 0f, cyan)
         })
         header.addView(TextView(this).apply {
-            text = "ALASKA ICE CRYSTALS  •  LIVING LAYOVER"; textSize = 10f; setTextColor(cyan); gravity = Gravity.CENTER
+            text = "ALASKA ICE CRYSTALS  •  LIVING LAYOVER"
+            textSize = 10f
+            setTextColor(cyan)
+            gravity = Gravity.CENTER
         })
         root.addView(header, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(56), Gravity.TOP).apply {
             leftMargin = dp(8); rightMargin = dp(8); topMargin = dp(8)
         })
 
         val controls = LinearLayout(this).apply {
-            orientation = LinearLayout.HORIZONTAL; gravity = Gravity.CENTER; setPadding(dp(6), dp(5), dp(6), dp(5))
-            background = GradientDrawable().apply {
-                setColor(Color.argb(145, 0, 12, 26)); cornerRadius = dp(18).toFloat(); setStroke(dp(1), Color.argb(180, 75, 220, 255))
-            }
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER
+            setPadding(dp(5), dp(5), dp(5), dp(5))
+            background = panelBg(150)
         }
         controls.addView(control("APPS") { openAppDrawer() }, weighted())
+        controls.addView(control("−") { scene.zoomBy(0.84f) }, weighted())
         controls.addView(control("RESET") { scene.resetView() }, weighted())
-        controls.addView(control("SNOW") { scene.toggleSnow() }, weighted())
+        controls.addView(control("+") { scene.zoomBy(1.18f) }, weighted())
         controls.addView(control("LIFE") { scene.toggleLife() }, weighted())
         controls.addView(control("LOCK") { scene.toggleLock() }, weighted())
-        root.addView(controls, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(46), Gravity.BOTTOM).apply {
-            leftMargin = dp(8); rightMargin = dp(8); bottomMargin = dp(12)
+        root.addView(controls, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(48), Gravity.BOTTOM).apply {
+            leftMargin = dp(8); rightMargin = dp(8); bottomMargin = dp(10)
         })
+
         setContentView(root)
     }
 
-    private fun weighted() = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f).apply { setMargins(dp(2), dp(2), dp(2), dp(2)) }
+    private fun panelBg(alpha: Int) = GradientDrawable().apply {
+        setColor(Color.argb(alpha, 0, 12, 26))
+        cornerRadius = dp(18).toFloat()
+        setStroke(dp(1), cyan)
+    }
+
+    private fun weighted() = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f).apply {
+        setMargins(dp(2), dp(2), dp(2), dp(2))
+    }
 
     private fun control(label: String, action: () -> Unit) = TextView(this).apply {
-        text = label; textSize = 11f; setTextColor(Color.WHITE); gravity = Gravity.CENTER
-        background = GradientDrawable().apply { setColor(Color.argb(160, 5, 28, 44)); cornerRadius = dp(12).toFloat(); setStroke(dp(1), cyan) }
+        text = label
+        textSize = 11f
+        setTextColor(Color.WHITE)
+        gravity = Gravity.CENTER
+        background = GradientDrawable().apply {
+            setColor(Color.argb(170, 5, 28, 44)); cornerRadius = dp(12).toFloat(); setStroke(dp(1), cyan)
+        }
         setOnClickListener { action() }
     }
 
@@ -87,101 +118,108 @@ class LayoverLivingV6Activity : Activity() {
 
     private fun handleHotspot(id: String) {
         when (id) {
-            "hq" -> showPanel(id, "HQ INTERIOR — SCHOOL & LIBRARY", "School, books and training stay together here.", listOf(
+            "hq" -> showPanel("HQ INTERIOR — SCHOOL & LIBRARY", "School, books and training stay together here.", listOf(
                 PanelAction("SCHOOL / TRAINING", "GED • college • simulator") { openSchool() },
-                PanelAction("DICTIONARY", "Reserved library shelf") { toast("Dictionary shelf is reserved here") },
-                PanelAction("MECHANICS", "Gas • diesel • on-road • off-road") { toast("Mechanics library shelf is reserved here") },
-                PanelAction("CDL / TRUCKING", "Training • loads • safety") { toast("CDL and trucking library shelf is reserved here") },
-                PanelAction("FLIGHT / AVIATION", "Pilot • drone • flight material") { toast("Flight library shelf is reserved here") },
+                PanelAction("DICTIONARY", "Library shelf") { toast("Dictionary shelf") },
+                PanelAction("MECHANICS", "Gas • diesel • on-road • off-road") { toast("Mechanics library") },
+                PanelAction("CDL / TRUCKING", "Training • loads • safety") { toast("CDL and trucking library") },
                 PanelAction("GOOGLE DRIVE", "School and project files") { launchAny(listOf("com.google.android.apps.docs"), "Google Drive") },
-                PanelAction("FILES", "Phone files") { openFiles() },
-                PanelAction("ALL APPS", "Find anything installed") { openAppDrawer() }
+                PanelAction("FILES", "Phone files") { openFiles() }
             ))
-            "truck" -> showPanel(id, "TRUCK CAB — MOBILE COMMAND", "Truck tools live together inside the truck.", listOf(
+            "truck" -> showPanel("TRUCK CAB — MOBILE COMMAND", "Truck tools live together inside the truck.", listOf(
                 PanelAction("TRIP PLANNING", "Maps and route") { launchAny(listOf("com.google.android.apps.maps"), "Maps") },
-                PanelAction("TRUCK CHECKLISTS", "Inspection and road lists") { toast("Truck checklist area reserved") },
                 PanelAction("LOADS / NAVIGATION", "Routes and loads") { launchAny(listOf("com.google.android.apps.maps"), "Maps") },
-                PanelAction("FUEL / DEF", "Fuel tools") { toast("Fuel and DEF area reserved") },
+                PanelAction("FUEL / DEF", "Fuel tools") { toast("Fuel and DEF area") },
                 PanelAction("CALCULATOR", "Scale • pay • math") { launchAny(listOf("com.sec.android.app.popupcalculator", "com.google.android.calculator"), "Calculator") },
                 PanelAction("CAMERA", "Road • loads • documents") { openCamera() },
                 PanelAction("FILES", "Loads • BOL • paperwork") { openFiles() },
-                PanelAction("SKIE CB — CH 27", "Talk to Skie") { openSkieCb() }
+                PanelAction("SKIE CB — CH 27", "Talk to SKIE") { openSkieCb() }
             ))
-            "workshop" -> showPanel(id, "WORKSHOP INTERIOR", "Tools, builds, manuals and robot work live here.", listOf(
+            "workshop" -> showPanel("WORKSHOP INTERIOR", "Tools, builds, manuals and robot work live here.", listOf(
                 PanelAction("TOOLS", "Shop tools and references") { openFiles() },
-                PanelAction("3D PRINTER", "Printer work area") { toast("3D printer area reserved") },
+                PanelAction("3D PRINTER", "Printer work area") { toast("3D printer area") },
                 PanelAction("BUILD PLANS", "Project plans") { openFiles() },
                 PanelAction("TRUCK MODS", "Truck build work") { openFiles() },
                 PanelAction("FILES / MANUALS", "Project files") { openFiles() },
                 PanelAction("GITHUB", "Code and builds") { launchAny(listOf("com.github.android"), "GitHub") },
-                PanelAction("ROBOT BAY", "SKIE • DENALI • WILLOW • KODIAK") { toast("Robot service bay reserved") }
+                PanelAction("ROBOT BAY", "Service robot work area") { toast("Robot service bay") }
             ))
-            "cb" -> showPanel(id, "CB RADIO — SKIE — CHANNEL 27", "Channel 27 is the Layover doorway to Skie.", listOf(
+            "cb" -> showPanel("CB RADIO — SKIE — CHANNEL 27", "Channel 27 is the Living Layover doorway to SKIE.", listOf(
                 PanelAction("TALK TO SKIE", "Open live CB") { openSkieCb() },
-                PanelAction("VOICE COMMANDS", "Skie controls") { openSkieCb() },
-                PanelAction("RADIO SETTINGS", "CB setup") { openSkieCb() },
-                PanelAction("LOG / NOTES", "Quick notes") { launchAny(listOf("com.samsung.android.app.notes", "com.google.android.keep"), "Notes") }
+                PanelAction("VOICE COMMANDS", "Voice control") { openSkieCb() },
+                PanelAction("RADIO SETTINGS", "CB setup") { openSkieCb() }
             ))
-            "aurora" -> showPanel(id, "AURORA", "Aurora's place in the living Layover.", listOf(
+            "aurora" -> showPanel("AURORA", "Aurora follows an approved route inside the same world coordinates.", listOf(
                 PanelAction("PICTURES", "Aurora photos") { launchAny(listOf("com.sec.android.gallery3d", "com.google.android.apps.photos"), "Pictures") },
                 PanelAction("CAMERA", "Take a picture") { openCamera() },
-                PanelAction("CARE / INFO", "Aurora records") { toast("Aurora care area reserved") }
+                PanelAction("CARE / INFO", "Aurora records") { toast("Aurora care area") }
             ))
-            "gate" -> showPanel(id, "CONTROL • CREATE • CONNECT", "Main system controls stay at the gate.", listOf(
+            "gate" -> showPanel("CONTROL • CREATE • CONNECT", "Main system controls stay at the gate.", listOf(
                 PanelAction("SETTINGS", "Phone and system settings") { openSettings() },
                 PanelAction("ALL APPS", "Complete app list") { openAppDrawer() },
                 PanelAction("GOOGLE DRIVE", "Connected files") { launchAny(listOf("com.google.android.apps.docs"), "Google Drive") },
                 PanelAction("CHATGPT", "Current assistant") { launchAny(listOf("com.openai.chatgpt"), "ChatGPT") }
             ))
-            "lake" -> showPanel(id, "LAKE / OUTDOORS", "Maps, fishing, weather and recreation access.", listOf(
+            "lake" -> showPanel("LAKE / OUTDOORS", "Maps, fishing, weather and recreation access.", listOf(
                 PanelAction("MAPS", "Explore and route") { launchAny(listOf("com.google.android.apps.maps"), "Maps") },
                 PanelAction("WEATHER / WEB", "Outdoor information") { launchAny(listOf("com.android.chrome", "com.sec.android.app.sbrowser"), "Browser") },
                 PanelAction("CAMERA", "Outdoor photos") { openCamera() }
             ))
-            "animals" -> showPanel(id, "ANIMALS", "Living-yard animal area.", listOf(
+            "animals" -> showPanel("ANIMALS", "Living-yard animal area.", listOf(
                 PanelAction("CAMERA", "Take a picture") { openCamera() },
-                PanelAction("PHOTOS", "Open pictures") { launchAny(listOf("com.sec.android.gallery3d", "com.google.android.apps.photos"), "Pictures") },
-                PanelAction("INFO", "Animal information") { toast("Animal information area reserved") }
+                PanelAction("PHOTOS", "Open pictures") { launchAny(listOf("com.sec.android.gallery3d", "com.google.android.apps.photos"), "Pictures") }
             ))
-            "eagle" -> showPanel(id, "EAGLE — NEWS / WEATHER", "Quick outside information from the upper yard.", listOf(
+            "eagle" -> showPanel("EAGLE — NEWS / WEATHER", "Quick outside information.", listOf(
                 PanelAction("NEWS / WEB", "Open browser") { launchAny(listOf("com.android.chrome", "com.sec.android.app.sbrowser"), "Browser") },
                 PanelAction("MAPS", "Current area") { launchAny(listOf("com.google.android.apps.maps"), "Maps") }
             ))
-            "tower" -> showPanel(id, "TOWER — CAMERA", "Camera and security access.", listOf(
+            "tower" -> showPanel("TOWER — CAMERA", "Camera and security access.", listOf(
                 PanelAction("CAMERA", "Open camera") { openCamera() },
                 PanelAction("SETTINGS", "Security settings") { openSettings() }
             ))
         }
     }
 
-    private fun showPanel(previewKey: String, title: String, subtitle: String, actions: List<PanelAction>) {
+    private fun showPanel(title: String, subtitle: String, actions: List<PanelAction>) {
         closePanel()
         val shell = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL; setPadding(dp(10), dp(8), dp(10), dp(10))
-            background = GradientDrawable().apply { setColor(Color.argb(246, 2, 12, 24)); cornerRadius = dp(22).toFloat(); setStroke(dp(2), cyan) }
+            orientation = LinearLayout.VERTICAL
+            setPadding(dp(10), dp(8), dp(10), dp(10))
+            background = GradientDrawable().apply {
+                setColor(Color.argb(246, 2, 12, 24)); cornerRadius = dp(22).toFloat(); setStroke(dp(2), cyan)
+            }
         }
-        shell.addView(ScenePreviewV6View(this, previewKey), LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(118)).apply { bottomMargin = dp(6) })
-        val headingRow = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL; gravity = Gravity.CENTER_VERTICAL }
-        headingRow.addView(TextView(this).apply { text = title; textSize = 17f; setTextColor(Color.WHITE); setShadowLayer(8f, 0f, 0f, cyan) }, LinearLayout.LayoutParams(0, dp(38), 1f))
-        headingRow.addView(TextView(this).apply { text = "✕"; textSize = 22f; setTextColor(Color.WHITE); gravity = Gravity.CENTER; setOnClickListener { closePanel() } }, LinearLayout.LayoutParams(dp(42), dp(38)))
-        shell.addView(headingRow)
-        shell.addView(TextView(this).apply { text = subtitle; textSize = 11f; setTextColor(Color.rgb(180, 210, 225)); setPadding(0, 0, 0, dp(7)) })
-
-        val scroll = ScrollView(this).apply { isFillViewport = true; isVerticalScrollBarEnabled = true }
+        val heading = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL; gravity = Gravity.CENTER_VERTICAL }
+        heading.addView(TextView(this).apply {
+            text = title; textSize = 17f; setTextColor(Color.WHITE); setShadowLayer(8f, 0f, 0f, cyan)
+        }, LinearLayout.LayoutParams(0, dp(42), 1f))
+        heading.addView(TextView(this).apply {
+            text = "✕"; textSize = 22f; setTextColor(Color.WHITE); gravity = Gravity.CENTER; setOnClickListener { closePanel() }
+        }, LinearLayout.LayoutParams(dp(42), dp(42)))
+        shell.addView(heading)
+        shell.addView(TextView(this).apply {
+            text = subtitle; textSize = 11f; setTextColor(Color.rgb(180, 210, 225)); setPadding(0, 0, 0, dp(8))
+        })
+        val scroll = ScrollView(this)
         val list = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL }
         actions.forEach { item ->
             val card = LinearLayout(this).apply {
                 orientation = LinearLayout.VERTICAL; setPadding(dp(12), dp(7), dp(12), dp(7))
-                background = GradientDrawable().apply { setColor(Color.rgb(7, 28, 45)); cornerRadius = dp(14).toFloat(); setStroke(dp(1), Color.rgb(68, 190, 225)) }
+                background = GradientDrawable().apply {
+                    setColor(Color.rgb(7, 28, 45)); cornerRadius = dp(14).toFloat(); setStroke(dp(1), Color.rgb(68, 190, 225))
+                }
                 setOnClickListener { item.action() }
             }
             card.addView(TextView(this).apply { text = item.title; textSize = 14f; setTextColor(Color.WHITE) })
             card.addView(TextView(this).apply { text = item.subtitle; textSize = 10f; setTextColor(Color.rgb(145, 188, 205)) })
             list.addView(card, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(54)).apply { bottomMargin = dp(6) })
         }
-        scroll.addView(list); shell.addView(scroll, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f))
+        scroll.addView(list)
+        shell.addView(scroll, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f))
         val panelHeight = (resources.displayMetrics.heightPixels * 0.58f).toInt()
-        root.addView(shell, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, panelHeight, Gravity.BOTTOM).apply { leftMargin = dp(8); rightMargin = dp(8); bottomMargin = dp(62) })
+        root.addView(shell, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, panelHeight, Gravity.BOTTOM).apply {
+            leftMargin = dp(8); rightMargin = dp(8); bottomMargin = dp(62)
+        })
         openPanel = shell
     }
 
@@ -197,7 +235,8 @@ class LayoverLivingV6Activity : Activity() {
 
     private fun openAppDrawer() {
         val pm = packageManager
-        val apps = pm.queryIntentActivities(Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER), 0).sortedBy { it.loadLabel(pm).toString().lowercase() }
+        val apps = pm.queryIntentActivities(Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER), 0)
+            .sortedBy { it.loadLabel(pm).toString().lowercase() }
         val labels = apps.map { it.loadLabel(pm).toString() }.toTypedArray()
         AlertDialog.Builder(this).setTitle("ALL APPS").setItems(labels) { _, i ->
             val info = apps[i].activityInfo
@@ -208,64 +247,95 @@ class LayoverLivingV6Activity : Activity() {
     companion object { private val cyan = Color.rgb(74, 221, 255) }
 }
 
-private class ScenePreviewV6View(context: Context, private val key: String) : View(context) {
-    private val bitmap = BitmapFactory.decodeResource(resources, R.drawable.layover_background, BitmapFactory.Options().apply { inScaled = false })
-    private val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
-    private val border = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE; strokeWidth = 2f; color = Color.rgb(74, 221, 255) }
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
-        val c = when (key) {
-            "hq" -> 0.61f to 0.30f; "truck" -> 0.33f to 0.44f; "workshop" -> 0.90f to 0.53f; "cb" -> 0.59f to 0.42f
-            "aurora" -> 0.55f to 0.70f; "gate" -> 0.78f to 0.72f; "lake" -> 0.10f to 0.40f; "animals" -> 0.12f to 0.33f
-            "eagle" -> 0.90f to 0.10f; "tower" -> 0.78f to 0.25f; else -> 0.5f to 0.5f
-        }
-        val cropW = bitmap.width * 0.34f; val cropH = bitmap.height * 0.23f; val cx = c.first * bitmap.width; val cy = c.second * bitmap.height
-        val left = (cx - cropW / 2).toInt().coerceIn(0, bitmap.width - 2); val top = (cy - cropH / 2).toInt().coerceIn(0, bitmap.height - 2)
-        val right = (cx + cropW / 2).toInt().coerceIn(left + 1, bitmap.width); val bottom = (cy + cropH / 2).toInt().coerceIn(top + 1, bitmap.height)
-        canvas.drawBitmap(bitmap, Rect(left, top, right, bottom), RectF(0f, 0f, width.toFloat(), height.toFloat()), paint)
-        canvas.drawRoundRect(RectF(1f, 1f, width - 1f, height - 1f), 18f, 18f, border)
-    }
-}
-
-private class LivingYardV6View(context: Context, private val onHotspot: (String) -> Unit) : View(context) {
-    private val backgroundBitmap = BitmapFactory.decodeResource(resources, R.drawable.layover_background, BitmapFactory.Options().apply { inScaled = false; inPreferredConfig = Bitmap.Config.ARGB_8888 })
+/** One transform for every object in the Living Layover. */
+private class LivingWorldMasterView(context: Context, private val onHotspot: (String) -> Unit) : View(context) {
+    private val backgroundBitmap = BitmapFactory.decodeResource(resources, R.drawable.layover_background, BitmapFactory.Options().apply {
+        inScaled = false; inPreferredConfig = Bitmap.Config.ARGB_8888
+    })
     private val bgPaint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG or Paint.DITHER_FLAG)
-    private val snowPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE }
-    private val auroraPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE; strokeCap = Paint.Cap.ROUND }
-    private val firePaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val smokePaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val lightPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val lifePaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val tailPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE; strokeCap = Paint.Cap.ROUND }
-    private val bubbleFill = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.argb(205, 0, 19, 34) }
-    private val bubbleStroke = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.rgb(69, 225, 255); style = Paint.Style.STROKE; strokeWidth = 2f }
-    private val titlePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.rgb(100, 235, 255); textSize = 26f; typeface = Typeface.DEFAULT_BOLD }
-    private val subPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE; textSize = 18f }
+    private val snowPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE }
+    private val roadPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE; strokeCap = Paint.Cap.ROUND; color = Color.argb(120, 55, 62, 70) }
+    private val roadEdgePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE; strokeCap = Paint.Cap.ROUND; color = Color.argb(120, 210, 220, 225) }
+    private val labelFill = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.argb(205, 0, 19, 34) }
+    private val labelStroke = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.rgb(69, 225, 255); style = Paint.Style.STROKE; strokeWidth = 2f }
+    private val titlePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.rgb(100, 235, 255); textSize = 25f; typeface = Typeface.DEFAULT_BOLD }
+    private val subPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE; textSize = 17f }
     private val random = Random(27L)
-    private val flakes = List(145) { SnowFlake(random.nextFloat(), random.nextFloat(), 1.4f + random.nextFloat() * 5.0f, 0.045f + random.nextFloat() * 0.11f, random.nextFloat() * 8f) }
+    private val flakes = List(120) { SnowFlake(random.nextFloat(), random.nextFloat(), 1.4f + random.nextFloat() * 4.8f, 0.045f + random.nextFloat() * 0.10f, random.nextFloat() * 8f) }
+
+    // Future additions belong here as normalized world coordinates, not screen pixels.
+    private val roadMain = listOf(
+        WorldPt(0.49f, 0.78f), WorldPt(0.51f, 0.69f), WorldPt(0.54f, 0.61f),
+        WorldPt(0.58f, 0.55f), WorldPt(0.63f, 0.51f), WorldPt(0.69f, 0.50f),
+        WorldPt(0.74f, 0.53f), WorldPt(0.79f, 0.59f), WorldPt(0.82f, 0.68f)
+    )
+    private val auroraRoute = roadMain + roadMain.asReversed().drop(1)
+    private val hotspots = listOf(
+        Hotspot("eagle", "EAGLE", "NEWS / WEATHER", 0.90f, 0.10f),
+        Hotspot("tower", "TOWER", "CAMERA", 0.78f, 0.25f),
+        Hotspot("hq", "HQ", "SCHOOL / LIBRARY", 0.61f, 0.30f),
+        Hotspot("truck", "TRUCK", "TRUCK TOOLS", 0.33f, 0.44f),
+        Hotspot("cb", "CB", "SKIE • CH 27", 0.59f, 0.42f),
+        Hotspot("workshop", "WORKSHOP", "TOOLS / BUILD / FILES", 0.90f, 0.53f),
+        Hotspot("aurora", "AURORA", "INFO / CARE", 0.55f, 0.70f),
+        Hotspot("gate", "GATE", "SETTINGS / SECURITY", 0.78f, 0.72f),
+        Hotspot("lake", "LAKE", "MAPS / RECREATION", 0.10f, 0.40f),
+        Hotspot("animals", "ANIMALS", "FUN / INFO", 0.12f, 0.33f)
+    )
+
+    private var userScale = 1f
+    private var offsetX = 0f
+    private var offsetY = 0f
+    private var initialized = false
+    private var locked = false
+    private var lifeOn = true
+    private var snowOn = true
+    private var downX = 0f
+    private var downY = 0f
+    private var lastX = 0f
+    private var lastY = 0f
+    private var dragging = false
+    private var downTime = 0L
 
     private val scaleDetector = ScaleGestureDetector(context, object : ScaleGestureDetector.SimpleOnScaleGestureListener() {
         override fun onScale(detector: ScaleGestureDetector): Boolean {
             if (locked) return false
-            val before = userScale; userScale = (userScale * detector.scaleFactor).coerceIn(0.88f, 2.7f)
-            val ratio = userScale / before
-            offsetX = detector.focusX - (detector.focusX - offsetX) * ratio; offsetY = detector.focusY - (detector.focusY - offsetY) * ratio
-            clampOffsets(); invalidate(); return true
+            setScaleAround(userScale * detector.scaleFactor, detector.focusX, detector.focusY)
+            return true
         }
     })
 
-    private var userScale = 1f; private var offsetX = 0f; private var offsetY = 0f; private var initialized = false
-    private var downX = 0f; private var downY = 0f; private var lastX = 0f; private var lastY = 0f
-    private var dragging = false; private var downTime = 0L; private var snowOn = true; private var lifeOn = true; private var locked = false
+    fun resetView() { userScale = 1f; initialized = false; offsetX = 0f; offsetY = 0f; invalidate() }
+    fun toggleLife() { lifeOn = !lifeOn; invalidate() }
+    fun toggleLock() { locked = !locked; invalidate() }
+    fun zoomBy(factor: Float) { setScaleAround(userScale * factor, width / 2f, height / 2f) }
+
+    private fun setScaleAround(newScale: Float, focusX: Float, focusY: Float) {
+        if (width <= 0 || height <= 0 || locked) return
+        val old = userScale
+        userScale = newScale.coerceIn(0.78f, 3.6f)
+        val ratio = userScale / old
+        offsetX = focusX - (focusX - offsetX) * ratio
+        offsetY = focusY - (focusY - offsetY) * ratio
+        clampOffsets(); invalidate()
+    }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         if (width <= 0 || height <= 0) return
         drawBackground(canvas)
         val t = System.nanoTime() / 1_000_000_000f
+        drawRoads(canvas)
         if (lifeOn) {
-            drawAurora(canvas, t); drawSmoke(canvas, t); drawFire(canvas, t); drawPropertyLights(canvas, t)
-            drawPeople(canvas, t); drawAnimalMotion(canvas, t); drawHorseTails(canvas, t); drawAuroraRoute(canvas, t); drawEagleMotion(canvas, t)
+            drawAuroraSky(canvas, t)
+            drawSmoke(canvas, t)
+            drawFire(canvas, t)
+            drawPeople(canvas, t)
+            drawAnimalLife(canvas, t)
+            drawFlag(canvas, t)
+            drawAuroraDog(canvas, t)
+            drawEagle(canvas, t)
         }
         drawHotspotLabels(canvas)
         if (snowOn) drawSnow(canvas, t)
@@ -274,168 +344,183 @@ private class LivingYardV6View(context: Context, private val onHotspot: (String)
 
     private fun baseScale() = (height * 0.96f) / backgroundBitmap.height.toFloat()
     private fun totalScale() = baseScale() * userScale
+
     private fun drawBackground(canvas: Canvas) {
         val s = totalScale(); val dw = backgroundBitmap.width * s; val dh = backgroundBitmap.height * s
         if (!initialized) { offsetX = (width - dw) / 2f; offsetY = (height - dh) / 2f; initialized = true }
-        clampOffsets(); canvas.drawBitmap(backgroundBitmap, null, RectF(offsetX, offsetY, offsetX + dw, offsetY + dh), bgPaint)
+        clampOffsets()
+        canvas.drawBitmap(backgroundBitmap, null, RectF(offsetX, offsetY, offsetX + dw, offsetY + dh), bgPaint)
     }
+
     private fun clampOffsets() {
         if (width <= 0 || height <= 0) return
         val s = totalScale(); val dw = backgroundBitmap.width * s; val dh = backgroundBitmap.height * s
-        offsetX = offsetX.coerceIn(min(0f, width - dw), max(0f, width - dw)); offsetY = offsetY.coerceIn(min(0f, height - dh), max(0f, height - dh))
+        val marginX = width * 0.18f; val marginY = height * 0.18f
+        val minX = min(marginX, width - dw - marginX); val maxX = max(-marginX, width - dw + marginX)
+        val minY = min(marginY, height - dh - marginY); val maxY = max(-marginY, height - dh + marginY)
+        offsetX = offsetX.coerceIn(minX, maxX); offsetY = offsetY.coerceIn(minY, maxY)
     }
-    private fun worldPoint(nx: Float, ny: Float): PointF { val s = totalScale(); return PointF(offsetX + nx * backgroundBitmap.width * s, offsetY + ny * backgroundBitmap.height * s) }
 
-    private fun drawAurora(canvas: Canvas, t: Float) {
-        val colors = intArrayOf(Color.rgb(65, 255, 170), Color.rgb(70, 205, 255), Color.rgb(180, 75, 255), Color.rgb(80, 255, 205))
-        for (band in 0..3) {
-            auroraPaint.color = colors[band]; auroraPaint.strokeWidth = 38f + band * 10f
-            auroraPaint.alpha = (80 + 42 * sin(t * 0.65f + band * 0.9f)).toInt().coerceIn(45, 130)
-            val path = Path(); val p0 = worldPoint(-0.08f, 0.075f + band * 0.038f); path.moveTo(p0.x, p0.y)
-            for (i in 1..36) {
-                val nx = -0.08f + i / 31f
-                val wave = sin(nx * 9f + t * (0.78f + band * 0.05f)) + 0.55f * sin(nx * 18f - t * 0.43f)
-                val breathe = 1f + 0.26f * sin(t * 0.28f + band)
-                val p = worldPoint(nx, 0.075f + band * 0.038f + 0.035f * wave * breathe)
-                path.lineTo(p.x, p.y)
+    private fun worldPoint(nx: Float, ny: Float): PointF {
+        val s = totalScale(); return PointF(offsetX + nx * backgroundBitmap.width * s, offsetY + ny * backgroundBitmap.height * s)
+    }
+
+    private fun drawRoads(canvas: Canvas) {
+        val s = totalScale()
+        roadPaint.strokeWidth = 30f * s.coerceIn(0.6f, 2.0f)
+        roadEdgePaint.strokeWidth = 35f * s.coerceIn(0.6f, 2.0f)
+        val p = Path()
+        roadMain.forEachIndexed { i, pt -> val q = worldPoint(pt.x, pt.y); if (i == 0) p.moveTo(q.x, q.y) else p.lineTo(q.x, q.y) }
+        canvas.drawPath(p, roadEdgePaint); canvas.drawPath(p, roadPaint)
+    }
+
+    private fun drawAuroraSky(canvas: Canvas, t: Float) {
+        val colors = intArrayOf(Color.rgb(65,255,170), Color.rgb(70,205,255), Color.rgb(180,75,255))
+        for (band in 0..2) {
+            lifePaint.style = Paint.Style.STROKE; lifePaint.strokeCap = Paint.Cap.ROUND; lifePaint.strokeWidth = 18f + band * 4f
+            lifePaint.color = colors[band]; lifePaint.alpha = (68 + 28 * sin(t * 0.55f + band)).toInt().coerceIn(35, 100)
+            val path = Path()
+            for (i in 0..34) {
+                val nx = -0.06f + i / 30f
+                val ny = 0.055f + band * 0.022f + 0.014f * sin(nx * 9f + t * 0.7f + band)
+                val q = worldPoint(nx, ny); if (i == 0) path.moveTo(q.x, q.y) else path.lineTo(q.x, q.y)
             }
-            canvas.drawPath(path, auroraPaint)
+            canvas.drawPath(path, lifePaint)
+        }
+        lifePaint.alpha = 255; lifePaint.style = Paint.Style.FILL
+    }
+
+    private fun drawSmoke(canvas: Canvas, t: Float) {
+        val sources = listOf(WorldPt(0.33f,0.34f), WorldPt(0.585f,0.44f), WorldPt(0.925f,0.25f), WorldPt(0.71f,0.25f))
+        sources.forEachIndexed { si, src ->
+            val base = worldPoint(src.x, src.y)
+            for (i in 0..6) {
+                val phase = (t * (0.72f + si * 0.08f) + i * 0.22f) % 1.8f
+                lifePaint.color = Color.argb((72 * (1f - phase / 1.8f)).toInt().coerceIn(5,72), 235,240,246)
+                canvas.drawCircle(base.x + sin(t * 0.8f + i) * 15f, base.y - phase * 95f, 9f + i * 2f, lifePaint)
+            }
         }
     }
 
     private fun drawFire(canvas: Canvas, t: Float) {
-        val p = worldPoint(0.58f, 0.49f); val flicker = 1f + 0.18f * sin(t * 10f) + 0.09f * sin(t * 17f)
-        firePaint.shader = RadialGradient(p.x, p.y, 78f * flicker, intArrayOf(Color.argb(230, 255, 190, 70), Color.argb(120, 255, 80, 18), Color.TRANSPARENT), floatArrayOf(0f, 0.42f, 1f), Shader.TileMode.CLAMP)
-        canvas.drawCircle(p.x, p.y, 78f * flicker, firePaint); firePaint.shader = null
+        val q = worldPoint(0.58f, 0.49f)
+        val flicker = 1f + 0.14f * sin(t * 10f)
+        lifePaint.color = Color.argb(95,255,110,25); canvas.drawCircle(q.x,q.y,55f*flicker,lifePaint)
         repeat(3) { i ->
-            val sway = sin(t * (8f + i * 2.4f) + i) * (7f + i * 2f); val h = 25f + i * 8f + 8f * sin(t * (11f + i) + i)
-            firePaint.color = if (i == 2) Color.argb(225, 255, 230, 105) else Color.argb(220, 255, 95 + i * 35, 25)
-            canvas.drawOval(RectF(p.x - 8f + sway, p.y - h, p.x + 8f + sway, p.y + 8f), firePaint)
+            lifePaint.color = if (i == 2) Color.argb(230,255,230,105) else Color.argb(225,255,90+i*40,25)
+            val sway = sin(t*(8f+i*2f)+i)*7f
+            canvas.drawOval(RectF(q.x-7f+sway,q.y-(22f+i*7f)*flicker,q.x+7f+sway,q.y+7f), lifePaint)
         }
-    }
-
-    private fun drawSmoke(canvas: Canvas, t: Float) {
-        val sources = listOf(Triple(0.33f, 0.34f, 1.0f), Triple(0.585f, 0.44f, 0.78f), Triple(0.925f, 0.25f, 0.86f), Triple(0.71f, 0.25f, 0.74f))
-        for ((sx, sy, speed) in sources) {
-            val base = worldPoint(sx, sy)
-            for (i in 0..8) {
-                val phase = (t * speed + i * 0.22f) % 1.8f
-                smokePaint.color = Color.argb((78 * (1f - phase / 1.8f)).toInt().coerceIn(5, 78), 235, 240, 246)
-                canvas.drawCircle(base.x + sin(t * 0.85f + i) * 18f + phase * 10f, base.y - phase * 105f, 11f + i * 2.2f, smokePaint)
-            }
-        }
-    }
-
-    private fun drawPropertyLights(canvas: Canvas, t: Float) {
-        val lights = listOf(0.36f to 0.30f, 0.45f to 0.31f, 0.55f to 0.30f, 0.68f to 0.31f, 0.88f to 0.53f, 0.12f to 0.67f, 0.79f to 0.67f, 0.73f to 0.40f)
-        lights.forEachIndexed { i, v ->
-            val p = worldPoint(v.first, v.second); val pulse = 0.5f + 0.5f * sin(t * (1.8f + i * 0.1f) + i)
-            lightPaint.shader = RadialGradient(p.x, p.y, 20f + 11f * pulse, intArrayOf(Color.argb((115 + 115 * pulse).toInt(), 90, 235, 255), Color.TRANSPARENT), null, Shader.TileMode.CLAMP)
-            canvas.drawCircle(p.x, p.y, 31f, lightPaint)
-        }
-        lightPaint.shader = null
     }
 
     private fun drawPeople(canvas: Canvas, t: Float) {
-        val seats = listOf(0.51f to 0.49f, 0.54f to 0.515f, 0.62f to 0.505f, 0.65f to 0.48f)
-        seats.forEachIndexed { index, seat ->
-            val p = worldPoint(seat.first, seat.second); val bob = sin(t * 1.35f + index) * 4f; val lean = sin(t * 0.7f + index * 1.2f) * 4f
-            lifePaint.color = Color.argb(205, 25 + index * 14, 18, 17)
-            canvas.drawCircle(p.x + lean, p.y - 15f + bob, 7f, lifePaint)
-            canvas.drawRoundRect(RectF(p.x - 7f + lean, p.y - 8f + bob, p.x + 8f + lean, p.y + 15f + bob), 6f, 6f, lifePaint)
-            lifePaint.style = Paint.Style.STROKE; lifePaint.strokeWidth = 4f
-            canvas.drawLine(p.x + lean, p.y + bob, p.x + lean + 14f * sin(t * 1.1f + index), p.y + 8f + bob, lifePaint)
-            lifePaint.style = Paint.Style.FILL
+        val seats = listOf(WorldPt(0.51f,0.49f),WorldPt(0.54f,0.515f),WorldPt(0.62f,0.505f),WorldPt(0.65f,0.48f))
+        seats.forEachIndexed { i, s ->
+            val q = worldPoint(s.x,s.y); val bob = sin(t*1.2f+i)*2.3f
+            lifePaint.color = Color.argb(205,45+i*20,35,38)
+            canvas.drawCircle(q.x,q.y-14f+bob,6f,lifePaint)
+            canvas.drawRoundRect(RectF(q.x-6f,q.y-7f+bob,q.x+7f,q.y+14f+bob),5f,5f,lifePaint)
         }
     }
 
-    private fun drawAnimalMotion(canvas: Canvas, t: Float) {
-        val herd = listOf(Triple(0.11f, 0.34f, 0.24f), Triple(0.66f, 0.36f, 0.20f), Triple(0.72f, 0.37f, 0.18f), Triple(0.84f, 0.46f, 0.16f), Triple(0.73f, 0.60f, 0.19f))
-        herd.forEachIndexed { i, a ->
-            val p = worldPoint(a.first + 0.018f * sin(t * a.third + i), a.second + 0.006f * sin(t * 0.45f + i))
-            lifePaint.color = Color.argb(110, 0, 0, 0); canvas.drawOval(RectF(p.x - 18f, p.y + 8f, p.x + 18f, p.y + 15f), lifePaint)
-            lifePaint.color = Color.argb(140, 105, 210, 230); canvas.drawCircle(p.x + 17f * sin(t * 0.7f + i), p.y - 5f, 3.2f, lifePaint)
+    private fun drawAnimalLife(canvas: Canvas, t: Float) {
+        val animals = listOf(WorldPt(0.105f,0.34f),WorldPt(0.655f,0.365f),WorldPt(0.715f,0.372f),WorldPt(0.785f,0.366f),WorldPt(0.845f,0.458f))
+        animals.forEachIndexed { i, a ->
+            val q = worldPoint(a.x,a.y); val step = sin(t*(0.65f+i*0.05f)+i)
+            lifePaint.color = Color.argb(95,58,44,34)
+            canvas.drawCircle(q.x+step*7f,q.y-10f+abs(step)*2f,4.5f,lifePaint)
         }
     }
 
-    private fun drawHorseTails(canvas: Canvas, t: Float) {
-        val horses = listOf(0.70f to 0.365f, 0.755f to 0.37f, 0.80f to 0.365f)
-        horses.forEachIndexed { i, h ->
-            val hip = worldPoint(h.first, h.second)
-            val swish = sin(t * (2.0f + i * 0.2f) + i * 1.7f)
-            tailPaint.color = Color.argb(210, 45, 30, 22); tailPaint.strokeWidth = 6f
-            val path = Path(); path.moveTo(hip.x - 10f, hip.y)
-            path.cubicTo(hip.x - 20f, hip.y + 8f, hip.x - 24f + swish * 18f, hip.y + 22f, hip.x - 12f + swish * 28f, hip.y + 36f)
-            canvas.drawPath(path, tailPaint)
-            tailPaint.strokeWidth = 3f
-            canvas.drawLine(hip.x - 12f + swish * 28f, hip.y + 34f, hip.x - 7f + swish * 33f, hip.y + 40f, tailPaint)
+    private fun drawFlag(canvas: Canvas, t: Float) {
+        val top = worldPoint(0.365f,0.255f); val bottom = worldPoint(0.365f,0.335f)
+        lifePaint.style = Paint.Style.STROKE; lifePaint.strokeWidth = 3f; lifePaint.color = Color.argb(210,190,195,200)
+        canvas.drawLine(top.x,top.y,bottom.x,bottom.y,lifePaint)
+        repeat(7) { r ->
+            lifePaint.strokeWidth = 3.5f; lifePaint.color = if (r%2==0) Color.argb(235,190,35,48) else Color.argb(235,238,238,235)
+            val y = top.y+4f+r*3.5f; val wave = sin(t*3f+r*.35f)*3f
+            canvas.drawLine(top.x+2f,y,top.x+40f,y+wave,lifePaint)
         }
+        lifePaint.style = Paint.Style.FILL
     }
 
-    private fun drawAuroraRoute(canvas: Canvas, t: Float) {
-        val phase = (t * 0.065f) % 1f
-        val pts = arrayOf(0.55f to 0.70f, 0.55f to 0.62f, 0.54f to 0.55f, 0.50f to 0.50f, 0.56f to 0.47f, 0.64f to 0.49f, 0.61f to 0.55f, 0.57f to 0.62f, 0.55f to 0.70f)
-        val segF = phase * (pts.size - 1); val seg = min(pts.size - 2, segF.toInt()); val u = segF - seg
-        val x = pts[seg].first + (pts[seg + 1].first - pts[seg].first) * u; val y = pts[seg].second + (pts[seg + 1].second - pts[seg].second) * u; val p = worldPoint(x, y)
-        lifePaint.shader = RadialGradient(p.x, p.y, 30f, intArrayOf(Color.argb(150, 255, 85, 185), Color.TRANSPARENT), null, Shader.TileMode.CLAMP); canvas.drawCircle(p.x, p.y, 30f, lifePaint); lifePaint.shader = null
-        lifePaint.color = Color.argb(225, 255, 150, 210)
-        canvas.drawCircle(p.x - 7f, p.y, 4f, lifePaint); canvas.drawCircle(p.x + 7f, p.y, 4f, lifePaint); canvas.drawCircle(p.x, p.y - 7f, 4f, lifePaint); canvas.drawOval(RectF(p.x - 7f, p.y + 2f, p.x + 7f, p.y + 14f), lifePaint)
+    private fun pointOnRoute(route: List<WorldPt>, phase: Float): WorldPt {
+        if (route.size < 2) return route.firstOrNull() ?: WorldPt(.5f,.5f)
+        val scaled = phase.coerceIn(0f, .9999f) * (route.size - 1)
+        val i = min(route.size - 2, scaled.toInt()); val u = scaled - i
+        return WorldPt(route[i].x + (route[i+1].x-route[i].x)*u, route[i].y + (route[i+1].y-route[i].y)*u)
     }
 
-    private fun drawEagleMotion(canvas: Canvas, t: Float) {
-        val x = 0.83f + 0.10f * sin(t * 0.16f); val y = 0.10f + 0.025f * sin(t * 0.31f); val p = worldPoint(x, y)
-        lifePaint.color = Color.argb(170, 10, 12, 14); lifePaint.style = Paint.Style.STROKE; lifePaint.strokeWidth = 5f
-        val flap = 13f + 10f * sin(t * 4f)
-        canvas.drawLine(p.x, p.y, p.x - 25f, p.y - flap, lifePaint); canvas.drawLine(p.x, p.y, p.x + 25f, p.y - flap, lifePaint); lifePaint.style = Paint.Style.FILL
+    private fun drawAuroraDog(canvas: Canvas, t: Float) {
+        val phase = (t * 0.035f) % 1f
+        val a = pointOnRoute(auroraRoute, phase)
+        val q = worldPoint(a.x,a.y); val step = sin(t*8f)
+        lifePaint.color = Color.argb(95,0,0,0); canvas.drawOval(RectF(q.x-17f,q.y+13f,q.x+17f,q.y+20f),lifePaint)
+        lifePaint.color = Color.argb(240,38,33,30); canvas.drawOval(RectF(q.x-18f,q.y-7f,q.x+11f,q.y+11f),lifePaint); canvas.drawCircle(q.x+13f,q.y-8f,9f,lifePaint)
+        lifePaint.color = Color.argb(240,235,230,220); canvas.drawOval(RectF(q.x+12f,q.y-7f,q.x+21f,q.y+1f),lifePaint)
+        lifePaint.style = Paint.Style.STROKE; lifePaint.strokeCap = Paint.Cap.ROUND; lifePaint.strokeWidth = 4f; lifePaint.color = Color.argb(235,35,30,28)
+        canvas.drawLine(q.x-11f,q.y+8f,q.x-13f+5f*step,q.y+20f,lifePaint); canvas.drawLine(q.x+5f,q.y+7f,q.x+7f-5f*step,q.y+19f,lifePaint)
+        lifePaint.style = Paint.Style.FILL; lifePaint.color = Color.argb(245,255,92,170); canvas.drawRoundRect(RectF(q.x+4f,q.y-4f,q.x+14f,q.y+2f),3f,3f,lifePaint)
     }
 
-    private fun drawSnow(canvas: Canvas, t: Float) {
-        for (f in flakes) {
-            val y = ((f.y + t * f.speed + f.phase) % 1.10f) * height
-            val x = f.x * width + sin(t * 0.95f + f.phase * 5f) * (16f + f.radius * 3f)
-            snowPaint.alpha = (150 + min(105f, f.radius * 18f)).toInt().coerceIn(150, 255)
-            canvas.drawCircle(x, y, f.radius, snowPaint)
-        }
+    private fun drawEagle(canvas: Canvas, t: Float) {
+        val q = worldPoint(0.90f + 0.028f*sin(t*.22f), 0.10f + 0.014f*sin(t*.35f))
+        lifePaint.style = Paint.Style.STROKE; lifePaint.strokeWidth = 4f; lifePaint.color = Color.argb(160,35,30,25)
+        canvas.drawLine(q.x-14f,q.y,q.x,q.y-5f,lifePaint); canvas.drawLine(q.x,q.y-5f,q.x+14f,q.y,lifePaint); lifePaint.style = Paint.Style.FILL
     }
 
     private fun drawHotspotLabels(canvas: Canvas) {
-        HOTSPOTS.forEach { h ->
-            val p = worldPoint(h.cx, h.cy); val w = 150f; val hh = 58f; val r = RectF(p.x - w / 2f, p.y - hh / 2f, p.x + w / 2f, p.y + hh / 2f)
-            canvas.drawRoundRect(r, 14f, 14f, bubbleFill); canvas.drawRoundRect(r, 14f, 14f, bubbleStroke); canvas.drawCircle(r.left + 13f, r.centerY(), 7f, bubbleStroke)
-            canvas.drawText(h.title, r.left + 27f, r.top + 23f, titlePaint); canvas.drawText(h.subtitle, r.left + 27f, r.top + 46f, subPaint)
+        hotspots.forEach { h ->
+            val q = worldPoint(h.x,h.y)
+            val w = 150f; val rect = RectF(q.x-w/2,q.y-28f,q.x+w/2,q.y+24f)
+            canvas.drawRoundRect(rect,13f,13f,labelFill); canvas.drawRoundRect(rect,13f,13f,labelStroke)
+            titlePaint.textAlign = Paint.Align.CENTER; subPaint.textAlign = Paint.Align.CENTER
+            canvas.drawText(h.title,q.x,q.y-4f,titlePaint); canvas.drawText(h.subtitle,q.x,q.y+16f,subPaint)
         }
+    }
+
+    private fun drawSnow(canvas: Canvas, t: Float) {
+        flakes.forEach { f ->
+            val x = ((f.x + sin(t*.25f+f.phase)*.018f + 1f) % 1f) * width
+            val y = ((f.y + t*f.speed*.022f) % 1f) * height
+            snowPaint.alpha = 135; canvas.drawCircle(x,y,f.size,snowPaint)
+        }
+        snowPaint.alpha = 255
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         scaleDetector.onTouchEvent(event)
         when (event.actionMasked) {
-            MotionEvent.ACTION_DOWN -> { downX = event.x; downY = event.y; lastX = event.x; lastY = event.y; downTime = System.currentTimeMillis(); dragging = false; return true }
-            MotionEvent.ACTION_MOVE -> { if (!locked && !scaleDetector.isInProgress && event.pointerCount == 1) { val dx = event.x - lastX; val dy = event.y - lastY; if (abs(event.x - downX) > 12f || abs(event.y - downY) > 12f) dragging = true; offsetX += dx; offsetY += dy; lastX = event.x; lastY = event.y; clampOffsets(); invalidate() }; return true }
-            MotionEvent.ACTION_UP -> { if (!dragging && !scaleDetector.isInProgress && System.currentTimeMillis() - downTime < 500L) detectTap(event.x, event.y); return true }
+            MotionEvent.ACTION_DOWN -> {
+                downX=event.x; downY=event.y; lastX=event.x; lastY=event.y; downTime=System.currentTimeMillis(); dragging=false; return true
+            }
+            MotionEvent.ACTION_MOVE -> {
+                if (!locked && event.pointerCount==1 && !scaleDetector.isInProgress) {
+                    val dx=event.x-lastX; val dy=event.y-lastY
+                    if (abs(event.x-downX)>10f || abs(event.y-downY)>10f) dragging=true
+                    offsetX+=dx; offsetY+=dy; clampOffsets(); invalidate()
+                }
+                lastX=event.x; lastY=event.y; return true
+            }
+            MotionEvent.ACTION_UP -> {
+                if (!dragging && System.currentTimeMillis()-downTime<450) hitTest(event.x,event.y)
+                return true
+            }
+            MotionEvent.ACTION_CANCEL -> return true
         }
         return true
     }
 
-    private fun detectTap(screenX: Float, screenY: Float) {
-        val s = totalScale(); val nx = (screenX - offsetX) / (backgroundBitmap.width * s); val ny = (screenY - offsetY) / (backgroundBitmap.height * s)
-        HOTSPOTS.firstOrNull { abs(nx - it.cx) <= it.hitW && abs(ny - it.cy) <= it.hitH }?.let { onHotspot(it.id) }
+    private fun hitTest(x: Float, y: Float) {
+        var best: Hotspot? = null; var bestD = Float.MAX_VALUE
+        hotspots.forEach { h ->
+            val q=worldPoint(h.x,h.y); val dx=x-q.x; val dy=y-q.y; val d=dx*dx+dy*dy
+            if (d<bestD) { bestD=d; best=h }
+        }
+        if (bestD < 95f*95f) best?.let { onHotspot(it.id) }
     }
 
-    fun resetView() { userScale = 1f; initialized = false; invalidate() }
-    fun toggleSnow() { snowOn = !snowOn; Toast.makeText(context, if (snowOn) "Snow on" else "Snow off", Toast.LENGTH_SHORT).show(); invalidate() }
-    fun toggleLife() { lifeOn = !lifeOn; Toast.makeText(context, if (lifeOn) "Living effects on" else "Living effects off", Toast.LENGTH_SHORT).show(); invalidate() }
-    fun toggleLock() { locked = !locked; Toast.makeText(context, if (locked) "Layover locked" else "Layover unlocked", Toast.LENGTH_SHORT).show() }
-
-    private data class SnowFlake(val x: Float, val y: Float, val radius: Float, val speed: Float, val phase: Float)
-    private data class Hotspot(val id: String, val title: String, val subtitle: String, val cx: Float, val cy: Float, val hitW: Float = 0.075f, val hitH: Float = 0.055f)
-
-    companion object {
-        private val HOTSPOTS = listOf(
-            Hotspot("eagle", "Eagle", "News / Weather", 0.90f, 0.10f), Hotspot("tower", "Tower", "Camera", 0.78f, 0.25f),
-            Hotspot("lake", "Lake", "Maps / Recreation", 0.10f, 0.40f), Hotspot("animals", "Animals", "Fun / Info", 0.12f, 0.33f),
-            Hotspot("hq", "HQ Building", "School / Library", 0.61f, 0.30f, 0.09f, 0.065f), Hotspot("truck", "Truck", "Truck Tools", 0.33f, 0.44f, 0.11f, 0.075f),
-            Hotspot("cb", "CB Radio", "SKIE • CH 27", 0.59f, 0.42f), Hotspot("workshop", "Workshop", "Tools / Build / Files", 0.90f, 0.53f, 0.09f, 0.07f),
-            Hotspot("aurora", "Aurora", "Info / Care", 0.55f, 0.70f), Hotspot("gate", "Gate", "Settings / Security", 0.78f, 0.72f)
-        )
-    }
+    private data class WorldPt(val x: Float,val y: Float)
+    private data class Hotspot(val id:String,val title:String,val subtitle:String,val x:Float,val y:Float)
+    private data class SnowFlake(val x:Float,val y:Float,val size:Float,val speed:Float,val phase:Float)
 }
