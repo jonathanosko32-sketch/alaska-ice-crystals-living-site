@@ -1,7 +1,7 @@
 name: Build OSKO Living Launcher Phone Fix
 on:
   push:
-    branches: ["launcher-usability-fix", "layover-scene-test", "layover-living-ui-test", "layover-living-motion-v5", "layover-living-motion-v6-final-source", "layover-living-animals-v7-test", "layover-living-life-v8-test", "layover-living-motion-v9-test", "layover-school-library-v10-test", "layover-skie-cb-v11-test"]
+    branches: ["launcher-usability-fix", "layover-scene-test", "layover-living-ui-test", "layover-living-motion-v5", "layover-living-motion-v6-final-source", "layover-living-animals-v7-test", "layover-living-life-v8-test", "layover-living-motion-v9-test", "layover-school-library-v10-test", "layover-skie-cb-v11-test", "v11-coded-duplicate"]
     paths:
       - "android-launcher-phonefix/**"
       - ".github/workflows/build-osko-phonefix.yml"
