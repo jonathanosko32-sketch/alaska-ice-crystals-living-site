@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SKIE CB CH 27 — PTT Test</title>
+<style>
+  :root{color-scheme:dark;font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+  *{box-sizing:border-box}
+  body{margin:0;background:#071019;color:#e9f7ff;min-height:100vh;display:grid;place-items:center;padding:18px}
+  .radio{width:min(100%,430px);background:#0c1822;border:1px solid #284353;border-radius:22px;padding:18px}
+  .brand{text-align:center;font-size:.82rem;letter-spacing:.14em;color:#9fd9ef}
+  h1{text-align:center;font-size:1.35rem;margin:.35rem 0 1rem}
+  .display{border:2px solid #2c4e5b;border-radius:16px;padding:16px;text-align:center;background:#06100d;transition:.16s}
+  .channel{font:700 3.6rem/1 ui-monospace,SFMono-Regular,monospace;color:#4cff9a;text-shadow:0 0 12px currentColor;transition:.16s}
+  .display.tx .channel{color:#ff795f}.display.rx .channel{color:#6ee8ff}.display.error .channel{color:#ffca66}
+  .lamps{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+  .lamp{border:1px solid #37515d;border-radius:12px;padding:11px;text-align:center;font-weight:800;opacity:.45;transition:.14s}
+  .lamp.on{opacity:1;box-shadow:inset 0 0 18px rgba(255,255,255,.08)}
+  #rx.on{color:#6ee8ff;border-color:#6ee8ff} #tx.on{color:#ff795f;border-color:#ff795f}
+  #status{min-height:3em;text-align:center;color:#c7d9e2;margin:10px 0 14px}
+  button{width:100%;min-height:52px;border:1px solid #45616f;border-radius:14px;background:#132634;color:#eefaff;font-weight:800;font-size:1rem;margin:5px 0;touch-action:manipulation}
+  button:disabled{opacity:.45}
+  #ptt{min-height:88px;font-size:1.12rem;background:#19303a}
+  #ptt.active{background:#4a1f18;border-color:#ff795f}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .note{font-size:.78rem;color:#8ea8b4;text-align:center;margin-top:10px}
+</style>
+</head>
+<body>
+<main class="radio">
+  <div class="brand">ALASKA ICE CRYSTALS</div>
+  <h1>SKIE CB RADIO</h1>
+  <section id="display" class="display" aria-live="polite">
+    <div class="channel">CH 27</div>
+  </section>
+  <div class="lamps"><div id="rx" class="lamp">RX • READY</div><div id="tx" class="lamp">TX</div></div>
+  <div id="status" role="status">Disconnected. Tap CONNECT SKIE.</div>
+  <button id="ptt" type="button" disabled>🎙 HOLD TO TALK TO SKIE</button>
+  <div class="row"><button id="connect" type="button">CONNECT SKIE</button><button id="disconnect" type="button" disabled>DISCONNECT</button></div>
+  <div class="note">SAFE PTT TEST • CH 27 • V11 BASELINE UNCHANGED</div>
+  <audio id="remoteAudio" autoplay></audio>
+</main>
+<script>
+(() => {
+  'use strict';
+  const SESSION_ENDPOINT='https://alaska-ice-crystals-living-site.vercel.app/api/skie-session-ptt';
+  const OPENAI_CALLS='https://api.openai.com/v1/realtime/calls';
+  const $=id=>document.getElementById(id);
+  const display=$('display'),rx=$('rx'),tx=$('tx'),statusEl=$('status'),ptt=$('ptt'),connectBtn=$('connect'),disconnectBtn=$('disconnect'),audio=$('remoteAudio');
+  let pc=null,dc=null,stream=null,track=null,connected=false,pressing=false,responseActive=false;
+
+  function setState(state,message){
+    display.classList.remove('tx','rx','error'); rx.classList.remove('on'); tx.classList.remove('on'); ptt.classList.remove('active');
+    if(state==='tx'){display.classList.add('tx');tx.classList.add('on');ptt.classList.add('active')}
+    else if(state==='rx'){display.classList.add('rx');rx.classList.add('on')}
+    else if(state==='ready'){rx.classList.add('on')}
+    else if(state==='error'){display.classList.add('error')}
+    if(message)statusEl.textContent=message;
+  }
+  function send(type,extra={}){if(dc?.readyState==='open')dc.send(JSON.stringify({type,...extra}))}
+  function cleanup(message='Radio disconnected.'){
+    pressing=false;responseActive=false;connected=false;
+    try{track&&(track.enabled=false);stream?.getTracks().forEach(t=>t.stop());dc?.close();pc?.close()}catch(_){}
+    pc=dc=stream=track=null;audio.srcObject=null;
+    connectBtn.disabled=false;connectBtn.textContent='CONNECT SKIE';disconnectBtn.disabled=true;ptt.disabled=true;
+    setState('idle',message);
+  }
+  async function getSecret(){
+    const r=await fetch(SESSION_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({purpose:'osko-skie-cb-ptt'})});
+    const raw=await r.text(); let data={}; try{data=JSON.parse(raw)}catch(_){}
+    if(!r.ok)throw new Error(data.error||`Secure SKIE server returned ${r.status}`);
+    const secret=data.value||data.client_secret?.value||data.client_secret||data.secret||data.token;
+    if(!secret)throw new Error('Secure server did not return a Realtime client secret.');
+    return secret;
+  }
+  function handleEvent(event){
+    const t=event?.type||'';
+    if(t==='error'){
+      responseActive=false;setState('error','Radio error: '+(event.error?.message||'unknown error'));return;
+    }
+    if(t==='response.created'){responseActive=true;setState('rx','SKIE is answering on Channel 27…');}
+    if(t.includes('response.output_audio')||t.includes('response.audio')){responseActive=true;setState('rx','Receiving SKIE • CH 27');}
+    if(t==='response.done'){
+      responseActive=false;
+      if(!pressing)setState('ready','SKIE ready • CH 27 • Hold the mic to talk.');
+    }
+  }
+  async function connectSkie(){
+    if(connected||connectBtn.disabled)return;
+    connectBtn.disabled=true;connectBtn.textContent='CONNECTING…';setState('idle','Connecting secure SKIE session…');
+    try{
+      const secret=await getSecret();
+      pc=new RTCPeerConnection();
+      pc.ontrack=e=>{audio.srcObject=e.streams[0];audio.play().catch(()=>{})};
+      pc.onconnectionstatechange=()=>{if(pc&&['failed','disconnected','closed'].includes(pc.connectionState)&&connected)cleanup('SKIE connection lost.')};
+      stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}});
+      track=stream.getAudioTracks()[0];track.enabled=false;pc.addTrack(track,stream);
+      dc=pc.createDataChannel('oai-events');
+      dc.onmessage=e=>{try{handleEvent(JSON.parse(e.data))}catch(_){}};
+      const dcOpen=new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(new Error('SKIE event channel timed out.')),12000);dc.onopen=()=>{clearTimeout(timer);resolve()};dc.onerror=()=>{clearTimeout(timer);reject(new Error('SKIE event channel failed.'))}});
+      const offer=await pc.createOffer();await pc.setLocalDescription(offer);
+      const r=await fetch(OPENAI_CALLS,{method:'POST',headers:{Authorization:'Bearer '+secret,'Content-Type':'application/sdp'},body:offer.sdp});
+      const answer=await r.text();if(!r.ok)throw new Error('Realtime connection returned '+r.status+': '+answer.slice(0,180));
+      await pc.setRemoteDescription({type:'answer',sdp:answer});await dcOpen;
+      connected=true;connectBtn.textContent='SKIE CONNECTED';disconnectBtn.disabled=false;ptt.disabled=false;
+      setState('ready','SKIE connected • CH 27 • Hold the mic to talk.');
+    }catch(err){cleanup(err?.message||String(err));setState('error',err?.message||String(err));}
+  }
+  function startTalk(e){
+    if(!connected||!track||pressing)return;
+    e?.preventDefault();pressing=true;
+    if(responseActive){send('response.cancel');send('output_audio_buffer.clear');responseActive=false;}
+    send('input_audio_buffer.clear');track.enabled=true;
+    setState('tx','TRANSMITTING • CH 27');
+    try{ptt.setPointerCapture?.(e.pointerId)}catch(_){}
+  }
+  function stopTalk(e){
+    if(!pressing)return;
+    e?.preventDefault();pressing=false;if(track)track.enabled=false;
+    send('input_audio_buffer.commit');send('response.create');
+    setState('idle','Transmission sent • waiting for SKIE…');
+  }
+  ptt.addEventListener('pointerdown',startTalk);
+  ptt.addEventListener('pointerup',stopTalk);
+  ptt.addEventListener('pointercancel',stopTalk);
+  connectBtn.addEventListener('click',connectSkie);
+  disconnectBtn.addEventListener('click',()=>cleanup());
+  window.addEventListener('pagehide',()=>cleanup(''));
+})();
+</script>
+</body>
+</html>
