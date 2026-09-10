@@ -13,7 +13,8 @@
     <application android:theme="@style/AppTheme" android:label="OSKO Living Launcher HOME" android:allowBackup="true">
         <activity android:name=".SkieCbActivity" android:exported="false" android:screenOrientation="portrait" />
         <activity android:name=".LayoverSceneTestActivity" android:exported="false" android:screenOrientation="portrait" android:label="OSKO Layover v4" />
-        <activity android:name=".LayoverLivingV5Activity" android:exported="true" android:screenOrientation="portrait" android:label="OSKO Living Layover v5">
+        <activity android:name=".LayoverLivingV5Activity" android:exported="false" android:screenOrientation="portrait" android:label="OSKO Living Layover v5" />
+        <activity android:name=".LayoverLivingV6Activity" android:exported="true" android:screenOrientation="portrait" android:label="OSKO Living Layover v6">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
