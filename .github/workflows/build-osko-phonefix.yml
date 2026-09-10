@@ -1,7 +1,7 @@
 name: Build OSKO Living Launcher Phone Fix
 on:
   push:
-    branches: ["launcher-usability-fix", "layover-scene-test", "layover-living-ui-test", "layover-living-motion-v5", "layover-living-motion-v6-final-source", "layover-living-animals-v7-test", "layover-living-life-v8-test", "layover-living-motion-v9-test"]
+    branches: ["launcher-usability-fix", "layover-scene-test", "layover-living-ui-test", "layover-living-motion-v5", "layover-living-motion-v6-final-source", "layover-living-animals-v7-test", "layover-living-life-v8-test", "layover-living-motion-v9-test", "layover-school-library-v10-test"]
     paths:
       - "android-launcher-phonefix/**"
       - ".github/workflows/build-osko-phonefix.yml"
@@ -20,17 +20,21 @@ jobs:
         with:
           gradle-version: '8.7'
       - name: Apply v7 animal and app yard patch
-        if: github.ref_name == 'layover-living-animals-v7-test' || github.ref_name == 'layover-living-life-v8-test' || github.ref_name == 'layover-living-motion-v9-test'
+        if: github.ref_name == 'layover-living-animals-v7-test' || github.ref_name == 'layover-living-life-v8-test' || github.ref_name == 'layover-living-motion-v9-test' || github.ref_name == 'layover-school-library-v10-test'
         working-directory: android-launcher-phonefix
         run: python apply_v7_animals_apps_patch.py
       - name: Apply v8 life patch
-        if: github.ref_name == 'layover-living-life-v8-test' || github.ref_name == 'layover-living-motion-v9-test'
+        if: github.ref_name == 'layover-living-life-v8-test' || github.ref_name == 'layover-living-motion-v9-test' || github.ref_name == 'layover-school-library-v10-test'
         working-directory: android-launcher-phonefix
         run: python apply_v8_life_patch.py
       - name: Apply v9 living motion patch
-        if: github.ref_name == 'layover-living-motion-v9-test'
+        if: github.ref_name == 'layover-living-motion-v9-test' || github.ref_name == 'layover-school-library-v10-test'
         working-directory: android-launcher-phonefix
         run: python apply_v9_living_motion_patch.py
+      - name: Apply v10 school library connection patch
+        if: github.ref_name == 'layover-school-library-v10-test'
+        working-directory: android-launcher-phonefix
+        run: python apply_v10_school_library_patch.py
       - name: Build APK
         working-directory: android-launcher-phonefix
         run: gradle assembleDebug --stacktrace
