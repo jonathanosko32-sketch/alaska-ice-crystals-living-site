@@ -6,8 +6,8 @@ android {
         applicationId = "com.osko.launcher.home"
         minSdk = 26
         targetSdk = 35
-        versionCode = 105
-        versionName = "2.5.0-living-layover-v6"
+        versionCode = 106
+        versionName = "2.6.0-living-layover-v7"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
