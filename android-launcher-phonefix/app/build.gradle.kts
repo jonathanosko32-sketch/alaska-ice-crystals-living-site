@@ -3,11 +3,11 @@ android {
     namespace = "com.osko.launcher"
     compileSdk = 35
     defaultConfig {
-        applicationId = "com.osko.launcher.home"
+        applicationId = "com.osko.launcher.home.codedduplicate"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1011
-        versionName = "3.0.0-living-layover-v11-skie-cb"
+        versionCode = 1200
+        versionName = "12.0.0-coded-duplicate-master-test"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
