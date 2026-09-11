@@ -34,15 +34,19 @@ replacements = [
     ),
     (
         '    private fun baseScale() = (height * 0.96f) / backgroundBitmap.height.toFloat()\n',
-        '''    private fun baseScale(): Float {\n        if (width <= 0 || height <= 0) return 1f\n        val density = resources.displayMetrics.density\n        val safeTop = 78f * density\n        val safeBottom = 92f * density\n        val usableHeight = (height - safeTop - safeBottom).coerceAtLeast(height * 0.55f)\n        val fitWidth = (width * 0.96f) / backgroundBitmap.width.toFloat()\n        val fitHeight = usableHeight / backgroundBitmap.height.toFloat()\n        // Start larger than whole-world fit, but do not force the tiny source image\n        // into the extreme full-height enlargement that caused the blocky screenshot.\n        return min(fitHeight, fitWidth * 1.42f)\n    }\n'''
+        '''    private fun baseScale(): Float {\n        if (width <= 0 || height <= 0) return 1f\n        val density = resources.displayMetrics.density\n        val safeTop = 78f * density\n        val safeBottom = 92f * density\n        val usableHeight = (height - safeTop - safeBottom).coerceAtLeast(height * 0.55f)\n        // First camera rule: the world is exactly fitted top-to-bottom on Android.\n        // Its extra width remains off-screen and is explored by moving left/right.\n        return usableHeight / backgroundBitmap.height.toFloat()\n    }\n'''
     ),
     (
         '        if (!initialized) { offsetX = (width - dw) / 2f; offsetY = (height - dh) / 2f; initialized = true }',
-        '''        if (!initialized) {\n            val density = resources.displayMetrics.density\n            val safeTop = 78f * density\n            val safeBottom = 92f * density\n            val usableHeight = (height - safeTop - safeBottom).coerceAtLeast(height * 0.55f)\n            offsetX = (width - dw) / 2f\n            offsetY = safeTop + (usableHeight - dh) / 2f\n            initialized = true\n        }'''
+        '''        if (!initialized) {\n            val density = resources.displayMetrics.density\n            val safeTop = 78f * density\n            offsetX = (width - dw) / 2f\n            offsetY = safeTop\n            initialized = true\n        }'''
     ),
     (
         '        userScale = newScale.coerceIn(0.78f, 3.6f)',
-        '''        // Keep V11-style freedom to resize and pan, but stop the two unusable\n        // extremes seen on Android: postage-stamp world and highly pixelated blow-up.\n        userScale = newScale.coerceIn(0.72f, 2.05f)'''
+        '''        // Keep the first approved camera size fixed while this layout is tuned.\n        // The world stays top-to-bottom; navigation is horizontal left/right.\n        userScale = 1f'''
+    ),
+    (
+        '            offsetX += dx; offsetY += dy; clampOffset()',
+        '            offsetX += dx; clampOffset()'
     ),
     (
         '    private val auroraRoute = roadMain + roadMain.asReversed().drop(1)',
@@ -63,11 +67,11 @@ for old, new in replacements:
         raise SystemExit(f"Expected source text not found:\n{old}")
     s = s.replace(old, new, 1)
 
-# Keep route data for Aurora movement, but hide the temporary gray coded road.
-# The approved background road remains visible; Aurora follows the shared route data.
-# Limit animation to ~30 FPS and reduce snow load so Samsung/Android stays responsive.
-# The bundled background is only 7.5 KB, so code deliberately caps zoom rather than
-# pretending that extreme enlargement can add image detail that is not in the source.
+# First approved Android camera target: exact vertical fit with no top/bottom dead block.
+# Keep the world at that size and let the user slide horizontally across the wide scene.
+# Aurora remains enlarged and follows the cattle-guard road route.
+# Temporary coded road stays hidden; the approved background road remains visible.
+# Animation remains capped near 30 FPS for Samsung/Android stability.
 
 p.write_text(s, encoding="utf-8")
-print("Applied coded duplicate Android clarity-safe zoom, stability and Aurora fix")
+print("Applied coded duplicate top-to-bottom Android fit with horizontal world pan")
