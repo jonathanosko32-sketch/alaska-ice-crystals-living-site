@@ -1,0 +1,40 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>OSKO Phone Voice Response Harness v4</title><style>body{font-family:system-ui;background:#07131d;color:#e9f7ff;margin:0;padding:18px}.card{background:#0f2533;border:1px solid #2f5b72;border-radius:16px;padding:16px;margin:12px 0}.pass{color:#8dffb0}.fail{color:#ff9d9d}button{font-size:18px;padding:12px 16px;border-radius:12px;border:0;margin:6px}.small{opacity:.8;font-size:14px}pre{white-space:pre-wrap;word-break:break-word}</style></head><body><h2>OSKO • PHONE VOICE RESPONSE TEST v4</h2><div class="card"><b>Purpose:</b> prove the software voice loop: phone audio contract → Hey SKIE → phone runtime → SKIE response queue → future TTS contract.</div><div id="results" class="card">Running tests…</div><div class="card"><button id="run">RUN AGAIN</button><pre id="log"></pre></div>
+<script src="modules/osko-event-bus-v1.js"></script>
+<script src="modules/osko-android-host-core-v1.js"></script>
+<script src="modules/osko-wake-session-core-v1.js"></script>
+<script src="modules/osko-phone-runtime-core-v1.js"></script>
+<script src="modules/osko-phone-audio-contract-v1.js"></script>
+<script src="modules/osko-skie-response-core-v1.js"></script>
+<script src="modules/osko-phone-voice-loop-v1.js"></script>
+<script>
+(function(){'use strict';
+const out=document.getElementById('results'),log=document.getElementById('log');
+function run(){const rows=[];function t(name,ok,detail){rows.push({name,ok,detail});}
+try{
+ const bus=OSKOEventBus.create();
+ const host=OSKOAndroidHost.create({eventBus:bus});
+ host.connect({androidVersion:'16-test',capabilities:['network','storage','audio','microphone','camera']});
+ const wake=OSKOWakeSession.create({eventBus:bus,wakePhrases:['hey skie']});
+ const voiceStub={execute:function(text){ if(/motor|disable safety/i.test(text))return {ok:false,error:'PROTECTED_OR_PHYSICAL_ACTION'}; return {ok:true,intent:/robot four/i.test(text)?{kind:'robot',robotId:'robot-4',action:'inspect'}:{type:'navigation',target:'school'}}; }};
+ const runtime=OSKOPhoneRuntime.create({androidHost:host,wakeSession:wake,voiceBridge:voiceStub,eventBus:bus});
+ runtime.connectHost({androidVersion:'16-test',capabilities:['network','storage','audio','microphone','camera']});runtime.armVoice(true);
+ let responseCore=null;
+ const audio=OSKOPhoneAudioContract.create({eventBus:bus,onTranscript:function(text){return loop.handleTranscript(text,{actor:'owner',local:true});},onSpeechComplete:function(s){if(responseCore)responseCore.complete(s&&s.responseId);}});
+ audio.connect({micPermission:'granted',sttAvailable:true,ttsAvailable:true});
+ responseCore=OSKOSKIEResponseCore.create({eventBus:bus,audio:audio});
+ const loop=OSKOPhoneVoiceLoop.create({phoneRuntime:runtime,responses:responseCore,audio:audio,eventBus:bus});
+ t('Android host ready',host.readiness().ready===true,host.readiness());
+ t('Microphone permission contract',audio.startListening().ok===true,audio.status());
+ const r1=audio.pushTranscript('hey skie take me to school');t('Hey SKIE property command accepted',r1.ok===true&&r1.result&&r1.result.ok===true,r1);
+ t('SKIE queued/spoke response',audio.status().speaking===true&&/done/i.test(audio.status().lastSpeech&&audio.status().lastSpeech.text||''),audio.status().lastSpeech);
+ const id=audio.status().lastSpeech&&audio.status().lastSpeech.responseId;audio.completeSpeech(id);
+ t('Speech completion clears queue speaker',responseCore.status().speaking===null,responseCore.status());
+ const r2=audio.pushTranscript('hey skie robot four inspect truck');t('Named Robot Four voice request',r2.ok===true&&/Robot 4 inspect request accepted/i.test(audio.status().lastSpeech&&audio.status().lastSpeech.text||''),r2);
+ audio.completeSpeech(audio.status().lastSpeech&&audio.status().lastSpeech.responseId);
+ const r3=audio.pushTranscript('hey skie control motor');t('Protected physical voice request blocked',r3.ok===true&&r3.result&&r3.result.ok===false&&/could not do that/i.test(audio.status().lastSpeech&&audio.status().lastSpeech.text||''),r3);
+ audio.completeSpeech(audio.status().lastSpeech&&audio.status().lastSpeech.responseId);
+ runtime.disconnectHost('test-offline');const r4=loop.handleTranscript('hey skie take me home');t('Offline host refuses command',r4.ok===false,r4);
+ }catch(e){t('Harness exception',false,String(e&&e.stack||e));}
+ const passed=rows.filter(x=>x.ok).length;out.innerHTML='<b>'+passed+' / '+rows.length+' PASS</b><br>'+rows.map(x=>'<div class="'+(x.ok?'pass':'fail')+'">'+(x.ok?'PASS ':'FAIL ')+x.name+'</div>').join('');log.textContent=rows.map(x=>x.name+'\n'+JSON.stringify(x.detail,null,2)).join('\n\n');}
+document.getElementById('run').onclick=run;run();})();
+</script></body></html>
