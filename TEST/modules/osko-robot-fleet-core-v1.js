@@ -19,6 +19,14 @@ function create(opts){
   function clone(v){ return JSON.parse(JSON.stringify(v)); }
   function log(kind,data){ const r=Object.assign({time:now(),kind},data||{}); history.push(r); if(history.length>200)history.shift(); emit('robot:'+kind,r); return r; }
   function validPercent(v){ return v==null?null:Math.max(0,Math.min(100,Number(v)||0)); }
+  function checkPermission(actor,capability,context){
+    if(!permission) return {allowed:true,reason:'NO_PERMISSION_CORE'};
+    try{
+      if(typeof permission.evaluate==='function') return permission.evaluate(actor,capability,context||{});
+      if(typeof permission.require==='function'){ permission.require(actor,capability,context||{}); return {allowed:true,reason:'REQUIRED'}; }
+    }catch(err){ return {allowed:false,reason:String(err&&err.code||err&&err.message||err)}; }
+    return {allowed:false,reason:'PERMISSION_METHOD_UNAVAILABLE'};
+  }
 
   function register(def){
     if(!def||!def.id) throw new Error('robot id required');
@@ -82,32 +90,37 @@ function create(opts){
   function setMode(id,mode,context){
     const r=robots.get(String(id)); if(!r) return {ok:false,error:'UNKNOWN_ROBOT'};
     const next=String(mode||'idle');
-    if(permission&&typeof permission.check==='function'){
-      const decision=permission.check({actor:(context&&context.actor)||'skie',action:'robot.mode.set',resource:r.id,mode:next},context||{});
-      if(decision&&decision.allowed===false) return {ok:false,error:'PERMISSION_DENIED',decision};
-    }
+    const actor=(context&&context.actor)||'skie';
+    const decision=checkPermission(actor,'robot.mode.set',context||{});
+    if(decision.allowed===false) return {ok:false,error:'PERMISSION_DENIED',decision};
     if(!r.localSafety) return {ok:false,error:'LOCAL_SAFETY_UNAVAILABLE'};
     r.mode=next;
-    log('mode',{id:r.id,mode:next});
+    log('mode',{id:r.id,mode:next,actor});
     return {ok:true,robot:snapshot(r.id)};
   }
 
-  function assignJob(id,job){
+  function assignJob(id,job,context){
     const r=robots.get(String(id)); if(!r) return {ok:false,error:'UNKNOWN_ROBOT'};
+    const actor=(context&&context.actor)||'skie';
+    const decision=checkPermission(actor,'robot.job.assign',context||{});
+    if(decision.allowed===false) return {ok:false,error:'PERMISSION_DENIED',decision};
     if(!r.ready) return {ok:false,error:'ROBOT_NOT_READY',robot:snapshot(r.id)};
     if(r.currentJob) return {ok:false,error:'ROBOT_BUSY',job:r.currentJob};
     r.currentJob=clone(job||{});
     r.mode='working';
-    log('job-assigned',{id:r.id,job:r.currentJob});
+    log('job-assigned',{id:r.id,job:r.currentJob,actor});
     return {ok:true,robot:snapshot(r.id)};
   }
 
-  function completeJob(id,result){
+  function completeJob(id,result,context){
     const r=robots.get(String(id)); if(!r) return {ok:false,error:'UNKNOWN_ROBOT'};
+    const actor=(context&&context.actor)||'skie';
+    const decision=checkPermission(actor,'robot.job.complete',context||{});
+    if(decision.allowed===false) return {ok:false,error:'PERMISSION_DENIED',decision};
     const job=r.currentJob;
     r.currentJob=null;
     r.mode=r.docked?'docked':'idle';
-    log('job-complete',{id:r.id,job,result:result||null});
+    log('job-complete',{id:r.id,job,result:result||null,actor});
     return {ok:true,robot:snapshot(r.id)};
   }
 
