@@ -19,20 +19,14 @@ function create(opts){
   function fail(message,data){ const x={time:Date.now(),message:String(message),data:data||null}; state.errors.push(x); if(state.errors.length>100)state.errors.shift(); emit('integration:error',x); return x; }
   function resolve(id){
     if(!manifest) return id;
-    try{
-      if(typeof manifest.resolve==='function') return manifest.resolve(id)||id;
-      return id;
-    }catch(err){ warn('manifest resolve failed',{id,error:String(err&&err.message||err)}); return id; }
+    try{ if(typeof manifest.resolve==='function') return manifest.resolve(id)||id; return id; }
+    catch(err){ warn('manifest resolve failed',{id,error:String(err&&err.message||err)}); return id; }
   }
   function bind(id,visual,config){
     const logicalId=resolve(id);
     if(!sceneBinding||typeof sceneBinding.bind!=='function') return {ok:false,error:'SCENE_BINDING_UNAVAILABLE',id:logicalId};
-    try{
-      sceneBinding.bind(logicalId,visual,config||{});
-      if(!state.bound.includes(logicalId)) state.bound.push(logicalId);
-      emit('integration:bound',{id:logicalId});
-      return {ok:true,id:logicalId};
-    }catch(err){ return {ok:false,error:fail('scene bind failed',{id:logicalId,error:String(err&&err.message||err)}).message}; }
+    try{ sceneBinding.bind(logicalId,visual,config||{}); if(!state.bound.includes(logicalId)) state.bound.push(logicalId); emit('integration:bound',{id:logicalId}); return {ok:true,id:logicalId}; }
+    catch(err){ return {ok:false,error:fail('scene bind failed',{id:logicalId,error:String(err&&err.message||err)}).message}; }
   }
   function registerStateAdapter(id,adapter){
     const logicalId=resolve(id);
@@ -58,12 +52,19 @@ function create(opts){
     }
     state.checks=results; emit('integration:tests',{results}); return {ok:results.every(x=>x.ok),results};
   }
+  function normalizeReadiness(result){
+    if(!result) return {ok:false,error:'EMPTY_READINESS_RESULT'};
+    if(typeof result.ok==='boolean') return result;
+    if(typeof result.ready==='boolean') return Object.assign({ok:result.ready},result);
+    return Object.assign({ok:false,error:'UNRECOGNIZED_READINESS_RESULT'},result);
+  }
   function checkReadiness(context){
     if(!readiness) return {ok:false,error:'READINESS_GATE_UNAVAILABLE'};
     try{
-      if(typeof readiness.check==='function') return readiness.check(context||{});
-      if(typeof readiness.run==='function') return readiness.run(context||{});
-      if(typeof readiness.status==='function') return readiness.status();
+      if(typeof readiness.report==='function') return normalizeReadiness(readiness.report(context||{}));
+      if(typeof readiness.check==='function') return normalizeReadiness(readiness.check(context||{}));
+      if(typeof readiness.run==='function') return normalizeReadiness(readiness.run(context||{}));
+      if(typeof readiness.status==='function') return normalizeReadiness(readiness.status());
       return {ok:false,error:'READINESS_METHOD_UNAVAILABLE'};
     }catch(err){ return {ok:false,error:String(err&&err.message||err)}; }
   }
@@ -71,7 +72,7 @@ function create(opts){
     setPhase('VERIFY');
     const ready=checkReadiness(context);
     const testsResult=await runTests();
-    const ok=(ready&&ready.ok!==false)&&testsResult.ok&&state.errors.length===0;
+    const ok=!!(ready&&ready.ok===true)&&testsResult.ok&&state.errors.length===0;
     setPhase(ok?'READY_FOR_VISUAL_TEST':'DEGRADED');
     const result={ok,phase:state.phase,readiness:ready,tests:testsResult.results,bound:state.bound.slice(),warnings:state.warnings.slice(-10),errors:state.errors.slice(-10)};
     emit('integration:proved',result);
