@@ -16,9 +16,15 @@ function create(opts){
   function apiCheck(name){
     const m=modules[name]; if(!m) return {name,present:false,api:false};
     const expectations={
-      eventBus:['emit','on'],worldState:['snapshot','subscribe'],runtime:['start','tick','status'],
-      actions:['run','execute'],safety:['evaluate','check'],registry:['get','has'],camera:['go','home'],
-      sceneBinding:['bind','focusPoint'],interaction:['dispatch']
+      eventBus:['emit','on'],
+      worldState:['snapshot','subscribe'],
+      runtime:['start','tick','status'],
+      actions:['perform','run','execute'],
+      safety:['evaluate','check'],
+      registry:['get','find','has'],
+      camera:['go','home'],
+      sceneBinding:['bind','focusPoint'],
+      interaction:['dispatch']
     };
     const any=expectations[name]||[];
     const api=any.length===0||any.some(k=>typeof m[k]==='function');
