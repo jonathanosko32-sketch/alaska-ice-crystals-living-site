@@ -12,7 +12,7 @@
 
     <application
         android:theme="@style/AppTheme"
-        android:label="OSKO Living Layover CODED FIX"
+        android:label="ALASKA ICE CRYSTALS LIVING LAYOVER CODED TEST"
         android:allowBackup="true"
         android:supportsRtl="true">
 
@@ -25,19 +25,19 @@
             android:name=".LayoverSceneTestActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:label="OSKO Layover v4" />
+            android:label="ALASKA ICE CRYSTALS Layover v4" />
 
         <activity
             android:name=".LayoverLivingV5Activity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:label="OSKO Living Layover v5" />
+            android:label="ALASKA ICE CRYSTALS Living Layover v5" />
 
         <activity
             android:name=".LayoverLivingV6Activity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:label="OSKO Living Layover CODED FIX">
+            android:label="ALASKA ICE CRYSTALS LIVING LAYOVER CODED TEST">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
