@@ -23,13 +23,14 @@ function create(opts){
   function targetExists(id){
     if(!id||!registry) return true;
     if(typeof registry.get==='function') return !!registry.get(id);
+    if(typeof registry.find==='function') return !!registry.find(id);
     if(typeof registry.has==='function') return !!registry.has(id);
     return true;
   }
   function safetyDecision(req){
     if(!safety) return {allowed:true,requiresConfirmation:false};
-    if(typeof safety.evaluate==='function') return safety.evaluate(req)||{allowed:true};
-    if(typeof safety.check==='function') return safety.check(req)||{allowed:true};
+    if(typeof safety.evaluate==='function') return safety.evaluate(req,{userConfirmed:req.confirmed===true})||{allowed:true};
+    if(typeof safety.check==='function') return safety.check(req,{userConfirmed:req.confirmed===true})||{allowed:true};
     return {allowed:true,requiresConfirmation:false};
   }
   async function dispatch(input){
@@ -40,8 +41,9 @@ function create(opts){
     else if(!targetExists(req.target)){ result={ok:false,code:'UNKNOWN_TARGET',target:req.target}; }
     else {
       const decision=safetyDecision(req);
-      if(decision.allowed===false) result={ok:false,code:'BLOCKED_BY_POLICY',decision};
+      if(decision.allowed===false) result={ok:false,code:decision.level==='confirm'?'CONFIRMATION_REQUIRED':'BLOCKED_BY_POLICY',decision};
       else if(decision.requiresConfirmation&&!req.confirmed) result={ok:false,code:'CONFIRMATION_REQUIRED',decision};
+      else if(actions&&typeof actions.perform==='function'&&req.target) result=await actions.perform(req.target,req.action,req.args,{source:req.source,confirmed:req.confirmed});
       else if(actions&&typeof actions.run==='function') result=await actions.run(req.action,req.target,req.args,req);
       else if(actions&&typeof actions.execute==='function') result=await actions.execute(req.action,req.target,req.args,req);
       else result={ok:true,code:'ROUTED_ONLY',request:req};
