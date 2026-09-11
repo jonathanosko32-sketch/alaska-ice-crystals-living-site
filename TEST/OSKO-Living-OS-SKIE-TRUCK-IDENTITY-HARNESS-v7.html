@@ -1,0 +1,30 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>OSKO SKIE + Truck Identity Harness v7</title><style>body{margin:0;background:#061018;color:#e9faff;font-family:system-ui;padding:18px}h1{font-size:20px}.card{background:#0c1c29;border:1px solid #23485d;border-radius:14px;padding:14px;margin:10px 0}.pass{color:#9fffb8}.fail{color:#ff9f9f}button{font-size:16px;padding:12px 14px;margin:5px;border-radius:10px;border:0}.state{white-space:pre-wrap;font-size:12px;background:#02070b;padding:10px;border-radius:10px}</style></head><body>
+<h1>OSKO Living OS — SKIE + Truck Harness v7</h1>
+<div class="card"><div id="results"></div></div>
+<div class="card"><b>Truck controls</b><br><button onclick="truck.command('open')">OPEN TRUCK</button><button onclick="truck.command('close')">CLOSE TRUCK</button><button onclick="truck.command('sides-out')">SIDES OUT</button><button onclick="truck.command('roof-up')">TOP UP</button><button onclick="truck.setSmoke(true)">SMOKE ON</button><button onclick="truck.setSmoke(false)">SMOKE OFF</button><div class="state" id="truckState"></div></div>
+<script src="./modules/osko-robot-fleet-core-v1.js"></script>
+<script src="./modules/osko-skie-identity-core-v1.js"></script>
+<script src="./modules/osko-truck-transform-core-v1.js"></script>
+<script>
+const results=document.getElementById('results');
+function test(name,ok,detail){const d=document.createElement('div');d.className=ok?'pass':'fail';d.textContent=(ok?'PASS ':'FAIL ')+name+(detail?' — '+detail:'');results.appendChild(d);}
+const fleet=OSKORobotFleet.create({maxRobots:4});
+const skie=OSKOSKIEIdentityCore.create({fleet});
+const applied=skie.apply();
+test('SKIE identity applies',applied.ok);
+test('Robot 1 display name is SKIE',fleet.snapshot('robot-1').name==='SKIE',fleet.snapshot('robot-1').name);
+test('SKIE resolves to robot-1',skie.resolve('skie')==='robot-1');
+test('Legacy Robot Four name remains compatibility alias',skie.resolve('robot four')==='robot-1');
+const truck=OSKOTruckTransformCore.create({speed:1});
+window.truck=truck;
+truck.open();for(let i=0;i<20;i++)truck.tick(.1);
+let ts=truck.status();
+test('Truck sides extend independently',ts.sideExtension===1,String(ts.sideExtension));
+test('Truck top lifts independently',ts.roofLift===1,String(ts.roofLift));
+truck.sidesIn();for(let i=0;i<20;i++)truck.tick(.1);ts=truck.status();
+test('Sides can retract while top stays up',ts.sideExtension===0&&ts.roofLift===1,JSON.stringify({sides:ts.sideExtension,roof:ts.roofLift}));
+truck.roofDown();for(let i=0;i<20;i++)truck.tick(.1);ts=truck.status();
+test('Top lowers separately',ts.roofLift===0,String(ts.roofLift));
+truck.setSmoke(true);test('Twin-stack smoke state turns on',truck.status().stackSmoke===true);
+function draw(){document.getElementById('truckState').textContent=JSON.stringify(truck.status(),null,2);requestAnimationFrame(draw)}draw();
+</script></body></html>
