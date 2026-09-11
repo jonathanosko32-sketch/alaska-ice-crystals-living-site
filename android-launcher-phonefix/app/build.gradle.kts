@@ -6,8 +6,8 @@ android {
         applicationId = "com.alaskaicecrystals.livinglayover.codedtest"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1202
-        versionName = "12.0.2-coded-duplicate-new-identity"
+        versionCode = 1203
+        versionName = "12.0.3-coded-duplicate-android-stability"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
