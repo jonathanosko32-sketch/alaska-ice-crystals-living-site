@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#06131c">
+<title>OSKO Living OS — Alaska Ice Crystals</title>
+<style>
+html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#020910;color:#eefcff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+#boot{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(circle at 50% 48%,#071827 0,#020910 62%,#01050a 100%)}
+.wrap{text-align:center;padding:24px;max-width:92vw}
+.brand{font-family:"Segoe Script","Brush Script MT","Snell Roundhand",cursive;font-size:clamp(34px,9vw,58px);font-style:italic;font-weight:700;line-height:1.05;letter-spacing:.01em;color:#eafcff;text-shadow:0 0 10px rgba(126,224,255,.75),0 0 24px rgba(58,159,220,.48),0 2px 0 #2b7da8}
+.sub{margin-top:16px;font-size:11px;letter-spacing:.22em;color:#8fdcf5}
+.track{width:min(54vw,240px);height:3px;background:#123140;margin:23px auto 0;overflow:hidden;border-radius:999px;box-shadow:0 0 12px rgba(100,215,255,.12)}
+.bar{height:100%;width:38%;background:linear-gradient(90deg,#6fccea,#effcff,#7bd5f4);animation:move 1.05s linear infinite;border-radius:999px}
+.msg{margin-top:13px;font-size:10px;color:#7fa8b8;letter-spacing:.08em;min-height:16px}
+@keyframes move{from{transform:translateX(-110%)}to{transform:translateX(300%)}}
+</style>
+</head>
+<body>
+<div id="boot"><div class="wrap"><div class="brand">Alaska Ice Crystals</div><div class="sub">STARTING LIVING OS</div><div class="track"><div class="bar"></div></div><div class="msg" id="msg">Loading living world…</div></div></div>
+<script>
+(async()=>{
+  const msg=document.getElementById('msg');
+  const wait=(ms)=>new Promise(r=>setTimeout(r,ms));
+  const loadScript=(src,timeout=7000)=>new Promise((resolve,reject)=>{
+    const s=document.createElement('script');let done=false;
+    const finish=(ok)=>{if(done)return;done=true;clearTimeout(t);ok?resolve():reject(new Error('script load failed: '+src))};
+    const t=setTimeout(()=>finish(false),timeout);
+    s.src=src;s.async=true;s.crossOrigin='anonymous';s.onload=()=>finish(true);s.onerror=()=>finish(false);document.head.appendChild(s);
+  });
+  try{
+    msg.textContent='Loading 3D engine…';
+    const engines=[
+      'https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js',
+      'https://unpkg.com/three@0.160.1/build/three.min.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.1/three.min.js'
+    ];
+    let loaded=false;
+    for(const src of engines){
+      try{await loadScript(src);if(window.THREE){loaded=true;break}}catch(e){}
+    }
+    if(!loaded||!window.THREE)throw new Error('3D engine unavailable');
+    msg.textContent='Opening Alaska Ice Crystals…';
+    const r=await fetch('./OSKO-Living-OS-FIRST-BUILD-v1.html?v=3',{cache:'no-store'});
+    if(!r.ok)throw new Error('world file unavailable');
+    let html=await r.text();
+    html=html.replace(/<script\s+src=["']https:\/\/cdn\.jsdelivr\.net\/npm\/three@0\.168\.0\/build\/three\.min\.js["']><\/script>/i,'');
+    html=html.replace('.loader b{display:block;font-size:13px;letter-spacing:.2em}', '.loader b{display:block;font-family:"Segoe Script","Brush Script MT","Snell Roundhand",cursive;font-size:34px;font-style:italic;line-height:1.05;letter-spacing:.01em;color:#eafcff;text-shadow:0 0 10px rgba(126,224,255,.75),0 0 24px rgba(58,159,220,.48),0 2px 0 #2b7da8}');
+    html=html.replace('<b>ALASKA ICE CRYSTALS</b>','<b>Alaska Ice Crystals</b>');
+    await wait(100);
+    document.open();document.write(html);document.close();
+  }catch(err){
+    console.error(err);
+    msg.textContent='Startup blocked. I fixed the engine path — refresh once if this message remains.';
+    const bar=document.querySelector('.bar');if(bar)bar.style.animation='none';
+  }
+})();
+</script>
+</body>
+</html>
