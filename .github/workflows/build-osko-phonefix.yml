@@ -39,6 +39,10 @@ jobs:
         if: github.ref_name == 'layover-skie-cb-v11-test'
         working-directory: android-launcher-phonefix
         run: python apply_v11_skie_cb_patch.py
+      - name: Apply coded duplicate phone layout fix
+        if: github.ref_name == 'v11-coded-duplicate'
+        working-directory: android-launcher-phonefix
+        run: python apply_coded_duplicate_phone_layout_fix.py
       - name: Build APK
         working-directory: android-launcher-phonefix
         run: gradle assembleDebug --stacktrace
