@@ -24,9 +24,30 @@ Updated: September 11, 2026
 - `osko-communications-core-v1.js` — communications-tower logical channels/services.
 - `osko-world-presence-core-v1.js` — logical presence/occupancy for people, Aurora, robots, vehicles and wildlife.
 - `osko-diagnostics-core-v1.js` — read-only health checks and diagnostics history.
+- `osko-camera-navigation-v1.js` — phone-first pan, zoom, home target and tap-vs-drag handling.
+- `osko-scene-binding-v1.js` — safe logical-object to Three.js scene binding without owning the render loop.
+- `osko-runtime-core-v1.js` — modular runtime coordinator; no physical motor control and no render-loop takeover.
+- `osko-module-selftest-v1.js` — read-only presence/API-shape checks for modular OS components.
+- `osko-power-utility-core-v1.js` — logical property power, battery, solar, generator, water and fuel state.
+- `osko-scene-state-sync-v1.js` — pushes logical OS state into bound visible scene objects safely.
+- `osko-interaction-router-v1.js` — shared input path for touch, voice, UI and future spatial controls.
+- `osko-scene-manifest-v1.js` — stable IDs for major property/world objects.
+- `osko-offline-core-v1.js` — offline/degraded capability state and graceful loss-of-cloud behavior.
+- `osko-library-index-v1.js` — School & Library collection/index/search foundation.
+- `osko-skies-context-core-v1.js` — SKIE advisory context/planning support; not safety-critical authority.
+- `osko-notification-router-v1.js` — shared routing for wildlife, weather, robot, property and SKIE notices.
+- `osko-boot-recovery-core-v1.js` — startup checks, degraded mode and state recovery support.
+- `osko-command-journal-v1.js` — command/event journal with common secret-field redaction.
+- `osko-integration-manifest-v1.js` — loader-only manifest for isolated integration testing.
 - `osko-wildlife-v1.js` — first standalone wildlife system.
 - `osko-wildlife-v2.js` — expanded wildlife schedules/state/behavior work.
 - `osko-wildlife-awareness-v1.js` — read-only wildlife awareness and safe alerts; no autonomous confrontation.
+
+## Integration harness
+
+`TEST/OSKO-Living-OS-MODULE-HARNESS-v1.html` is an isolated phone-first module harness. It loads the modular foundation separately from FIX8 and runs a basic event-bus/world-state/runtime smoke test. It does not modify FIX8, own the Three.js render loop, or control physical robot/vehicle hardware.
+
+The harness is a development checkpoint, not a replacement visual Living OS build and not yet the version to present as stable to Osko.
 
 ## Current architecture direction
 
