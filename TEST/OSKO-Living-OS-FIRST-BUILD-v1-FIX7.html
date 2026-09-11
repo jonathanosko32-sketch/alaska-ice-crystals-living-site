@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#06131c">
+<title>OSKO Living OS — Alaska Ice Crystals FIX7</title>
+<style>
+html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#020910;color:#eefcff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+#boot{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(circle at 50% 48%,#071827 0,#020910 62%,#01050a 100%)}
+.wrap{text-align:center;padding:24px;max-width:92vw}.brand{font-family:"Segoe Script","Brush Script MT","Snell Roundhand",cursive;font-size:clamp(34px,9vw,58px);font-style:italic;font-weight:700;line-height:1.05;color:#eafcff;text-shadow:0 0 10px rgba(126,224,255,.75),0 0 24px rgba(58,159,220,.48),0 2px 0 #2b7da8}.sub{margin-top:16px;font-size:11px;letter-spacing:.22em;color:#8fdcf5}.track{width:min(54vw,240px);height:3px;background:#123140;margin:23px auto 0;overflow:hidden;border-radius:999px}.bar{height:100%;width:38%;background:linear-gradient(90deg,#6fccea,#effcff,#7bd5f4);animation:move 1.05s linear infinite;border-radius:999px}.msg{margin-top:13px;font-size:10px;color:#7fa8b8;letter-spacing:.08em}@keyframes move{from{transform:translateX(-110%)}to{transform:translateX(300%)}}
+</style>
+</head>
+<body>
+<div id="boot"><div class="wrap"><div class="brand">Alaska Ice Crystals</div><div class="sub">STARTING LIVING OS • FIX7</div><div class="track"><div class="bar"></div></div><div class="msg" id="msg">Loading living property…</div></div></div>
+<script>
+(async()=>{
+const msg=document.getElementById('msg');
+try{
+  const r=await fetch('./OSKO-Living-OS-FIRST-BUILD-v1-FIX6.html?v=7',{cache:'no-store'});
+  if(!r.ok)throw new Error('FIX6 unavailable');
+  let src=await r.text();
+  const marker='    await wait(100);';
+  const patch=String.raw`
+    // FIX7 — preserve FIX6, then strengthen the living-world clock and night scene.
+    html=html.replace(/function tex\(text,sub=''\)\{[^\n]+?return t\}/, `function tex(text,sub=''){const c=document.createElement('canvas');c.width=1024;c.height=256;const x=c.getContext('2d');x.fillStyle='#07131a';x.fillRect(0,0,1024,256);x.strokeStyle='#8cecff';x.lineWidth=10;x.strokeRect(8,8,1008,240);x.textAlign='center';const brand=/alaska ice crystals/i.test(text);if(brand){x.shadowColor='#75ddff';x.shadowBlur=28;x.fillStyle='#f2fdff';x.font='italic 700 76px "Segoe Script","Brush Script MT","Snell Roundhand",cursive';}else{x.shadowColor='#7feaff';x.shadowBlur=18;x.fillStyle='#e8fcff';x.font='700 72px system-ui';}x.fillText(text,512,115);if(sub){x.shadowBlur=7;x.fillStyle='#7dddf4';x.font='500 32px system-ui';x.fillText(sub,512,182)}const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t}`);
+
+    const oldTime=/function time\(\)\{const d=new Date\(\),h=d\.getHours\(\)\+d\.getMinutes\(\)\/60\+d\.getSeconds\(\)\/3600,[^\n]+?time\.day=day\}time\(\);setInterval\(time,15000\);/;
+    const newTime=`function time(){const d=new Date(),h=d.getHours()+d.getMinutes()/60+d.getSeconds()/3600,start=new Date(d.getFullYear(),0,0),doy=Math.floor((d-start)/86400000),dayLength=12.5+7*Math.sin((doy-80)/365*Math.PI*2),sunrise=12.5-dayLength/2,sunset=12.5+dayLength/2,dawn0=sunrise-.8,dusk1=sunset+.8,smooth=(a,b,v)=>{const t=THREE.MathUtils.clamp((v-a)/(b-a),0,1);return t*t*(3-2*t)},rise=smooth(dawn0,sunrise+.8,h),fall=1-smooth(sunset-.8,dusk1,h),day=Math.max(0,Math.min(rise,fall)),night=1-day,az=(h-6)/24*Math.PI*2,e=Math.sin((h-sunrise)/Math.max(1,dayLength)*Math.PI)*1.05,R=420;sun.position.set(Math.cos(az)*R,Math.max(-120,Math.sin(e)*R),Math.sin(az)*R);moon.position.set(Math.cos(az+Math.PI)*R,Math.max(-100,-Math.sin(e)*R),Math.sin(az+Math.PI)*R);sunBall.position.copy(sun.position).normalize().multiplyScalar(920);moonBall.position.copy(moon.position).normalize().multiplyScalar(940);sunBall.scale.setScalar(.42);moonBall.scale.setScalar(.38);sunBall.visible=day>.03;moonBall.visible=night>.08;sun.intensity=.04+day*3.15;moon.intensity=.28+night*1.18;hemi.intensity=.34+day*.92;stars.material.opacity=Math.pow(night,1.6)*.9;renderer.toneMappingExposure=.86+day*.42;fireLight.intensity=2.6+night*5.0;const deep=new THREE.Color(0x030914),pre=new THREE.Color(0x183247),warm=new THREE.Color(0xa45f59),dayc=new THREE.Color(0x77aec8),c=deep.clone();if(day<.12)c.lerp(pre,day/.12);else c=pre.clone().lerp(dayc,(day-.12)/.88);const dawnGlow=Math.max(0,1-Math.abs(h-sunrise)/1.35),duskGlow=Math.max(0,1-Math.abs(h-sunset)/1.35);if(dawnGlow)c.lerp(warm,dawnGlow*.48);if(duskGlow)c.lerp(warm,duskGlow*.58);scene.background=c;scene.fog.color.copy(c).lerp(new THREE.Color(0xa9c1cc),day*.16);if(typeof oskoLiving!=='undefined'){oskoLiving.windows.forEach(w=>w.material.emissiveIntensity=.55+night*3.2);oskoLiving.lamps.forEach(l=>l.material.emissiveIntensity=.5+night*3.7);oskoLiving.realLights.forEach(l=>l.intensity=.15+night*2.55);oskoLiving.aurora.forEach(a=>a.material.opacity=.015+night*.12)}clock.textContent=d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})+' • '+(day>.78?'DAY':day>.22?'TWILIGHT':'NIGHT');time.day=day;time.sunrise=sunrise;time.sunset=sunset}time();setInterval(time,10000);`;
+    html=html.replace(oldTime,newTime);
+
+    const roadInsert=`
+const fix7World={markers:[]};
+function fix7Marker(x,z){const mat=new THREE.MeshStandardMaterial({color:0xeafcff,emissive:0x62d9ff,emissiveIntensity:1.8,roughness:.45});const m=new THREE.Mesh(new THREE.BoxGeometry(.55,.35,1.35),mat);m.position.set(x,.45,z);scene.add(m);fix7World.markers.push(m)}
+for(let z=104;z<=166;z+=13){fix7Marker(-8,z);fix7Marker(8,z)}
+for(let x=-96;x<=90;x+=18){fix7Marker(x,-8);fix7Marker(x,-24)}
+for(let z=-32;z<=62;z+=16){fix7Marker(-103,z);fix7Marker(-121,z);fix7Marker(103,z);fix7Marker(121,z)}
+const fix7Brand=sign('Alaska Ice Crystals','OSKO LIVING OS',47,11,0,25.4,176.65);fix7Brand.material.emissiveIntensity=1.25;
+`;
+    html=html.replace("const lake=new THREE.Mesh",roadInsert+"\nconst lake=new THREE.Mesh");
+    html=html.replace("status.textContent='READY • LIVING OS • PROPERTY SYSTEMS ONLINE';","status.textContent='READY • LIVING OS • DAY/NIGHT SYSTEM ONLINE';");
+`;
+  if(!src.includes(marker))throw new Error('FIX6 patch point not found');
+  src=src.replace(marker,patch+'\n'+marker);
+  document.open();document.write(src);document.close();
+}catch(err){console.error(err);msg.textContent='FIX7 startup blocked. Refresh once.';const b=document.querySelector('.bar');if(b)b.style.animation='none';}
+})();
+</script>
+</body>
+</html>
