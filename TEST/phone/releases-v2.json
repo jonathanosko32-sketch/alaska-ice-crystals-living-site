@@ -1,0 +1,22 @@
+{
+  "schema": 2,
+  "channel": "owner-approved",
+  "shellVersion": 3,
+  "stable": {
+    "id": "FIX8",
+    "label": "FIX8 STABLE",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX8.html",
+    "protected": true,
+    "dataSchema": 1
+  },
+  "candidate": {
+    "id": "SKIE-TRUCK-v8",
+    "label": "SKIE + TRUCK v8 TEST",
+    "url": "../OSKO-Living-OS-SKIE-TRUCK-VISUAL-CANDIDATE-v8.html",
+    "enabled": true,
+    "phoneConfirmed": false,
+    "stable": false,
+    "requiresOwnerConfirmation": true,
+    "dataSchema": 1
+  }
+}
