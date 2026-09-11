@@ -17,6 +17,7 @@ Updated: September 11, 2026
 - `osko-route-core-v1.js` — logical routing and movement planning.
 - `osko-state-persistence-v1.js` — snapshots, checkpoints and restore support.
 - `osko-device-bridge-v1.js` — phone/foldable/spatial/device capability bridge; not physical motor control.
+- `osko-android-host-core-v1.js` — Android-host boundary for phone hardware/services while OSKO updates remain separate from Android updates.
 - `osko-voice-intent-v1.js` — SKIE voice intent routing into deterministic actions.
 - `osko-safety-policy-v1.js` — safety boundary for high-risk actions and robot-control separation.
 - `osko-routine-core-v1.js` — routines, time/condition-driven behaviors.
@@ -52,8 +53,12 @@ Updated: September 11, 2026
 - `osko-release-channel-core-v1.js` — development/test/stable release-channel control with phone-confirmation requirement for stable promotion.
 - `osko-state-migration-core-v1.js` — schema migration path for saved data across future OS versions.
 - `osko-recovery-supervisor-v1.js` — recovery-mode coordinator for diagnostics, checkpoint restore and update rollback.
+- `osko-system-supervisor-v1.js` — coordinates permissions, boot, diagnostics, persistence, recovery and protected update activation.
 - `osko-permission-core-v1.js` — capability-based authority for user, modules, SKIE, UI, voice, spatial clients and future robots; safety-critical authority remains separate.
 - `osko-user-data-vault-v1.js` — user-owned namespaced data kept separate from code/visual releases, with protected keys and import/export support.
+- `osko-robot-fleet-core-v1.js` — SKIE-centered logical fleet for four robot work bodies, with connection, dock, battery, readiness, fault, capability and job state; no motor control.
+- `osko-robot-job-core-v1.js` — simulator-first SKIE robot job queue/dispatcher with protected job types blocked from autonomous execution.
+- `osko-dock-status-core-v1.js` — truthful phone/robot dock and charging state; never invents charging or battery telemetry.
 - `osko-wildlife-v1.js` — first standalone wildlife system.
 - `osko-wildlife-v2.js` — expanded wildlife schedules/state/behavior work.
 - `osko-wildlife-awareness-v1.js` — read-only wildlife awareness and safe alerts; no autonomous confrontation.
@@ -68,7 +73,11 @@ The harness is a development checkpoint, not a replacement visual Living OS buil
 
 Build clean modular systems first. Connect them through shared state, events, actions and explicit contracts. Avoid wrapper-on-wrapper stacking and avoid replacing the main render loop blindly.
 
-Touch, voice, future spatial controls and SKIE should call the same deterministic action layer. Safety-critical robot behavior stays separate from convenience AI/voice features.
+Touch, voice, future spatial controls and SKIE should call the same deterministic action layer. SKIE is the central coordinating brain for the Living OS ecosystem. The four robots are connected work bodies/resources under SKIE coordination, not four unrelated AI brains. Each physical body must still keep local deterministic safety control for motors, balance, battery, thermal protection, sensors and emergency stop.
+
+Robot work should be proved in the game-based Living OS simulation first. SKIE may assign approved jobs, route robots through the property, send them to dock, inspect simulated targets, run approved test checks and report results. Protected release promotion, protected-file modification, safety disablement and unproved physical actuation are not autonomous robot jobs.
+
+Dock/charging presentation must stay truthful: show CHARGING only from real charging telemetry, otherwise use connected/docked/ready states. The phone should show all four robots without running four full independent AI brains.
 
 Phone deployment should keep code/releases separate from persistent user data. Candidate builds are staged and verified separately from the stable installed release; approved releases can activate without treating the user data vault as disposable. Recovery and rollback remain available if a candidate fails.
 
