@@ -56,9 +56,11 @@ Updated: September 11, 2026
 - `osko-system-supervisor-v1.js` — coordinates permissions, boot, diagnostics, persistence, recovery and protected update activation.
 - `osko-permission-core-v1.js` — capability-based authority for user, modules, SKIE, UI, voice, spatial clients and future robots; safety-critical authority remains separate.
 - `osko-user-data-vault-v1.js` — user-owned namespaced data kept separate from code/visual releases, with protected keys and import/export support.
-- `osko-robot-fleet-core-v1.js` — SKIE-centered logical fleet for four robot work bodies, with connection, dock, battery, readiness, fault, capability and job state; no motor control.
-- `osko-robot-job-core-v1.js` — simulator-first SKIE robot job queue/dispatcher with protected job types blocked from autonomous execution.
+- `osko-robot-fleet-core-v1.js` — SKIE-centered logical fleet for four robot work bodies, with connection, dock, battery, readiness, fault, capability and job state; no motor control. Permission calls are aligned to `OSKOPermissionCore.evaluate/require`.
+- `osko-robot-job-core-v1.js` — simulator-first SKIE robot job queue/dispatcher with protected job types blocked from autonomous execution. Permission calls are aligned to the real Permission Core API.
 - `osko-dock-status-core-v1.js` — truthful phone/robot dock and charging state; never invents charging or battery telemetry.
+- `osko-skie-robot-coordinator-v1.js` — central SKIE coordination layer for the four robot work bodies. Creates a restricted SKIE permission principal, translates approved intents into simulation jobs, dispatches work, sends robots to dock, and blocks protected/physical actions.
+- `osko-robot-simulation-core-v1.js` — safe Living OS simulation runner for robot jobs such as move, patrol, dock, report and approved test-build checks. Advances logical steps and simulated telemetry only; never drives motors.
 - `osko-wildlife-v1.js` — first standalone wildlife system.
 - `osko-wildlife-v2.js` — expanded wildlife schedules/state/behavior work.
 - `osko-wildlife-awareness-v1.js` — read-only wildlife awareness and safe alerts; no autonomous confrontation.
