@@ -1,0 +1,51 @@
+# OSKO LIVING OS — CURRENT MODULE INVENTORY
+
+Updated: September 11, 2026
+
+## Protection rule
+
+`OSKO-Living-OS-FIRST-BUILD-v1-FIX8.html` remains the current user-confirmed working visual build. These modules are being developed beside it. Do not overwrite FIX8 or force these modules into FIX8 until a clean integration build is prepared and checked.
+
+## Current modules
+
+- `osko-world-state-v1.js` — shared world state.
+- `osko-event-bus-v1.js` — shared event bus.
+- `osko-action-core-v1.js` — deterministic object/action layer.
+- `osko-environment-core-v1.js` — time, season, weather and environment state.
+- `osko-object-registry-v1.js` — object identity, permissions and capabilities.
+- `osko-performance-v1.js` — adaptive phone/device performance quality.
+- `osko-route-core-v1.js` — logical routing and movement planning.
+- `osko-state-persistence-v1.js` — snapshots, checkpoints and restore support.
+- `osko-device-bridge-v1.js` — phone/foldable/spatial/device capability bridge; not physical motor control.
+- `osko-voice-intent-v1.js` — SKIE voice intent routing into deterministic actions.
+- `osko-safety-policy-v1.js` — safety boundary for high-risk actions and robot-control separation.
+- `osko-routine-core-v1.js` — routines, time/condition-driven behaviors.
+- `osko-alert-center-v1.js` — central alert, acknowledge and resolve state.
+- `osko-communications-core-v1.js` — communications-tower logical channels/services.
+- `osko-world-presence-core-v1.js` — logical presence/occupancy for people, Aurora, robots, vehicles and wildlife.
+- `osko-diagnostics-core-v1.js` — read-only health checks and diagnostics history.
+- `osko-wildlife-v1.js` — first standalone wildlife system.
+- `osko-wildlife-v2.js` — expanded wildlife schedules/state/behavior work.
+- `osko-wildlife-awareness-v1.js` — read-only wildlife awareness and safe alerts; no autonomous confrontation.
+
+## Current architecture direction
+
+Build clean modular systems first. Connect them through shared state, events, actions and explicit contracts. Avoid wrapper-on-wrapper stacking and avoid replacing the main render loop blindly.
+
+Touch, voice, future spatial controls and SKIE should call the same deterministic action layer. Safety-critical robot behavior stays separate from convenience AI/voice features.
+
+Wildlife and domestic/ranch animals remain behaviorally separate. Wildlife awareness can report danger but does not authorize robots to confront animals.
+
+## Delivery rule for Osko
+
+When a new visual Living OS build is ready for Osko to check, send:
+
+1. the direct tap-ready GitHub Pages link for the new test build;
+2. directly underneath it, the current known-working FIX8 link;
+3. a clear label saying whether the new build is phone-confirmed, syntax-checked only, or untested.
+
+Never send only a repo path, blob/source page, or commit SHA and expect Osko to assemble the link.
+
+Current confirmed fallback:
+
+`https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX8.html`
