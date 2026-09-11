@@ -19,6 +19,8 @@ Updated: September 11, 2026
 - `osko-device-bridge-v1.js` — phone/foldable/spatial/device capability bridge; not physical motor control.
 - `osko-android-host-core-v1.js` — Android-host boundary for phone hardware/services while OSKO updates remain separate from Android updates.
 - `osko-voice-intent-v1.js` — SKIE voice intent routing into deterministic actions.
+- `osko-skie-voice-command-bridge-v1.js` — deterministic phrase bridge that routes robot voice requests to SKIE coordination and normal property requests to the shared Living OS action path; protected/physical requests are blocked.
+- `osko-wake-session-core-v1.js` — local wake/listening state machine for future “Hey SKIE” Android integration. It does not itself access microphone hardware.
 - `osko-safety-policy-v1.js` — safety boundary for high-risk actions and robot-control separation.
 - `osko-routine-core-v1.js` — routines, time/condition-driven behaviors.
 - `osko-alert-center-v1.js` — central alert, acknowledge and resolve state.
@@ -57,7 +59,7 @@ Updated: September 11, 2026
 - `osko-permission-core-v1.js` — capability-based authority for user, modules, SKIE, UI, voice, spatial clients and future robots; safety-critical authority remains separate.
 - `osko-user-data-vault-v1.js` — user-owned namespaced data kept separate from code/visual releases, with protected keys and import/export support.
 - `osko-robot-fleet-core-v1.js` — SKIE-centered logical fleet for four robot work bodies, with connection, dock, battery, readiness, fault, capability and job state; no motor control. Permission calls are aligned to `OSKOPermissionCore.evaluate/require`.
-- `osko-robot-job-core-v1.js` — simulator-first SKIE robot job queue/dispatcher with protected job types blocked from autonomous execution. Permission calls are aligned to the real Permission Core API.
+- `osko-robot-job-core-v1.js` — simulator-first SKIE robot job queue/dispatcher with protected job types blocked from autonomous execution. It now honors an explicitly requested/preferred robot body instead of silently assigning another body.
 - `osko-dock-status-core-v1.js` — truthful phone/robot dock and charging state; never invents charging or battery telemetry.
 - `osko-skie-robot-coordinator-v1.js` — central SKIE coordination layer for the four robot work bodies. Creates a restricted SKIE permission principal, translates approved intents into simulation jobs, dispatches work, sends robots to dock, and blocks protected/physical actions.
 - `osko-robot-simulation-core-v1.js` — safe Living OS simulation runner for robot jobs such as move, patrol, dock, report and approved test-build checks. Advances logical steps and simulated telemetry only; never drives motors.
@@ -69,15 +71,21 @@ Updated: September 11, 2026
 
 `TEST/OSKO-Living-OS-MODULE-HARNESS-v3.html` is the general isolated integration harness for lifecycle, persistence, journal, actions, camera, binding and readiness.
 
-`TEST/OSKO-Living-OS-SKIE-4-ROBOTS-HARNESS-v1.html` is the dedicated SKIE + four-robot phone-first integration harness. It loads Event Bus, Permission Core, Robot Fleet, Robot Job Core, Dock Status, SKIE Robot Coordinator and Robot Simulation Core together. It checks that all four work bodies initialize and become ready, SKIE is permission-restricted, protected physical requests are blocked, false charging is rejected, four simultaneous simulated jobs are distributed across four distinct robots, all simulations complete, and a test-build job ends in report-only/no-activation mode. Its inline JavaScript was syntax-checked with Node before upload. It is a development test, not a stable visual Living OS build and not physical robot control.
+`TEST/OSKO-Living-OS-SKIE-4-ROBOTS-HARNESS-v1.html` is the dedicated SKIE + four-robot integration harness. It proves the central SKIE/four-work-body simulation chain, protected-action blocking, truthful charging, four distinct assignments, and report-only test-build behavior.
 
-Neither harness modifies FIX8 or V11, owns the Three.js render loop, promotes releases, or controls physical robot/vehicle hardware.
+`TEST/OSKO-Living-OS-SKIE-VOICE-4-ROBOTS-HARNESS-v2.html` adds the next layer: a future “Hey SKIE” wake-session state machine, deterministic voice-command routing, explicit requests for a named robot body, property-action routing through the same voice bridge, and protected voice-command blocking. It is a software test harness only. It does not turn on the phone microphone and does not control physical robot motors.
+
+The v2 voice harness inline JavaScript and both new voice/wake modules were syntax-checked with Node before upload. The v2 harness still requires Osko phone confirmation before it can be treated as a passed phone test.
+
+None of these harnesses modify FIX8 or V11, own the Three.js render loop, promote releases, or control physical robot/vehicle hardware.
 
 ## Current architecture direction
 
 Build clean modular systems first. Connect them through shared state, events, actions and explicit contracts. Avoid wrapper-on-wrapper stacking and avoid replacing the main render loop blindly.
 
 Touch, voice, future spatial controls and SKIE should call the same deterministic action layer. SKIE is the central coordinating brain for the Living OS ecosystem. The four robots are connected work bodies/resources under SKIE coordination, not four unrelated AI brains. Each physical body must still keep local deterministic safety control for motors, balance, battery, thermal protection, sensors and emergency stop.
+
+Voice architecture is now split correctly: the wake-session logic manages “Hey SKIE” listening state; speech recognition/microphone access will later live in the Android host layer; recognized text is passed into the deterministic SKIE voice-command bridge; the bridge routes allowed robot jobs to the SKIE coordinator and normal property commands to the shared Living OS action path. This keeps microphone hardware, natural-language handling, deterministic actions, permissions, and physical safety as separate layers.
 
 Robot work should be proved in the game-based Living OS simulation first. SKIE may assign approved jobs, route robots through the property, send them to dock, inspect simulated targets, run approved test checks and report results. Protected release promotion, protected-file modification, safety disablement and unproved physical actuation are not autonomous robot jobs.
 
