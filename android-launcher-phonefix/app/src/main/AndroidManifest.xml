@@ -10,22 +10,47 @@
         </intent>
     </queries>
 
-    <application android:theme="@style/AppTheme" android:label="OSKO Living Launcher CODED TEST" android:allowBackup="true">
-        <activity android:name=".SkieCbActivity" android:exported="false" android:screenOrientation="portrait" />
-        <activity android:name=".LayoverSceneTestActivity" android:exported="false" android:screenOrientation="portrait" android:label="OSKO Layover v4" />
-        <activity android:name=".LayoverLivingV5Activity" android:exported="false" android:screenOrientation="portrait" android:label="OSKO Living Layover v5" />
-        <activity android:name=".LayoverLivingV6Activity" android:exported="true" android:screenOrientation="portrait" android:label="OSKO Living Layover CODED TEST">
+    <application
+        android:theme="@style/AppTheme"
+        android:label="OSKO Living Layover CODED FIX"
+        android:allowBackup="true"
+        android:supportsRtl="true">
+
+        <activity
+            android:name=".SkieCbActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".LayoverSceneTestActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="OSKO Layover v4" />
+
+        <activity
+            android:name=".LayoverLivingV5Activity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="OSKO Living Layover v5" />
+
+        <activity
+            android:name=".LayoverLivingV6Activity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:label="OSKO Living Layover CODED FIX">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" android:exported="true" android:launchMode="singleTask" android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.HOME" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+
+        <!-- Test build only: do not register this package as the phone HOME launcher.
+             This keeps Samsung/Android from treating the coded test as a replacement
+             home screen while we are still testing it side-by-side with protected V11. -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>
