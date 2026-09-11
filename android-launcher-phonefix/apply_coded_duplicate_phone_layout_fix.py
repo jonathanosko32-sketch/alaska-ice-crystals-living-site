@@ -9,12 +9,28 @@ replacements = [
         'window.statusBarColor = Color.rgb(1, 8, 17)'
     ),
     (
+        'root = FrameLayout(this).apply { setBackgroundColor(Color.BLACK) }',
+        'root = FrameLayout(this).apply { setBackgroundColor(Color.rgb(2, 18, 32)) }'
+    ),
+    (
         'leftMargin = dp(8); rightMargin = dp(8); bottomMargin = dp(10)',
         'leftMargin = dp(8); rightMargin = dp(8); bottomMargin = dp(34)'
     ),
     (
+        '    private val flakes = List(120) { SnowFlake(random.nextFloat(), random.nextFloat(), 1.4f + random.nextFloat() * 4.8f, 0.045f + random.nextFloat() * 0.10f, random.nextFloat() * 8f) }',
+        '    private val flakes = List(72) { SnowFlake(random.nextFloat(), random.nextFloat(), 1.4f + random.nextFloat() * 4.8f, 0.045f + random.nextFloat() * 0.10f, random.nextFloat() * 8f) }'
+    ),
+    (
+        '        Hotspot("aurora", "AURORA", "INFO / CARE", 0.55f, 0.70f),',
+        '        Hotspot("aurora", "AURORA", "INFO / CARE", 0.49f, 0.78f),'
+    ),
+    (
         '        drawRoads(canvas)\n',
         ''
+    ),
+    (
+        '        postInvalidateOnAnimation()\n',
+        '        if (isShown && windowVisibility == View.VISIBLE) postInvalidateDelayed(33L)\n'
     ),
     (
         '    private fun baseScale() = (height * 0.96f) / backgroundBitmap.height.toFloat()\n',
@@ -47,8 +63,9 @@ for old, new in replacements:
         raise SystemExit(f"Expected source text not found:\n{old}")
     s = s.replace(old, new, 1)
 
-# Keep the route data for Aurora movement, but hide the temporary visual road.
+# Keep route data for Aurora movement, but hide the temporary gray coded road.
 # The approved background road remains visible; Aurora follows the shared route data.
+# Limit animation to ~30 FPS and reduce snow load so Samsung/Android stays responsive.
 
 p.write_text(s, encoding="utf-8")
-print("Applied coded duplicate Android/V11 movement and Aurora fix")
+print("Applied coded duplicate Android/V11 movement, stability and Aurora fix")
