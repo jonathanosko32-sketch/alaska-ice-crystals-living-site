@@ -67,11 +67,14 @@ function create(opts){
     if(!core) return {ok:false,error:'ACTION_CORE_UNAVAILABLE'};
     try{
       let result;
-      if(typeof core.execute==='function') result=core.execute(target,action,args,context);
+      if(typeof core.perform==='function') result=core.perform(target,action,args,context);
+      else if(typeof core.execute==='function') result=core.execute(target,action,args,context);
       else if(typeof core.run==='function') result=core.run(target,action,args,context);
       else return {ok:false,error:'ACTION_METHOD_UNAVAILABLE'};
-      emit('runtime:action',{target,action,ok:true});
-      return {ok:true,result};
+      emit('runtime:action',{target,action,ok:!(result&&result.ok===false)});
+      return result&&typeof result.then==='function'
+        ? result.then(value=>({ok:!(value&&value.ok===false),result:value})).catch(err=>{ const item=recordError('action:'+target+':'+action,err); return {ok:false,error:item.message}; })
+        : {ok:!(result&&result.ok===false),result};
     }catch(err){
       const item=recordError('action:'+target+':'+action,err);
       emit('runtime:action',{target,action,ok:false,error:item.message});
