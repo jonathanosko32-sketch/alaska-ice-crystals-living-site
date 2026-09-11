@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="theme-color" content="#06131c"><title>OSKO Living OS — Alaska Ice Crystals FIX9</title><style>html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#020910;color:#eefcff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}#boot{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(circle at 50% 48%,#071827 0,#020910 62%,#01050a 100%)}.wrap{text-align:center;padding:24px;max-width:92vw}.brand{font-family:"Segoe Script","Brush Script MT","Snell Roundhand",cursive;font-size:clamp(34px,9vw,58px);font-style:italic;font-weight:700;color:#eafcff;text-shadow:0 0 10px rgba(126,224,255,.75),0 0 24px rgba(58,159,220,.48)}.sub{margin-top:16px;font-size:11px;letter-spacing:.22em;color:#8fdcf5}.track{width:min(54vw,240px);height:3px;background:#123140;margin:23px auto 0;overflow:hidden;border-radius:999px}.bar{height:100%;width:38%;background:linear-gradient(90deg,#6fccea,#effcff,#7bd5f4);animation:move 1.05s linear infinite;border-radius:999px}.msg{margin-top:13px;font-size:10px;color:#7fa8b8;letter-spacing:.08em}@keyframes move{from{transform:translateX(-110%)}to{transform:translateX(300%)}}</style></head><body><div id="boot"><div class="wrap"><div class="brand">Alaska Ice Crystals</div><div class="sub">STARTING LIVING OS • FIX9</div><div class="track"><div class="bar"></div></div><div class="msg" id="msg">Loading wildlife into the living property…</div></div></div><script>
+(async()=>{const msg=document.getElementById('msg');try{const r=await fetch('./OSKO-Living-OS-FIRST-BUILD-v1-FIX8.html?v=9',{cache:'no-store'});if(!r.ok)throw new Error('FIX8 unavailable');let src=await r.text();const marker='    await wait(100);';const patch=`
+    // FIX9 — Alaska wildlife layer. FIX8 remains untouched.
+    const wildlifePatch = String.raw\`
+const oskoWildlife=[];
+function wildMat(c){return new THREE.MeshStandardMaterial({color:c,roughness:.9})}
+function wildAnimal(name,color,x,z,scale=1,speed=.7,range=22){const g=new THREE.Group(),m=wildMat(color);const body=new THREE.Mesh(new THREE.CapsuleGeometry(1.15*scale,2.25*scale,4,8),m);body.rotation.z=Math.PI/2;body.position.y=2.0*scale;g.add(body);const head=new THREE.Mesh(new THREE.SphereGeometry(.72*scale,10,8),m);head.position.set(1.75*scale,2.35*scale,0);g.add(head);for(const zz of [-.62,.62])for(const xx of [-.75,.75]){const leg=new THREE.Mesh(new THREE.CylinderGeometry(.14*scale,.18*scale,1.7*scale,6),m);leg.position.set(xx*scale,.85*scale,zz*scale);g.add(leg)}g.position.set(x,0,z);g.userData={name,homeX:x,homeZ:z,speed,range,phase:Math.random()*6.28,dir:Math.random()>.5?1:-1};scene.add(g);oskoWildlife.push(g);return g}
+const wildMoose=wildAnimal('WILD MOOSE',0x4b382d,-150,88,1.45,.32,25);wildMoose.children[1].scale.set(1.15,1.25,.8);
+const wildCaribou=wildAnimal('CARIBOU',0x705541,145,58,1.15,.48,31);
+const wildBear=wildAnimal('BLACK BEAR',0x171716,-145,-78,1.25,.28,20);wildBear.children.slice(2).forEach(l=>l.scale.y=.65);
+const wildGrizzly=wildAnimal('GRIZZLY',0x59412f,145,-92,1.38,.24,18);wildGrizzly.children.slice(2).forEach(l=>l.scale.y=.62);
+const wildWolf=wildAnimal('WOLF',0x85898b,-128,145,.78,.72,36);
+const wildFox=wildAnimal('FOX',0xa8552d,130,142,.55,.9,28);
+function wildlifeTick(t){for(const a of oskoWildlife){const u=a.userData,ang=t*u.speed*.06+u.phase;a.position.x=u.homeX+Math.cos(ang)*u.range;a.position.z=u.homeZ+Math.sin(ang*.83)*u.range*.72;a.rotation.y=Math.atan2(-Math.sin(ang)*u.range,-Math.cos(ang*.83)*u.range*.72);a.position.y=Math.sin(t*.004+u.phase)*.08}}
+const oldAnimate=animate;animate=function(t){wildlifeTick(t||performance.now());return oldAnimate(t)};
+\`;
+    html=html.replace("status.textContent='READY • LIVING OS • DAY/NIGHT SYSTEM ONLINE';", "status.textContent='READY • LIVING OS • DAY/NIGHT • WILDLIFE ONLINE';");
+    html=html.replace('const lake=new THREE.Mesh', wildlifePatch+'\\nconst lake=new THREE.Mesh');
+`;
+if(!src.includes(marker))throw new Error('FIX8 patch point not found');src=src.replace(marker,patch+'\n'+marker);document.open();document.write(src);document.close();}catch(err){console.error(err);msg.textContent='FIX9 startup blocked. FIX8 is still safe.';const b=document.querySelector('.bar');if(b)b.style.animation='none';}})();
+</script></body></html>
