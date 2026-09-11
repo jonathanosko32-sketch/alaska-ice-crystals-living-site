@@ -34,21 +34,12 @@ function create(opts){
     const decision=checkPermission(actor,'robot.job.submit',context||{});
     if(decision.allowed===false) return {ok:false,error:'PERMISSION_DENIED',decision};
     const job={
-      id:id(),
-      type,
-      title:String(spec.title||type),
-      requestedBy:actor,
+      id:id(), type, title:String(spec.title||type), requestedBy:actor,
       target:spec.target?String(spec.target):null,
       requiredCapability:spec.requiredCapability?String(spec.requiredCapability):null,
       priority:Math.max(0,Math.min(100,Number(spec.priority)||50)),
-      payload:clone(spec.payload||{}),
-      simulation:spec.simulation!==false,
-      state:'queued',
-      assignedRobot:null,
-      createdAt:Date.now(),
-      startedAt:null,
-      finishedAt:null,
-      result:null
+      payload:clone(spec.payload||{}), simulation:spec.simulation!==false, state:'queued',
+      assignedRobot:null, createdAt:Date.now(), startedAt:null, finishedAt:null, result:null
     };
     if(job.simulation!==true) return {ok:false,error:'SIMULATION_REQUIRED_FIRST',job};
     jobs.set(job.id,job); queue.push(job.id); sortQueue(); emit('robot-job:queued',clone(job)); return {ok:true,job:clone(job)};
@@ -59,6 +50,12 @@ function create(opts){
   function pickRobot(job){
     if(!fleet||typeof fleet.ready!=='function') return null;
     const candidates=fleet.ready(job.requiredCapability||null);
+    const preferred=job&&job.payload&&job.payload.preferredRobot?String(job.payload.preferredRobot):null;
+    if(preferred){
+      const match=candidates.find(function(r){ return r.id===preferred; });
+      if(match) return match;
+      return null;
+    }
     return candidates.length?candidates[0]:null;
   }
 
@@ -72,10 +69,8 @@ function create(opts){
       const robot=pickRobot(job); if(!robot) continue;
       const assigned=fleet.assignJob(robot.id,job,{actor:actor,userConfirmed:!!(context&&context.userConfirmed),local:!!(context&&context.local)});
       if(!assigned.ok) continue;
-      queue.splice(i,1);
-      job.state='running'; job.assignedRobot=robot.id; job.startedAt=Date.now();
-      emit('robot-job:started',clone(job));
-      return {ok:true,job:clone(job),robot:assigned.robot};
+      queue.splice(i,1); job.state='running'; job.assignedRobot=robot.id; job.startedAt=Date.now();
+      emit('robot-job:started',clone(job)); return {ok:true,job:clone(job),robot:assigned.robot};
     }
     return {ok:false,error:'NO_READY_ROBOT'};
   }
@@ -86,11 +81,9 @@ function create(opts){
     if(decision.allowed===false) return {ok:false,error:'PERMISSION_DENIED',decision};
     const job=jobs.get(String(jobId)); if(!job) return {ok:false,error:'UNKNOWN_JOB'};
     if(job.state!=='running') return {ok:false,error:'JOB_NOT_RUNNING',state:job.state};
-    job.state=(result&&result.ok===false)?'failed':'complete';
-    job.finishedAt=Date.now(); job.result=clone(result||{ok:true});
+    job.state=(result&&result.ok===false)?'failed':'complete'; job.finishedAt=Date.now(); job.result=clone(result||{ok:true});
     if(fleet&&job.assignedRobot&&typeof fleet.completeJob==='function') fleet.completeJob(job.assignedRobot,job.result,{actor:actor,userConfirmed:!!(context&&context.userConfirmed),local:!!(context&&context.local)});
-    emit('robot-job:finished',clone(job));
-    return {ok:true,job:clone(job)};
+    emit('robot-job:finished',clone(job)); return {ok:true,job:clone(job)};
   }
 
   function cancel(jobId,reason,context){
@@ -108,7 +101,6 @@ function create(opts){
   function get(jobId){ const j=jobs.get(String(jobId)); return j?clone(j):null; }
   function list(filter){ filter=filter||{}; return Array.from(jobs.values()).filter(j=>!filter.state||j.state===filter.state).map(clone); }
   function status(){ return {queued:queue.length,running:list({state:'running'}).length,complete:list({state:'complete'}).length,failed:list({state:'failed'}).length,total:jobs.size}; }
-
   return {submit,dispatchNext,finish,cancel,get,list,status};
 }
 root.OSKORobotJobs={create};
