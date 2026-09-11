@@ -18,6 +18,7 @@ Updated: September 11, 2026
 - `osko-state-persistence-v1.js` — snapshots, checkpoints and restore support.
 - `osko-device-bridge-v1.js` — phone/foldable/spatial/device capability bridge; not physical motor control.
 - `osko-android-host-core-v1.js` — Android-host boundary for phone hardware/services while OSKO updates remain separate from Android updates.
+- `osko-phone-runtime-core-v1.js` — coordinates the installed-phone stage across Android host readiness, wake-session state, SKIE voice routing, robot fleet status and dock state. It does not install APKs, capture microphone audio itself, or control physical motors.
 - `osko-voice-intent-v1.js` — SKIE voice intent routing into deterministic actions.
 - `osko-skie-voice-command-bridge-v1.js` — deterministic phrase bridge that routes robot voice requests to SKIE coordination and normal property requests to the shared Living OS action path; protected/physical requests are blocked.
 - `osko-wake-session-core-v1.js` — local wake/listening state machine for future “Hey SKIE” Android integration. It does not itself access microphone hardware.
@@ -73,9 +74,9 @@ Updated: September 11, 2026
 
 `TEST/OSKO-Living-OS-SKIE-4-ROBOTS-HARNESS-v1.html` is the dedicated SKIE + four-robot integration harness. It proves the central SKIE/four-work-body simulation chain, protected-action blocking, truthful charging, four distinct assignments, and report-only test-build behavior.
 
-`TEST/OSKO-Living-OS-SKIE-VOICE-4-ROBOTS-HARNESS-v2.html` adds the next layer: a future “Hey SKIE” wake-session state machine, deterministic voice-command routing, explicit requests for a named robot body, property-action routing through the same voice bridge, and protected voice-command blocking. It is a software test harness only. It does not turn on the phone microphone and does not control physical robot motors.
+`TEST/OSKO-Living-OS-SKIE-VOICE-4-ROBOTS-HARNESS-v2.html` adds the wake-session and deterministic voice-command layer, including explicit named-robot requests and property-action routing.
 
-The v2 voice harness inline JavaScript and both new voice/wake modules were syntax-checked with Node before upload. The v2 harness still requires Osko phone confirmation before it can be treated as a passed phone test.
+`TEST/OSKO-Living-OS-PHONE-RUNTIME-HARNESS-v1.html` is the first installed-phone architecture harness. It composes Android Host, Wake Session, Voice Intent, SKIE Voice Bridge, four-robot coordination and Dock Status through `OSKOPhoneRuntime`. It checks Android capability readiness, Hey SKIE wake flow, School/property command routing, explicit Robot Four assignment, protected motor-command blocking, truthful charging state, and correct refusal of voice work after the Android host disconnects. The phone-runtime module and harness inline JavaScript were syntax-checked with Node before upload. It still requires Osko phone confirmation and does not capture real microphone audio or install an APK.
 
 None of these harnesses modify FIX8 or V11, own the Three.js render loop, promote releases, or control physical robot/vehicle hardware.
 
@@ -85,7 +86,7 @@ Build clean modular systems first. Connect them through shared state, events, ac
 
 Touch, voice, future spatial controls and SKIE should call the same deterministic action layer. SKIE is the central coordinating brain for the Living OS ecosystem. The four robots are connected work bodies/resources under SKIE coordination, not four unrelated AI brains. Each physical body must still keep local deterministic safety control for motors, balance, battery, thermal protection, sensors and emergency stop.
 
-Voice architecture is now split correctly: the wake-session logic manages “Hey SKIE” listening state; speech recognition/microphone access will later live in the Android host layer; recognized text is passed into the deterministic SKIE voice-command bridge; the bridge routes allowed robot jobs to the SKIE coordinator and normal property commands to the shared Living OS action path. This keeps microphone hardware, natural-language handling, deterministic actions, permissions, and physical safety as separate layers.
+Voice architecture is split deliberately: Android eventually owns microphone/speech-recognition access; Wake Session manages “Hey SKIE” state; recognized text enters the deterministic SKIE Voice Command Bridge; allowed robot work goes to the SKIE coordinator and property commands go to the shared Living OS action path. `OSKOPhoneRuntime` now coordinates those pieces as one phone-stage service without pretending that microphone capture or privileged Android integration is already complete.
 
 Robot work should be proved in the game-based Living OS simulation first. SKIE may assign approved jobs, route robots through the property, send them to dock, inspect simulated targets, run approved test checks and report results. Protected release promotion, protected-file modification, safety disablement and unproved physical actuation are not autonomous robot jobs.
 
