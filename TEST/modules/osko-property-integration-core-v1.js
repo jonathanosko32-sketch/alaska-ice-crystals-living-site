@@ -44,7 +44,20 @@ function create(opts){
     if(registry){
       try{
         if(typeof registry.get==='function'&&registry.get(logicalId)) return logicalId;
-        if(typeof registry.register==='function') registry.register(logicalId,meta||{});
+        if(typeof registry.register==='function'){
+          const m=meta||{};
+          registry.register({
+            id:logicalId,
+            name:m.name||logicalId,
+            type:m.type||'property-object',
+            zone:m.zone||'property',
+            aliases:Array.isArray(m.aliases)?m.aliases:[],
+            permissions:m.permissions||{},
+            state:m.state||{},
+            actions:m.actions||{},
+            meta:Object.assign({},m,{source:m.source||'property-integration'})
+          });
+        }
       }catch(err){ warn('REGISTRY_REGISTER_FAILED',{id:logicalId,error:String(err&&err.message||err)}); }
     }
     if(worldState&&typeof worldState.registerObject==='function'){
@@ -89,7 +102,7 @@ function create(opts){
     const logicalId=resolve(id)||String(id);
     if(camera&&typeof camera.go==='function'){
       const out=camera.go(logicalId);
-      if(out&&out.ok) return out;
+      if(out&&out.ok!==false) return out;
     }
     return {ok:false,error:'CAMERA_TARGET_UNAVAILABLE',id:logicalId};
   }
@@ -100,7 +113,7 @@ function create(opts){
       ? sceneBinding.applyState(logicalId,state||{})
       : {ok:false,error:'SCENE_BINDING_UNAVAILABLE',id:logicalId};
 
-    if(result&&result.ok&&worldState&&typeof worldState.setObjectState==='function'){
+    if(result&&result.ok!==false&&worldState&&typeof worldState.setObjectState==='function'){
       try{ worldState.setObjectState(logicalId,state||{}); }
       catch(err){ warn('WORLD_STATE_SYNC_FAILED',{id:logicalId,error:String(err&&err.message||err)}); }
     }
