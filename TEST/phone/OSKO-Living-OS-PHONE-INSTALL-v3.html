@@ -1,0 +1,37 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#06131c"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="./manifest.webmanifest"><title>OSKO Living OS</title>
+<style>
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#020910;color:#effcff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}#world{position:absolute;inset:0;width:100%;height:100%;border:0;background:#020910}.bar{position:fixed;left:10px;right:10px;top:max(8px,env(safe-area-inset-top));z-index:20;display:flex;gap:7px;align-items:center;padding:8px 9px;border:1px solid rgba(120,220,255,.28);background:rgba(2,13,21,.82);backdrop-filter:blur(10px);border-radius:15px;box-shadow:0 8px 30px rgba(0,0,0,.24)}.brand{font-weight:800;letter-spacing:.08em;font-size:12px;white-space:nowrap}.state{font-size:10px;color:#93cfe5;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}.btn{border:0;border-radius:10px;padding:9px 10px;background:#123145;color:#eaffff;font-weight:750;font-size:11px}.btn.hot{background:#1b5b78}.btn.warn{background:#6f3f1c}.btn.good{background:#1f654b}.panel{position:fixed;left:10px;right:10px;top:64px;z-index:30;background:#071722;border:1px solid #29536a;border-radius:16px;padding:14px;box-shadow:0 18px 50px rgba(0,0,0,.45);display:none}.panel.show{display:block}.panel h2{font-size:16px;margin:0 0 7px}.panel p{font-size:12px;color:#afd7e5;margin:6px 0 12px;line-height:1.4}.row{display:flex;gap:8px;flex-wrap:wrap}.note{font-size:10px;color:#7099aa;margin-top:9px}.hide{display:none!important}.badge{display:inline-block;padding:4px 7px;border-radius:999px;background:#102b3a;color:#a9e9ff;font-size:10px;margin-bottom:7px}
+</style></head><body>
+<iframe id="world" title="OSKO Living OS"></iframe>
+<div class="bar"><div class="brand">OSKO</div><div class="state" id="state">Starting phone shell…</div><button class="btn" id="installBtn">INSTALL</button><button class="btn hot" id="updatesBtn">UPDATES</button></div>
+<div class="panel" id="panel"><div class="badge" id="modeBadge">UPDATE CHANNEL</div><h2 id="panelTitle">Living OS Updates</h2><p id="panelText">Checking owner-approved releases…</p><div class="row" id="normalRow"><button class="btn hot" id="testBtn">TEST UPDATE</button><button class="btn" id="rollbackBtn">ROLL BACK</button><button class="btn" id="stableBtn">USE FIX8</button><button class="btn" id="closeBtn">CLOSE</button></div><div class="row hide" id="testRow"><button class="btn good" id="keepBtn">KEEP UPDATE</button><button class="btn warn" id="rejectBtn">REJECT UPDATE</button></div><div class="note" id="panelNote"></div></div>
+<script src="./osko-phone-update-client-v1.js"></script>
+<script>
+(()=>{
+'use strict';
+const RELEASES='./releases-v2.json';
+const FALLBACK='../OSKO-Living-OS-FIRST-BUILD-v1-FIX8.html';
+const world=document.getElementById('world'),stateEl=document.getElementById('state'),panel=document.getElementById('panel'),panelText=document.getElementById('panelText'),panelNote=document.getElementById('panelNote'),installBtn=document.getElementById('installBtn'),normalRow=document.getElementById('normalRow'),testRow=document.getElementById('testRow'),modeBadge=document.getElementById('modeBadge');
+const updates=OSKOPhoneUpdateClient.create({storage:localStorage});
+let registry=null,deferredInstall=null;
+function show(url,label,testMode){world.src=url||FALLBACK;stateEl.textContent=(testMode?'TESTING • ':'RUNNING • ')+(label||'FIX8 STABLE');modeBadge.textContent=testMode?'TEST MODE — NOT ACTIVE':'OWNER-APPROVED UPDATE CHANNEL'}
+async function fetchRegistry(){try{const r=await fetch(RELEASES+'?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('release registry unavailable');const data=await r.json();const valid=updates.validateRegistry(data);if(!valid.ok)throw new Error(valid.error);registry=data;updates.bootstrap(data.stable);return data}catch(e){stateEl.textContent='OFFLINE • USING SAVED RELEASE';return null}}
+function renderState(){const s=updates.status();if(s.testing&&s.staged){show(s.staged.url,s.staged.label,true);normalRow.classList.add('hide');testRow.classList.remove('hide');panelText.textContent='You are testing '+s.staged.label+'. If it looks and works right on this phone, tap KEEP UPDATE. Nothing becomes active until you confirm it.';panelNote.textContent='REJECT UPDATE returns to the active release. FIX8 remains protected.';return}normalRow.classList.remove('hide');testRow.classList.add('hide');const active=s.active||(registry&&registry.stable)||{url:FALLBACK,label:'FIX8 STABLE'};show(active.url,active.label,false);const cand=registry&&registry.candidate&&registry.candidate.enabled?registry.candidate:null;const available=cand&&cand.id!==active.id;document.getElementById('testBtn').disabled=!available;document.getElementById('rollbackBtn').disabled=!s.previous;panelText.textContent=available?'Update ready to test: '+cand.label:'No different candidate is staged right now.';panelNote.textContent='Current: '+(active.label||active.id)+(s.previous?' • Previous: '+(s.previous.label||s.previous.id):'')+'. Testing does not replace the active release.'}
+async function check(open){await fetchRegistry();renderState();if(open)panel.classList.add('show')}
+document.getElementById('updatesBtn').onclick=()=>check(true);
+document.getElementById('closeBtn').onclick=()=>panel.classList.remove('show');
+document.getElementById('testBtn').onclick=()=>{if(registry&&registry.candidate){updates.stage(registry.candidate);renderState()}};
+document.getElementById('keepBtn').onclick=()=>{const out=updates.confirmAndActivate();if(out.ok){renderState();panelText.textContent='Update confirmed on this phone and activated.'}};
+document.getElementById('rejectBtn').onclick=()=>{updates.reject('owner-rejected-after-phone-test');renderState();panelText.textContent='Candidate rejected. Returned to the active release.'};
+document.getElementById('rollbackBtn').onclick=()=>{updates.rollback(registry&&registry.stable);renderState();panelText.textContent='Rolled back to the previous known-good release.'};
+document.getElementById('stableBtn').onclick=()=>{updates.useStable((registry&&registry.stable)||{id:'FIX8',label:'FIX8 STABLE',url:FALLBACK,protected:true});renderState();panelText.textContent='Protected FIX8 selected.'};
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;installBtn.classList.add('hot');stateEl.textContent='READY TO ADD TO PHONE'});
+installBtn.onclick=async()=>{if(deferredInstall){deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;installBtn.classList.remove('hot')}else{panel.classList.add('show');panelText.textContent='Use the browser menu and choose Install app / Add to Home screen if no install prompt appears.';panelNote.textContent='Install the shell once. Later Living OS releases can be tested and activated from UPDATES.'}};
+window.addEventListener('appinstalled',()=>{stateEl.textContent='INSTALLED • OSKO LIVING OS';installBtn.classList.add('hide')});
+if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw-v3.js').catch(()=>{})}
+renderState();check(false);setInterval(()=>check(false),15*60*1000);
+})();
+</script></body></html>
