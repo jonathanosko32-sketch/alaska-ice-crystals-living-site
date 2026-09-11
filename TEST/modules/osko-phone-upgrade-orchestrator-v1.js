@@ -14,13 +14,14 @@ function create(opts){
   function emit(type,payload){if(eventBus&&typeof eventBus.emit==='function'){try{eventBus.emit(type,payload);}catch(_e){}}}
   function clone(v){return v==null?v:JSON.parse(JSON.stringify(v));}
   function setPhase(phase,detail){state.phase=phase;emit('phone-upgrade:phase',{phase,detail:clone(detail||null)});}
+  function reject(error,detail){const e=String(error||'UPGRADE_BLOCKED');state.lastError=e;emit('phone-upgrade:blocked',{error:e,detail:clone(detail||null),phase:state.phase});return {ok:false,error:e,detail:clone(detail||null),status:status()};}
   function fail(error,detail){state.lastError=String(error||'UPGRADE_FAILED');state.lastResult=clone(detail||null);setPhase('failed',{error:state.lastError});return {ok:false,error:state.lastError,detail:clone(detail||null),status:status()};}
   function begin(spec){
     spec=spec||{};
-    if(state.phase!=='idle'&&state.phase!=='complete'&&state.phase!=='rolled-back'&&state.phase!=='failed') return fail('UPGRADE_ALREADY_ACTIVE');
+    if(state.phase!=='idle'&&state.phase!=='complete'&&state.phase!=='rolled-back'&&state.phase!=='failed') return reject('UPGRADE_ALREADY_ACTIVE');
     if(!install||typeof install.stageCandidate!=='function') return fail('INSTALL_PROFILE_UNAVAILABLE');
     if(!data||typeof data.checkpoint!=='function') return fail('DATA_CONTINUITY_UNAVAILABLE');
-    const releaseId=String(spec.releaseId||'').trim();if(!releaseId)return fail('RELEASE_REQUIRED');
+    const releaseId=String(spec.releaseId||'').trim();if(!releaseId)return reject('RELEASE_REQUIRED');
     const cp=data.checkpoint({reason:'pre-upgrade',releaseId});if(!cp.ok)return fail(cp.error,cp);
     const staged=install.stageCandidate(releaseId);if(!staged.ok)return fail(staged.error,staged);
     state.candidate=releaseId;state.checkpointId=cp.id;state.targetSchema=spec.targetSchema==null?null:Math.max(1,Number(spec.targetSchema)||1);state.lastError=null;state.lastResult=null;
@@ -29,28 +30,28 @@ function create(opts){
     return {ok:true,status:status()};
   }
   function prepareData(context){
-    if(state.phase!=='staged') return fail('UPGRADE_NOT_STAGED');
+    if(state.phase!=='staged') return reject('UPGRADE_NOT_STAGED');
     if(state.targetSchema==null){setPhase('data-ready',{migration:false});return {ok:true,migration:false,status:status()};}
     const p=data.preview(state.targetSchema,context||{});if(!p.ok)return fail(p.error||'DATA_MIGRATION_PREVIEW_FAILED',p);
     setPhase('data-ready',{migration:p.changed,from:p.from,to:p.to});return {ok:true,preview:p,status:status()};
   }
   function markVerified(meta){
-    if(state.phase!=='staged'&&state.phase!=='data-ready') return fail('UPGRADE_NOT_READY_FOR_VERIFICATION');
+    if(state.phase!=='staged'&&state.phase!=='data-ready') return reject('UPGRADE_NOT_READY_FOR_VERIFICATION');
     if(androidHost&&typeof androidHost.markUpdateVerified==='function'){const h=androidHost.markUpdateVerified(meta||{});if(h&&h.ok===false)return fail(h.error,h);}
     setPhase('verified',meta||{});return {ok:true,status:status()};
   }
   function activate(context){
     context=context||{};
-    if(state.phase!=='verified') return fail('UPGRADE_NOT_VERIFIED');
-    if(context.phoneConfirmed!==true) return fail('PHONE_CONFIRMATION_REQUIRED');
-    if(context.ownerApproved!==true) return fail('OWNER_APPROVAL_REQUIRED');
+    if(state.phase!=='verified') return reject('UPGRADE_NOT_VERIFIED');
+    if(context.phoneConfirmed!==true) return reject('PHONE_CONFIRMATION_REQUIRED');
+    if(context.ownerApproved!==true) return reject('OWNER_APPROVAL_REQUIRED');
     if(state.targetSchema!=null){const a=data.applyPreview({ownerApproved:true});if(!a.ok)return fail(a.error,a);}
     const out=install.activateCandidate({verified:true,phoneConfirmed:true,ownerApproved:true});if(!out.ok)return fail(out.error,out);
     if(androidHost&&typeof androidHost.markUpdateActivated==='function'){const h=androidHost.markUpdateActivated({releaseId:state.candidate});if(h&&h.ok===false)return fail(h.error,h);}
     setPhase('active',{releaseId:state.candidate});return {ok:true,release:state.candidate,status:status()};
   }
   function complete(meta){
-    if(state.phase!=='active') return fail('UPGRADE_NOT_ACTIVE');
+    if(state.phase!=='active') return reject('UPGRADE_NOT_ACTIVE');
     if(androidHost&&typeof androidHost.completeUpdate==='function'){const h=androidHost.completeUpdate(meta||{});if(h&&h.ok===false)return fail(h.error,h);}
     state.lastResult={releaseId:state.candidate,completedAt:Date.now()};setPhase('complete',state.lastResult);return {ok:true,status:status()};
   }
