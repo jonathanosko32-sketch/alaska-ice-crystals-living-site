@@ -4,7 +4,7 @@ Updated: September 11, 2026
 
 ## Protection rule
 
-`OSKO-Living-OS-FIRST-BUILD-v1-FIX8.html` remains the current user-confirmed working visual build. These modules are being developed beside it. Do not overwrite FIX8 or force these modules into FIX8 until a clean integration build is prepared and checked.
+`OSKO-Living-OS-FIRST-BUILD-v1-FIX8.html` remains the current user-confirmed working visual build. V11 is also a protected visual/master reference. These modules are being developed beside those protected builds. Do not overwrite, simplify, delete, or force new modules into FIX8/V11 until a clean integration build is prepared, verified, and phone-confirmed.
 
 ## Current modules
 
@@ -39,21 +39,38 @@ Updated: September 11, 2026
 - `osko-boot-recovery-core-v1.js` — startup checks, degraded mode and state recovery support.
 - `osko-command-journal-v1.js` — command/event journal with common secret-field redaction.
 - `osko-integration-manifest-v1.js` — loader-only manifest for isolated integration testing.
+- `osko-visual-integration-bridge-v1.js` — clean logical-to-visual bridge without taking over rendering.
+- `osko-integration-readiness-v1.js` — required-module/API gate before visual integration can advance.
+- `osko-integration-session-v1.js` — tracks staged integration, tests, warnings, readiness and proof state.
+- `osko-visual-state-adapters-v1.js` — reusable visual state adapters for basic objects, lights, gates and expandable objects.
+- `osko-property-integration-core-v1.js` — coordinates property identities, bindings, camera targets and world state.
+- `osko-lifecycle-core-v1.js` — startup, pause, resume, checkpoint, tick and logical shutdown lifecycle.
+- `osko-visual-smoke-test-v1.js` — read-only visual integration smoke tests.
+- `osko-binding-plan-v1.js` — required/optional logical binding plan for property objects.
+- `osko-update-core-v1.js` — staged release verification, activation and rollback with protected versions.
+- `osko-system-boot-v1.js` — boot coordinator from saved-state restore through diagnostics into runtime.
+- `osko-release-channel-core-v1.js` — development/test/stable release-channel control with phone-confirmation requirement for stable promotion.
+- `osko-state-migration-core-v1.js` — schema migration path for saved data across future OS versions.
+- `osko-recovery-supervisor-v1.js` — recovery-mode coordinator for diagnostics, checkpoint restore and update rollback.
+- `osko-permission-core-v1.js` — capability-based authority for user, modules, SKIE, UI, voice, spatial clients and future robots; safety-critical authority remains separate.
+- `osko-user-data-vault-v1.js` — user-owned namespaced data kept separate from code/visual releases, with protected keys and import/export support.
 - `osko-wildlife-v1.js` — first standalone wildlife system.
 - `osko-wildlife-v2.js` — expanded wildlife schedules/state/behavior work.
 - `osko-wildlife-awareness-v1.js` — read-only wildlife awareness and safe alerts; no autonomous confrontation.
 
 ## Integration harness
 
-`TEST/OSKO-Living-OS-MODULE-HARNESS-v1.html` is an isolated phone-first module harness. It loads the modular foundation separately from FIX8 and runs a basic event-bus/world-state/runtime smoke test. It does not modify FIX8, own the Three.js render loop, or control physical robot/vehicle hardware.
+`TEST/OSKO-Living-OS-MODULE-HARNESS-v3.html` is the newest isolated integration harness. It extends the earlier harnesses with lifecycle, persistence, journal, action, camera, binding and readiness checks. It does not modify FIX8 or V11, own the Three.js render loop, or control physical robot/vehicle hardware.
 
-The harness is a development checkpoint, not a replacement visual Living OS build and not yet the version to present as stable to Osko.
+The harness is a development checkpoint, not a replacement visual Living OS build. It must not be called stable until its required checks pass and a new visual integration build is phone-confirmed.
 
 ## Current architecture direction
 
 Build clean modular systems first. Connect them through shared state, events, actions and explicit contracts. Avoid wrapper-on-wrapper stacking and avoid replacing the main render loop blindly.
 
 Touch, voice, future spatial controls and SKIE should call the same deterministic action layer. Safety-critical robot behavior stays separate from convenience AI/voice features.
+
+Phone deployment should keep code/releases separate from persistent user data. Candidate builds are staged and verified separately from the stable installed release; approved releases can activate without treating the user data vault as disposable. Recovery and rollback remain available if a candidate fails.
 
 Wildlife and domestic/ranch animals remain behaviorally separate. Wildlife awareness can report danger but does not authorize robots to confront animals.
 
