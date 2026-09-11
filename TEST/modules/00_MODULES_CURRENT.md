@@ -65,11 +65,13 @@ Updated: September 11, 2026
 - `osko-wildlife-v2.js` — expanded wildlife schedules/state/behavior work.
 - `osko-wildlife-awareness-v1.js` — read-only wildlife awareness and safe alerts; no autonomous confrontation.
 
-## Integration harness
+## Integration harnesses
 
-`TEST/OSKO-Living-OS-MODULE-HARNESS-v3.html` is the newest isolated integration harness. It extends the earlier harnesses with lifecycle, persistence, journal, action, camera, binding and readiness checks. It does not modify FIX8 or V11, own the Three.js render loop, or control physical robot/vehicle hardware.
+`TEST/OSKO-Living-OS-MODULE-HARNESS-v3.html` is the general isolated integration harness for lifecycle, persistence, journal, actions, camera, binding and readiness.
 
-The harness is a development checkpoint, not a replacement visual Living OS build. It must not be called stable until its required checks pass and a new visual integration build is phone-confirmed.
+`TEST/OSKO-Living-OS-SKIE-4-ROBOTS-HARNESS-v1.html` is the dedicated SKIE + four-robot phone-first integration harness. It loads Event Bus, Permission Core, Robot Fleet, Robot Job Core, Dock Status, SKIE Robot Coordinator and Robot Simulation Core together. It checks that all four work bodies initialize and become ready, SKIE is permission-restricted, protected physical requests are blocked, false charging is rejected, four simultaneous simulated jobs are distributed across four distinct robots, all simulations complete, and a test-build job ends in report-only/no-activation mode. Its inline JavaScript was syntax-checked with Node before upload. It is a development test, not a stable visual Living OS build and not physical robot control.
+
+Neither harness modifies FIX8 or V11, owns the Three.js render loop, promotes releases, or controls physical robot/vehicle hardware.
 
 ## Current architecture direction
 
@@ -87,11 +89,11 @@ Wildlife and domestic/ranch animals remain behaviorally separate. Wildlife aware
 
 ## Delivery rule for Osko
 
-When a new visual Living OS build is ready for Osko to check, send:
+When a new visual Living OS build or phone-check harness is ready for Osko to check, send:
 
-1. the direct tap-ready GitHub Pages link for the new test build;
+1. the direct tap-ready GitHub Pages link for the new test build/harness;
 2. directly underneath it, the current known-working FIX8 link;
-3. a clear label saying whether the new build is phone-confirmed, syntax-checked only, or untested.
+3. a clear label saying whether the new build was phone-confirmed, syntax-checked only, or untested.
 
 Never send only a repo path, blob/source page, or commit SHA and expect Osko to assemble the link.
 
