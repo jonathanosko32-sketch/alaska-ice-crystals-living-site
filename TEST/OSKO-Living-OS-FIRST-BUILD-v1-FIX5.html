@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#06131c">
+<title>OSKO Living OS — Alaska Ice Crystals</title>
+<style>
+html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#020910;color:#eefcff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+#boot{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(circle at 50% 48%,#071827 0,#020910 62%,#01050a 100%)}
+.wrap{text-align:center;padding:24px;max-width:92vw}
+.brand{font-family:"Segoe Script","Brush Script MT","Snell Roundhand",cursive;font-size:clamp(34px,9vw,58px);font-style:italic;font-weight:700;line-height:1.05;letter-spacing:.01em;color:#eafcff;text-shadow:0 0 10px rgba(126,224,255,.75),0 0 24px rgba(58,159,220,.48),0 2px 0 #2b7da8}
+.sub{margin-top:16px;font-size:11px;letter-spacing:.22em;color:#8fdcf5}
+.track{width:min(54vw,240px);height:3px;background:#123140;margin:23px auto 0;overflow:hidden;border-radius:999px;box-shadow:0 0 12px rgba(100,215,255,.12)}
+.bar{height:100%;width:38%;background:linear-gradient(90deg,#6fccea,#effcff,#7bd5f4);animation:move 1.05s linear infinite;border-radius:999px}
+.msg{margin-top:13px;font-size:10px;color:#7fa8b8;letter-spacing:.08em;min-height:16px}
+@keyframes move{from{transform:translateX(-110%)}to{transform:translateX(300%)}}
+</style>
+</head>
+<body>
+<div id="boot"><div class="wrap"><div class="brand">Alaska Ice Crystals</div><div class="sub">STARTING LIVING OS</div><div class="track"><div class="bar"></div></div><div class="msg" id="msg">Loading living world…</div></div></div>
+<script>
+(async()=>{
+  const msg=document.getElementById('msg');
+  const wait=(ms)=>new Promise(r=>setTimeout(r,ms));
+  const loadScript=(src,timeout=7000)=>new Promise((resolve,reject)=>{
+    const s=document.createElement('script');let done=false;
+    const finish=(ok)=>{if(done)return;done=true;clearTimeout(t);ok?resolve():reject(new Error('script load failed: '+src))};
+    const t=setTimeout(()=>finish(false),timeout);
+    s.src=src;s.async=true;s.crossOrigin='anonymous';s.onload=()=>finish(true);s.onerror=()=>finish(false);document.head.appendChild(s);
+  });
+  try{
+    msg.textContent='Loading 3D engine…';
+    const engines=[
+      'https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js',
+      'https://unpkg.com/three@0.160.1/build/three.min.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.1/three.min.js'
+    ];
+    let loaded=false;
+    for(const src of engines){try{await loadScript(src);if(window.THREE){loaded=true;break}}catch(e){}}
+    if(!loaded||!window.THREE)throw new Error('3D engine unavailable');
+    msg.textContent='Opening Alaska Ice Crystals…';
+    const r=await fetch('./OSKO-Living-OS-FIRST-BUILD-v1.html?v=6',{cache:'no-store'});
+    if(!r.ok)throw new Error('world file unavailable');
+    let html=await r.text();
+    html=html.replace(/<script\s+src=["']https:\/\/cdn\.jsdelivr\.net\/npm\/three@0\.168\.0\/build\/three\.min\.js["']><\/script>/i,'');
+
+    html=html.replace('.loader b{display:block;font-size:13px;letter-spacing:.2em}', '.loader b{display:block;font-family:"Segoe Script","Brush Script MT","Snell Roundhand",cursive;font-size:34px;font-style:italic;line-height:1.05;letter-spacing:.01em;color:#eafcff;text-shadow:0 0 10px rgba(126,224,255,.75),0 0 24px rgba(58,159,220,.48),0 2px 0 #2b7da8}');
+    html=html.replace('<b>ALASKA ICE CRYSTALS</b>','<b>Alaska Ice Crystals</b>');
+    html=html.replace("cabin('hq','Alaska Ice Crystals HQ',0,-66,1.45,'ALASKA ICE CRYSTALS')","cabin('hq','Alaska Ice Crystals HQ',0,-66,1.45,'Alaska Ice Crystals')");
+    html=html.replace("sign('ALASKA ICE CRYSTALS','OSKO LIVING OS',46,11,0,25,176)","sign('Alaska Ice Crystals','OSKO LIVING OS',46,11,0,25,176)");
+    html=html.replace("map:tex('ALASKA ICE CRYSTALS','OSKO')","map:tex('Alaska Ice Crystals','OSKO')");
+    html=html.replace(
+      "x.shadowColor='#7feaff';x.shadowBlur=20;x.fillStyle='#e8fcff';x.font='700 72px system-ui';x.textAlign='center';x.fillText(text,512,115);",
+      "x.shadowColor='#7feaff';x.shadowBlur=20;x.fillStyle='#e8fcff';x.textAlign='center';if(text==='Alaska Ice Crystals'){x.font='italic 700 78px \\\"Segoe Script\\\", \\\"Brush Script MT\\\", \\\"Snell Roundhand\\\", cursive';x.fillStyle='#eafcff';x.shadowColor='#6fdcff';x.shadowBlur=28;}else{x.font='700 72px system-ui';}x.fillText(text,512,115);"
+    );
+
+    html=html.replace(
+      "function home(){goal.target.set(0,0,35);goal.distance=230;goal.pitch=.76;close();status.textContent='HOME • WHOLE PROPERTY'}",
+      "function home(){goal.target.set(0,0,18);goal.distance=300;goal.pitch=.82;goal.yaw=-.34;close();status.textContent='HOME • LIVING PROPERTY'}"
+    );
+
+    const livingInsert = `
+const oskoLiving={windows:[],lamps:[],realLights:[],aurora:[],eagles:[],people:[],dog:null};
+function glowPanel(x,y,z,w=7,h=5){
+  const mat=new THREE.MeshStandardMaterial({color:0xffd89a,emissive:0xffb45d,emissiveIntensity:1.8,roughness:.45});
+  const p=new THREE.Mesh(new THREE.PlaneGeometry(w,h),mat);p.position.set(x,y,z);scene.add(p);oskoLiving.windows.push(p);return p;
+}
+function lamp(x,z,real=false){
+  const pole=new THREE.Mesh(new THREE.CylinderGeometry(.35,.45,7,8),M(0x26343d,.4,.6));pole.position.set(x,3.5,z);scene.add(pole);
+  const bulb=new THREE.Mesh(new THREE.SphereGeometry(.85,10,10),new THREE.MeshStandardMaterial({color:0xeefcff,emissive:0x9deaff,emissiveIntensity:2.1}));
+  bulb.position.set(x,7.2,z);scene.add(bulb);oskoLiving.lamps.push(bulb);
+  if(real){const l=new THREE.PointLight(0xbfefff,0,42,2);l.position.set(x,7,z);scene.add(l);oskoLiving.realLights.push(l)}
+}
+[[0,10,-43],[-18,10,-43],[18,10,-43],[-112,9,50],[98,9,56],[-84,8,-35],[158,7,35]].forEach(v=>glowPanel(v[0],v[1],v[2],v[0]===0?9:6,v[0]===0?6:4.5));
+[[-10,145,true],[10,145,false],[-55,78,true],[55,66,false],[-112,4,true],[112,0,false],[-25,-16,true],[25,-16,false]].forEach(v=>lamp(v[0],v[1],v[2]));
+for(const x of[-22,22]){const b=new THREE.Mesh(new THREE.SphereGeometry(1.1,12,12),new THREE.MeshStandardMaterial({color:0xe9fbff,emissive:0x62d9ff,emissiveIntensity:2.5}));b.position.set(x,18,176);scene.add(b);oskoLiving.lamps.push(b)}
+for(const z of[-6,6]){const h=new THREE.Mesh(new THREE.BoxGeometry(.9,2.4,3.2),new THREE.MeshStandardMaterial({color:0xf6fbff,emissive:0xdff8ff,emissiveIntensity:2.8}));h.position.set(3.8,7.2,88+z);scene.add(h);oskoLiving.lamps.push(h)}
+for(let i=0;i<5;i++){
+  const mat=new THREE.MeshBasicMaterial({color:i%2?0x80e0ff:0x69ffc0,transparent:true,opacity:.08,side:THREE.DoubleSide,depthWrite:false,blending:THREE.AdditiveBlending});
+  const q=new THREE.Mesh(new THREE.PlaneGeometry(150+i*20,55+i*5,18,3),mat);
+  q.position.set(-120+i*60,105+i*8,-235-i*5);q.rotation.y=(i-2)*.08;scene.add(q);q.userData.seed=i*1.7;oskoLiving.aurora.push(q);
+}
+const dog=new THREE.Group();scene.add(dog);dog.position.set(25,0,110);
+const db=new THREE.Mesh(new THREE.CapsuleGeometry(2.4,7,6,10),M(0x9a7049,.75));db.rotation.z=Math.PI/2;db.position.y=5;dog.add(db);
+const dh=new THREE.Mesh(new THREE.SphereGeometry(2.7,14,14),M(0xa98259,.72));dh.position.set(5.3,6.3,0);dog.add(dh);
+for(const sx of[-2.2,2.2])for(const sz of[-1.5,1.5]){const leg=new THREE.Mesh(new THREE.CylinderGeometry(.55,.65,4,8),M(0x7d5b3f,.8));leg.position.set(sx,2.1,sz);dog.add(leg)}
+const scarf=new THREE.Mesh(new THREE.TorusGeometry(2.7,.5,8,18),new THREE.MeshStandardMaterial({color:0xff6aa9,emissive:0x8b1d54,emissiveIntensity:.35}));scarf.rotation.x=Math.PI/2;scarf.position.set(3.1,5.6,0);dog.add(scarf);
+oskoLiving.dog=dog;interactive('auroradog','Aurora Service Dog','SERVICE DOG',db,[25,0,110],'Aurora is part of the living property and follows safe routes through the OS world.',['STATUS','FIND','HOME'],['aurora dog','service dog']);
+for(let i=0;i<6;i++){
+  const a=i/6*Math.PI*2,r=19,gp=new THREE.Group();gp.position.set(Math.cos(a)*r,0,18+Math.sin(a)*r);gp.rotation.y=-a+Math.PI/2;scene.add(gp);
+  const body=new THREE.Mesh(new THREE.CapsuleGeometry(1.4,5,5,8),M(i%2?0x3b5362:0x55433b,.75));body.position.y=4.8;gp.add(body);
+  const head=new THREE.Mesh(new THREE.SphereGeometry(1.5,10,10),M(0xc49a7b,.72));head.position.y=9;gp.add(head);
+  gp.userData.seed=i*.9;oskoLiving.people.push(gp);
+}
+function eagle(i){
+  const g=new THREE.Group();scene.add(g);const body=new THREE.Mesh(new THREE.CapsuleGeometry(1.0,4,5,8),M(0x33291f,.8));body.rotation.z=Math.PI/2;g.add(body);
+  for(const s of[-1,1]){const wing=new THREE.Mesh(new THREE.BoxGeometry(6,.35,2.1),M(0x47382a,.86));wing.position.set(0,0,s*3.3);wing.rotation.y=s*.2;g.add(wing);wing.userData.wing=true;wing.userData.side=s}
+  g.userData.seed=i*Math.PI;oskoLiving.eagles.push(g);return g;
+}
+eagle(0);eagle(1);
+function oskoLightUpdate(){
+  const d=new Date(),h=d.getHours()+d.getMinutes()/60,day=Math.pow(Math.max(0,Math.sin((h-6)/12*Math.PI)),.5),night=1-day;
+  oskoLiving.windows.forEach(w=>w.material.emissiveIntensity=.35+night*3.0);
+  oskoLiving.lamps.forEach(l=>l.material.emissiveIntensity=.35+night*3.2);
+  oskoLiving.realLights.forEach(l=>l.intensity=night*2.2);
+  moon.intensity=.35+night*1.25;hemi.intensity=Math.max(hemi.intensity,.34+day*.72);
+}
+oskoLightUpdate();setInterval(oskoLightUpdate,15000);
+`;
+    html=html.replace("const r4=robot('robot4','Robot Four',-55,48);", "const r4=robot('robot4','Robot Four',-55,48);"+livingInsert);
+
+    const anim = `
+const tt=now*.001;
+oskoLiving.aurora.forEach((a,i)=>{a.position.x+=Math.sin(tt*.22+a.userData.seed)*.012;a.rotation.z=Math.sin(tt*.18+a.userData.seed)*.035;a.material.opacity=.045+(1-(time.day||0))*(.10+.035*Math.sin(tt*.7+i))});
+if(oskoLiving.dog){const u=(now*.000035)%1,ang=u*Math.PI*2;oskoLiving.dog.position.x=55*Math.cos(ang);oskoLiving.dog.position.z=45+72*Math.sin(ang);oskoLiving.dog.rotation.y=-ang+.1;oskoLiving.dog.position.y=.35+Math.abs(Math.sin(tt*4))*0.35}
+oskoLiving.people.forEach((p,i)=>{p.rotation.z=Math.sin(tt*1.1+p.userData.seed)*.018;p.position.y=Math.sin(tt*.8+p.userData.seed)*.12});
+oskoLiving.eagles.forEach((e,i)=>{const a=tt*.11+i*Math.PI;e.position.set(Math.cos(a)*145,72+12*Math.sin(tt*.4+i),-55+Math.sin(a)*90);e.rotation.y=-a;e.children.forEach(c=>{if(c.userData.wing)c.rotation.x=Math.sin(tt*3.2+i)*.35*c.userData.side})});
+`;
+    html=html.replace("if(life){const p=g.attributes.position.array;", "if(life){"+anim+"const p=g.attributes.position.array;");
+
+    await wait(100);
+    document.open();document.write(html);document.close();
+  }catch(err){
+    console.error(err);
+    msg.textContent='Startup blocked. Refresh once if this message remains.';
+    const bar=document.querySelector('.bar');if(bar)bar.style.animation='none';
+  }
+})();
+</script>
+</body>
+</html>
