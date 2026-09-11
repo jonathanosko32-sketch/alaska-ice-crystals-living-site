@@ -21,9 +21,13 @@ function create(opts){
   }
 
   function record(type,data){
-    if(journal&&typeof journal.record==='function'){
-      try{ journal.record(type,data||{}); }catch(_e){}
-    }
+    if(!journal) return;
+    const payload={source:'lifecycle',action:type,input:data||{}};
+    try{
+      if(typeof journal.add==='function') journal.add('system',payload);
+      else if(typeof journal.system==='function') journal.system(payload);
+      else if(typeof journal.record==='function') journal.record(type,data||{});
+    }catch(_e){}
   }
 
   function fail(source,err){
@@ -77,7 +81,7 @@ function create(opts){
     try{
       const name=String(label||('checkpoint-'+Date.now()));
       const result=persistence.checkpoint(name,snapshot||{lifecycle:status()});
-      state.lastCheckpoint={time:Date.now(),label:name};
+      state.lastCheckpoint={time:Date.now(),label:name,id:result&&result.id||null};
       emit('lifecycle:checkpoint',state.lastCheckpoint);
       record('lifecycle:checkpoint',state.lastCheckpoint);
       return {ok:true,result};
