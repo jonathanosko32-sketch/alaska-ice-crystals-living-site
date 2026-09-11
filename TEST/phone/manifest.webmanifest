@@ -2,7 +2,7 @@
   "name": "OSKO Living OS",
   "short_name": "OSKO",
   "description": "Alaska Ice Crystals Living OS phone shell",
-  "start_url": "./OSKO-Living-OS-PHONE-INSTALL-v1.html",
+  "start_url": "./OSKO-Living-OS-PHONE-INSTALL-v3.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
