@@ -3,11 +3,11 @@ android {
     namespace = "com.osko.launcher"
     compileSdk = 35
     defaultConfig {
-        applicationId = "com.alaskaicecrystals.livinglayover.codedtest"
+        applicationId = "com.alaskaicecrystals.livinglayover.cameratest"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1203
-        versionName = "12.0.3-coded-duplicate-android-stability"
+        versionCode = 1204
+        versionName = "12.0.4-camera-test-fresh-package"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
