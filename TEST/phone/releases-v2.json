@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "BUILDING-SIGNS-v26",
-    "label": "BUILDING SIGNS v26 TEST",
-    "url": "../OSKO-Living-OS-BUILDING-SIGNS-CANDIDATE-v26.html",
+    "id": "BUILDING-LIGHTS-v27",
+    "label": "BUILDING LIGHT REPAIR v27 TEST",
+    "url": "../OSKO-Living-OS-BUILDING-LIGHTS-REPAIR-v27.html",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
