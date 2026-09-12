@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="theme-color" content="#06131c"><title>OSKO Living OS — HQ Sign Color Test v37</title><style>html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#020910;color:#eefcff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}#boot{position:fixed;inset:0;display:grid;place-items:center;background:#020910}.wrap{text-align:center;padding:24px}.brand{font-family:"Segoe Script","Brush Script MT",cursive;font-size:42px;font-style:italic;font-weight:700;color:#dffcff;text-shadow:0 0 8px #7fe8ff,0 0 18px #2faedb}.sub,.msg{margin-top:14px;font-size:11px;letter-spacing:.16em;color:#8fdcf5}</style></head><body><div id="boot"><div class="wrap"><div class="brand">Alaska Ice Crystals</div><div class="sub">HQ SIGN COLOR TEST • V37</div><div class="msg" id="msg">Loading v36 HQ test…</div></div></div><script>(async()=>{const msg=document.getElementById('msg');try{const r=await fetch('./OSKO-Living-OS-HQ-SIGN-BACKLIGHT-TEST-v36.html?v=37',{cache:'no-store'});if(!r.ok)throw new Error('v36 unavailable');let src=await r.text();const addon=`<script>
+(function(){
+ let tries=0; const t=setInterval(()=>{tries++;try{
+  if(typeof THREE==='undefined'||typeof scene==='undefined'||typeof oskoBuildingSigns==='undefined'||!oskoBuildingSigns.hq){if(tries>40)clearInterval(t);return;}
+  clearInterval(t);
+  const sg=oskoBuildingSigns.hq;
+  // Darken the HQ sign face while keeping readable Alaska Ice Crystals colors in the lettering texture/material.
+  if(sg.material){
+    sg.material=sg.material.clone();
+    sg.material.color.setHex(0x0b2432);
+    if(sg.material.emissive)sg.material.emissive.setHex(0x124861);
+    sg.material.emissiveIntensity=0.65;
+    sg.material.roughness=.28;
+    sg.material.metalness=.18;
+  }
+  // Add a restrained icy-blue edge glow only, not a white slab.
+  if(!sg.userData.oskoHQV37Halo){
+    const halo=new THREE.PointLight(0x62dfff,1.6,38,2);halo.position.copy(sg.position);halo.position.z+=2.8;scene.add(halo);sg.userData.oskoHQV37Halo=halo;
+  }
+  // Add colored readable lettering as a thin front text plane over the dark face.
+  if(!sg.userData.oskoHQV37Text){
+    const c=document.createElement('canvas');c.width=1024;c.height=220;const x=c.getContext('2d');
+    const g=x.createLinearGradient(120,0,900,0);g.addColorStop(0,'#7fe8ff');g.addColorStop(.45,'#e8fcff');g.addColorStop(1,'#46bfe9');
+    x.clearRect(0,0,c.width,c.height);x.textAlign='center';x.textBaseline='middle';x.font='italic 700 72px "Segoe Script", "Brush Script MT", cursive';x.fillStyle=g;x.shadowColor='#4fd7ff';x.shadowBlur=16;x.fillText('Alaska Ice Crystals',512,110);
+    const tex=new THREE.CanvasTexture(c);tex.needsUpdate=true;const mat=new THREE.MeshBasicMaterial({map:tex,transparent:true,depthWrite:false,side:THREE.DoubleSide});
+    const box=new THREE.Box3().setFromObject(sg),sz=new THREE.Vector3();box.getSize(sz);const w=Math.max(22,sz.x*1.02),h=Math.max(5.4,sz.y*1.05);
+    const p=new THREE.Mesh(new THREE.PlaneGeometry(w,h),mat);p.position.copy(sg.position);p.rotation.copy(sg.rotation);p.position.z+=0.6;scene.add(p);sg.userData.oskoHQV37Text=p;
+  }
+  if(typeof status!=='undefined')status.textContent='HQ TEST v37 • DARK SIGN • AIC COLOR LETTERING';
+ }catch(e){console.error('HQ v37 enhancement',e);if(tries>40)clearInterval(t);}},250);
+})();
+<\/script>`;if(!src.includes('</body>'))throw new Error('v36 body marker missing');src=src.replace('</body>',addon+'</body>');document.open();document.write(src);document.close()}catch(e){console.error(e);msg.textContent='HQ v37 startup blocked. Use v36 or v31 fallback.'}})();</script></body></html>
