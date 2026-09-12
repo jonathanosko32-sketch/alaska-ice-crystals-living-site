@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="theme-color" content="#06131c"><title>OSKO Living OS — Named Buildings v35</title><style>html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#020910;color:#eefcff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}#boot{position:fixed;inset:0;display:grid;place-items:center;background:#020910}.wrap{text-align:center;padding:24px}.brand{font-family:"Segoe Script","Brush Script MT",cursive;font-size:42px;font-style:italic;font-weight:700;color:#fff;text-shadow:0 0 8px #fff,0 0 18px #74e8ff,0 0 36px #168ed0}.sub,.msg{margin-top:14px;font-size:11px;letter-spacing:.16em;color:#8fdcf5}</style></head><body><div id="boot"><div class="wrap"><div class="brand">Alaska Ice Crystals</div><div class="sub">NAMED BUILDINGS • V35</div><div class="msg" id="msg">Loading v34 + illuminated building names…</div></div></div><script>(async()=>{const msg=document.getElementById('msg');try{const r=await fetch('./OSKO-Living-OS-WORLD-DEVELOPMENT-v34.html?v=35',{cache:'no-store'});if(!r.ok)throw new Error('v34 unavailable');let src=await r.text();const marker="document.open();document.write(src);document.close()";const patch=`
+// V35 — permanent naming layer for the property. Existing controls, layout and day/night owner stay untouched.
+// Canonical names for future AIs: HQ, Workshop, School, Robot Garage, Aurora Cabin, Crystal Lab, Grow House, Equipment Barn, Fuel & Service.
+const oskoCanonicalBuildingNames={hq:'ALASKA ICE CRYSTALS HQ',shop:'OSKO WORKSHOP',school:'SCHOOL & LIBRARY',robots:'ROBOT GARAGE',aurora:'AURORA CABIN',crystallab:'CRYSTAL LAB',growhouse:'CRYSTAL GROW HOUSE',barn:'EQUIPMENT BARN',fuel:'FUEL • SERVICE'};
+// Upgrade the existing sign canvas while preserving the original sign function and placement.
+src=src.replace("c.fillStyle='#07131a';c.fillRect(0,0,1024,256)","const grd=c.createLinearGradient(0,0,0,256);grd.addColorStop(0,'#102a3b');grd.addColorStop(.52,'#06141f');grd.addColorStop(1,'#020910');c.fillStyle=grd;c.fillRect(0,0,1024,256)");
+src=src.replace("c.strokeStyle='#8cecff'","c.strokeStyle='#d9fbff'");
+src=src.replace("c.shadowColor='#7feaff'","c.shadowColor='#56ddff'");
+src=src.replace("c.fillStyle='#e8fcff'","c.fillStyle='#ffffff'");
+// Canonical visible building names: change only sign text labels, never the building IDs/actions.
+src=src.replace("cabin('hq','Alaska Ice Crystals HQ',0,-66,1.45,'ALASKA ICE CRYSTALS')","cabin('hq','Alaska Ice Crystals HQ',0,-66,1.45,'ALASKA ICE CRYSTALS HQ')");
+src=src.replace("cabin('shop','OSKO Workshop',-112,34,1,'OSKO WORKSHOP')","cabin('shop','OSKO Workshop',-112,34,1,'OSKO WORKSHOP')");
+src=src.replace("cabin('school','School & Library',98,42,.95,'SCHOOL • LIBRARY')","cabin('school','School & Library',98,42,.95,'SCHOOL & LIBRARY')");
+src=src.replace("cabin('robots','Robot Garage',-84,-48,.78,'ROBOT GARAGE')","cabin('robots','Robot Garage',-84,-48,.78,'ROBOT GARAGE')");
+src=src.replace("cabin('aurora','Aurora Cabin',158,25,.62,'AURORA')","cabin('aurora','Aurora Cabin',158,25,.62,'AURORA CABIN')");
+// Small-building sign calls vary by base revision; replace known display labels wherever present.
+src=src.replaceAll("'CRYSTAL LAB'","'CRYSTAL LAB'").replaceAll("'GROW HOUSE'","'CRYSTAL GROW HOUSE'").replaceAll("'EQUIPMENT BARN'","'EQUIPMENT BARN'");
+// Keep fuel wording canonical and explicit.
+src=src.replaceAll("'FUEL • SERVICE'","'FUEL • SERVICE'");
+src=src.replace("READY • WORLD DEVELOPMENT v34 • PROPERTY DEPTH + PREMIUM LIGHTING • CONTROLS PRESERVED","READY • NAMED BUILDINGS v35 • ILLUMINATED PROPERTY SIGNS • CONTROLS PRESERVED");
+`;if(!src.includes(marker))throw new Error('v34 launch point missing');src=src.replace(marker,patch+'\n'+marker);document.open();document.write(src);document.close()}catch(e){console.error(e);msg.textContent='v35 startup blocked. Use v34, v31, or v29 fallback.'}})();</script></body></html>
