@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="theme-color" content="#06131c"><title>OSKO Living OS — Premium Sign Lighting v32</title><style>html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#020910;color:#eefcff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}#boot{position:fixed;inset:0;display:grid;place-items:center;background:#020910}.wrap{text-align:center;padding:24px}.brand{font-family:"Segoe Script","Brush Script MT",cursive;font-size:42px;font-style:italic;font-weight:700;color:#fff;text-shadow:0 0 8px #fff,0 0 18px #74e8ff,0 0 36px #168ed0}.sub,.msg{margin-top:14px;font-size:11px;letter-spacing:.16em;color:#8fdcf5}</style></head><body><div id="boot"><div class="wrap"><div class="brand">Alaska Ice Crystals</div><div class="sub">PREMIUM SIGN LIGHTING • V32</div><div class="msg" id="msg">Loading v31 proven building lighting + premium independent signs…</div></div></div><script>
+(async()=>{const msg=document.getElementById('msg');try{
+ const r=await fetch('./OSKO-Living-OS-HIGH-CLASS-LIGHTING-v31.html?v=32',{cache:'no-store'});if(!r.ok)throw new Error('v31 unavailable');let src=await r.text();
+ const marker=" document.open();document.write(src);document.close();";
+ const patch=`
+ // V32: strengthen ONLY sign presentation. v31 building/window/exterior LIGHTS behavior stays intact.
+ // Replace v31 sign registration with a premium independent sign rig: white face, icy cyan emissive edge + local halo light.
+ src=src.replace("function oskoRegisterSign(id,sg){if(!sg)return;sg.userData.oskoBuildingId=id;oskoBuildingSigns[id]=sg}","function oskoRegisterSign(id,sg){if(!sg)return;sg.userData.oskoBuildingId=id;oskoBuildingSigns[id]=sg;if(sg.material){sg.material=sg.material.clone();sg.material.color.setHex(0xffffff);if(sg.material.emissive)sg.material.emissive.setHex(0x66e7ff);sg.material.emissiveIntensity=6.2;sg.material.roughness=.18;sg.material.needsUpdate=true}const halo=new THREE.PointLight(0x62ddff,4.8,42,2);halo.position.copy(sg.position);halo.position.z+=3.0;scene.add(halo);sg.userData.oskoSignHalo=halo}");
+ // Sign levels remain separate from building LIGHTS. LOW/MEDIUM/HIGH changes both emissive face and halo.
+ src=src.replace("s.material.emissiveIntensity=(1.35+night*3.6)*m;s.material.color.setHex(0xffffff)","s.material.emissiveIntensity=(3.0+night*5.8)*m;s.material.color.setHex(0xffffff);if(s.userData.oskoSignHalo)s.userData.oskoSignHalo.intensity=(1.15+night*5.4)*m");
+ src=src.replace("s.material.emissiveIntensity=4.2*m;s.material.color.setHex(0xffffff)","s.material.emissiveIntensity=7.0*m;s.material.color.setHex(0xffffff);if(s.userData.oskoSignHalo)s.userData.oskoSignHalo.intensity=5.8*m");
+ src=src.replace("READY • HIGH CLASS LIGHTING v31 • BUILDING LIGHTS + INDEPENDENT SIGNS","READY • PREMIUM SIGN LIGHTING v32 • v31 BUILDING LIGHTS PRESERVED • SIGNS ALWAYS ON");
+ `;
+ if(!src.includes(marker))throw new Error('v31 launch marker missing');src=src.replace(marker,patch+'\n'+marker);
+`;
+ const outerMarker=" document.open();document.write(src);document.close();";
+ if(!src.includes(outerMarker))throw new Error('v31 patch point not found');src=src.replace(outerMarker,patch+'\n'+outerMarker);
+ document.open();document.write(src);document.close();
+}catch(e){console.error(e);msg.textContent='v32 startup blocked. Use v31 or v29 fallback.';}})();
+</script></body></html>
