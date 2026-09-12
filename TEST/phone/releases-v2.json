@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "BUILDING-SYSTEMS-v21",
-    "label": "BUILDING SYSTEMS v21 TEST",
-    "url": "../OSKO-Living-OS-BUILDING-SYSTEMS-CANDIDATE-v21.html",
+    "id": "BUILDING-SYSTEMS-v22",
+    "label": "BUILDING SYSTEMS v22 TEST",
+    "url": "../OSKO-Living-OS-BUILDING-SYSTEMS-CANDIDATE-v22.html",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
