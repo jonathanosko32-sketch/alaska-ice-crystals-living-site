@@ -1,0 +1,87 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="theme-color" content="#06131c"><title>OSKO Living OS — HQ Ocean 3D Sign v39</title><style>html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#020910;color:#eefcff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}#boot{position:fixed;inset:0;display:grid;place-items:center;background:#020910}.wrap{text-align:center;padding:24px}.brand{font-family:"Segoe Script","Brush Script MT",cursive;font-size:42px;font-style:italic;font-weight:700;color:#67f0ff;text-shadow:0 0 7px #2ad8ef,0 0 16px #0a7fb3}.sub,.msg{margin-top:14px;font-size:11px;letter-spacing:.16em;color:#8fdcf5}</style></head><body><div id="boot"><div class="wrap"><div class="brand">Alaska Ice Crystals</div><div class="sub">HQ OCEAN 3D SIGN TEST • V39</div><div class="msg" id="msg">Loading direct from v31 base…</div></div></div><script>(async()=>{const msg=document.getElementById('msg');try{const r=await fetch('./OSKO-Living-OS-HIGH-CLASS-LIGHTING-v31.html?v=39',{cache:'no-store'});if(!r.ok)throw new Error('v31 unavailable');let src=await r.text();const addon=`<script>
+(function(){
+ let tries=0;
+ const timer=setInterval(()=>{
+  tries++;
+  try{
+   if(typeof THREE==='undefined'||typeof scene==='undefined'||typeof oskoBuildingSigns==='undefined'||!oskoBuildingSigns.hq){if(tries>60)clearInterval(timer);return;}
+   clearInterval(timer);
+   const sg=oskoBuildingSigns.hq;
+   if(!sg.userData.oskoHQV39){
+    sg.userData.oskoHQV39=true;
+    const box=new THREE.Box3().setFromObject(sg),sz=new THREE.Vector3();box.getSize(sz);
+    const w=Math.max(22,sz.x*1.10),h=Math.max(5.8,sz.y*1.18);
+
+    // Kill the white slab look on the original sign surface.
+    if(sg.material){
+      sg.material=sg.material.clone();
+      sg.material.color.setHex(0x061d54);
+      if(sg.material.emissive)sg.material.emissive.setHex(0x071a49);
+      sg.material.emissiveIntensity=.12;
+      sg.material.roughness=.22;
+      sg.material.metalness=.48;
+    }
+
+    // Solid deep sapphire face placed over the old bright face.
+    const faceMat=new THREE.MeshStandardMaterial({color:0x06266f,emissive:0x03143b,emissiveIntensity:.16,metalness:.58,roughness:.18});
+    const face=new THREE.Mesh(new THREE.BoxGeometry(w,h,.54),faceMat);
+    face.position.copy(sg.position);face.rotation.copy(sg.rotation);face.position.z+=.12;scene.add(face);
+
+    // Blue ocean backlight behind panel: light is around edges, not across the face.
+    const haloMat=new THREE.MeshBasicMaterial({color:0x0b5fd7,transparent:true,opacity:.24,depthWrite:false,blending:THREE.AdditiveBlending});
+    const halo=new THREE.Mesh(new THREE.BoxGeometry(w+1.4,h+1.15,.08),haloMat);
+    halo.position.copy(sg.position);halo.rotation.copy(sg.rotation);halo.position.z-=.55;scene.add(halo);
+    const halo2Mat=new THREE.MeshBasicMaterial({color:0x19a9ef,transparent:true,opacity:.09,depthWrite:false,blending:THREE.AdditiveBlending});
+    const halo2=new THREE.Mesh(new THREE.BoxGeometry(w+2.2,h+1.8,.05),halo2Mat);
+    halo2.position.copy(sg.position);halo2.rotation.copy(sg.rotation);halo2.position.z-=.62;scene.add(halo2);
+    const panelLight=new THREE.PointLight(0x0b65e8,1.05,30,2);panelLight.position.copy(sg.position);panelLight.position.z+=2.0;scene.add(panelLight);
+
+    // Turquoise lettering glow plane behind the crisp letters.
+    function makeTextTexture(glowOnly){
+      const c=document.createElement('canvas');c.width=1536;c.height=320;const x=c.getContext('2d');
+      x.clearRect(0,0,c.width,c.height);x.textAlign='center';x.textBaseline='middle';
+      x.font='italic 700 104px "Segoe Script", "Brush Script MT", cursive';
+      if(glowOnly){
+        x.fillStyle='rgba(42,236,255,.48)';x.shadowColor='#20dff5';x.shadowBlur=34;
+        x.fillText('Alaska Ice Crystals',768,160);
+      }else{
+        const g=x.createLinearGradient(260,0,1270,0);
+        g.addColorStop(0,'#55e9f5');g.addColorStop(.45,'#8ff8ff');g.addColorStop(.72,'#43d8ee');g.addColorStop(1,'#24b9d7');
+        x.fillStyle=g;x.shadowColor='#18bfdc';x.shadowBlur=5;
+        x.fillText('Alaska Ice Crystals',768,160);
+        // fine pale highlight to make the letters read as raised/polished
+        x.globalAlpha=.46;x.fillStyle='#d7ffff';x.shadowBlur=0;x.fillText('Alaska Ice Crystals',768,156);x.globalAlpha=1;
+      }
+      const tex=new THREE.CanvasTexture(c);tex.needsUpdate=true;return tex;
+    }
+    const glowTex=makeTextTexture(true);
+    const glowMat=new THREE.MeshBasicMaterial({map:glowTex,transparent:true,opacity:.72,depthWrite:false,blending:THREE.AdditiveBlending,side:THREE.DoubleSide});
+    const glowText=new THREE.Mesh(new THREE.PlaneGeometry(w*.96,h*.82),glowMat);
+    glowText.position.copy(sg.position);glowText.rotation.copy(sg.rotation);glowText.position.z+=.47;scene.add(glowText);
+
+    const textTex=makeTextTexture(false);
+    const textMat=new THREE.MeshBasicMaterial({map:textTex,transparent:true,depthWrite:false,side:THREE.DoubleSide});
+    const text=new THREE.Mesh(new THREE.PlaneGeometry(w*.96,h*.82),textMat);
+    text.position.copy(sg.position);text.rotation.copy(sg.rotation);text.position.z+=.66;scene.add(text);
+
+    // subtle lower-right duplicate gives a tiny extrusion/shadow cue without making it blurry.
+    const depthMat=new THREE.MeshBasicMaterial({map:textTex,transparent:true,opacity:.22,depthWrite:false,color:0x0a7895,side:THREE.DoubleSide});
+    const depthText=new THREE.Mesh(new THREE.PlaneGeometry(w*.96,h*.82),depthMat);
+    depthText.position.copy(sg.position);depthText.rotation.copy(sg.rotation);depthText.position.x+=.10;depthText.position.y-=.10;depthText.position.z+=.55;scene.add(depthText);
+
+    sg.userData.oskoHQV39Face=face;sg.userData.oskoHQV39Text=text;sg.userData.oskoHQV39Glow=glowText;
+   }
+
+   if(!scene.userData.oskoHQBacklightV39){
+    scene.userData.oskoHQBacklightV39=true;
+    const addFill=(x,y,z,c,i,d)=>{const l=new THREE.PointLight(c,i,d,2);l.position.set(x,y,z);scene.add(l);return l};
+    addFill(-27,14,-79,0x245f9e,.72,66);
+    addFill(27,14,-79,0x245f9e,.72,66);
+    addFill(0,20,-88,0x133f73,.48,70);
+    addFill(0,9,-43,0xffb96b,.34,42);
+   }
+   if(typeof status!=='undefined')status.textContent='HQ TEST v39 • SAPPHIRE PANEL • TURQUOISE 3D LETTERS • OCEAN BACKLIGHT';
+  }catch(e){console.error('HQ v39 enhancement',e);if(tries>60)clearInterval(timer);}
+ },250);
+})();
+<\/script>`;if(!src.includes('</body>'))throw new Error('v31 body marker missing');src=src.replace('</body>',addon+'</body>');document.open();document.write(src);document.close()}catch(e){console.error(e);msg.textContent='HQ v39 startup blocked. Use v31 fallback.'}})();</script></body></html>
