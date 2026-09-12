@@ -11,10 +11,10 @@
   },
   "candidate": {
     "id": "BUILDING-LIGHTS-v29",
-    "label": "BUILDING LIGHT REPAIR v29 TEST",
+    "label": "BUILDING LIGHT REPAIR v29 PHONE-CONFIRMED",
     "url": "../OSKO-Living-OS-BUILDING-LIGHTS-REPAIR-v29.html",
     "enabled": true,
-    "phoneConfirmed": false,
+    "phoneConfirmed": true,
     "stable": false,
     "requiresOwnerConfirmation": true,
     "dataSchema": 1
