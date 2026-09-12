@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "VISUAL-FIDELITY-v13",
-    "label": "VISUAL FIDELITY v13 TEST",
-    "url": "../OSKO-Living-OS-VISUAL-FIDELITY-CANDIDATE-v13.html",
+    "id": "VISUAL-FIDELITY-v13-REPAIR",
+    "label": "VISUAL FIDELITY v13 REPAIR TEST",
+    "url": "../OSKO-Living-OS-VISUAL-FIDELITY-CANDIDATE-v13-REPAIR.html",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
