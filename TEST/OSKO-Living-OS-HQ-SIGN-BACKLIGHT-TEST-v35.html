@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="theme-color" content="#06131c"><title>OSKO Living OS — HQ Sign + Backlight Test v35</title><style>html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#020910;color:#eefcff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}#boot{position:fixed;inset:0;display:grid;place-items:center;background:#020910}.wrap{text-align:center;padding:24px}.brand{font-family:"Segoe Script","Brush Script MT",cursive;font-size:42px;font-style:italic;font-weight:700;color:#fff;text-shadow:0 0 8px #fff,0 0 18px #74e8ff,0 0 36px #168ed0}.sub,.msg{margin-top:14px;font-size:11px;letter-spacing:.16em;color:#8fdcf5}</style></head><body><div id="boot"><div class="wrap"><div class="brand">Alaska Ice Crystals</div><div class="sub">HQ SIGN + BACKLIGHT TEST • V35</div><div class="msg" id="msg">Loading protected high-class lighting base…</div></div></div><script>(async()=>{const msg=document.getElementById('msg');try{const r=await fetch('./OSKO-Living-OS-HIGH-CLASS-LIGHTING-v31.html?v=35',{cache:'no-store'});if(!r.ok)throw new Error('v31 unavailable');let src=await r.text();const addon=`<script>
+(function(){
+  let tries=0;
+  const timer=setInterval(()=>{
+    tries++;
+    try{
+      if(typeof THREE==='undefined'||typeof scene==='undefined'||typeof oskoBuildingSigns==='undefined'||!oskoBuildingSigns.hq){if(tries>40)clearInterval(timer);return;}
+      clearInterval(timer);
+      const sg=oskoBuildingSigns.hq;
+      if(!sg.userData.oskoHQDepthDone){
+        sg.userData.oskoHQDepthDone=true;
+        if(sg.material){sg.material=sg.material.clone();sg.material.color.setHex(0xffffff);if(sg.material.emissive)sg.material.emissive.setHex(0x72e7ff);sg.material.emissiveIntensity=8.2;sg.material.roughness=.12;}
+        const box=new THREE.Box3().setFromObject(sg),sz=new THREE.Vector3();box.getSize(sz);
+        const w=Math.max(22,sz.x*1.10),h=Math.max(5.8,sz.y*1.18);
+        const frameMat=new THREE.MeshStandardMaterial({color:0x062638,emissive:0x0d83b7,emissiveIntensity:2.3,metalness:.55,roughness:.22});
+        const frame=new THREE.Mesh(new THREE.BoxGeometry(w,h,.95),frameMat);frame.position.copy(sg.position);frame.rotation.copy(sg.rotation);frame.position.z-=.72;scene.add(frame);
+        const rimMat=new THREE.MeshBasicMaterial({color:0x8ff2ff,transparent:true,opacity:.58,depthWrite:false,blending:THREE.AdditiveBlending});
+        const rim=new THREE.Mesh(new THREE.BoxGeometry(w+1.25,h+1.1,.18),rimMat);rim.position.copy(sg.position);rim.rotation.copy(sg.rotation);rim.position.z-=1.18;scene.add(rim);
+        const halo=new THREE.PointLight(0x77e9ff,4.8,58,2);halo.position.copy(sg.position);halo.position.z+=3.5;scene.add(halo);
+      }
+      if(!scene.userData.oskoHQBacklightV35){
+        scene.userData.oskoHQBacklightV35=true;
+        const addFill=(x,y,z,c,i,d)=>{const l=new THREE.PointLight(c,i,d,2);l.position.set(x,y,z);scene.add(l);return l};
+        addFill(-28,16,-79,0x79dfff,3.1,92);
+        addFill(28,16,-79,0x79dfff,3.1,92);
+        addFill(0,21,-88,0x4fa9e8,2.4,100);
+        addFill(0,10,-43,0xffc98b,1.65,62);
+        const snowGlowMat=new THREE.MeshBasicMaterial({color:0x5fcfff,transparent:true,opacity:.07,depthWrite:false,blending:THREE.AdditiveBlending});
+        const snowGlow=new THREE.Mesh(new THREE.CircleGeometry(42,32),snowGlowMat);snowGlow.rotation.x=-Math.PI/2;snowGlow.position.set(0,.06,-64);scene.add(snowGlow);
+      }
+      if(typeof status!=='undefined')status.textContent='HQ TEST v35 • RAISED SIGN + BACKLIGHT • OTHER BUILDINGS UNCHANGED';
+    }catch(e){console.error('HQ v35 enhancement',e);if(tries>40)clearInterval(timer);}
+  },250);
+})();
+<\/script>`;
+if(!src.includes('</body>'))throw new Error('v31 body marker missing');src=src.replace('</body>',addon+'</body>');document.open();document.write(src);document.close()}catch(e){console.error(e);msg.textContent='HQ v35 startup blocked. Use v31 or v29 fallback.'}})();</script></body></html>
