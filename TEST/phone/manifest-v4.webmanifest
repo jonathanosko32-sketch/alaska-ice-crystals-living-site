@@ -1,0 +1,14 @@
+{
+  "id":"./OSKO-Living-OS-PHONE-INSTALL-v4.html",
+  "name":"OSKO Living OS",
+  "short_name":"OSKO",
+  "description":"Alaska Ice Crystals Living OS phone shell with SKIE scanner",
+  "start_url":"./OSKO-Living-OS-PHONE-INSTALL-v4.html",
+  "scope":"./",
+  "display":"standalone",
+  "orientation":"any",
+  "background_color":"#020910",
+  "theme_color":"#06131c",
+  "prefer_related_applications":false,
+  "icons":[{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
