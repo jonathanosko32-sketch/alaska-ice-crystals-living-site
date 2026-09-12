@@ -10,11 +10,11 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "BUILDING-LIGHTS-v29",
-    "label": "BUILDING LIGHT REPAIR v29 PHONE-CONFIRMED",
-    "url": "../OSKO-Living-OS-BUILDING-LIGHTS-REPAIR-v29.html",
+    "id": "BUILDING-SIGNS-v30",
+    "label": "BUILDING SIGNS v30 TEST",
+    "url": "../OSKO-Living-OS-BUILDING-SIGNS-v30.html",
     "enabled": true,
-    "phoneConfirmed": true,
+    "phoneConfirmed": false,
     "stable": false,
     "requiresOwnerConfirmation": true,
     "dataSchema": 1
