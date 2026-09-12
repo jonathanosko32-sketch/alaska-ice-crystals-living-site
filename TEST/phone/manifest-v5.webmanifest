@@ -1,0 +1,20 @@
+{
+  "id":"./OSKO-Living-OS-PHONE-INSTALL-v5.html",
+  "name":"OSKO Living OS",
+  "short_name":"OSKO",
+  "description":"Alaska Ice Crystals Living OS phone host with SKIE and owner-approved updates",
+  "start_url":"./OSKO-Living-OS-PHONE-INSTALL-v5.html",
+  "scope":"./",
+  "display":"standalone",
+  "display_override":["fullscreen","standalone"],
+  "orientation":"any",
+  "background_color":"#020910",
+  "theme_color":"#06131c",
+  "prefer_related_applications":false,
+  "launch_handler":{"client_mode":"focus-existing"},
+  "icons":[
+    {"src":"./icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
+    {"src":"./icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"},
+    {"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
