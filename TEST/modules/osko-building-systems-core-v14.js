@@ -1,0 +1,35 @@
+(()=>{'use strict';
+function apply(src){
+  const actionMarker="function oskoAction(id,a){const r=reg.get(id);if(!r)return;";
+  if(!src.includes(actionMarker))throw new Error('building systems action marker not found');
+
+  /* Keep the proven FIX8 daylight behavior without modifying FIX8 itself. */
+  const oldTime=/function time\(\)\{const d=new Date\(\),h=d\.getHours\(\)\+d\.getMinutes\(\)\/60\+d\.getSeconds\(\)\/3600,[^\n]+?time\.day=day\}time\(\);setInterval\(time,15000\);/;
+  const newTime="function time(){const d=new Date(),h=d.getHours()+d.getMinutes()/60+d.getSeconds()/3600,start=new Date(d.getFullYear(),0,0),doy=Math.floor((d-start)/86400000),dayLength=12.5+7*Math.sin((doy-80)/365*Math.PI*2),sunrise=12.5-dayLength/2,sunset=12.5+dayLength/2,dawn0=sunrise-.8,dusk1=sunset+.8,smooth=(a,b,v)=>{const t=THREE.MathUtils.clamp((v-a)/(b-a),0,1);return t*t*(3-2*t)},rise=smooth(dawn0,sunrise+.8,h),fall=1-smooth(sunset-.8,dusk1,h),day=Math.max(0,Math.min(rise,fall)),night=1-day,az=(h-6)/24*Math.PI*2,e=Math.sin((h-sunrise)/Math.max(1,dayLength)*Math.PI)*1.05,R=420;sun.position.set(Math.cos(az)*R,Math.max(-120,Math.sin(e)*R),Math.sin(az)*R);moon.position.set(Math.cos(az+Math.PI)*R,Math.max(-100,-Math.sin(e)*R),Math.sin(az+Math.PI)*R);sunBall.position.copy(sun.position).normalize().multiplyScalar(920);moonBall.position.copy(moon.position).normalize().multiplyScalar(940);sunBall.scale.setScalar(.42);moonBall.scale.setScalar(.38);sunBall.visible=day>.03;moonBall.visible=night>.08;sun.intensity=.04+day*3.15;moon.intensity=.28+night*1.18;hemi.intensity=.34+day*.92;stars.material.opacity=Math.pow(night,1.6)*.9;renderer.toneMappingExposure=.86+day*.42;fireLight.intensity=2.6+night*5.0;const deep=new THREE.Color(0x030914),pre=new THREE.Color(0x183247),warm=new THREE.Color(0xa45f59),dayc=new THREE.Color(0x77aec8),c=deep.clone();if(day<.12)c.lerp(pre,day/.12);else c.copy(pre).lerp(dayc,(day-.12)/.88);const dawnGlow=Math.max(0,1-Math.abs(h-sunrise)/1.35),duskGlow=Math.max(0,1-Math.abs(h-sunset)/1.35);if(dawnGlow)c.lerp(warm,dawnGlow*.48);if(duskGlow)c.lerp(warm,duskGlow*.58);scene.background=c;scene.fog.color.copy(c).lerp(new THREE.Color(0xa9c1cc),day*.16);if(typeof oskoLiving!=='undefined'){oskoLiving.windows.forEach(w=>w.material.emissiveIntensity=.55+night*3.2);oskoLiving.lamps.forEach(l=>l.material.emissiveIntensity=.5+night*3.7);oskoLiving.realLights.forEach(l=>l.intensity=.15+night*2.55);oskoLiving.aurora.forEach(a=>a.material.opacity=.015+night*.12)}clock.textContent=d.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})+' • '+(day>.78?'DAY':day>.22?'TWILIGHT':'NIGHT');time.day=day;time.sunrise=sunrise;time.sunset=sunset}time();setInterval(time,10000);";
+  if(oldTime.test(src))src=src.replace(oldTime,newTime);
+
+  const helpers=String.raw`
+const oskoBuildingMenus={
+ hq:{label:'HQ',desc:'Main Alaska Ice Crystals command building.',rooms:[['SYSTEMS','Property systems'],['SECURITY','Gate and property security'],['POWER','Power and backup systems'],['WEATHER','Property weather view']]},
+ shop:{label:'OSKO Workshop',desc:'Tools, fabrication and build work.',rooms:[['TOOLS','Workshop tools'],['BUILD','Build projects'],['FILES','Build files'],['DIAGNOSTICS','Workshop diagnostics']]},
+ school:{label:'School & Library',desc:'Learning, reference and training.',rooms:[['GED','GED study'],['LIBRARY','Books and reference'],['MECHANICS','Mechanics school'],['BROKERING','Freight brokering school']]},
+ robots:{label:'Robot Garage',desc:'SKIE and robot service area.',rooms:[['SKIE','SKIE systems'],['FLEET','Robot fleet'],['DOCKS','Charging and docks'],['DIAGNOSTICS','Robot diagnostics']]},
+ aurora:{label:'Aurora Cabin',desc:'Aurora service-dog area.',rooms:[['STATUS','Aurora status'],['GEAR','Service-dog gear'],['CABIN','Cabin systems'],['HOME','Home location']]},
+ crystallab:{label:'Crystal Lab',desc:'Crystal research and storage.',rooms:[['ANALYZE','Crystal analysis'],['STORAGE','Crystal storage'],['POWER','Lab power'],['STATUS','Lab status']]},
+ growhouse:{label:'Crystal Grow House',desc:'Controlled crystal growing systems.',rooms:[['GROW','Growing systems'],['CLIMATE','Climate control'],['WATER','Water systems'],['LIGHTS','Grow lights']]},
+ barn:{label:'Equipment Barn',desc:'Property equipment and storage.',rooms:[['EQUIPMENT','Equipment'],['STORAGE','Storage'],['SERVICE','Service area'],['DOORS','Barn doors']]}
+};
+const oskoBuildingLights={};
+Object.keys(oskoBuildingMenus).forEach(id=>{const r=reg.get(id);if(!r)return;const l=new THREE.PointLight(0xffc879,1.45,58,2);l.position.set(r.pos.x,12,r.pos.z+5);scene.add(l);oskoBuildingLights[id]=l;oskoStates[id]=oskoStates[id]||{};if(typeof oskoStates[id].lights!=='boolean')oskoStates[id].lights=true});
+function oskoBuildingStatus(id,msg){const r=reg.get(id);status.textContent=(r?r.name.toUpperCase():id.toUpperCase())+' • '+msg}
+function oskoBuildingRoom(id,key,label){ptype.textContent='BUILDING SECTION';ptitle.textContent=oskoBuildingMenus[id].label+' • '+key;ptext.textContent=label+' is selected inside the Living OS. This section is now a real navigation target and can be filled with its working tools as we build it.';actions.innerHTML='';const back=document.createElement('button');back.className='chip';back.textContent='BACK';back.onclick=()=>oskoOpenBuilding(id);actions.appendChild(back);oskoBuildingStatus(id,key+' SELECTED')}
+function oskoOpenBuilding(id){const r=reg.get(id),m=oskoBuildingMenus[id];if(!r||!m)return;selected=id;goal.target.copy(r.pos);goal.distance=46;goal.pitch=.50;ptype.textContent='INSIDE BUILDING';ptitle.textContent=m.label;ptext.textContent=m.desc+' Choose a section below.';actions.innerHTML='';m.rooms.forEach(([key,label])=>{const b=document.createElement('button');b.className='chip';b.textContent=key;b.onclick=()=>oskoBuildingRoom(id,key,label);actions.appendChild(b)});const outside=document.createElement('button');outside.className='chip';outside.textContent='OUTSIDE';outside.onclick=()=>focus(id,true);actions.appendChild(outside);panel.classList.add('open');oskoBuildingStatus(id,'INSIDE')}
+function oskoToggleBuildingLights(id){const r=reg.get(id);oskoStates[id]=oskoStates[id]||{};oskoStates[id].lights=!oskoStates[id].lights;const l=oskoBuildingLights[id];if(l)l.intensity=oskoStates[id].lights?1.45:0;oskoBuildingStatus(id,'LIGHTS '+(oskoStates[id].lights?'ON':'OFF'))}
+`;
+  src=src.replace(actionMarker,helpers+"\n"+actionMarker+"if(oskoBuildingMenus[id]&&a==='OPEN'){oskoOpenBuilding(id);return}if(oskoBuildingMenus[id]&&a==='LIGHTS'){oskoToggleBuildingLights(id);return}");
+
+  src=src.replace("status.textContent='READY • LIVING OS • PROPERTY SYSTEMS ONLINE';","status.textContent='READY • BUILDING SYSTEMS v14 • LIVING OS ONLINE';");
+  return src;
+}
+window.OSKOBuildingSystemsV14={apply};
+})();
