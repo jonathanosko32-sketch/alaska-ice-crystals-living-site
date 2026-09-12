@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "BUILDING-SIGNS-v25",
-    "label": "BUILDING SIGNS v25 TEST",
-    "url": "../OSKO-Living-OS-BUILDING-SIGNS-CANDIDATE-v25.html",
+    "id": "BUILDING-SIGNS-v26",
+    "label": "BUILDING SIGNS v26 TEST",
+    "url": "../OSKO-Living-OS-BUILDING-SIGNS-CANDIDATE-v26.html",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
