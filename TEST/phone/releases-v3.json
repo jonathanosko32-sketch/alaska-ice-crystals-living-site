@@ -11,8 +11,8 @@
   },
   "candidate": {
     "id": "FIX10-PHONE",
-    "label": "FIX10 FAST FINGER MOVE + QUICK STOP TEST",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX10.html?v=10q",
+    "label": "FIX10 QUICK STOP CONTROL + LARGER BUTTONS TEST",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX10.html?v=10f",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
