@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "HQ-ALL-CABINS-v103",
-    "label": "LARGER PHONE APPS v103 TEST",
-    "url": "../OSKO-Living-OS-HQ-ALL-CABINS-v103.html?v=103",
+    "id": "HQ-ALL-CABINS-v104",
+    "label": "SMOOTHER PHONE + LARGE APPS v104 TEST",
+    "url": "../OSKO-Living-OS-HQ-ALL-CABINS-v104.html?v=104",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
