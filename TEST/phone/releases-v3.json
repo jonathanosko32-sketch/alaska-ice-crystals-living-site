@@ -1,0 +1,22 @@
+{
+  "schema": 2,
+  "channel": "owner-approved",
+  "shellVersion": 5,
+  "stable": {
+    "id": "FIX8",
+    "label": "FIX8 STABLE",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX8.html",
+    "protected": true,
+    "dataSchema": 1
+  },
+  "candidate": {
+    "id": "HQ-ALL-CABINS-v102",
+    "label": "ALL CABINS + OS UPDATES v102 TEST",
+    "url": "../OSKO-Living-OS-HQ-ALL-CABINS-v102.html?v=102",
+    "enabled": true,
+    "phoneConfirmed": false,
+    "stable": false,
+    "requiresOwnerConfirmation": true,
+    "dataSchema": 1
+  }
+}
