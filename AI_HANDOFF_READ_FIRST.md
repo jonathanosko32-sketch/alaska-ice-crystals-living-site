@@ -238,6 +238,10 @@ Created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX12.html` as a separate continuati
 
 Created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX13.html` as a separate continuation of FIX12. It adds warm porch lanterns to the buildings, coordinated lamps along the main roads and paths, and a finished country-style rail enclosure around the ranch area. The new lamps are registered with the existing automatic day/night lighting system so they brighten after dark and dim during daylight. Real point lights are limited to protect phone performance. FIX13 is a test candidate only; FIX12, FIX11, the dated FIX10i backup, and protected FIX8 remain unchanged.
 
+## 2026-09-13 — AUTOMATIC HOLIDAY THEME DECISION
+
+Osko chose fully automatic holiday themes for OSKO. Holiday decorations, colors, town lighting, and seasonal details should activate and end automatically from the phone's local date and time, including after travel and time-zone changes. Public holiday themes do not require access to Osko's private calendar. Personal-event themes may use calendar permission later if Osko authorizes it. The ordinary OSKO town must restore itself automatically after each holiday period. Provide a future manual override for troubleshooting, but automatic behavior is the approved default.
+
 ## 2026-09-13 — INTERIOR BUILDING EXPERIENCE DECISION
 
 Osko approved a shared interior experience for every OSKO building. When a building is opened, it should show a finished, high-class cozy Alaska-lodge interior with a building-specific setting. Each building will have its own fireplace, furniture, lighting, and decorative details appropriate to its purpose. Planned examples include an elk head and antlers in the lodge-style interiors, with optional tasteful bear decor. Each interior should include a Layout view with a background image/scene, clickable app or room locations, and a “What’s Inside” button that lists the building’s apps, books, tools, and files. This is a design decision only; no interior implementation has been made yet. Preserve the current FIX8/FIX10 phone builds while this is planned.
