@@ -6,6 +6,8 @@ This file is a required handoff for any ChatGPT/AI/model/tool that opens or work
 
 Before making major changes, read this file and the existing project handoffs. Treat prior approved work as existing project state, not disposable material.
 
+**Current phone warning (2026-09-13):** before changing the installed OSKO phone/PWA build, read the section `CURRENT PHONE TRUTH AFTER REAL OSKO PHONE TESTS` in `LAYOVER_HQ_LIBRARY_HANDOFF_2026-09-09.md`. Phone candidates v104-v107 were not successful; v107 was unusable. Do not build forward from v107 or claim the small-button/performance problems are solved. FIX8 is the protected recovery foundation while a clean phone build is prepared.
+
 ## 1. ONE CONNECTED SYSTEM
 
 The Layover website/living world, the custom OS, the phone/launcher, and the robots are not separate unrelated projects. They are intended to work together as one expandable OSKO / Alaska Ice Crystals system.
