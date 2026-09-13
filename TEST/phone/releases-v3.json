@@ -13,7 +13,7 @@
     "id": "FIX14-LANDSCAPE-FINISH",
     "label": "FIX14 ALASKA LANDSCAPE FINISH TEST",
     "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX14.html?v=14",
-    "enabled": true,
+    "enabled": false,
     "phoneConfirmed": false,
     "stable": false,
     "requiresOwnerConfirmation": true,
