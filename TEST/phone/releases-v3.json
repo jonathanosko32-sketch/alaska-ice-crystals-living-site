@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX13-TOWN-LIGHTS",
-    "label": "FIX13 HIGH CLASS TOWN LIGHTING TEST",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX13.html?v=13",
+    "id": "FIX14-LANDSCAPE-FINISH",
+    "label": "FIX14 ALASKA LANDSCAPE FINISH TEST",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX14.html?v=14",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
