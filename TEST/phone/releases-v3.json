@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX15-MOUNTAIN-CREEK",
-    "label": "FIX15 MOUNTAIN CREEK LANDSCAPE TEST",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX15.html?v=15",
+    "id": "FIX14-LANDSCAPE-FINISH",
+    "label": "FIX14 ALASKA LANDSCAPE FINISH TEST",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX14.html?v=14",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,

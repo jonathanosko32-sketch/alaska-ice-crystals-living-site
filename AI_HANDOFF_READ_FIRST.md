@@ -259,7 +259,7 @@ Created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX14.html` as a separate continuati
 
 ## 2026-09-13 — FIX15 MOUNTAIN CREEK LANDSCAPE TEST
 
-Created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX15.html` as a separate continuation of FIX14. It keeps the approved phone controls and movement unchanged. FIX15 adds a second lightweight foothill layer behind the established snow-capped mountains, a frozen creek made from five low-cost ice sections, and two finished timber footbridges across the creek. None of the new landscape pieces animate or use real-time lights. FIX15 is a test candidate only; FIX14 and every earlier checkpoint remain preserved.
+Created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX15.html` as a separate continuation of FIX14. It keeps the approved phone controls and movement unchanged. FIX15 adds a second lightweight foothill layer behind the established snow-capped mountains, a frozen creek made from five low-cost ice sections, and two finished timber footbridges across the creek. None of the new landscape pieces animate or use real-time lights. Phone result: Osko reported that the new update would not open. FIX15 is therefore a failed/rejected test and must not be promoted or used as the next foundation. The update registry was returned to FIX14 while FIX15 remains preserved for diagnosis. FIX14 and every earlier checkpoint remain preserved.
 
 ## 2026-09-13 — INTERIOR BUILDING EXPERIENCE DECISION
 
