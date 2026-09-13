@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX11-NATURE",
-    "label": "FIX11 ANIMALS + MOUNTAINS + LANDSCAPE TEST",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX11.html?v=11",
+    "id": "FIX12-LIVING-NATURE",
+    "label": "FIX12 LIVING ANIMALS + FINISHED LANDSCAPE TEST",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX12.html?v=12",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
