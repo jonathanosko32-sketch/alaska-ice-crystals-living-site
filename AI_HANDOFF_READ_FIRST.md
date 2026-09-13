@@ -268,3 +268,8 @@ Rebuilt directly from the phone-confirmed working FIX10 rather than FIX11 throug
 ## 2026-09-13 — INTERIOR BUILDING EXPERIENCE DECISION
 
 Osko approved a shared interior experience for every OSKO building. When a building is opened, it should show a finished, high-class cozy Alaska-lodge interior with a building-specific setting. Each building will have its own fireplace, furniture, lighting, and decorative details appropriate to its purpose. Planned examples include an elk head and antlers in the lodge-style interiors, with optional tasteful bear decor. Each interior should include a Layout view with a background image/scene, clickable app or room locations, and a “What’s Inside” button that lists the building’s apps, books, tools, and files. This is a design decision only; no interior implementation has been made yet. Preserve the current FIX8/FIX10 phone builds while this is planned.
+
+
+## 2026-09-13 — FIX17 SNOWY PINE LANDSCAPE TEST
+
+Osko confirmed FIX16 opened correctly on his Android phone and called it “Great.” FIX16 must remain preserved as the new phone-confirmed landscape checkpoint. FIX17 was created as a separate continuation of FIX16 and adds only ten stationary lightweight snowy pine clusters around the outer property. It does not change movement, stopping, buttons, buildings, roads, signs, animals, lights, update behavior, or the confirmed FIX16 rock group. Wrapper JavaScript syntax passed. Phone rendering/performance remains unconfirmed. If FIX17 fails, return to confirmed FIX16. Direct test link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX17.html?v=17
