@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX10-PHONE",
-    "label": "FIX10 ALL CONTROLS CONNECTED TEST",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX10.html?v=10i",
+    "id": "FIX11-NATURE",
+    "label": "FIX11 ANIMALS + MOUNTAINS + LANDSCAPE TEST",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX11.html?v=11",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,

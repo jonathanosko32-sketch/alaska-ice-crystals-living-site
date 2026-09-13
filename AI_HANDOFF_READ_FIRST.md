@@ -224,6 +224,10 @@ Osko already has OSKO installed on his Android phone as an app/PWA with its own 
 
 At Osko's request, the working FIX10i controls build, its phone host, and its release registry were saved together under `BACKUPS/2026-09-13-FIX10i/`. This backup records the version with tightened camera stopping, large phone controls, a BACK button, and connected update controls. The older protected FIX8 emergency build remains unchanged. Restore from the dated FIX10i backup only when Osko requests it or the active development version fails.
 
+## 2026-09-13 — FIX11 NATURE TEST
+
+Created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX11.html` from the saved FIX10i controls foundation. FIX11 adds a layered snow-capped mountain range, landscape rocks, and tappable low-poly Alaska animals: two wolves, bison, three horses including a saddled horse, elk, Dall sheep, cow, black bull, black bear, grizzly bear, and polar bear. Phone performance protections from FIX10i remain in place. FIX11 is a test candidate only and must be verified on Osko's phone before it is kept. The FIX10i dated backup and protected FIX8 were not changed.
+
 ## 2026-09-13 — INTERIOR BUILDING EXPERIENCE DECISION
 
 Osko approved a shared interior experience for every OSKO building. When a building is opened, it should show a finished, high-class cozy Alaska-lodge interior with a building-specific setting. Each building will have its own fireplace, furniture, lighting, and decorative details appropriate to its purpose. Planned examples include an elk head and antlers in the lodge-style interiors, with optional tasteful bear decor. Each interior should include a Layout view with a background image/scene, clickable app or room locations, and a “What’s Inside” button that lists the building’s apps, books, tools, and files. This is a design decision only; no interior implementation has been made yet. Preserve the current FIX8/FIX10 phone builds while this is planned.
