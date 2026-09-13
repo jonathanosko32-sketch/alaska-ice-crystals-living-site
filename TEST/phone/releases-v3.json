@@ -11,8 +11,8 @@
   },
   "candidate": {
     "id": "FIX10-PHONE",
-    "label": "FIX10 2X SMOOTHER CONTROL + LARGER BUTTONS TEST",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX10.html?v=10j",
+    "label": "FIX10 2X SMOOTHER + 1X FASTER CONTROL TEST",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX10.html?v=10k",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
