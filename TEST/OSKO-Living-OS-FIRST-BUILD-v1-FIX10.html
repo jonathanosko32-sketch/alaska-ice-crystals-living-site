@@ -18,8 +18,8 @@ try{
     html=html.replace('const smoke=[];for(let i=0;i<16;i++)','const smoke=[];for(let i=0;i<(fix9Phone?8:16);i++)');
     html=html.replace('renderer.setPixelRatio(Math.min(devicePixelRatio||1,innerWidth<760?1.5:1.8))','renderer.setPixelRatio(fix9Phone ? .85 : Math.min(devicePixelRatio||1,1.8))');
     html=html.replace('const sc=.34*(goal.distance/180)','const sc=.135*(goal.distance/180)');
-    html=html.replace('camera.position.lerp(new THREE.Vector3(x,y,z),.12);cam.target.lerp(goal.target,.12)','camera.position.lerp(new THREE.Vector3(x,y,z),.05);cam.target.lerp(goal.target,.05)');
-    html=html.replace("status.textContent='READY • LIVING OS • DAY/NIGHT SYSTEM ONLINE';","status.textContent='READY • FIX10 • SOFT SMOOTH SLOW CONTROL + BIG BUTTONS';");
+    html=html.replace('camera.position.lerp(new THREE.Vector3(x,y,z),.12);cam.target.lerp(goal.target,.12)','camera.position.lerp(new THREE.Vector3(x,y,z),.042);cam.target.lerp(goal.target,.042)');
+    html=html.replace("status.textContent='READY • LIVING OS • DAY/NIGHT SYSTEM ONLINE';","status.textContent='READY • FIX10 • ULTRA SMOOTH CONTROL + BIG BUTTONS';");
  `;
  src=src.replace(marker,patch+'\n'+fix9Patch+'\n'+marker);
  document.open();document.write(src);document.close();
