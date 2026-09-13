@@ -11,13 +11,13 @@ try{
  if(!src.includes(marker))throw new Error('FIX6 patch point not found');
  const fix9Patch=`
     // FIX9 — two controlled phone changes only: smoother Chrome load and readable controls.
-    const fix9Controls='<style id="fix9-phone-controls">#dock{gap:14px!important;padding:15px!important;border-radius:29px!important;bottom:max(16px,env(safe-area-inset-bottom))!important}button{min-height:78px!important;height:78px!important;min-width:100px!important;padding:0 20px!important;border-radius:22px!important;font-size:20px!important;line-height:1.1!important}#skie{min-width:110px!important}.chip{height:auto!important;min-height:58px!important;padding:14px 18px!important;font-size:16px!important}#panel{bottom:112px!important;padding:18px!important;max-height:48vh!important}#panel h2{font-size:23px!important}#panel p{font-size:16px!important}#ptype{font-size:12px!important}</style>';
+    const fix9Controls='<style id="fix9-phone-controls">#dock{gap:14px!important;padding:16px!important;border-radius:30px!important;bottom:max(16px,env(safe-area-inset-bottom))!important}button{min-height:84px!important;height:84px!important;min-width:108px!important;padding:0 21px!important;border-radius:23px!important;font-size:21px!important;line-height:1.1!important}#skie{min-width:118px!important}.chip{height:auto!important;min-height:62px!important;padding:15px 19px!important;font-size:17px!important}#panel{bottom:120px!important;padding:18px!important;max-height:48vh!important}#panel h2{font-size:23px!important}#panel p{font-size:16px!important}#ptype{font-size:12px!important}</style>';
     html=html.replace('</head>',fix9Controls+'</head>');
     html=html.replace("const renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.5));renderer.setSize(innerWidth,innerHeight,false);renderer.shadowMap.enabled=true;", "const fix9Phone=/Android|iPhone|iPad|Mobile/i.test(navigator.userAgent);const renderer=new THREE.WebGLRenderer({canvas,antialias:!fix9Phone,powerPreference:'high-performance'});renderer.setPixelRatio(fix9Phone ? .85 : Math.min(devicePixelRatio||1,1.5));renderer.setSize(innerWidth,innerHeight,false);renderer.shadowMap.enabled=!fix9Phone;");
     html=html.replace('const count=850,','const count=fix9Phone?420:850,');
     html=html.replace('const smoke=[];for(let i=0;i<16;i++)','const smoke=[];for(let i=0;i<(fix9Phone?8:16);i++)');
     html=html.replace('renderer.setPixelRatio(Math.min(devicePixelRatio||1,innerWidth<760?1.5:1.8))','renderer.setPixelRatio(fix9Phone ? .85 : Math.min(devicePixelRatio||1,1.8))');
-    html=html.replace('const sc=.34*(goal.distance/180)','const sc=.29*(goal.distance/180)');
+    html=html.replace('const sc=.34*(goal.distance/180)','const sc=.24*(goal.distance/180)');
     html=html.replace("status.textContent='READY • LIVING OS • DAY/NIGHT SYSTEM ONLINE';","status.textContent='READY • FIX10 • SMOOTH CONTROL + BIG BUTTONS';");
  `;
  src=src.replace(marker,patch+'\n'+fix9Patch+'\n'+marker);
