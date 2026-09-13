@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX16-SAFE-LANDSCAPE",
-    "label": "FIX16 SAFE LANDSCAPE TEST",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX16.html?v=16",
+    "id": "FIX17-SNOWY-PINES",
+    "label": "FIX17 SNOWY PINE LANDSCAPE TEST",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX17.html?v=17",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
