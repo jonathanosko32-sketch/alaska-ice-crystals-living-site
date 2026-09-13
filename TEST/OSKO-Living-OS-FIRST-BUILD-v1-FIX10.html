@@ -17,9 +17,9 @@ try{
     html=html.replace('const count=850,','const count=fix9Phone?420:850,');
     html=html.replace('const smoke=[];for(let i=0;i<16;i++)','const smoke=[];for(let i=0;i<(fix9Phone?8:16);i++)');
     html=html.replace('renderer.setPixelRatio(Math.min(devicePixelRatio||1,innerWidth<760?1.5:1.8))','renderer.setPixelRatio(fix9Phone ? .85 : Math.min(devicePixelRatio||1,1.8))');
-    html=html.replace('const sc=.34*(goal.distance/180)','const sc=.135*(goal.distance/180)');
-    html=html.replace('camera.position.lerp(new THREE.Vector3(x,y,z),.12);cam.target.lerp(goal.target,.12)','camera.position.lerp(new THREE.Vector3(x,y,z),.021);cam.target.lerp(goal.target,.021)');
-    html=html.replace("status.textContent='READY • LIVING OS • DAY/NIGHT SYSTEM ONLINE';","status.textContent='READY • FIX10 • 2X SMOOTHER CONTROL + BIG BUTTONS';");
+    html=html.replace('const sc=.34*(goal.distance/180)','const sc=.15*(goal.distance/180)');
+    html=html.replace('camera.position.lerp(new THREE.Vector3(x,y,z),.12);cam.target.lerp(goal.target,.12)','camera.position.lerp(new THREE.Vector3(x,y,z),.015);cam.target.lerp(goal.target,.015)');
+    html=html.replace("status.textContent='READY • LIVING OS • DAY/NIGHT SYSTEM ONLINE';","status.textContent='READY • FIX10 • 2X SMOOTHER + 1X FASTER + BIG BUTTONS';");
  `;
  src=src.replace(marker,patch+'\n'+fix9Patch+'\n'+marker);
  document.open();document.write(src);document.close();
