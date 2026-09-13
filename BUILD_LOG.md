@@ -236,3 +236,33 @@ https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSK
 
 Protected fallback:
 https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX8.html
+
+
+## 2026-09-13 — Approved OSKO Gate Phone Icon
+
+Status: CODED INTO PHONE INSTALLER — REINSTALL REQUIRED FOR ANDROID ICON CACHE
+
+Approved visual:
+- Custom OSKO Living OS entrance-gate icon with turquoise lighting, glowing road, Alaska snow, aurora and HQ.
+
+Added:
+- `TEST/phone/icon-osko-living-192.png`
+- `TEST/phone/icon-osko-living-512.png`
+
+Updated:
+- `TEST/phone/manifest-v6.webmanifest`
+- `TEST/phone/OSKO-Living-OS-PHONE-INSTALL-v6.html`
+- `TEST/phone/sw-v6.js`
+
+Preserved:
+- Existing historical icon files.
+- Protected FIX8 and all current OS test builds.
+- No working OS features or project layout were changed.
+
+Use:
+- Remove the old installed star-icon copy from the phone.
+- Open the v6 phone installer and install/add OSKO Living OS again.
+- Android should then use the approved OSKO gate icon.
+
+Installer:
+https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/OSKO-Living-OS-PHONE-INSTALL-v6.html?v=icon1
