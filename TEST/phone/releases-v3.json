@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX9-PHONE",
-    "label": "FIX9 FAST CHROME + LARGE BUTTONS TEST",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX9.html?v=9",
+    "id": "FIX10-PHONE",
+    "label": "FIX10 SMOOTHER + EXTRA LARGE BUTTONS TEST",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX10.html?v=10",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
