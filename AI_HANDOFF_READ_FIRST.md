@@ -212,6 +212,10 @@ The next planned robot task, when Osko explicitly authorizes drawing/schematic w
 
 Do not start that schematic until Osko says to begin.
 
+## 2026-09-13 — TOWN LIGHTING DECISION
+
+The OSKO town must have automatic coordinated lighting. At dusk, streetlamps, pathway lights, building exterior lights, signs, windows, fireplaces, and key landmarks should turn on in layers to illuminate the town and create a polished, high-class country-town atmosphere. During daylight, those lights should dim or turn off while daylight lighting takes over. Lighting must follow the existing day/night system and remain smooth on the phone. This is a required design direction; do not remove the day/night lighting system or treat town lights as decorative-only objects.
+
 ## 2026-09-13 — INTERIOR BUILDING EXPERIENCE DECISION
 
 Osko approved a shared interior experience for every OSKO building. When a building is opened, it should show a finished, high-class cozy Alaska-lodge interior with a building-specific setting. Each building will have its own fireplace, furniture, lighting, and decorative details appropriate to its purpose. Planned examples include an elk head and antlers in the lodge-style interiors, with optional tasteful bear decor. Each interior should include a Layout view with a background image/scene, clickable app or room locations, and a “What’s Inside” button that lists the building’s apps, books, tools, and files. This is a design decision only; no interior implementation has been made yet. Preserve the current FIX8/FIX10 phone builds while this is planned.
