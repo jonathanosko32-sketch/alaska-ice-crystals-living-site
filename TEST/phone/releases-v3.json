@@ -10,10 +10,10 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX14-LANDSCAPE-FINISH",
-    "label": "FIX14 ALASKA LANDSCAPE FINISH TEST",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX14.html?v=14",
-    "enabled": false,
+    "id": "FIX16-SAFE-LANDSCAPE",
+    "label": "FIX16 SAFE LANDSCAPE TEST",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX16.html?v=16",
+    "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
     "requiresOwnerConfirmation": true,
