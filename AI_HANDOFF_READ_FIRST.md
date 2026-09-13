@@ -244,6 +244,15 @@ Osko chose fully automatic holiday themes for OSKO. Holiday decorations, colors,
 
 Aurora's recurring birthday theme is September 8. This date was verified against her official AKC record in Google Drive and her service-dog resume. Do not copy Aurora's private paperwork, identification numbers, or other record details into the public OSKO repository. On September 8, OSKO should automatically present a warm, high-class Aurora celebration across the town, then return to its normal appearance automatically when the birthday ends.
 
+## Required Robot and Skie continuity records
+
+Before changing robot behavior, offline control, safety, Skie voice, school reading, apps, printers, games, mixed reality, or the future bootable OS, read these current Google Drive master records first:
+
+- `OSKO ROBOTS — MASTER DESIGN RECORD — DO NOT REPLACE`
+- `SKIE READ THIS FIRST — ALASKA ICE CRYSTALS LIVING WEBSITE`
+
+The robot record now preserves the offline-first service purpose, local safety controller, Bluetooth/local-Wi-Fi control, physical and handheld emergency stops, permission boundaries, Alaska durability requirements, mixed-reality direction, signed updates, and rollback rule. The Skie record now preserves Skie's identity as Osko's ChatGPT assistance layer, the life-centered and homelike OS purpose, voice-first accessibility, realistic voice-controlled book pages, modular expansion, special building/app openings, printer and cloud-gaming direction, offline/online division, and the phone-to-bootable-OS path. These are approved design decisions, not claims that all features are already implemented.
+
 ## 2026-09-13 — INTERIOR BUILDING EXPERIENCE DECISION
 
 Osko approved a shared interior experience for every OSKO building. When a building is opened, it should show a finished, high-class cozy Alaska-lodge interior with a building-specific setting. Each building will have its own fireplace, furniture, lighting, and decorative details appropriate to its purpose. Planned examples include an elk head and antlers in the lodge-style interiors, with optional tasteful bear decor. Each interior should include a Layout view with a background image/scene, clickable app or room locations, and a “What’s Inside” button that lists the building’s apps, books, tools, and files. This is a design decision only; no interior implementation has been made yet. Preserve the current FIX8/FIX10 phone builds while this is planned.
