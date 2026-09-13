@@ -201,3 +201,38 @@ Safety rule:
 - Code only; no drawing or image generation.
 - No other property element was redesigned in this pass.
 - The approved Alaska Ice Crystals sign space remains reserved and unchanged.
+
+
+## 2026-09-13 — LAND1 Whole-Property Improvement Test
+
+Status: NEW SEPARATE TEST — SYNTAX CHECKED, NOT YET PHONE CONFIRMED
+
+Inspected before work:
+- AI_HANDOFF_READ_FIRST.md
+- 00_PROTECTED_BASELINES_READ_FIRST.md
+- MASTER_AI_WORK_RULES.md
+- Current FIX10 phone movement test and the FIX6/base property structure
+
+Created:
+- `TEST/OSKO-Living-OS-FIRST-BUILD-v1-LAND1.html`
+
+Added without changing protected builds:
+- Expanded visible ground and camera travel limits.
+- Added road-edge and property guidance lighting.
+- Improved the HQ approach and parking/arrival ground.
+- Added a clearer lake shoreline edge and dock lighting.
+- Added campground seating around the central fire.
+- Added ranch feeding/utility details and corner lighting.
+- Added lightweight outer-land snow terrain for more property depth.
+- Preserved approved buildings, signs, truck identity, Aurora placement, animals, branding, and existing layout.
+- Preserved protected FIX8 and the separate FIX10 movement test.
+
+Verification:
+- Wrapper JavaScript syntax check passed.
+- Phone rendering and feel are not yet confirmed by Osko.
+
+Phone test:
+https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-LAND1.html?v=land1a
+
+Protected fallback:
+https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX8.html
