@@ -96,3 +96,17 @@ This section supersedes the earlier unconfirmed phone assumptions above. Read it
 ### Immediate next action
 
 - Do not add more visual features yet. First create a clean FIX8-derived phone performance test with genuinely large always-visible controls and independent recovery. Test the direct build and installed OSKO star separately before resuming School & Library construction.
+
+
+## 2026-09-13 — LAND1 Separate Whole-Property Test
+
+- Read the AI handoff, protected baselines, master rules, build log, FIX10 movement wrapper, FIX6 structure, and base property code before the change.
+- Created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-LAND1.html` as a separate additive test.
+- Expanded land/camera boundaries and added lightweight structural improvements to roads/open land, HQ approach, lake/dock, campground, and ranch.
+- Current checkpoint: LAND1 test, Git commit `5e71a71411b6a42fbc9d1dfe360e73e1bb4cf10b`.
+- Test result: wrapper JavaScript syntax passed; Android Chrome appearance and performance remain unconfirmed.
+- Not changed: protected FIX8, current FIX10 movement test, approved signs/buildings/truck/Aurora/animals/branding/layout.
+- Risk: LAND1 adds geometry; phone performance must be checked before any further additions or promotion.
+- Next step: Osko opens LAND1 on the phone and reports loading, movement, and visible placement.
+- LAND1 phone link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-LAND1.html?v=land1a
+- FIX8 fallback: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX8.html
