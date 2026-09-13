@@ -17,7 +17,8 @@ try{
     html=html.replace('const count=850,','const count=fix9Phone?420:850,');
     html=html.replace('const smoke=[];for(let i=0;i<16;i++)','const smoke=[];for(let i=0;i<(fix9Phone?8:16);i++)');
     html=html.replace('renderer.setPixelRatio(Math.min(devicePixelRatio||1,innerWidth<760?1.5:1.8))','renderer.setPixelRatio(fix9Phone ? .85 : Math.min(devicePixelRatio||1,1.8))');
-    html=html.replace("status.textContent='READY • LIVING OS • DAY/NIGHT SYSTEM ONLINE';","status.textContent='READY • FIX10 • CAMERA CONTROL RESTORED + BIG BUTTONS';");
+    html=html.replace('const sc=.34*(goal.distance/180)','const sc=.29*(goal.distance/180)');
+    html=html.replace("status.textContent='READY • LIVING OS • DAY/NIGHT SYSTEM ONLINE';","status.textContent='READY • FIX10 • SMOOTH CONTROL + BIG BUTTONS';");
  `;
  src=src.replace(marker,patch+'\n'+fix9Patch+'\n'+marker);
  document.open();document.write(src);document.close();
