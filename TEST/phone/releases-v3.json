@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX12-LIVING-NATURE",
-    "label": "FIX12 LIVING ANIMALS + FINISHED LANDSCAPE TEST",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX12.html?v=12",
+    "id": "FIX13-TOWN-LIGHTS",
+    "label": "FIX13 HIGH CLASS TOWN LIGHTING TEST",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX13.html?v=13",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
