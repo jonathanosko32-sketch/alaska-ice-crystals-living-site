@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "HQ-ALL-CABINS-v107",
-    "label": "RESPONSIVE PHONE CONTROL v107 TEST",
-    "url": "../OSKO-Living-OS-HQ-ALL-CABINS-v107.html?v=107",
+    "id": "FIX9-PHONE",
+    "label": "FIX9 FAST CHROME + LARGE BUTTONS TEST",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX9.html?v=9",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
