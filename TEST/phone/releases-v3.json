@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX45-BRIGHT-DAY-VIEW-CONTROLS",
-    "label": "BRIGHTER DAY + HIDDEN VIEW CONTROLS TEST",
-    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX45-BRIGHT-DAY-VIEW-CONTROLS.html?v=45",
+    "id": "FIX46-READABLE-CAMERA-CONTROLS",
+    "label": "READABLE BOTTOM + CAMERA CONTROLS TEST",
+    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX46-READABLE-CAMERA-CONTROLS.html?v=46",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
