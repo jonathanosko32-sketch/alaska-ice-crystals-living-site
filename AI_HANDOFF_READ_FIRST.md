@@ -397,3 +397,10 @@ Test: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TE
 ## 2026-09-14 — FIX41 TINY CAMERA RESPONSE STEP
 
 Osko kept FIX40 and then reported that finger movement was laggy and slow. FIX41 is a separate forward test based on kept FIX40. It changes only camera follow/response from .12 to .14 for both camera position and target. Camera travel speed, stopping, animals, 30 FPS world recovery, pixel ratio 1, phone PCF shadows, cabins, layout, and loading code remain unchanged. All three inline scripts passed JavaScript syntax checks. FIX40 remains preserved and FIX8 remains protected. Do not Keep Update until Osko tests touch response, stopping, loading, and animal smoothness on his phone.
+
+
+## 2026-09-14 — FIX42 CONFIRMED: FIX8 + VERSION 27 CABINS
+
+Osko first returned the installed Chrome phone host to protected FIX8 and confirmed that FIX8 loads quickly, moves smoothly, has no lag, opens correctly, and stops correctly. FIX42 then transferred only the approved version 27 cabin function onto the FIX8 behavior. The movement overrides, reduced-rendering settings, added scenery, and button changes that had been bundled into the earlier FIX27 file were deliberately excluded.
+
+Osko tested FIX42 on his phone, reported “It's perfect,” and used Keep Update to save it. Treat FIX42 as the current phone-confirmed working checkpoint. Preserve the original FIX8 loader as the protected fallback. Future work must start from FIX42 in separate test candidates, change one system at a time, and stop for Osko’s phone test before saving.
