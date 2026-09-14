@@ -266,3 +266,17 @@ Use:
 
 Installer:
 https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/OSKO-Living-OS-PHONE-INSTALL-v6.html?v=icon1
+
+
+## 2026-09-14 — FIX24 All Cabins Blue Reference Test
+
+Status: NEW SEPARATE TEST — SYNTAX CHECKED, NOT YET PHONE CONFIRMED
+
+- Created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX24-CABINS.html`.
+- Loads the preserved `TEST/OSKO-Living-OS-HQ-ALL-CABINS-v104.html` reference so all cabins use the approved blue design and matching details.
+- Preserved FIX8, FIX17, and smooth FIX18 road recovery build.
+- Updated phone release candidate to FIX24; it is not marked phone-confirmed or stable.
+- Wrapper JavaScript syntax passed. Osko must test startup, touch, camera, stop, and controls before keeping it.
+
+Direct test: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX24-CABINS.html?v=24-cabins
+Phone-safe shell: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
