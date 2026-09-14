@@ -14,8 +14,8 @@
     "label": "FIX42 + VERSION 27 LANDSCAPE TEST",
     "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX43-LANDSCAPE-ON-FIX42.html?v=43",
     "enabled": true,
-    "phoneConfirmed": false,
-    "stable": false,
+    "phoneConfirmed": true,
+    "stable": true,
     "requiresOwnerConfirmation": true,
     "dataSchema": 1
   }
