@@ -339,3 +339,14 @@ FIX27 rebuilds all five cabins directly with matching light-brown log materials,
 Phone test: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
 
 Test startup, movement, stop behavior, cabin appearance, and touch response before Keep Update.
+
+
+## 2026-09-14 — FIX29 EXACT PRESERVED CABINS
+
+Status: NEW SEPARATE PHONE TEST — SYNTAX CHECKED, NOT PHONE CONFIRMED
+
+Osko reported Chrome performance improved after cleanup and requested the cabins exactly as previously built. Created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX29-EXACT-CABINS.html` as a direct standalone copy of the preserved `TEST/OSKO-Living-OS-HQ-ALL-CABINS-v104.html`. Only the title and ready-status label were changed. No wrapper or additional runtime loader was added. All three inline scripts passed JavaScript syntax checks.
+
+Phone test: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
+
+Do not mark phone-confirmed until Osko verifies startup, cabin appearance, movement, and stopping in cleaned Chrome.
