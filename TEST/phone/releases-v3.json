@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX47-EXTRA-LARGE-CAMERA-CONTROLS",
-    "label": "EXTRA LARGE CAMERA BUTTONS TEST",
-    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX47-EXTRA-LARGE-CAMERA-CONTROLS.html?v=47",
+    "id": "FIX48-WALK-AROUND-PORCH",
+    "label": "WALK-AROUND PORCH TEST",
+    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX48-WALK-AROUND-PORCH.html?v=48",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
