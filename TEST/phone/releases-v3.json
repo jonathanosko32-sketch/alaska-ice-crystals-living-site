@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX22-SMOOTH-MOTION",
-    "label": "FIX22 TIME-SMOOTH CAMERA TEST",
-    "url": "../OSKO-Living-OS-HQ-ALL-CABINS-v107.html?v=107",
+    "id": "FIX23-SMOOTH-LIGHT",
+    "label": "FIX23 SMOOTHER PHONE LIGHT MODE TEST",
+    "url": "../OSKO-Living-OS-HQ-ALL-CABINS-v108.html?v=108",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
