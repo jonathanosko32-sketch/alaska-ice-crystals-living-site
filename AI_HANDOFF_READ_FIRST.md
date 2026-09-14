@@ -321,3 +321,8 @@ Direct test:
 https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX24-CABINS.html?v=24-cabins
 
 Do not Keep Update until the phone test responds correctly. If it fails, use Roll Back to FIX18 or protected FIX8.
+
+
+## 2026-09-14 — BOOK AND BIBLE PAGE-TURN REQUIREMENT
+
+Osko confirmed the Bible and book reader must use a realistic page-turn interaction inside the OS. When the user turns a page, the top corner lifts, follows the finger, bends over, and settles onto the next page like a real paper page. It must not simply switch screens or replace the OS. Preserve this requirement for all future school, Bible, and book work.
