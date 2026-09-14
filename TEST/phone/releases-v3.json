@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX32-SLOWER",
-    "label": "FIX32 SLOWER MOVEMENT TEST",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX32-SLOWER.html?v=32-slow",
+    "id": "FIX33-START-FAR",
+    "label": "FIX33 FAST RESPONSE + START FAR",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX33-START-FAR.html?v=33-far",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
