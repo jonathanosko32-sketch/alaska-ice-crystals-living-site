@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX8-RETURN-TEST",
-    "label": "RETURN TO FIX8 STABLE TEST",
-    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX8.html?v=8-return-1",
+    "id": "FIX42-CABINS-ON-FIX8",
+    "label": "FIX8 + VERSION 27 CABINS TEST",
+    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX42-CABINS-ON-FIX8.html?v=42",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
