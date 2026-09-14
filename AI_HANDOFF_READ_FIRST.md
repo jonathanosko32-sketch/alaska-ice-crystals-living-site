@@ -392,3 +392,8 @@ Osko identified that the last two accepted updates damaged animal smoothness and
 Permanent calibration language: “up/down/back by 1” means one tiny equal step; a number N means exactly N of those tiny steps, then stop for Osko to test. Never interpret N as a large jump or endpoint.
 
 Test: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
+
+
+## 2026-09-14 — FIX41 TINY CAMERA RESPONSE STEP
+
+Osko kept FIX40 and then reported that finger movement was laggy and slow. FIX41 is a separate forward test based on kept FIX40. It changes only camera follow/response from .12 to .14 for both camera position and target. Camera travel speed, stopping, animals, 30 FPS world recovery, pixel ratio 1, phone PCF shadows, cabins, layout, and loading code remain unchanged. All three inline scripts passed JavaScript syntax checks. FIX40 remains preserved and FIX8 remains protected. Do not Keep Update until Osko tests touch response, stopping, loading, and animal smoothness on his phone.
