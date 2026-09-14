@@ -296,3 +296,28 @@ Phone recovery status: the active update candidate has been returned to `FIX18 F
 Next safe step: keep FIX18 as the phone recovery baseline, then make one small, separately named cabin integration test from the preserved HQ reference. Test startup, touch response, camera movement, stop behavior, and readable controls before offering KEEP UPDATE. Never make Osko repeat the cabin design or build forward from a failed/unresponsive candidate.
 
 Phone-safe update link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
+
+
+## 2026-09-14 — FIX24 ALL-CABINS BLUE REFERENCE TEST
+
+Status: NEW SEPARATE TEST — SYNTAX CHECKED, NOT YET PHONE CONFIRMED
+
+Created:
+- `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX24-CABINS.html`
+
+Source preserved:
+- `TEST/OSKO-Living-OS-HQ-ALL-CABINS-v104.html` is loaded unchanged as the source of the cabin world.
+- This preserves the approved blue build: matching light-brown cabins, freestanding balconies, centered stairs, warm lighting, raised one-pole crystal signs, solar-crystal roof panels, and the existing entrance gate.
+- FIX8 and the smooth FIX18 road recovery build remain preserved.
+
+Verification:
+- Wrapper JavaScript syntax check passed.
+- Phone startup, touch response, camera movement, stop behavior, and readable controls still need Osko's phone test.
+
+Phone test:
+https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
+
+Direct test:
+https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX24-CABINS.html?v=24-cabins
+
+Do not Keep Update until the phone test responds correctly. If it fails, use Roll Back to FIX18 or protected FIX8.
