@@ -278,3 +278,8 @@ Osko confirmed FIX16 opened correctly on his Android phone and called it “Grea
 ## 2026-09-14 — FIX17 PHONE CONFIRMED
 
 Osko installed/saved FIX17, tested it on his Android phone, and reported that it is good. FIX17 is now the current phone-confirmed landscape version. It includes the confirmed FIX16 foundation plus ten lightweight stationary snow-covered pine clusters. FIX16 remains preserved as the immediate fallback and FIX8 remains the protected recovery baseline. No master files were deleted or overwritten. Next work must continue as a separate FIX18 test built from FIX17, with only one lightweight controlled addition before phone testing.
+
+
+## 2026-09-14 — FIX18 FINISHED ROAD SNOWBANK TEST
+
+Built FIX18 as a separate continuation of phone-confirmed FIX17. FIX18 preserves all FIX17 controls, movement, stopping, buttons, buildings, rocks, pines, approved visual identities, and update behavior. It adds twelve stationary low-poly snowbank sections beside established road areas; there are no new animations or real-time lights. Wrapper JavaScript syntax passed. Phone rendering and performance remain unconfirmed. If FIX18 fails or looks wrong, return to confirmed FIX17. Direct test link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX18.html?v=18
