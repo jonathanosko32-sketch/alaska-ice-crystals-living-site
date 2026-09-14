@@ -10,12 +10,12 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX43-LANDSCAPE-ON-FIX42",
-    "label": "FIX42 + VERSION 27 LANDSCAPE TEST",
-    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX43-LANDSCAPE-ON-FIX42.html?v=43",
+    "id": "FIX44-DAYLIGHT",
+    "label": "DAYLIGHT VISIBILITY TEST",
+    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX44-DAYLIGHT.html?v=44",
     "enabled": true,
-    "phoneConfirmed": true,
-    "stable": true,
+    "phoneConfirmed": false,
+    "stable": false,
     "requiresOwnerConfirmation": true,
     "dataSchema": 1
   }
