@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX28-MOVEMENT-RESTORE",
-    "label": "FIX28 WORKING MOVEMENT RESTORE",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX28-MOVEMENT-RESTORE.html?v=28-restore",
+    "id": "FIX29-EXACT-CABINS",
+    "label": "FIX29 EXACT CABINS RESTORED",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX29-EXACT-CABINS.html?v=29-exact",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
