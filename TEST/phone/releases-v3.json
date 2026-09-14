@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX41-TINY-RESPONSE-STEP",
-    "label": "FIX41 TINY CAMERA RESPONSE STEP",
-    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX41-TINY-RESPONSE-STEP.html?v=41",
+    "id": "FIX8-RETURN-TEST",
+    "label": "RETURN TO FIX8 STABLE TEST",
+    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX8.html?v=8-return-1",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
