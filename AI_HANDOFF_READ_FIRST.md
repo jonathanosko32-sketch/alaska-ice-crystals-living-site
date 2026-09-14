@@ -371,3 +371,10 @@ Osko tested FIX33 on his phone and selected KEEP UPDATE, saying to keep this beh
 Before any new AI makes code, design, file, or update changes, it must first talk with Osko, explain what it understands about the current state and requested goal, and receive confirmation that the understanding is correct. Reading handoffs is required but does not replace this conversation. Do not begin building immediately merely because a task appears obvious.
 
 The current phone Living OS is a top-level Android OS overlay and development bridge. It is not the final standalone OS. Its purpose is to establish the interface, connected systems, property world, School, Bible/living books, SKIE controls, update behavior, and future robot connections while the true standalone computer/robot OS is developed later. Do not describe or redesign this overlay as if it were the final underlying operating system.
+
+
+## 2026-09-14 — FIX36 FORWARD-ONLY MOVEMENT CALIBRATION
+
+Osko instructed: no more going back; build forward from kept FIX33. FIX36 is a separate forward test based directly on FIX33. It preserves the far startup view, 24 FPS phone load setting, cabins, layout, and all other systems. Only movement was changed: drag scale .34 to .40 for faster finger travel, camera follow .12 to .24 for quicker/smoother response, and a release sync that sets the camera to the final goal when the dragged finger lifts so it does not keep coasting. JavaScript syntax passed. Phone behavior is not confirmed until Osko tests and keeps it.
+
+Test: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
