@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX48-WALK-AROUND-PORCH",
-    "label": "WALK-AROUND PORCH TEST",
-    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX48-WALK-AROUND-PORCH.html?v=48",
+    "id": "FIX49-TALL-LOG-CABIN-PORCH",
+    "label": "TALL LOG-CABIN PORCH TEST",
+    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX49-TALL-LOG-CABIN-PORCH.html?v=49",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
