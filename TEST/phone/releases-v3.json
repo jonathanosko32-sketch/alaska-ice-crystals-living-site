@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX24-CABINS-ALL-HQ",
-    "label": "FIX24 ALL BLUE CABINS TEST",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX24-CABINS.html?v=24-cabins2",
+    "id": "FIX25-MOVEMENT-QUICK-STOP",
+    "label": "FIX25 FASTER FINGER + QUICK STOP TEST",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX25-MOVEMENT.html?v=25-move",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
