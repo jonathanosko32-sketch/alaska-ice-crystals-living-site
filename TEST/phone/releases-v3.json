@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX34-SMOOTHER",
-    "label": "FIX34 SMOOTHER RESPONSE TEST",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX34-SMOOTHER.html?v=34-smooth",
+    "id": "FIX35-CALIBRATED-FOLLOW",
+    "label": "FIX35 CAMERA FOLLOW TEST",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX35-CALIBRATED-FOLLOW.html?v=35-follow",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
