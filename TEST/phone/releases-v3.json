@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX18-ROAD-SNOWBANKS",
-    "label": "FIX18 FINISHED ROAD SNOWBANK TEST",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX18.html?v=18-recovery",
+    "id": "FIX26-MOVEMENT-LIGHT",
+    "label": "FIX26 LIGHT MOVEMENT TEST",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX26-MOVEMENT.html?v=26-move",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
