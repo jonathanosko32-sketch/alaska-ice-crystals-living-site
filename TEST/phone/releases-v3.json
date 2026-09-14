@@ -10,11 +10,11 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX17-SNOWY-PINES",
-    "label": "FIX17 SNOWY PINE LANDSCAPE TEST",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX17.html?v=17",
+    "id": "FIX18-ROAD-SNOWBANKS",
+    "label": "FIX18 FINISHED ROAD SNOWBANK TEST",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX18.html?v=18",
     "enabled": true,
-    "phoneConfirmed": true,
+    "phoneConfirmed": false,
     "stable": false,
     "requiresOwnerConfirmation": true,
     "dataSchema": 1
