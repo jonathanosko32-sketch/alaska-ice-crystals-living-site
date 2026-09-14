@@ -364,3 +364,10 @@ Phone test: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-s
 ## 2026-09-14 — FIX33 PHONE CONFIRMED AND KEPT
 
 Osko tested FIX33 on his phone and selected KEEP UPDATE, saying to keep this behavior. FIX33 is now the confirmed working movement/camera base for all next builds. Preserve its faster response, lower phone rendering load, existing movement speed, and direct far home startup view. Do not retune these settings while adding cabins or other features unless Osko explicitly requests a movement change. Protected FIX8 remains the emergency fallback.
+
+
+## 2026-09-14 — MANDATORY TALK-BEFORE-BUILD RULE / OVERLAY CLARIFICATION
+
+Before any new AI makes code, design, file, or update changes, it must first talk with Osko, explain what it understands about the current state and requested goal, and receive confirmation that the understanding is correct. Reading handoffs is required but does not replace this conversation. Do not begin building immediately merely because a task appears obvious.
+
+The current phone Living OS is a top-level Android OS overlay and development bridge. It is not the final standalone OS. Its purpose is to establish the interface, connected systems, property world, School, Bible/living books, SKIE controls, update behavior, and future robot connections while the true standalone computer/robot OS is developed later. Do not describe or redesign this overlay as if it were the final underlying operating system.
