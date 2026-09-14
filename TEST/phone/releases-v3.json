@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX37-IMMEDIATE-FOLLOW",
-    "label": "FIX37 IMMEDIATE FOLLOW TEST",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX37-IMMEDIATE-FOLLOW.html?v=37-follow",
+    "id": "FIX38-CALIBRATED",
+    "label": "FIX38 CALIBRATED MOVEMENT TEST",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX38-CALIBRATED.html?v=38-calibrated",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
