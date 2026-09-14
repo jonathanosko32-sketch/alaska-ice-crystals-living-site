@@ -326,3 +326,16 @@ Do not Keep Update until the phone test responds correctly. If it fails, use Rol
 ## 2026-09-14 — BOOK AND BIBLE PAGE-TURN REQUIREMENT
 
 Osko confirmed the Bible and book reader must use a realistic page-turn interaction inside the OS. When the user turns a page, the top corner lifts, follows the finger, bends over, and settles onto the next page like a real paper page. It must not simply switch screens or replace the OS. Preserve this requirement for all future school, Bible, and book work.
+
+
+## 2026-09-14 — FIX27 LIGHTWEIGHT CABINS + PRESERVED MOVEMENT
+
+Status: NEW SEPARATE TEST — JAVASCRIPT SYNTAX CHECKED, NOT YET PHONE CONFIRMED
+
+Osko confirmed the FIX26 movement feel was fixed and requested the cabins be rebuilt like the approved version. Created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX27-CABINS.html` from the lightweight FIX18 phone base while preserving the FIX26 movement values: finger travel scale .24 and camera settle .72.
+
+FIX27 rebuilds all five cabins directly with matching light-brown log materials, walk-around freestanding balcony slabs and railings, decorative concrete pillars below, centered front steps, warm windows, solar-blue roof panels, and raised one-pole signs angled by property side. It does not load the heavy v104 cabin world at runtime. Protected FIX8, FIX18, FIX24, FIX25, FIX26, and the v104 cabin reference remain unchanged.
+
+Phone test: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
+
+Test startup, movement, stop behavior, cabin appearance, and touch response before Keep Update.
