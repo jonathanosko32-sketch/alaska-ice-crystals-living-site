@@ -14,7 +14,7 @@
     "label": "FIX17 SNOWY PINE LANDSCAPE TEST",
     "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX17.html?v=17",
     "enabled": true,
-    "phoneConfirmed": false,
+    "phoneConfirmed": true,
     "stable": false,
     "requiresOwnerConfirmation": true,
     "dataSchema": 1
