@@ -378,3 +378,8 @@ The current phone Living OS is a top-level Android OS overlay and development br
 Osko instructed: no more going back; build forward from kept FIX33. FIX36 is a separate forward test based directly on FIX33. It preserves the far startup view, 24 FPS phone load setting, cabins, layout, and all other systems. Only movement was changed: drag scale .34 to .40 for faster finger travel, camera follow .12 to .24 for quicker/smoother response, and a release sync that sets the camera to the final goal when the dragged finger lifts so it does not keep coasting. JavaScript syntax passed. Phone behavior is not confirmed until Osko tests and keeps it.
 
 Test: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
+
+
+## 2026-09-14 — AUTHORIZED QUICK CALIBRATION COMMANDS
+
+Exception to the general talk-before-build rule: when Osko clearly says “reduce speed by 1” (or equivalent one-step speed adjustment) or reports “it is lagging,” the active AI may immediately create the next separate phone test containing only that requested calibration fix. Do not require Osko to reconfirm the obvious single adjustment. Preserve the last kept build, change no unrelated camera/world/cabin/UI settings, keep the update rejectable, and report exactly what one calibration value changed.
