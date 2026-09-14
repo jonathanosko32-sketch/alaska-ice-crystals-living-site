@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX19-HQ-CABINS",
-    "label": "FIX19 HQ ALL-CABINS BUILD TEST",
-    "url": "../OSKO-Living-OS-HQ-ALL-CABINS-v104.html?v=104",
+    "id": "FIX20-BRIGHT-SMOOTH",
+    "label": "FIX20 BRIGHTER + SMOOTHER HQ CABINS TEST",
+    "url": "../OSKO-Living-OS-HQ-ALL-CABINS-v105.html?v=105",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
