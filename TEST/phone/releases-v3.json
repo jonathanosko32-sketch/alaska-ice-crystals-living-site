@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX46-READABLE-CAMERA-CONTROLS",
-    "label": "READABLE BOTTOM + CAMERA CONTROLS TEST",
-    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX46-READABLE-CAMERA-CONTROLS.html?v=46",
+    "id": "FIX47-EXTRA-LARGE-CAMERA-CONTROLS",
+    "label": "EXTRA LARGE CAMERA BUTTONS TEST",
+    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX47-EXTRA-LARGE-CAMERA-CONTROLS.html?v=47",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
