@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX27-CABINS-SMOOTH",
-    "label": "FIX27 CABINS + SMOOTH MOVEMENT TEST",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX27-CABINS.html?v=27-cabins",
+    "id": "FIX28-MOVEMENT-RESTORE",
+    "label": "FIX28 WORKING MOVEMENT RESTORE",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX28-MOVEMENT-RESTORE.html?v=28-restore",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
