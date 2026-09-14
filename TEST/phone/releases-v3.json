@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX31-LOWER-LOAD",
-    "label": "FIX31 LOWER LOAD RESPONSE TEST",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX31-LOWER-LOAD.html?v=31-low",
+    "id": "FIX32-SLOWER",
+    "label": "FIX32 SLOWER MOVEMENT TEST",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX32-SLOWER.html?v=32-slow",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
