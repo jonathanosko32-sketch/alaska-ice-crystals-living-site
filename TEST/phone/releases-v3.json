@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX39-BALANCED",
-    "label": "FIX39 RESTORED SPEED + BALANCED RESPONSE",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX39-BALANCED.html?v=39-balanced",
+    "id": "FIX40-WORLD-RECOVERY",
+    "label": "FIX40 LOADING + ANIMAL RECOVERY",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX40-WORLD-RECOVERY.html?v=40-recovery",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
