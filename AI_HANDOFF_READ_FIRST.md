@@ -383,3 +383,12 @@ Test: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TE
 ## 2026-09-14 — AUTHORIZED QUICK CALIBRATION COMMANDS
 
 Exception to the general talk-before-build rule: when Osko clearly says “reduce speed by 1” (or equivalent one-step speed adjustment) or reports “it is lagging,” the active AI may immediately create the next separate phone test containing only that requested calibration fix. Do not require Osko to reconfirm the obvious single adjustment. Preserve the last kept build, change no unrelated camera/world/cabin/UI settings, keep the update rejectable, and report exactly what one calibration value changed.
+
+
+## 2026-09-14 — FIX40 WORLD RENDERING RECOVERY / TINY-STEP RULE
+
+Osko identified that the last two accepted updates damaged animal smoothness and produced stop-and-go loading. Code review found large phone-render changes: FIX30 used 45 FPS and FIX33 used 24 FPS, while the earlier world used 30 FPS with phone pixel ratio 1 and phone PCF shadows. FIX40 is a new forward test based on kept FIX33 that restores only those pre-FIX30 world-rendering values: 30 FPS, pixel ratio 1, and phone PCF shadows. Camera drag speed, camera follow, stopping, buildings, layout, and direct far startup remain exactly FIX33. JavaScript syntax passed. First phone test must observe loading and animals without touching the screen; camera calibration comes only after world smoothness is confirmed.
+
+Permanent calibration language: “up/down/back by 1” means one tiny equal step; a number N means exactly N of those tiny steps, then stop for Osko to test. Never interpret N as a large jump or endpoint.
+
+Test: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
