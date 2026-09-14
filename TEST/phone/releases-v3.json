@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX25-MOVEMENT-QUICK-STOP",
-    "label": "FIX25 FASTER FINGER + QUICK STOP TEST",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX25-MOVEMENT.html?v=25-move",
+    "id": "FIX18-ROAD-SNOWBANKS",
+    "label": "FIX18 FINISHED ROAD SNOWBANK TEST",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX18.html?v=18-recovery",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
