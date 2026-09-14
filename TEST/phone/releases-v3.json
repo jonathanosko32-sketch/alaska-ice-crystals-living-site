@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX36-FORWARD-CALIBRATION",
-    "label": "FIX36 FASTER + FIRM STOP TEST",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX36-FORWARD-CALIBRATION.html?v=36-forward",
+    "id": "FIX37-IMMEDIATE-FOLLOW",
+    "label": "FIX37 IMMEDIATE FOLLOW TEST",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX37-IMMEDIATE-FOLLOW.html?v=37-follow",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
