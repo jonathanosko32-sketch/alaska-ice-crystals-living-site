@@ -404,3 +404,8 @@ Osko kept FIX40 and then reported that finger movement was laggy and slow. FIX41
 Osko first returned the installed Chrome phone host to protected FIX8 and confirmed that FIX8 loads quickly, moves smoothly, has no lag, opens correctly, and stops correctly. FIX42 then transferred only the approved version 27 cabin function onto the FIX8 behavior. The movement overrides, reduced-rendering settings, added scenery, and button changes that had been bundled into the earlier FIX27 file were deliberately excluded.
 
 Osko tested FIX42 on his phone, reported “It's perfect,” and used Keep Update to save it. Treat FIX42 as the current phone-confirmed working checkpoint. Preserve the original FIX8 loader as the protected fallback. Future work must start from FIX42 in separate test candidates, change one system at a time, and stop for Osko’s phone test before saving.
+
+
+## 2026-09-14 — FIX43 PHONE CONFIRMED AND SAVED
+
+Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version 27 property landscape group: rocks, snowy pines, and snowbanks. It deliberately excluded the old bundled phone rendering, movement, control-size, and back-button overrides. Osko tested FIX43 through the installed Chrome phone host and confirmed that the update loads fast, runs smoothly, has no lag, and has no jerking. Osko authorized saving it. Treat FIX43 as the current phone-confirmed working checkpoint; preserve FIX42 and the original protected FIX8 fallback.
