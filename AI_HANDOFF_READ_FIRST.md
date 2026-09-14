@@ -283,3 +283,16 @@ Osko installed/saved FIX17, tested it on his Android phone, and reported that it
 ## 2026-09-14 — FIX18 FINISHED ROAD SNOWBANK TEST
 
 Built FIX18 as a separate continuation of phone-confirmed FIX17. FIX18 preserves all FIX17 controls, movement, stopping, buttons, buildings, rocks, pines, approved visual identities, and update behavior. It adds twelve stationary low-poly snowbank sections beside established road areas; there are no new animations or real-time lights. Wrapper JavaScript syntax passed. Phone rendering and performance remain unconfirmed. If FIX18 fails or looks wrong, return to confirmed FIX17. Direct test link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX18.html?v=18
+
+
+## 2026-09-14 — CABIN BUILD CONTINUITY / PHONE RECOVERY NOTE
+
+Osko reported that the cabin work had already been nearly finished before an AI handoff was lost. The approved exterior direction must be preserved: identical high-class light-brown log cabins; walk-around freestanding balconies with no support posts touching the roof; decorative concrete pillars below that do not support the upper balcony; centered front stairs; warm windows and porch lighting; raised crystal signs on one attractive center pole beside each house, above roof height, angled toward the viewer; left-side houses angle signs slightly right, right-side houses angle slightly left, and straight-behind houses remain straight; solar-crystal roof panels; no changes to the entrance gate. The HQ cabin is the reference build for the other houses.
+
+The saved reference file is `TEST/OSKO-Living-OS-HQ-ALL-CABINS-v104.html`. It contains the HQ/all-cabins exterior, balconies, signs, lighting, solar-crystal roof treatment, animals/mountains/landscape, and phone update surface. This file is preserved and must be treated as the cabin reference—not replaced by a simplified redraw.
+
+Phone recovery status: the active update candidate has been returned to `FIX18 FINISHED ROAD SNOWBANK TEST` after later HQ performance candidates became unresponsive on Osko's phone. Protected FIX8 and earlier checkpoints remain unchanged. The HQ reference build and newer FIX20–FIX23 tests remain preserved for inspection, but no newer test is approved until Osko confirms it responds correctly on the phone.
+
+Next safe step: keep FIX18 as the phone recovery baseline, then make one small, separately named cabin integration test from the preserved HQ reference. Test startup, touch response, camera movement, stop behavior, and readable controls before offering KEEP UPDATE. Never make Osko repeat the cabin design or build forward from a failed/unresponsive candidate.
+
+Phone-safe update link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
