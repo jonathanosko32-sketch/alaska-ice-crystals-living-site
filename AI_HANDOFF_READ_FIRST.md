@@ -350,3 +350,12 @@ Osko reported Chrome performance improved after cleanup and requested the cabins
 Phone test: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
 
 Do not mark phone-confirmed until Osko verifies startup, cabin appearance, movement, and stopping in cleaned Chrome.
+
+
+## 2026-09-14 — FIX30 CABIN RESPONSE TEST
+
+Status: NEW SEPARATE TEST — SYNTAX CHECKED, NOT PHONE CONFIRMED
+
+Osko said FIX29 movement speed was correct and must remain unchanged, but the scene stuck and responded poorly. FIX30 copies FIX29 exactly and changes only phone rendering performance: pixel ratio 1.0 to 0.85, phone shadows disabled, and phone frame target increased from 30 to 45 FPS. Camera view, drag sensitivity (.34), and camera easing (.12) are unchanged. FIX29 and all protected builds remain preserved.
+
+Phone test: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
