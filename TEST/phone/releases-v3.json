@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX20-BRIGHT-SMOOTH",
-    "label": "FIX20 BRIGHTER + SMOOTHER HQ CABINS TEST",
-    "url": "../OSKO-Living-OS-HQ-ALL-CABINS-v105.html?v=105",
+    "id": "FIX21-SMOOTH-PHONE",
+    "label": "FIX21 SMOOTHER PHONE MOVEMENT TEST",
+    "url": "../OSKO-Living-OS-HQ-ALL-CABINS-v106.html?v=106",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
