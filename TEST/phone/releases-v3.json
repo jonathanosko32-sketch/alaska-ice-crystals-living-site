@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX29-EXACT-CABINS",
-    "label": "FIX29 EXACT CABINS RESTORED",
-    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX29-EXACT-CABINS.html?v=29-exact",
+    "id": "FIX30-RESPONSIVE-CABINS",
+    "label": "FIX30 CABIN RESPONSE TEST",
+    "url": "../OSKO-Living-OS-FIRST-BUILD-v1-FIX30-RESPONSIVE-CABINS.html?v=30-response",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
