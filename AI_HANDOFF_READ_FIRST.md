@@ -359,3 +359,8 @@ Status: NEW SEPARATE TEST — SYNTAX CHECKED, NOT PHONE CONFIRMED
 Osko said FIX29 movement speed was correct and must remain unchanged, but the scene stuck and responded poorly. FIX30 copies FIX29 exactly and changes only phone rendering performance: pixel ratio 1.0 to 0.85, phone shadows disabled, and phone frame target increased from 30 to 45 FPS. Camera view, drag sensitivity (.34), and camera easing (.12) are unchanged. FIX29 and all protected builds remain preserved.
 
 Phone test: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
+
+
+## 2026-09-14 — FIX33 PHONE CONFIRMED AND KEPT
+
+Osko tested FIX33 on his phone and selected KEEP UPDATE, saying to keep this behavior. FIX33 is now the confirmed working movement/camera base for all next builds. Preserve its faster response, lower phone rendering load, existing movement speed, and direct far home startup view. Do not retune these settings while adding cabins or other features unless Osko explicitly requests a movement change. Protected FIX8 remains the emergency fallback.
