@@ -700,3 +700,18 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 9. Protected/not changed: FIX72 and all earlier candidates, exterior property, buildings/signs/roads/truck/landscape/animals, movement/camera/lights, owner Keep/Reject/Roll Back system, FIX8 stable fallback, robot files, school files, and prior Headquarters/Bible history.
 10. Next step: owner phone UPDATES → TEST UPDATE. Open the upstairs SKIE work desk Bible, confirm book/chapter selection, Next/Previous, swipe page fold and Read Aloud, inspect both floors, and use KEEP only after owner approval.
 11. Phone-safe link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
+
+
+## FIX74 — OPEN TWO-PAGE KJV BIBLE • PAGE CURL • EXACT VERSE (2026-09-20)
+
+1. Reviewed the owner's Bible screenshot. FIX73 still presented scripture as one straight scrolling sheet and did not provide an exact verse field. The owner also reported the desk Bible was not visibly present in the tested view.
+2. Preserved FIX73 on branch `checkpoint-fix73-before-open-bible-verse-reader` at `226c70bcae7c8a2645d64dbebba22c8a109209cc`.
+3. Added `TEST/hq-open-bible-verse-reader-fix74.js` in commit `184fd5882a1170575e01c15769926db65687de84`.
+4. Added `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX74-OPEN-BIBLE-VERSE-READER.html` in commit `69c5499155fbab6cf8878e014efba39976264c6a`, then offered it through the owner phone registry in commit `23cce6cbec2140965052d2673225e61703718c82`.
+5. FIX74 places a large, cache-resistant TAP TO OPEN 66 BOOKS Bible on the SKIE study desk and overrides every known Headquarters Bible trigger to open the new reader.
+6. Rebuilt the reader as a flat, straight, two-page open Bible. Next/Previous and swipe turns animate a curved sheet rolling across the center binding in both directions. The header now provides large Book, Chapter, and exact Verse controls plus GO TO VERSE and Close.
+7. GO TO VERSE finds the physical page containing the requested verse, opens the correct two-page spread, and highlights that verse. Read Aloud reads the highlighted verse when present, otherwise the visible spread. All 66 KJV books, cross-chapter navigation, saved reading position, and chapter caching remain supported.
+8. Verified FIX74 module and wrapper parse, the wrapper loads FIX68 → FIX69 → FIX70 → FIX71 → FIX72 → FIX73 → FIX74, the registry points to FIX74 with `phoneConfirmed: false`, GitHub Pages returns HTTP 200 for wrapper and module, and the live published DOM contains the desk Bible, 66 books, Chapter and Verse values, two physical pages, highlighted John 3:16, forward/backward curl animations, all navigation controls, and no FIX68–FIX74 script errors.
+9. Protected/not changed: FIX73 and all earlier candidates, the completed upstairs/downstairs rooms, exterior property, buildings/signs/roads/truck/landscape/animals, movement/camera/lights, owner Keep/Reject/Roll Back system, FIX8 stable fallback, robot files, school files, and prior Headquarters/Bible history.
+10. Next step: owner phone UPDATES → TEST UPDATE. The shell must say TESTING • OPEN TWO-PAGE KJV BIBLE • PAGE CURL • EXACT VERSE. Then go upstairs, tap the SKIE desk Bible, test a Book/Chapter/Verse (for example John 3:16), Next/Previous, swipe turns and Read Aloud. Use KEEP only after owner approval.
+11. Phone-safe link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
