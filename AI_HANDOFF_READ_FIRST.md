@@ -505,6 +505,17 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 7. Tested: complete FIX64-to-FIX6-to-final-world generation, final inline-script parsing, all nine sign names/calls, release JSON, and whitespace checks passed. Phone appearance and sustained performance still require Osko's test.
 8. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
 
+## 2026-09-20 — FIX65 TRACKED SEMI + TWO FINISHED SIDES
+
+1. Osko's FIX64 phone views showed that the existing vehicle still read as a dark block instead of the tracked semi in his reference. He also requested completion of the two open outer property sides before assigning the next work.
+2. Created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX65-TRACKED-SEMI-SIDE-LANDSCAPE.html` as a separate candidate and preserved FIX64 on branch `checkpoint-fix64-before-truck-side-completion`.
+3. Hid the accumulated prototype truck geometry and rebuilt a clean, recognizable long-hood semi tractor with ocean-blue cab and sleeper, chrome grille, windshield and side windows, roof trim, mirrors, steps, twin stacks, headlights, fifth-wheel gap, and wide V-plow.
+4. The tracked running gear is now six separate modules: one front steering-track unit on each side, one tandem-dual tractor-track unit on each side, and one short tandem-dual trailer-track unit at the far rear on each side. No track runs underneath the full trailer.
+5. Rebuilt the raised two-level living trailer with a visible chassis gap, lower and upper windows, roof trim and marker lighting so the rear axle tracks remain visible.
+6. Finished both open outer property sides with layered side mountains and snow caps, continuous snowbanks, two rows of pines, snow-covered tree tops, boulder lines, and full-height boundary fencing and rails.
+7. Protected/not changed: all completed buildings, nine FIX64 crystal signs, HQ scale, existing animals, central mountains, roads, SKIE, camera, movement, large controls, restart correction, owner update flow, and FIX8 fallback.
+8. Tested: complete FIX65-to-FIX6-to-final-world generation and final script parsing passed. Verified all three separate track positions on both sides, two-side scenery code, continued FIX64 signs, absence of the rejected full-length trailer track, release JSON, and whitespace. Phone appearance/performance still require Osko's test. Phone link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
+
 
 ## 2026-09-20 — FIX57 TRACKED TRUCK + FULLER WORLD TEST
 
