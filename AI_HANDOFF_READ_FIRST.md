@@ -423,6 +423,18 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 8. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
 
 
+## 2026-09-20 — FIX56 VISIBLE WORLD ATTACHMENT CORRECTION
+
+1. Inspected/read before work: Osko's four FIX55 phone screenshots, FIX55 wrapper, FIX6 loader, and underlying v1 world source.
+2. Root cause: FIX52 through FIX55 scene additions were concatenated against `await wait(100)`, a marker present in FIX6 but absent from the final v1 world HTML being modified. The update wrappers and scripts parsed, but the mountain/scenery/SKIE/house additions were not inserted into the visible final world. This explains the empty land and old rounded robot in Osko's screenshots.
+3. Changed: created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX56-WORLD-LOAD-FIX.html`. It attaches all retained FIX52–FIX55 visible-world code at the verified final-world ready-status marker and throws a startup error if that marker is ever missing, preventing another silent no-op.
+4. Tested: performed a full two-stage test—FIX56 generated patched FIX6, patched FIX6 generated the final v1 world, and the final world was checked for actual mountain code, `r4.clear()` SKIE replacement, finished-house function, added wildlife, and FIX56 ready state. The final inline world script parsed successfully. Registry JSON and whitespace checks also passed.
+5. Now expected to appear: snow-capped mountains and foothills, shoreline rocks, outer forest and drifts, coded SKIE replacement, wolves/bears/elk/sheep/cow/bull/saddled horse, creek and bridges, finished two-story house additions, caribou/fox/hare/musk ox/goat, pond, lanterns, benches, boulders, and eagles.
+6. Protected/not changed: camera, movement, stopping, large controls, phone restart correction, update ownership flow, FIX55 and earlier candidates, and protected FIX8 fallback.
+7. Remaining risk: because all previously missing low-poly additions will now appear together, Osko must test phone smoothness for several minutes. Reject FIX56 if it causes lag; do not alter movement values to compensate.
+8. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
+
+
 ## 2026-09-20 — FIX55 FINISHED HOUSES + MORE WILDLIFE TEST
 
 1. Inspected/read before work: FIX54 SKIE/wildlife candidate, release registry, and protected movement/performance requirements.
