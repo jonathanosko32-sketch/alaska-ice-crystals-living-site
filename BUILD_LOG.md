@@ -293,3 +293,16 @@ Phone-safe shell: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-li
 7. Protected/not changed: FIX68, finished property signs, complete outside buildings, roads, truck, landscape, animals, movement/camera, lights, owner Keep/Reject/Roll Back system, FIX8 stable fallback, robot files, school files, and prior Headquarters/Bible history.
 8. Next step: after Pages finishes deployment, use UPDATES → TEST UPDATE, tap Headquarters once, inspect both floors and furniture, try every fireplace color and Fire On/Off, open the Bible, and keep the update only if it works correctly on the phone.
 9. Phone-safe link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
+
+
+## FIX70 — REAL HOME ROOMS + WIDE COLOR FIREPLACE + LARGE CONTROLS (2026-09-20)
+
+1. Inspected the owner's latest phone screenshots, wide electric-fireplace reference photos, and the current FIX69 source.
+2. Preserved FIX69 before this work on branch `checkpoint-fix69-before-wide-fireplace-controls` at `11de8bc1906b268619bd6213c1f55ca60da94565`.
+3. Added `TEST/hq-home-fireplace-fix70.js` in commit `4a5cf9d677289077068f5b7a28140ecbc65c9fe9`.
+4. Added `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX70-WIDE-FIREPLACE-HOME.html` in commit `8014719f615831b1f5f735747c44ef70855d1bc9`, then offered it through the owner phone registry in commit `4a02748f9d73782ad31c69f75f775ab32c4aab7d`.
+5. Downstairs now presents a real-room layout: a wide modern electric fireplace inside a rustic TV console with restrained Alaska Ice Crystals trim, five color choices plus Fire On/Off, a full living room with sofa, two chairs, end tables, lamps, rug, coffee table and KJV Bible, a country kitchen with cabinets, sink, stove, refrigerator, island and stools, and a dining table with four chairs. Interior navigation and fireplace controls are substantially larger for phone use.
+6. Verified the FIX70 module and wrapper scripts parse, the wrapper loads FIX68 + FIX69 + FIX70 in order, the registry points to FIX70 with `phoneConfirmed: false`, and GitHub Pages returns HTTP 200 for both the wrapper and module. Phone visual/touch behavior remains unconfirmed.
+7. Protected/not changed: FIX69, FIX68, the complete exterior property, buildings, signs, roads, truck, landscape, animals, movement/camera, lights, owner Keep/Reject/Roll Back system, FIX8 stable fallback, robot files, school files, and earlier Headquarters/Bible history.
+8. Next step: on the owner's phone use UPDATES → TEST UPDATE, enter Headquarters, inspect the downstairs fireplace/living/kitchen/dining rooms, test the larger controls and every fire color, and use KEEP only after owner approval.
+9. Phone-safe link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
