@@ -435,6 +435,18 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 8. Preserved checkpoint branch: `checkpoint-fix58-before-roads-mountains-world`. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
 
 
+## 2026-09-20 — FIX60 FULL PROPERTY DETAIL
+
+1. Started from FIX59 after Osko reported the world was looking great and requested more of everything. Created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX60-FULL-PROPERTY-DETAIL.html` as a separate candidate.
+2. Landscape: added eighteen mixed-height snowy spruce/birch groups, ten low-brush groups, six outer rock clusters, five frozen-creek extensions, a third timber footbridge, and a fishing shelter.
+3. Roads/property: added four guardrails, five blue-lit direction markers, three tents, two picnic tables, and a usable campsite area.
+4. Houses: added porch beams and diagonal braces, upper balcony floors, more exterior lights, framed roof skylights, and snow chains to all five cabins.
+5. Truck/SKIE: added fuel tanks, cab steps, side toolboxes, rear trailer ladder, grille badge, antennas, and more chrome detail. Added SKIE shoulder armor, cheek sensors, five-finger hands, ankle lights, armor seams, and a fuller blonde bun.
+6. Animals: added gray and white wolf pups, polar bear cub, grizzly cub, young elk, young Dall sheep, and musk ox calf.
+7. Tested: complete FIX60-to-FIX6-to-final-world generation passed. Final script includes the new property structures, animals, truck/SKIE details, and FIX60 status; the incorrect full-length trailer track remains absent. Registry JSON and whitespace checks passed. Phone smoothness must be tested before keeping.
+8. Preserved checkpoint branch: `checkpoint-fix59-before-full-property-detail`. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
+
+
 ## 2026-09-20 — FIX58 CORRECT TRAILER TRACKS + STRUCTURED WORLD
 
 1. Inspected/read before work: Osko's vehicle reference and FIX57 phone screenshot. Osko clarified the long track under the trailer was wrong.

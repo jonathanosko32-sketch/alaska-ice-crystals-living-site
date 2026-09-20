@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX59-ROADS-MOUNTAINS-WORLD",
-    "label": "MORE ROADS + MOUNTAINS + LIVING WORLD",
-    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX59-ROADS-MOUNTAINS-WORLD.html?v=59",
+    "id": "FIX60-FULL-PROPERTY-DETAIL",
+    "label": "FULLER PROPERTY + ANIMAL FAMILIES TEST",
+    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX60-FULL-PROPERTY-DETAIL.html?v=60",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
