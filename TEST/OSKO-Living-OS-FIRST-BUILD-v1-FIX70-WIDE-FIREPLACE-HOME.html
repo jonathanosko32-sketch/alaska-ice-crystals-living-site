@@ -165,7 +165,7 @@ function fix68GateCrystalSign(){const w=47,h=11,g=new THREE.Group();g.position.s
     html=html.replace('<div id="dock">',fix45ViewHtml+'<div id="dock">');
     const fix45ViewScript="const viewToggle=$('view-toggle'),viewAdjust=$('view-adjust');viewToggle.onclick=()=>{const open=viewAdjust.classList.toggle('open');viewToggle.setAttribute('aria-expanded',open?'true':'false')};$('tilt-up').onclick=()=>{goal.pitch=THREE.MathUtils.clamp(goal.pitch+.14,.22,1.25);status.textContent='VIEW • TILTED UP'};$('tilt-down').onclick=()=>{goal.pitch=THREE.MathUtils.clamp(goal.pitch-.14,.22,1.25);status.textContent='VIEW • LOWER LEVEL'};$('zoom-in').onclick=()=>{goal.distance=THREE.MathUtils.clamp(goal.distance*.78,45,360);status.textContent='VIEW • CLOSER'};$('zoom-out').onclick=()=>{goal.distance=THREE.MathUtils.clamp(goal.distance*1.28,45,360);status.textContent='VIEW • FARTHER'};";
     html=html.replace('let last=performance.now();',fix45ViewScript+'let last=performance.now();');
-    html=html.replace('</body>','<script src="./hq-interior-fix68.js?v=68"></scr'+'ipt><script src="./hq-home-fireplace-fix69.js?v=69"></scr'+'ipt><script src="./hq-home-fireplace-fix70.js?v=70"></scr'+'ipt></body>');
+    html=html.replace('</body>','<script src="./hq-interior-fix68.js?v=68"></scr'+'ipt><script src="./hq-home-fireplace-fix69.js?v=69"></scr'+'ipt><script src="./hq-home-fireplace-fix70.js?v=70b"></scr'+'ipt></body>');
  `;
  src=src.replace(marker,patch+'\n'+fix18Patch+'\n'+marker);
  document.open();document.write(src);document.close();
