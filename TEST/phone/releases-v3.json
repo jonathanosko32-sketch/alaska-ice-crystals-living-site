@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX57-TRACKED-TRUCK-WORLD",
-    "label": "TRACKED TRUCK + FULLER WORLD TEST",
-    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX57-TRACKED-TRUCK-WORLD.html?v=57",
+    "id": "FIX58-TRAILER-TRACKS-LAYOUT",
+    "label": "CORRECT TRAILER TRACKS + STRUCTURED WORLD",
+    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX58-TRAILER-TRACKS-LAYOUT.html?v=58",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,

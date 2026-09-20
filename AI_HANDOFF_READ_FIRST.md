@@ -423,6 +423,18 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 8. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
 
 
+## 2026-09-20 — FIX58 CORRECT TRAILER TRACKS + STRUCTURED WORLD
+
+1. Inspected/read before work: Osko's vehicle reference and FIX57 phone screenshot. Osko clarified the long track under the trailer was wrong.
+2. Exact truck correction: created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX58-TRAILER-TRACKS-LAYOUT.html`. The tractor now has two separate short track assemblies per side. The 53-foot trailer has open space under its front and middle. Only one short solid track per side wraps around the trailer's two rear axles at the back. The incorrect full-length trailer track was removed.
+3. Houses/school: all five two-story cabins now have solid dark roof decks, narrow snow edges, skylights/solar panels, and additional structural posts. The School & Library received a real third level with front/rear windows and a finished roof near the mountains.
+4. Structured layout: added three striped parking lots, a circular central work plaza with benches and lights, a fenced maintenance yard, fuel tanks, stacked lumber, a snowcat shelter, and defined property circulation areas.
+5. Animals: added a white horse, beige foal, caribou cow and calf, arctic fox, four sled dogs, two ravens, and a snowy owl, while preserving all earlier animals.
+6. Exact checkpoint: FIX58 candidate; preserved branch `checkpoint-fix57-before-trailer-track-correction`. FIX57 and all earlier candidates remain separate.
+7. Tested: full two-stage generation passed. Final world contains two tractor tracks, only the short rear trailer track, solid cabin roofs, school third floor, layout structures, wildlife, and FIX58 status; the old 54-unit trailer track is absent. Final script, registry JSON, and whitespace checks passed. Phone smoothness remains for Osko to test before keeping.
+8. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
+
+
 ## 2026-09-20 — FIX57 TRACKED TRUCK + FULLER WORLD TEST
 
 1. Inspected/read before work: FIX56 corrected visible-world loader, underlying truck geometry, Osko's tracked tractor/living trailer reference image, and his request to continue scenery, animals, SKIE, and houses.
