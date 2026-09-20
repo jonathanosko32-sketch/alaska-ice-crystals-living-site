@@ -328,3 +328,17 @@ Phone-safe shell: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-li
 8. Protected/not changed: FIX70, FIX69, FIX68, exterior property, all buildings/signs/roads/truck/landscape/animals, movement/camera/lights, owner Keep/Reject/Roll Back system, FIX8 stable fallback, robot files, school files, and prior Headquarters/Bible history.
 9. Next step: owner phone UPDATES → TEST UPDATE. Inspect downstairs and upstairs, test every fire color, Fire On/Off, Bible, floor buttons and Home/Yard. Use KEEP only after the owner approves the phone view.
 10. Phone-safe link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
+
+
+## FIX72 — COMPLETE UPSTAIRS + DOWNSTAIRS • EXTRA-LARGE CONTROLS (2026-09-20)
+
+1. Reviewed four owner phone screenshots. The downstairs styling was improved in FIX71, but the upstairs still used only the right side of the floor and looked unfinished. Exterior building actions and several house controls were still too small for the owner's phone.
+2. Preserved FIX71 on branch `checkpoint-fix71-before-large-controls-complete-floors` at `02249786b851c568ee250799f57839d4da54f289`.
+3. Added `TEST/hq-complete-floors-controls-fix72.js` in commit `bd24bdcd1b8453a10bfa7b051af21cfa8eebbc3b`.
+4. Added `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX72-COMPLETE-FLOORS-LARGE-CONTROLS.html` in commit `dab6c4a42c581751398ed6f296f64f0eb6c9c720`, then offered it through the owner phone registry in commit `cfbb6149a937f7422041e0157b5d6ec4acab7aa1`.
+5. Enlarged phone-shell buttons, exterior Camera, camera adjustment controls, bottom HOME/NEAR/SKIE/LIFE navigation, building OPEN/STATUS/LIGHTS actions, Headquarters header/Bible controls, downstairs/upstairs tabs, fireplace color/power controls, and Home/Yard/floor footer controls.
+6. Preserved the fully furnished downstairs and rebuilt the upstairs to fill the complete floor with three finished spaces: full library/study with 32 books, snow window, reading chair, lamp and desk; full guest bedroom with bed, wardrobe, two nightstands, lamps and bench; and a prayer/reading room with settee, rug and interactive KJV Bible.
+7. Verified FIX72 module and wrapper parse, the wrapper loads FIX68 → FIX69 → FIX70 → FIX71 → FIX72, the registry points to FIX72 with `phoneConfirmed: false`, GitHub Pages returns HTTP 200 for wrapper and module, and the live published DOM contains all three upstairs rooms, all four downstairs rooms, every expected control, and no FIX69–FIX72 script errors.
+8. Protected/not changed: FIX71, FIX70, FIX69, FIX68, exterior property, buildings/signs/roads/truck/landscape/animals, movement/camera/lights, owner Keep/Reject/Roll Back system, FIX8 stable fallback, robot files, school files, and prior Headquarters/Bible history.
+9. Next step: owner phone UPDATES → TEST UPDATE. Inspect the complete downstairs and all three upstairs rooms, test every enlarged control and the KJV Bible, and use KEEP only after owner approval.
+10. Phone-safe link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
