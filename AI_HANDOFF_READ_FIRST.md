@@ -409,3 +409,15 @@ Osko tested FIX42 on his phone, reported “It's perfect,” and used Keep Updat
 ## 2026-09-14 — FIX43 PHONE CONFIRMED AND SAVED
 
 Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version 27 property landscape group: rocks, snowy pines, and snowbanks. It deliberately excluded the old bundled phone rendering, movement, control-size, and back-button overrides. Osko tested FIX43 through the installed Chrome phone host and confirmed that the update loads fast, runs smoothly, has no lag, and has no jerking. Osko authorized saving it. Treat FIX43 as the current phone-confirmed working checkpoint; preserve FIX42 and the original protected FIX8 fallback.
+
+
+## 2026-09-20 — FIX51 FINISHED HQ + PHONE RESTART FIX TEST
+
+1. Inspected/read before work: mandatory project handoffs, protected baselines, current FIX50 raised-cabins test, v6 installed phone shell, update client, release registry, service worker, and Osko's two phone screenshots.
+2. Changed: created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX51-HQ-FINISHED.html` beside FIX50. HQ remains the largest cabin and received finished solid walk-around porch roof sections with a snow finish; the other buildings and all FIX50 movement/camera values remain unchanged. Fixed the installed v6 phone shell so the one-minute release check no longer resets the world iframe when the active URL has not changed. Bumped the service-worker cache key and candidate registry to FIX51.
+3. Exact checkpoint: local branch `main`, new FIX51 file, modified `TEST/phone/OSKO-Living-OS-PHONE-INSTALL-v6.html`, `TEST/phone/sw-v6.js`, and `TEST/phone/releases-v3.json`. Preserved checkpoint branch: `checkpoint-fix50-before-hq-and-restart-fix`.
+4. Tested: FIX51 wrapper syntax passed; it generated the final FIX6-derived HTML successfully; every generated inline script parsed; phone-shell inline script, service worker, and registry JSON parsed; `git diff --check` passed. A local visual browser was unavailable, so phone appearance and sustained no-restart behavior remain to be confirmed by Osko.
+5. Protected/not changed: FIX50 and all earlier versions, FIX43 phone-confirmed history, FIX8 fallback, movement, camera response, stopping behavior, animals, landscape, gate, signs, and update ownership controls.
+6. Remaining risk: phone must confirm the finished HQ appearance and remain open longer than several minutes without restarting. The installed service worker may require closing and reopening OSKO once before the corrected shell takes control.
+7. Next step: publish FIX51 and the corrected phone shell, then have Osko open OSKO, test FIX51, inspect HQ, and leave it open several minutes before selecting KEEP UPDATE.
+8. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
