@@ -314,3 +314,17 @@ Phone-safe shell: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-li
 - Corrected FIX70 to own and apply all five wide-fireplace palettes directly in commit `9925e23b7f3b3bbaa25c7c65796644e45a39dc01`.
 - Refreshed the wrapper's module cache key in `20b86ef4de2fab771bb2b844f99b0f380c82b510` and the phone candidate URL in `f89f9cbf8cbb00b7eff8695d1b6bbc47ec9bf184`.
 - Confirmed the corrected wrapper and module are published, the FIX70 DOM loads, ICE BLUE initializes on the wide fireplace, and no new FIX69/FIX70 control exception appears. Final phone visual/touch approval is still required before KEEP.
+
+
+## FIX71 — FINISHED TWO-STORY LOG HOME • CHURCH SHOWCASE (2026-09-20)
+
+1. Used the owner's FIX70 phone screenshot as the presentation review. FIX70 worked, but the update panel covered the fireplace and the rooms still read as flat layout blocks rather than a finished showcase home.
+2. Preserved FIX70 on branch `checkpoint-fix70-before-finished-showcase-home` at `24f3a6927c40799671d08a0bbfa5a33cd871669f`.
+3. Added `TEST/hq-finished-showcase-fix71.js` in commit `00ea98e6e2240aee1320c026162fcc7a6370ba67`.
+4. Added `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX71-FINISHED-SHOWCASE-HOME.html` in commit `8e1ad062ac04abb068092684ffdaf4cf11e20ccb`, then offered FIX71 through the owner phone registry in commit `7a4c064f21f762b05d99ec83f3a4376119a2ebce`.
+5. FIX71 automatically closes the phone update panel after the candidate opens so the home is visible. It keeps the large controls and turns the downstairs into a full-width finished sequence: detailed Alaska Ice Crystals fireplace/TV wall with 11 animated flame tongues, snow windows and rustic console; finished leather living room with cushions, lamps, chairs, rug, coffee table and working KJV Bible; completed country kitchen with cabinets, appliances, island, stools and pendant lights; completed dining room with chandelier and centerpiece.
+6. The upstairs library/study and guest suite were also deepened and furnished, with the existing floor navigation and Bible behavior preserved.
+7. Verified the FIX71 module and wrapper parse, the wrapper loads FIX68 → FIX69 → FIX70 → FIX71, the registry points to FIX71 with `phoneConfirmed: false`, GitHub Pages returns HTTP 200 for wrapper and module, and the published DOM loads all four downstairs zones, 11 flames, upstairs finishing elements, all six fireplace controls, and no FIX69/FIX70/FIX71 script errors.
+8. Protected/not changed: FIX70, FIX69, FIX68, exterior property, all buildings/signs/roads/truck/landscape/animals, movement/camera/lights, owner Keep/Reject/Roll Back system, FIX8 stable fallback, robot files, school files, and prior Headquarters/Bible history.
+9. Next step: owner phone UPDATES → TEST UPDATE. Inspect downstairs and upstairs, test every fire color, Fire On/Off, Bible, floor buttons and Home/Yard. Use KEEP only after the owner approves the phone view.
+10. Phone-safe link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
