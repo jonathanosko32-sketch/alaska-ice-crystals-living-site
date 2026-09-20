@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX58-TRAILER-TRACKS-LAYOUT",
-    "label": "CORRECT TRAILER TRACKS + STRUCTURED WORLD",
-    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX58-TRAILER-TRACKS-LAYOUT.html?v=58",
+    "id": "FIX59-ROADS-MOUNTAINS-WORLD",
+    "label": "MORE ROADS + MOUNTAINS + LIVING WORLD",
+    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX59-ROADS-MOUNTAINS-WORLD.html?v=59",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
