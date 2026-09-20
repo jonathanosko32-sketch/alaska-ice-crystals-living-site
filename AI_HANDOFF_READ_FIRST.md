@@ -421,3 +421,15 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 6. Remaining risk: phone must confirm the finished HQ appearance and remain open longer than several minutes without restarting. The installed service worker may require closing and reopening OSKO once before the corrected shell takes control.
 7. Next step: publish FIX51 and the corrected phone shell, then have Osko open OSKO, test FIX51, inspect HQ, and leave it open several minutes before selecting KEEP UPDATE.
 8. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
+
+
+## 2026-09-20 — FIX52 MOUNTAIN SCENERY TEST
+
+1. Inspected/read before work: FIX51, the current phone release registry, Osko's confirmation that the buildings are two stories, and his approved scenery-only direction.
+2. Changed: created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX52-MOUNTAIN-SCENERY.html` beside FIX51. Added six lightweight low-poly background mountains with varied height, separate snow caps, six nearer foothills, and twelve snowy pine groups along the mountain base.
+3. Exact checkpoint: FIX52 mountain scenery candidate. Preserved checkpoint branch: `checkpoint-fix51-before-mountain-scenery`.
+4. Tested: wrapper syntax, generated final HTML, generated inline JavaScript, registry JSON, and repository whitespace checks passed locally. Phone appearance and sustained performance remain for Osko's test.
+5. Protected/not changed: the two-story building design, HQ scale, FIX51 roof work, movement, camera response, stopping, controls, animals, roads, lake, gate, signs, restart correction, FIX50, FIX51, and FIX8 fallback.
+6. Remaining risk: phone test must confirm the new mountains provide better depth without slowing the world.
+7. Next step: Osko tests FIX52 through UPDATES and selects KEEP UPDATE only if appearance, movement, and several-minute stability remain good.
+8. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
