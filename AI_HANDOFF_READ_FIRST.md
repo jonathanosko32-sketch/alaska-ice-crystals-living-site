@@ -423,6 +423,18 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 8. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
 
 
+## 2026-09-20 — FIX55 FINISHED HOUSES + MORE WILDLIFE TEST
+
+1. Inspected/read before work: FIX54 SKIE/wildlife candidate, release registry, and protected movement/performance requirements.
+2. Changed: created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX55-HOUSES-WILDLIFE.html`. Added upper-story warm windows, dormers, roof caps, chimneys, balcony rail detail, and porch lamps to all five two-story houses while keeping HQ largest. Added finer SKIE armor seams, hands, shoulder badges, and a blue chest crystal. Added caribou, red fox, snowshoe hare, musk ox, and mountain goat. Added a frozen pond, snowy bank, six trail lanterns, three log benches, four boulders, and two distant eagles.
+3. Exact checkpoint: FIX55 houses/wildlife candidate. Preserved branch: `checkpoint-fix54-before-house-wildlife-detail`.
+4. Tested: outer wrapper syntax, generated final inline scripts, required FIX55 content markers, release JSON, and whitespace checks passed locally. Phone performance remains for Osko to confirm.
+5. Protected/not changed: FIX54, FIX53 and earlier builds, FIX8 fallback, camera, movement, stopping, large controls, restart correction, roads, lake, mountains, creek, bridges, existing wildlife, and owner-controlled Keep/Reject update flow.
+6. Remaining risk: the extra low-poly house detail and five animals must be tested for several minutes on Osko's phone.
+7. Next step: publish FIX55; Osko tests house appearance, SKIE, wildlife movement, camera response, and stability, then keeps it only if smooth.
+8. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
+
+
 ## 2026-09-20 — FIX54 SKIE + WILDLIFE + CREEK TEST
 
 1. Inspected/read before work: FIX53 property scenery, current phone release registry, protected behavior notes, and Osko's supplied Robot 1 — SKIE appearance reference.
