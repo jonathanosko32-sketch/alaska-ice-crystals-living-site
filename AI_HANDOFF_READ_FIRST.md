@@ -423,6 +423,18 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 8. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
 
 
+## 2026-09-20 — FIX54 SKIE + WILDLIFE + CREEK TEST
+
+1. Inspected/read before work: FIX53 property scenery, current phone release registry, protected behavior notes, and Osko's supplied Robot 1 — SKIE appearance reference.
+2. Changed: created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX54-SKIE-WILDLIFE.html` beside FIX53. The plain fourth robot is rebuilt in code as Robot 1 — SKIE with cream armor, dark mechanical joints, blue illuminated systems, blonde hair, and human proportions. Added two wolves, elk, Dall sheep, cow, black bull, black bear, grizzly, polar bear, and a third saddled horse. Added a segmented icy creek, stone banks, and two timber footbridges.
+3. Exact checkpoint: FIX54 SKIE/wildlife/scenery candidate. Preserved checkpoint branch: `checkpoint-fix53-before-skie-wildlife`.
+4. Tested: wrapper syntax, generated final HTML, generated inline JavaScript, required FIX54 content markers, registry JSON, and repository whitespace checks passed locally. Phone appearance and sustained performance remain for Osko's test.
+5. Protected/not changed: two-story buildings, HQ size and roof, movement, stopping, camera response, large phone controls, roads, existing animals, lake, mountains, forest, gate, signs, restart correction, FIX51 through FIX53, and FIX8 fallback.
+6. Remaining risk: phone testing must confirm the detailed SKIE model and added moving wildlife remain smooth over several minutes.
+7. Next step: publish FIX54, then Osko opens the installed OSKO phone page, chooses UPDATES, tests SKIE, animals, creek, movement, and stability, and selects KEEP UPDATE only if everything stays smooth.
+8. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
+
+
 ## 2026-09-20 — FIX52 MOUNTAIN SCENERY TEST
 
 1. Inspected/read before work: FIX51, the current phone release registry, Osko's confirmation that the buildings are two stories, and his approved scenery-only direction.
