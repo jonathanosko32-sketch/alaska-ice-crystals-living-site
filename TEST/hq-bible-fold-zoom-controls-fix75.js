@@ -48,8 +48,8 @@ css.textContent=`
 .h75-fold-page .h74-edition{text-align:center;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #b7a16d;color:#725d38;font:900 10px system-ui;letter-spacing:.14em}
 .h75-fold-page .h74-verses{font-size:var(--h75-font,20px)!important;line-height:1.55!important}
 .h75-fold-page .h74-page-num{display:none}
-.bible66.h74-reader .h74-turn.forward{animation:h75Forward 1.05s cubic-bezier(.38,0,.18,1)!important}
-.bible66.h74-reader .h74-turn.backward{animation:h75Backward 1.05s cubic-bezier(.38,0,.18,1)!important}
+.bible66.h74-reader .h74-turn.forward{animation:h75Forward .8s cubic-bezier(.38,0,.18,1)!important}
+.bible66.h74-reader .h74-turn.backward{animation:h75Backward .8s cubic-bezier(.38,0,.18,1)!important}
 @keyframes h75Forward{
  0%{transform:rotateY(0) rotateX(0) scaleX(1);border-radius:0 10px 10px 0;filter:brightness(1)}
  18%{transform:rotateY(-22deg) rotateX(3deg) translateY(-7px) scaleX(.96);border-radius:38% 10px 12px 45%;filter:brightness(1.05)}
