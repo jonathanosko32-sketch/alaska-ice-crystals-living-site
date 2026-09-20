@@ -372,3 +372,17 @@ Phone-safe shell: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-li
 9. Protected/not changed: FIX73 and all earlier candidates, the completed upstairs/downstairs rooms, exterior property, buildings/signs/roads/truck/landscape/animals, movement/camera/lights, owner Keep/Reject/Roll Back system, FIX8 stable fallback, robot files, school files, and prior Headquarters/Bible history.
 10. Next step: owner phone UPDATES → TEST UPDATE. The shell must say TESTING • OPEN TWO-PAGE KJV BIBLE • PAGE CURL • EXACT VERSE. Then go upstairs, tap the SKIE desk Bible, test a Book/Chapter/Verse (for example John 3:16), Next/Previous, swipe turns and Read Aloud. Use KEEP only after owner approval.
 11. Phone-safe link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
+
+
+## FIX75 — printed page fold, adjustable Bible text, larger controls (2026-09-20)
+
+- User approved FIX74 as “a lot better” and requested a more visible folding/rolling printed page, enlargable Bible words, and larger buttons.
+- Protected FIX74 at checkpoint branch `checkpoint-fix74-before-fold-zoom-controls` (base `c3b07bddf824e9cfab9960c47da8d1b1b42bcc2a`).
+- Candidate wrapper: `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX75-BIBLE-FOLD-TEXT-ZOOM.html?v=75b`.
+- Feature module: `TEST/hq-bible-fold-zoom-controls-fix75.js?v=75b`.
+- The moving fold sheet carries the visible scripture content and uses a strong bidirectional curl/roll animation timed to complete before the reader resets it.
+- Added large A− TEXT SMALLER, A＋ TEXT LARGER, and RESET TEXT controls; the chosen print size persists on the device.
+- Enlarged phone shell, camera, property dock, Headquarters floor/navigation, fireplace, and Bible navigation controls.
+- Commits: module `d66d689cd389a70f8c7f866217de8233fac52120`; wrapper `ab28c5e82566fa0fd3a8d4e4a08b0d394a09ff71`; registry `d237b1e099bf8a46ad135912e3ce6df1f4eee2ab`; fold timing correction `04e2d31532d3ad531791edbb0d09d92f1b823a34`; wrapper refresh `097005ff926df7f5de29600143bb776c981c2401`; phone refresh `58f251b0c798167d5488a0bd03b49006c171e2b6`.
+- Verified live: 66 book options, John 3 and verse 16 inputs, two physical pages, printed fold rule, saved 20px default, three text-size controls, 96px reader navigation, 94px exterior dock, and no FIX74/FIX75 script errors.
+- Phone confirmation remains pending. In UPDATES, press TEST UPDATE. The top must say `TESTING • VISIBLE PAGE FOLD • ADJUSTABLE BIBLE TEXT • BIGGER CONTROLS`. Open the Bible from the SKIE study desk, test A＋ several times, NEXT/PREVIOUS and swipe turns, and an exact verse. KEEP only after user approval; FIX8 remains protected fallback.
