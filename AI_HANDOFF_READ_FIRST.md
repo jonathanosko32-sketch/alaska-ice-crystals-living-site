@@ -494,6 +494,17 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 7. Tested: full two-stage generation passed. Final world contains two tractor tracks, only the short rear trailer track, solid cabin roofs, school third floor, layout structures, wildlife, and FIX58 status; the old 54-unit trailer track is absent. Final script, registry JSON, and whitespace checks passed. Phone smoothness remains for Osko to test before keeping.
 8. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
 
+## 2026-09-20 — FIX64 NINE MATCHING CRYSTAL SIGNS
+
+1. Osko supplied the finished Alaska Ice Crystals HQ sign as the exact visual reference and requested that all nine other main building signs match it.
+2. Created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX64-NINE-CRYSTAL-SIGNS.html` as a separate candidate while preserving FIX63 and the `checkpoint-fix63-before-nine-crystal-signs` branch.
+3. Replaced the old flat signs for OSKO Workshop, School–Library, Robot Garage, Aurora, Crystal Lab, Grow House, Equipment Barn, Work Shed, and Greenhouse.
+4. Each replacement uses a thick transparent ocean-blue crystal slab, visible geometric facets, an electric-blue emissive beveled frame, turquoise glowing raised-script lettering, a soft blue backlight, diamond corner pieces, and one centered support pole.
+5. Signs are placed above their completed roofs and angled gently toward the property view: left-side signs turn right, right-side signs turn left. The Alaska Ice Crystals HQ sign remains the reference and was not replaced.
+6. Protected/not changed: all completed two-story buildings, HQ scale, scenery, animals, mountains, roads, corrected tractor/trailer tracks, SKIE, movement, camera, large controls, restart correction, and FIX8 fallback.
+7. Tested: complete FIX64-to-FIX6-to-final-world generation, final inline-script parsing, all nine sign names/calls, release JSON, and whitespace checks passed. Phone appearance and sustained performance still require Osko's test.
+8. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
+
 
 ## 2026-09-20 — FIX57 TRACKED TRUCK + FULLER WORLD TEST
 
