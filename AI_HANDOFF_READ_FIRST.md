@@ -423,6 +423,18 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 8. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
 
 
+## 2026-09-20 — FIX57 TRACKED TRUCK + FULLER WORLD TEST
+
+1. Inspected/read before work: FIX56 corrected visible-world loader, underlying truck geometry, Osko's tracked tractor/living trailer reference image, and his request to continue scenery, animals, SKIE, and houses.
+2. Changed vehicle: created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX57-TRACKED-TRUCK-WORLD.html`. Reworked the property truck in dark ocean blue and added separate tractor and trailer track assemblies on both sides, steel tread bars and track wheels, a taller two-level living module, illuminated windows, roof trim and marker lights, tall chrome exhaust stacks, and a wider snowplow with side wings and front lights. The living trailer now has tracks as explicitly required.
+3. Changed houses/robot: all five two-story cabins gained front doors, handles, stairs, stair rails, firewood stacks, and balcony furniture. SKIE gained separate illuminated eyes, mouth, hair strands, backpack, and more substantial armored boots in addition to the FIX54–FIX55 body details.
+4. Changed world: added six packed-snow paths, a fenced work garden and shed, ten blue ice-crystal clusters, seven more snowy pines, Alaska lynx, river otter, harbor seal, reindeer, and wolverine.
+5. Exact checkpoint: FIX57 candidate; preserved branch `checkpoint-fix56-before-tracked-truck-world`. FIX56 and all earlier builds remain separate and recoverable.
+6. Tested: full two-stage wrapper-to-FIX6-to-final-world generation passed; final inline script parsed and contained the tracked units, living trailer, cabin details, new wildlife, and FIX57 ready state. Release JSON and whitespace checks passed.
+7. Protected/not changed: camera, movement, stopping, large controls, restart correction, owner Keep/Reject flow, and FIX8 fallback. Phone must test the larger visible object count for smoothness before keeping.
+8. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
+
+
 ## 2026-09-20 — FIX56 VISIBLE WORLD ATTACHMENT CORRECTION
 
 1. Inspected/read before work: Osko's four FIX55 phone screenshots, FIX55 wrapper, FIX6 loader, and underlying v1 world source.

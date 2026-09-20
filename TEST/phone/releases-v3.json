@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX56-WORLD-LOAD-FIX",
-    "label": "VISIBLE SCENERY + SKIE + HOUSES FIX",
-    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX56-WORLD-LOAD-FIX.html?v=56",
+    "id": "FIX57-TRACKED-TRUCK-WORLD",
+    "label": "TRACKED TRUCK + FULLER WORLD TEST",
+    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX57-TRACKED-TRUCK-WORLD.html?v=57",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
