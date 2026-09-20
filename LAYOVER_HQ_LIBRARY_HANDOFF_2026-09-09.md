@@ -122,3 +122,15 @@ This section supersedes the earlier unconfirmed phone assumptions above. Read it
 6. Remaining risk: the full KJV chapter collection is fetched as selected and cached on the phone; it is not yet bundled as one large offline text file. If internet is unavailable, the saved John 3 passage remains available for the demonstration. Phone must confirm the HQ OPEN action, both floors, Bible controls, page swipe, text size, and sustained world performance.
 7. Next step: Osko opens the installed OSKO phone shell, selects UPDATES → TEST UPDATE, taps Headquarters → OPEN, checks downstairs/upstairs, opens the Bible on the coffee table, turns pages, and keeps the update only if it works correctly.
 8. Phone-safe link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
+
+
+## 2026-09-20 — FIX67 BUILDING ACCESS + HQ/GATE CRYSTAL SIGNS
+
+1. Osko reported from the phone that buildings would not open and the entrance-gate and Headquarters signs were unfinished.
+2. Preserved FIX66 first on branch `checkpoint-fix66-before-building-taps-and-signs` at commit `e47ea298eb1ab2963d8614a16b18de5cd7da620a`.
+3. Created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX67-BUILDING-ACCESS-CRYSTAL-SIGNS.html` in commit `0b413f18e94f9394c6318ed9cf93bf21fc612f43`. It adds full-body invisible tap targets for all ten completed buildings, so roof/balcony geometry no longer blocks selection. Headquarters → OPEN still launches the complete FIX66 two-floor log home and KJV Bible.
+4. Replaced only the unfinished flat Headquarters and gate signs. Headquarters now uses the accepted deep ocean-blue faceted crystal sign with turquoise raised script, glow, diamond corners, and one centered pole behind it at roof height. The entrance sign uses the same crystal face mounted at the existing gate without adding a road-blocking center pole. The nine FIX64 signs remain unchanged.
+5. Updated the phone candidate registry to FIX67 in commit `3d0af988f2afd0946d57ff84aeb32e900caf2ed2`. Stable remains FIX8; FIX66 remains preserved as a separate file.
+6. Verified from the fetched default-branch files: wrapper JavaScript parses, the HQ/Bible module parses, ten building hit targets are present, both old flat signs are hidden, both crystal replacements are present, and the Headquarters interior OPEN hook remains present. Phone touch/visual behavior still requires Osko's confirmation.
+7. Next step: in the phone shell choose UPDATES → TEST UPDATE, tap the Headquarters building itself, choose OPEN, then verify the gate and Headquarters signs. Keep only after the phone test passes.
+8. Phone-safe link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
