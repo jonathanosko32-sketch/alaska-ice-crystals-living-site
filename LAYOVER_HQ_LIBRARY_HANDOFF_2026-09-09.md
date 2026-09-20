@@ -134,3 +134,15 @@ This section supersedes the earlier unconfirmed phone assumptions above. Read it
 6. Verified from the fetched default-branch files: wrapper JavaScript parses, the HQ/Bible module parses, ten building hit targets are present, both old flat signs are hidden, both crystal replacements are present, and the Headquarters interior OPEN hook remains present. Phone touch/visual behavior still requires Osko's confirmation.
 7. Next step: in the phone shell choose UPDATES → TEST UPDATE, tap the Headquarters building itself, choose OPEN, then verify the gate and Headquarters signs. Keep only after the phone test passes.
 8. Phone-safe link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
+
+
+## 2026-09-20 — FIX68 DIRECT HEADQUARTERS OPEN
+
+1. Osko's phone screenshots confirmed FIX67 selects Headquarters and shows the correct building panel, but the OPEN action was hidden underneath the bottom navigation, so the interior could not be entered.
+2. Preserved FIX67 first on branch `checkpoint-fix67-before-direct-building-open` at commit `f3127a4b60d5ba5c229afca3e1eecee13924ccf7`.
+3. Added `TEST/hq-interior-fix68.js` in commit `5c519215505dba9e23694dadf408777848da31f8`. When the Headquarters panel becomes selected, it now immediately opens the two-floor log-home interior and KJV Bible. It also raises the building panel above the bottom navigation and enlarges action buttons to 44px for the other buildings.
+4. Added separate candidate `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX68-DIRECT-HQ-OPEN.html` in commit `63da389b90a8bb193816b67d175fb36b97bf2cab`, then updated the phone registry in commit `fa414ee4835d887abab12ac79113a07ba90fcc44`.
+5. Protected/not changed: finished gate and Headquarters signs, all nine FIX64 signs, complete buildings, roads, truck, landscape, movement, lights, FIX67, FIX66, and FIX8 stable fallback.
+6. Verified from fetched default-branch files: FIX68 wrapper and module parse, the direct-open observer calls the Headquarters interior, the panel is raised, action buttons are enlarged, and the crystal-sign patch remains present. Final touch behavior requires Osko's phone confirmation.
+7. Next step: UPDATES → TEST UPDATE, then tap the Headquarters building once. The interior should open immediately without pressing a second OPEN button.
+8. Phone-safe link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
