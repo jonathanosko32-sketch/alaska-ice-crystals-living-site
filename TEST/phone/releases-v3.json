@@ -10,9 +10,9 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "FIX61-HOUSES-HERDS-TERRAIN",
-    "label": "MORE HOUSES + HERDS + MOUNTAIN TERRAIN",
-    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX61-HOUSES-HERDS-TERRAIN.html?v=61",
+    "id": "FIX62-COMPLETE-HOUSES",
+    "label": "FULLY BUILT HOUSES TEST",
+    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX62-COMPLETE-HOUSES.html?v=62",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,

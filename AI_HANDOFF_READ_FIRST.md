@@ -459,6 +459,18 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 8. Preserved checkpoint branch: `checkpoint-fix60-before-houses-herds-terrain`. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
 
 
+## 2026-09-20 — FIX62 FULLY BUILT HOUSES
+
+1. Osko's FIX61 screenshot showed the landscape and animal population were progressing, but multiple buildings still appeared as exposed upper roof frames. Osko requested every house be fully built before assigning uses/interiors.
+2. Created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX62-COMPLETE-HOUSES.html` as a separate candidate. Added a cleanup step that removes the exposed experimental high roof-frame pieces at all five building coordinates.
+3. Rebuilt HQ, Workshop, Robot Garage, and Aurora Cabin as visually complete enclosed two-story log buildings. Rebuilt School & Library as a complete enclosed three-story log building.
+4. Every completed building now has full lower/upper walls, finished roof, front/rear/side warm windows, front door and handle, wraparound porch deck sections, continuous rails and posts, concrete/stone pillars, front stairs, chimney and cap, solar roof panels, exterior lamps, and balcony benches.
+5. HQ remains the largest building. School remains the only three-story building near the mountains. Existing signs and interactive building registrations remain preserved for later interior assignment.
+6. Protected/not changed: FIX61 world, animals, mountains, roads, truck, corrected trailer tracks, SKIE, camera, movement, large controls, restart correction, and FIX8 fallback.
+7. Tested: complete FIX62-to-FIX6-to-final-world generation passed. Final script parses and contains the frame-removal step, complete-house function, four two-story calls, one three-story school call, and FIX62 status. Registry JSON and whitespace checks passed. Phone appearance/performance must be tested before keeping.
+8. Preserved checkpoint branch: `checkpoint-fix61-before-complete-houses`. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
+
+
 ## 2026-09-20 — FIX58 CORRECT TRAILER TRACKS + STRUCTURED WORLD
 
 1. Inspected/read before work: Osko's vehicle reference and FIX57 phone screenshot. Osko clarified the long track under the trailer was wrong.
