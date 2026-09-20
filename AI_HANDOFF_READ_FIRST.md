@@ -433,3 +433,15 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 6. Remaining risk: phone test must confirm the new mountains provide better depth without slowing the world.
 7. Next step: Osko tests FIX52 through UPDATES and selects KEEP UPDATE only if appearance, movement, and several-minute stability remain good.
 8. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
+
+
+## 2026-09-20 — FIX53 PROPERTY SCENERY TEST
+
+1. Inspected/read before work: FIX52 mountain candidate, current release registry, and Osko's request to continue scenery work without losing limited work time.
+2. Changed: created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX53-PROPERTY-SCENERY.html` beside FIX52. Kept the FIX52 mountain layers and added a twelve-rock snow-dusted lake shoreline, sixteen lightweight snowy pines around the outer property edges, and ten natural low-poly snowdrifts in open ground.
+3. Exact checkpoint: FIX53 property scenery candidate. Preserved checkpoint branch: `checkpoint-fix52-before-property-scenery`.
+4. Tested: wrapper syntax, generated final HTML, generated inline scripts, registry JSON, and repository whitespace checks passed locally. Phone appearance and performance remain for owner testing.
+5. Protected/not changed: two-story buildings, HQ size and roof, movement, stopping, camera response, controls, animals, roads, lake water, gate, signs, restart correction, FIX51, FIX52, and FIX8 fallback.
+6. Remaining risk: the additional static low-poly objects must be judged on Osko's phone for appearance and sustained smoothness.
+7. Next step: Osko tests FIX53 through UPDATES. Keep only if forest edges, shoreline, snow detail, movement, and several-minute stability are all good.
+8. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
