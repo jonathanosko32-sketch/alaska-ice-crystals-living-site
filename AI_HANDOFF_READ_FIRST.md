@@ -471,6 +471,18 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 8. Preserved checkpoint branch: `checkpoint-fix61-before-complete-houses`. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
 
 
+## 2026-09-20 — FIX63 ALL REMAINING BUILDINGS TWO STORY
+
+1. Osko tested FIX62 and requested all remaining small buildings be rebuilt as finished two-story buildings before interior planning.
+2. Created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX63-ALL-BUILDINGS-TWO-STORY.html` as a separate candidate.
+3. Rebuilt Crystal Lab, Grow House, Equipment Barn, Work Shed, Fishing Shelter, and Greenhouse as complete enclosed two-story structures. School & Library remains the only three-story building.
+4. Each upgraded service building has two full wall levels, finished roof, front and side windows, door and handle, front porch, rail posts, stairs, stone foundations, chimney and cap, solar panels, exterior lamps, roof snow ridge, gutters, and downspouts.
+5. Added raised signs for Work Shed, Fishing Shelter, and Greenhouse plus paved access pads. Existing Crystal Lab, Grow House, and Equipment Barn signs and interactive registrations remain available.
+6. Protected/not changed: completed five main buildings from FIX62, scenery, animals, mountains, roads, truck, corrected rear-only trailer tracks, SKIE, camera, movement, controls, restart correction, and FIX8 fallback.
+7. Tested: full two-stage generation and final script parsing passed. Verified all six upgraded service buildings and FIX63 status. Registry JSON and whitespace checks passed. Phone appearance and performance must be tested before keeping.
+8. Preserved checkpoint branch: `checkpoint-fix62-before-all-buildings-two-story`. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
+
+
 ## 2026-09-20 — FIX58 CORRECT TRAILER TRACKS + STRUCTURED WORLD
 
 1. Inspected/read before work: Osko's vehicle reference and FIX57 phone screenshot. Osko clarified the long track under the trailer was wrong.
