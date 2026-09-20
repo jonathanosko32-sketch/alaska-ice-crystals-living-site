@@ -447,6 +447,18 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 8. Preserved checkpoint branch: `checkpoint-fix59-before-full-property-detail`. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
 
 
+## 2026-09-20 — FIX61 HOUSES + HERDS + MOUNTAIN TERRAIN
+
+1. Started from FIX60 after Osko requested more house, animal, mountain, robot, and landscape work. Created `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX61-HOUSES-HERDS-TERRAIN.html` as a separate candidate.
+2. Mountains: added six elevated glacier/snow shelves and twelve rocky foothill ledges/boulder formations to give the mountain walls visible structure instead of smooth cones alone.
+3. Houses: all five cabins gained stacked corner logs, side windows and trim, balcony benches, roof cupolas with lit windows, cupola roofs, and gentle chimney smoke.
+4. SKIE: added hip armor, forearm control panels, palm sensors, boot treads, a back power core, and a detailed blonde side braid.
+5. Animal herds: added a bison bull/cow/yearling group, elk bull/cow/calf group, second Dall ram/ewe/lamb group, and black bear cub.
+6. Working landscape: added a glass greenhouse, wind turbine, twelve-tree orchard, hay shelter with hay bales, and four connecting snow trails.
+7. Tested: complete two-stage final-world generation and final script parsing passed. Verified cabin finish function, herd animals, greenhouse, SKIE power-core code, FIX61 status, and continued absence of the incorrect full-length trailer track. Registry JSON and whitespace checks passed. Phone performance must be tested before keeping.
+8. Preserved checkpoint branch: `checkpoint-fix60-before-houses-herds-terrain`. Phone-safe link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/`
+
+
 ## 2026-09-20 — FIX58 CORRECT TRAILER TRACKS + STRUCTURED WORLD
 
 1. Inspected/read before work: Osko's vehicle reference and FIX57 phone screenshot. Osko clarified the long track under the trailer was wrong.
