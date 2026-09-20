@@ -649,3 +649,11 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 7. Protected/not changed: FIX69, FIX68, the complete exterior property, buildings, signs, roads, truck, landscape, animals, movement/camera, lights, owner Keep/Reject/Roll Back system, FIX8 stable fallback, robot files, school files, and earlier Headquarters/Bible history.
 8. Next step: on the owner's phone use UPDATES → TEST UPDATE, enter Headquarters, inspect the downstairs fireplace/living/kitchen/dining rooms, test the larger controls and every fire color, and use KEEP only after owner approval.
 9. Phone-safe link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/phone/
+
+
+### FIX70 control correction (2026-09-20)
+
+- Final pre-handoff live check caught the inherited FIX69 color function targeting elements replaced by FIX70.
+- Corrected FIX70 to own and apply all five wide-fireplace palettes directly in commit `9925e23b7f3b3bbaa25c7c65796644e45a39dc01`.
+- Refreshed the wrapper's module cache key in `20b86ef4de2fab771bb2b844f99b0f380c82b510` and the phone candidate URL in `f89f9cbf8cbb00b7eff8695d1b6bbc47ec9bf184`.
+- Confirmed the corrected wrapper and module are published, the FIX70 DOM loads, ICE BLUE initializes on the wide fireplace, and no new FIX69/FIX70 control exception appears. Final phone visual/touch approval is still required before KEEP.
