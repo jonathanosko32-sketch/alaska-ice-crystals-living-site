@@ -407,3 +407,24 @@ Phone-safe shell: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-li
 5. Protected: Chrome phone host v6, service worker, local update history, FIX8 stable, and FIX76 were not replaced.
 6. Remaining risk: Osko must test FIX77 on the real phone before keeping it.
 7. Next step: open the installed OS, tap UPDATES, tap TEST UPDATE, verify both HQ floors and the upstairs-only Bible, then tap KEEP UPDATE only if correct.
+
+
+## 2026-09-21 — FIX78 Whole World Showcase
+
+Status: TEST CANDIDATE — PHONE CONFIRMATION REQUIRED
+
+Created:
+- `TEST/osko-whole-world-showcase-fix78.js`
+- `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX78-WHOLE-WORLD-SHOWCASE.html`
+
+Expanded:
+- All finished homes and work buildings: snow ridges, gutters, porches, awnings, chimney smoke, warm lamps, front walks, and stone landings.
+- Mountains: three additional low-poly skyline layers with snow caps and rocky ridges.
+- Animals: caribou, musk ox, bison calf, arctic wolf, saddled horse, and polar bear cub details/family additions.
+- Robots: SKIE power pack, antenna, shoulder lighting, utility hardware, plus two helper robots and a charging bay.
+- Whole property: pines, lane lights, snowbanks, boulders, and snow-capped rock markers.
+
+Release channel:
+- Chrome v6 TEST UPDATE now offers `FIX78-WHOLE-WORLD-SHOWCASE`.
+- FIX8 remains the protected stable build.
+- FIX78 preserves FIX77 and the upstairs-only Bible rule.
