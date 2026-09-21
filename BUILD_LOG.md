@@ -446,3 +446,27 @@ Behavior:
 - Manual Previous Pages, Read Aloud, Next Pages, book/chapter/verse, text sizing, and Close controls remain.
 - FIX78 world improvements remain loaded beneath FIX79.
 - Chrome TEST update channel now offers FIX79; FIX8 remains protected stable.
+
+
+## 2026-09-21 — FIX80 Smooth Bible Pinch + All Houses Open
+
+Status: TEST CANDIDATE — PHONE CONFIRMATION REQUIRED
+
+Created:
+- `TEST/bible-pinch-all-houses-fireplaces-fix80.js`
+- `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX80-PINCH-OPEN-HOUSES.html`
+
+Fixed:
+- A second finger cancels page-swipe tracking before pinch resizing begins.
+- Two-finger pinch continuously adjusts Bible print between 16 and 52 px and saves the size on release.
+- One-finger horizontal swipe turns pages; one-finger vertical motion scrolls text.
+- A−, A+, Reset, Previous, Read Aloud, Next, book, chapter, verse, and Close remain manual.
+
+Added:
+- Two-floor interiors for Workshop, School & Library, Robot Garage, Aurora Cabin, Crystal Lab, Grow House, Equipment Barn, Work Shed, and Greenhouse.
+- Working stone fireplace and large floor/exit/light controls in each interior.
+- Larger property status, panel text, action buttons, and dock controls.
+
+Release:
+- Chrome TEST channel offers FIX80.
+- FIX8 remains protected stable.
