@@ -750,3 +750,14 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 5. Protected: Chrome phone host v6, service worker, local update history, FIX8 stable, and FIX76 were not replaced.
 6. Remaining risk: Osko must test FIX77 on the real phone before keeping it.
 7. Next step: open the installed OS, tap UPDATES, tap TEST UPDATE, verify both HQ floors and the upstairs-only Bible, then tap KEEP UPDATE only if correct.
+
+
+## 2026-09-21 — FIX78 Whole World Showcase
+
+- Preserved FIX77 and the upstairs-only KJV Bible rule.
+- Added `TEST/osko-whole-world-showcase-fix78.js` as an additive, guarded 3D layer.
+- Added `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX78-WHOLE-WORLD-SHOWCASE.html`.
+- Expanded all houses and work buildings with porches, awnings, chimneys, smoke, snow trim, lamps, walks, and stone landings.
+- Added a deeper three-row mountain skyline, detailed wildlife families, SKIE upgrades, two helper robots with a charging bay, property pines, lane lights, snowbanks, and rock markers.
+- Updated `TEST/phone/releases-v3.json` so the Chrome v6 TEST UPDATE channel offers FIX78.
+- Protected stable remains FIX8. FIX78 is not phone-confirmed and must remain TEST until Jonathan approves it on his phone.
