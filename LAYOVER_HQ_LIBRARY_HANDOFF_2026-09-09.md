@@ -273,3 +273,14 @@ This section supersedes the earlier unconfirmed phone assumptions above. Read it
 5. Protected: Chrome phone host v6, service worker, local update history, FIX8 stable, and FIX76 were not replaced.
 6. Remaining risk: Osko must test FIX77 on the real phone before keeping it.
 7. Next step: open the installed OS, tap UPDATES, tap TEST UPDATE, verify both HQ floors and the upstairs-only Bible, then tap KEEP UPDATE only if correct.
+
+
+## FIX78 follow-up — whole property showcase (2026-09-21)
+
+- Current TEST candidate: `FIX78-WHOLE-WORLD-SHOWCASE`.
+- Wrapper: `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX78-WHOLE-WORLD-SHOWCASE.html`.
+- Additive layer: `TEST/osko-whole-world-showcase-fix78.js`.
+- FIX77 still loads first, preserving finished upper/lower HQ floors and the single physical KJV Bible upstairs on SKIE's desk.
+- FIX78 enriches houses, service buildings, mountains, wildlife, SKIE, helper robots, charging bay, and the surrounding landscape.
+- Chrome v6 update channel now points to FIX78. Stable FIX8 remains protected.
+- Status: syntax and repository attachment verified; phone/WebGL confirmation still required.
