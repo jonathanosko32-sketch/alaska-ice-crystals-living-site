@@ -294,3 +294,14 @@ This section supersedes the earlier unconfirmed phone assumptions above. Read it
 - FIX79 loads after FIX78 and preserves the finished world, upstairs-only Bible placement, full KJV reader, text enlargement, verse navigation, read-aloud, and all manual controls.
 - Horizontal finger movement now drives a live bending/curling paper preview. Swipe left advances and swipe right returns. Vertical movement scrolls the Bible.
 - Stable FIX8 remains protected. FIX79 is not phone-confirmed.
+
+
+## FIX80 follow-up — pinch-safe Bible and open interiors
+
+- Current TEST candidate: `FIX80-PINCH-OPEN-HOUSES`.
+- Wrapper: `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX80-PINCH-OPEN-HOUSES.html`.
+- New layer: `TEST/bible-pinch-all-houses-fireplaces-fix80.js`.
+- Two fingers now resize Bible print without turning a page. One finger handles page swiping; vertical motion scrolls scripture. Pinched print size saves, and all manual Bible controls remain.
+- All nine non-HQ buildings now open into large two-floor log interiors with working stone fireplaces and larger controls.
+- FIX79, FIX78, the upstairs-only physical KJV Bible, and stable FIX8 protection remain intact.
+- Status: syntax and repository wiring verified; owner phone touch/visual confirmation still required.
