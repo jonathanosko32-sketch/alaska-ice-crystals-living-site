@@ -284,3 +284,13 @@ This section supersedes the earlier unconfirmed phone assumptions above. Read it
 - FIX78 enriches houses, service buildings, mountains, wildlife, SKIE, helper robots, charging bay, and the surrounding landscape.
 - Chrome v6 update channel now points to FIX78. Stable FIX8 remains protected.
 - Status: syntax and repository attachment verified; phone/WebGL confirmation still required.
+
+
+## FIX79 follow-up — natural Bible swiping
+
+- Current TEST candidate: `FIX79-NATURAL-SWIPE-BIBLE`.
+- Wrapper: `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX79-NATURAL-SWIPE-BIBLE.html`.
+- New layer: `TEST/hq-bible-natural-swipe-fix79.js`.
+- FIX79 loads after FIX78 and preserves the finished world, upstairs-only Bible placement, full KJV reader, text enlargement, verse navigation, read-aloud, and all manual controls.
+- Horizontal finger movement now drives a live bending/curling paper preview. Swipe left advances and swipe right returns. Vertical movement scrolls the Bible.
+- Stable FIX8 remains protected. FIX79 is not phone-confirmed.
