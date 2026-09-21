@@ -397,3 +397,13 @@ Phone-safe shell: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-li
 6. Remaining uncertainty: final spacing and appearance on Osko's Samsung phone must be judged by Osko.
 7. Next recommended step: open FIX77 on the phone, enter HQ, check DOWNSTAIRS and UPSTAIRS, then open the single Bible from SKIE's upstairs desk.
 8. Phone-safe test link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX77-FINISHED-FLOORS-UPSTAIRS-BIBLE.html
+
+
+## HANDOFF NOTE — SEPTEMBER 21, 2026 — FIX77 OFFERED TO CHROME-INSTALLED OS
+1. Inspected: FIX77 checkpoint, Chrome phone host v6, update client, service worker, and TEST/phone/releases-v3.json.
+2. Changed: updated only the Chrome phone release registry candidate from FIX75 to FIX77-FINISHED-FLOORS-UPSTAIRS-BIBLE. The installed Chrome OS now detects FIX77 through its existing no-cache update check. FIX8 remains the protected stable fallback. No automatic promotion was made; owner phone testing and KEEP UPDATE remain required.
+3. Exact checkpoint: TEST/phone/releases-v3.json commit 501f1a7910e566c2b758487e84f400bae0baf0e2.
+4. Tested: registry readback is valid JSON and points to the FIX77 public build with cache-buster v=77a.
+5. Protected: Chrome phone host v6, service worker, local update history, FIX8 stable, and FIX76 were not replaced.
+6. Remaining risk: Osko must test FIX77 on the real phone before keeping it.
+7. Next step: open the installed OS, tap UPDATES, tap TEST UPDATE, verify both HQ floors and the upstairs-only Bible, then tap KEEP UPDATE only if correct.
