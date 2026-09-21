@@ -428,3 +428,21 @@ Release channel:
 - Chrome v6 TEST UPDATE now offers `FIX78-WHOLE-WORLD-SHOWCASE`.
 - FIX8 remains the protected stable build.
 - FIX78 preserves FIX77 and the upstairs-only Bible rule.
+
+
+## 2026-09-21 — FIX79 Natural Swipe Bible
+
+Status: TEST CANDIDATE — PHONE CONFIRMATION REQUIRED
+
+Created:
+- `TEST/hq-bible-natural-swipe-fix79.js`
+- `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX79-NATURAL-SWIPE-BIBLE.html`
+
+Behavior:
+- Live finger-following horizontal page drag with paper bend, shadow, and top curl.
+- Left swipe advances; right swipe returns.
+- Swipe threshold reduces accidental turns.
+- Vertical Bible scrolling remains available.
+- Manual Previous Pages, Read Aloud, Next Pages, book/chapter/verse, text sizing, and Close controls remain.
+- FIX78 world improvements remain loaded beneath FIX79.
+- Chrome TEST update channel now offers FIX79; FIX8 remains protected stable.
