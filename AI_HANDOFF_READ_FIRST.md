@@ -761,3 +761,13 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 - Added a deeper three-row mountain skyline, detailed wildlife families, SKIE upgrades, two helper robots with a charging bay, property pines, lane lights, snowbanks, and rock markers.
 - Updated `TEST/phone/releases-v3.json` so the Chrome v6 TEST UPDATE channel offers FIX78.
 - Protected stable remains FIX8. FIX78 is not phone-confirmed and must remain TEST until Jonathan approves it on his phone.
+
+
+## 2026-09-21 — FIX79 Natural Swipe Bible
+
+- Preserved FIX78 and all prior world/HQ work.
+- Added `TEST/hq-bible-natural-swipe-fix79.js` and `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX79-NATURAL-SWIPE-BIBLE.html`.
+- Bible pages now follow horizontal finger movement and visibly bend/curl during the drag.
+- Swipe left advances; swipe right goes back. A deliberate threshold prevents accidental page turns.
+- Vertical motion remains Bible text scrolling. Large Previous, Read Aloud, Next, book, chapter, verse, text-size, and close controls remain manual and functional.
+- Chrome v6 TEST UPDATE now offers FIX79. FIX8 remains protected stable. Phone confirmation is required.
