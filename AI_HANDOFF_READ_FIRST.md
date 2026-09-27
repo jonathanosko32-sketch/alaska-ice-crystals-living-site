@@ -886,3 +886,8 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 ### FIX94 direction clarification — 2026-09-27
 
 Osko clarified that the page's top edge/corner must travel inward onto the receiving page, never fold or lift outward away from it. The whole broad sheet follows through smoothly after that leading top edge, with the bottom arriving last. In FIX94, the leaf translates inward across the center seam (`sheetX` moves the right leaf left and the left leaf right); preserve that inward direction when tuning the motion. The phone test is still required to confirm the visual feel.
+
+
+### FIX94 coded motion update — 2026-09-27
+
+At Osko's request, revised the untested FIX94 candidate so the turn visibly leads inward at the top and follows down the page. The broad leaf is rendered as twelve closely overlapped horizontal rows. Their inward glide is staggered smoothly from top to bottom; the right page moves left across the center seam and the left page moves right. The old stable FIX8 is unchanged. Candidate link is now cache-busted with `?v=94b`. Phone testing is still pending; do not promote based on code checks alone.
