@@ -847,3 +847,13 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 4. Tests: module syntax passed; wrapper inline JavaScript parsed; checks confirm a single full-width sheet, a horizontal glide, and a gentle fold angle without strip segments.
 5. Stable FIX8 remains protected. FIX90 remains available for comparison. The release candidate is not phone-confirmed or stable; owner phone testing is still needed.
 6. Phone test URL: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX91-FALL-AND-SLIDE.html?v=91a
+
+
+## 2026-09-26 — FIX92 Hey SKIE Voice Commands
+
+1. Added a separate voice-control test on top of FIX91; FIX91 remains intact and FIX8 stays the protected stable release.
+2. A first tap on the existing SKIE voice panel enables browser speech recognition and requests microphone access. After permission, say “Hey SKIE,” then give commands. The wake phrase can be followed by the command in one utterance. Voice listening runs only while this test page is active in the foreground; phone lock/background behavior is not guaranteed.
+3. Supported commands include opening HQ, going upstairs/downstairs, opening the KJV Bible, turning to the next or previous page, asking for an absolute page number within the current chapter, and naming a Bible book/chapter/verse such as “John chapter three verse sixteen.”
+4. Files: `TEST/skie-voice-control-fix92.js`; wrapper `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX92-HEY-SKIE-VOICE.html`; release id `FIX92-HEY-SKIE-VOICE-COMMANDS`.
+5. Tests: syntax check passed; spoken reference parsing passed for John 3:16, 1 John 4:8, and Matthew 5:3; wrapper wiring and FIX91 inheritance verified. Real microphone permission and on-phone voice recognition still need Osko's test.
+6. Candidate is not phone-confirmed or stable. Test URL: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX92-HEY-SKIE-VOICE.html?v=92a
