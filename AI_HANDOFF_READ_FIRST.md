@@ -783,3 +783,14 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 - Every added interior includes a working stone fireplace, downstairs/upstairs tabs, large exit/floor/light controls, country furniture, and building-specific rooms.
 - Enlarged important property panel text, action buttons, status, and dock controls.
 - Chrome TEST now offers FIX80. FIX8 remains protected stable. Phone touch confirmation is required.
+
+
+## 2026-09-26 — FIX86 Bold Bible + Readable Controls
+
+- Preserved FIX85's top-corner touch-following page roll and created a separate FIX86 test candidate.
+- Scripture text now uses a heavier print weight. The six page-adjustment controls and three bottom reading controls have larger text and touch targets.
+- Added `TEST/bible-bold-readable-controls-fix86.js` and `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX86-BOLD-BIBLE-READABLE-BUTTONS.html`.
+- Updated only the phone TEST candidate to FIX86. It remains `phoneConfirmed: false`, `stable: false`, and requires owner confirmation. Protected FIX8 remains stable.
+- Verified the wrapper and module JavaScript syntax and checked that the wrapper loads the FIX86 module. Real-phone appearance/touch behavior still needs Osko's test.
+- Phone test link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX86-BOLD-BIBLE-READABLE-BUTTONS.html?v=86a`
+- Next: open Chrome OSKO → UPDATES → TEST UPDATE; inspect bold scripture and each larger control. Use KEEP UPDATE only if it looks and works right.
