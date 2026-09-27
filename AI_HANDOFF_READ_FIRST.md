@@ -794,3 +794,13 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 - Verified the wrapper and module JavaScript syntax and checked that the wrapper loads the FIX86 module. Real-phone appearance/touch behavior still needs Osko's test.
 - Phone test link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX86-BOLD-BIBLE-READABLE-BUTTONS.html?v=86a`
 - Next: open Chrome OSKO → UPDATES → TEST UPDATE; inspect bold scripture and each larger control. Use KEEP UPDATE only if it looks and works right.
+
+
+## 2026-09-26 — FIX87 Slide-Down Bible Page Turn
+
+- Preserved FIX86 and its bold scripture, larger controls, and top-corner page roll. Added a separate FIX87 test candidate for Osko's clarification that the sheet must sweep across onto the facing page and settle downward onto it, with the remaining page following.
+- The landing motion now carries each page strip across the binding toward the receiving page and lowers it onto the page surface during the final glide.
+- Added `TEST/bible-slide-down-landing-fix87.js` and `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX87-SLIDE-DOWN-BIBLE-TURN.html`.
+- Chrome TEST registry points to FIX87; it remains unconfirmed and non-stable. FIX8 remains stable, and FIX86 is preserved.
+- Wrapper and module syntax checks passed. Real-phone motion and readability still require Osko's test.
+- Test link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX87-SLIDE-DOWN-BIBLE-TURN.html?v=87a`
