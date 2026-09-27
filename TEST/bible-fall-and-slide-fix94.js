@@ -13,7 +13,7 @@ const root=document.getElementById('hq66');
 const css=document.createElement('style');
 css.id='hq85-style';
 css.textContent=`
-/* FIX94 — the whole page falls forward and slides onto the facing page; the top edge leads and the bottom follows. */
+/* FIX94 — the top rows glide inward first; twelve closely overlapped rows let the page follow smoothly to the bottom. */
 .bible66.fix94 .h74-stage{width:100%!important;display:flex!important;flex-direction:row!important;align-items:stretch!important;justify-content:center!important}
 .bible66.fix94 .h74-book{touch-action:pan-y!important;overflow:hidden!important;perspective:1900px!important;transform-style:preserve-3d!important;width:var(--h91-book-width,100%)!important;height:var(--h91-book-height,100%)!important;max-width:100%!important;max-height:100%!important;margin-inline:auto!important;transition:width .42s ease,height .42s ease!important;flex:none!important}
 .bible66.fix94 .h74-page{touch-action:pan-y!important}
@@ -36,8 +36,8 @@ css.textContent=`
 .h82-face.front{transform:translateZ(.35px)}
 .h82-face.back{transform:rotateY(180deg) translateZ(.35px);background:repeating-linear-gradient(0deg,#fffdf3 0 23px,#cdbb8f55 24px 25px),radial-gradient(ellipse at top,#fffef7,#eadfbe 75%,#c0a56e)}
 .h82-strip-content{position:absolute;top:0;height:100%;box-sizing:border-box;background:#fffdf2}
-.h82-paper-edge{position:absolute;z-index:49;top:0;width:4px;height:100%;border-radius:50%;background:linear-gradient(90deg,#7a5a2a,#fff8d9,#8b672f);box-shadow:0 0 7px #0008;pointer-events:none;will-change:transform}
-.h82-contact-shadow{position:absolute;z-index:45;top:0;width:38px;height:100%;pointer-events:none;background:linear-gradient(90deg,transparent,#0008,transparent);filter:blur(9px);opacity:0;will-change:transform,opacity}
+.h82-paper-edge{position:absolute;z-index:49;top:0;width:100%;height:4px;border-radius:50%;background:linear-gradient(180deg,#7a5a2a,#fff8d9,#8b672f);box-shadow:0 0 7px #0008;pointer-events:none;will-change:transform}
+.h82-contact-shadow{position:absolute;z-index:45;top:0;width:100%;height:28px;pointer-events:none;background:linear-gradient(180deg,transparent,#0008,transparent);filter:blur(7px);opacity:0;will-change:transform,opacity}
 .h82-finger-curl{position:absolute;z-index:51;display:none;width:42px;height:42px;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 35% 30%,#fffef4 0 18%,#e7d29b 42%,#75552a 76%,transparent 78%);filter:drop-shadow(0 8px 7px #0008);opacity:.92;will-change:transform}
 .h82-finger-curl.on{display:block}
 .bible66.fix94.h82-turning .h74-turn{opacity:0!important}
@@ -115,30 +115,38 @@ if(bible&&book&&next&&prev){
   const source=book.querySelector(side==='right'?'.h74-page.right':'.h74-page.left');if(!source)return false;
   const br=book.getBoundingClientRect(),sr=source.getBoundingClientRect();pageW=Math.max(120,sr.width);pageH=Math.max(180,sr.height);stripW=pageW;
   mesh.style.left=(sr.left-br.left)+'px';mesh.style.top=(sr.top-br.top)+'px';mesh.style.width=pageW+'px';mesh.style.height=pageH+'px';mesh.className='h82-page-mesh on '+side;mesh.innerHTML='';
-  const html=cleanPageHTML(source),sheet=document.createElement('div');sheet.className='h91-sheet';
-  const front=document.createElement('div');front.className='h82-face front';front.style.width=pageW+'px';front.style.height=pageH+'px';
-  const content=document.createElement('div');content.className='h82-strip-content';content.style.width=pageW+'px';content.style.height=pageH+'px';content.style.left='0';content.style.top='0';content.innerHTML=html;front.appendChild(content);
-  const back=document.createElement('div');back.className='h82-face back';back.style.width=pageW+'px';back.style.height=pageH+'px';
-  sheet.append(front,back);mesh.appendChild(sheet);strips=[{el:sheet,i:0,bandIndex:0}];
+  const html=cleanPageHTML(source),rowCount=12,rowHeight=pageH/rowCount,hinge=side==='right'?'100% 0%':'0% 0%';
+  strips=[];
+  for(let i=0;i<rowCount;i++){
+   const top=i*rowHeight,height=Math.ceil(rowHeight+1);
+   const sheet=document.createElement('div');sheet.className='h91-sheet h94-row';sheet.style.inset='auto';sheet.style.left='0';sheet.style.right='auto';sheet.style.top=top+'px';sheet.style.bottom='auto';sheet.style.width=pageW+'px';sheet.style.height=height+'px';sheet.style.transformOrigin=hinge;
+   const front=document.createElement('div');front.className='h82-face front';front.style.width=pageW+'px';front.style.height=height+'px';
+   const content=document.createElement('div');content.className='h82-strip-content';content.style.width=pageW+'px';content.style.height=pageH+'px';content.style.left='0';content.style.top=(-top)+'px';content.innerHTML=html;front.appendChild(content);
+   const back=document.createElement('div');back.className='h82-face back';back.style.width=pageW+'px';back.style.height=height+'px';
+   sheet.append(front,back);mesh.appendChild(sheet);strips.push({el:sheet,i,top,height});
+  }
   edge.hidden=false;grab.className='h82-finger-curl on';return true;
  }
  function renderCurl(p,y,landing=0){
   progress=clamp(p,0,1);dragY=clamp(y,-pageH*.2,pageH*.42);const sideSign=corner==='right'?-1:1;
-  const glide=smooth(progress),bend=Math.sin(progress*Math.PI),settled=smooth(clamp(landing,0,1));
-  const sheet=strips[0]&&strips[0].el;if(!sheet)return;
-  const sheetX=sideSign*pageW*glide;
-  const sheetY=dragY*(1-glide)-pageH*.025*bend+pageH*.10*settled;
-  const sheetZ=Math.min(10,pageW*.035)*bend;
-  const softFold=sideSign*bend*8;
-  const topLead=sideSign*bend*8.5;
-  const hinge=corner==='right'?'100% 0%':'0% 0%';
-  sheet.style.transformOrigin=hinge;
-  sheet.style.transform='translate3d('+sheetX.toFixed(2)+'px,'+sheetY.toFixed(2)+'px,'+sheetZ.toFixed(2)+'px) rotateZ('+topLead.toFixed(2)+'deg) rotateY('+softFold.toFixed(2)+'deg)';
-  sheet.style.filter='brightness('+(1-bend*.055).toFixed(3)+')';
-  const leadingX=corner==='right'?parseFloat(mesh.style.left)+pageW*(1-glide):parseFloat(mesh.style.left)+pageW*glide;
-  shadow.style.left=(leadingX-19)+'px';shadow.style.top=(parseFloat(mesh.style.top)+sheetY)+'px';shadow.style.height=pageH+'px';shadow.style.opacity=String(Math.min(.46,.08+progress*.28)*(1-settled*.82));shadow.style.transform='translateX('+(sideSign*sheetZ*.32)+'px)';
-  edge.style.left=(leadingX-2)+'px';edge.style.top=(parseFloat(mesh.style.top)+sheetY)+'px';edge.style.height=pageH+'px';edge.style.transform='rotateZ('+topLead.toFixed(2)+'deg)';
-  grab.style.opacity=String(.9*(1-settled));grab.style.transform='translate3d('+(leadingX-21)+'px,'+(parseFloat(mesh.style.top)+sheetY-15)+'px,36px) rotate('+(sideSign*(12+bend*16))+'deg) scale('+(0.82+progress*.16)+')';
+  const count=Math.max(1,strips.length),wave=Math.min(1,progress/.72)*pageH,meshLeft=parseFloat(mesh.style.left),meshTop=parseFloat(mesh.style.top);
+  let topGlide=0,topY=0;
+  for(const row of strips){
+   const fraction=count===1?0:row.i/(count-1),delay=.24*fraction;
+   const rowProgress=clamp((progress-delay)/(1-delay),0,1),glide=smooth(rowProgress),bend=Math.sin(rowProgress*Math.PI);
+   const rowLanding=smooth(clamp((landing-.22*fraction)/(1-.22*fraction),0,1));
+   const rowX=sideSign*pageW*glide;
+   const rowY=dragY*(1-glide)-pageH*.012*bend+pageH*.085*rowLanding;
+   const rowZ=Math.min(8,pageW*.026)*bend;
+   const fold=sideSign*bend*7,lead=sideSign*bend*1.1;
+   row.el.style.transform='translate3d('+rowX.toFixed(2)+'px,'+rowY.toFixed(2)+'px,'+rowZ.toFixed(2)+'px) rotateZ('+lead.toFixed(2)+'deg) rotateY('+fold.toFixed(2)+'deg)';
+   row.el.style.filter='brightness('+(1-bend*.04).toFixed(3)+')';
+   if(row.i===0){topGlide=glide;topY=rowY}
+  }
+  const leadingX=corner==='right'?meshLeft+pageW*(1-topGlide):meshLeft+pageW*topGlide;
+  shadow.style.left=meshLeft+'px';shadow.style.top=(meshTop+wave-14)+'px';shadow.style.width=pageW+'px';shadow.style.height='28px';shadow.style.opacity=String(Math.min(.42,.06+progress*.25)*(1-smooth(landing)*.8));shadow.style.transform='translateY('+(dragY*.12)+'px)';
+  edge.style.left=meshLeft+'px';edge.style.top=(meshTop+wave-2)+'px';edge.style.width=pageW+'px';edge.style.height='4px';edge.style.transform='rotateZ('+(sideSign*1.1)+'deg)';
+  grab.style.opacity=String(.9*(1-smooth(landing)));grab.style.transform='translate3d('+(leadingX-21)+'px,'+(meshTop+topY-15)+'px,36px) rotate('+(sideSign*11)+'deg) scale('+(0.82+topGlide*.16)+')';
  }
  function clearMesh(){
   cancelAnimationFrame(anim);anim=0;mesh.className='h82-page-mesh';mesh.innerHTML='';shadow.style.opacity='0';shadow.removeAttribute('style');edge.hidden=true;edge.removeAttribute('style');grab.className='h82-finger-curl';grab.removeAttribute('style');bible.classList.remove('h82-turning');strips=[];mode='idle';corner='';owner=null;progress=0;dragY=0;
