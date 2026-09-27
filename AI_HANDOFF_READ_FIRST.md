@@ -837,3 +837,13 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 6. Remaining uncertainty: phone visual/touch confirmation is pending. Do not mark FIX90 phone-confirmed or stable before Osko tests it.
 7. Next step: verify deployment and module delivery, then have Osko check that the full sheet folds forward and glides without a clap/snap. Preserve FIX89 for comparison and FIX8 as stable.
 8. Phone test URL: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX90-SMOOTH-SHEET.html?v=90a
+
+
+## 2026-09-27 — FIX91 Gentle Forward Fall and Slide
+
+1. Preserved FIX90 and created a separate FIX91 after Osko clarified that the page still looked like it was collapsing.
+2. Motion intent: keep the page broad as one continuous sheet. The top edge gently leads forward and slides into place on the receiving page; the rest of the sheet follows, with the bottom edge arriving last. The sheet should fold forward gently and settle, not pinch into a narrow shape or clap shut.
+3. Implementation checkpoint: branch `fix91-fall-forward-and-slide`; module `TEST/bible-fall-and-slide-fix91.js`; wrapper `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX91-FALL-AND-SLIDE.html`; release candidate `FIX91-FALL-FORWARD-AND-SLIDE`.
+4. Tests: module syntax passed; wrapper inline JavaScript parsed; checks confirm a single full-width sheet, a horizontal glide, and a gentle fold angle without strip segments.
+5. Stable FIX8 remains protected. FIX90 remains available for comparison. The release candidate is not phone-confirmed or stable; owner phone testing is still needed.
+6. Phone test URL: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX91-FALL-AND-SLIDE.html?v=91a
