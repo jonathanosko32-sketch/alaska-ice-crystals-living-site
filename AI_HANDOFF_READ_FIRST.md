@@ -869,3 +869,15 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 6. Remaining limit: browser voice recognition cannot reliably wake the site while Chrome is closed or the phone is locked. Chrome may require the one-time microphone permission again if its grant expires or is revoked. A true device-level hotword needs a native Android service.
 7. Next: test FIX93 on the Samsung phone—grant mic once; say “Hey SKIE, open HQ,” then “go upstairs,” “open the Bible,” and a passage; reload the OS and confirm it listens without tapping SKIE. Keep it test-only until owner confirmation.
 8. Phone-safe link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX93-HEY-SKIE-AUTO-START.html?v=93a
+
+
+## 2026-09-27 — FIX94 Top-Led Gentle Bible Landing Test
+
+1. Read before work: repository AI handoff rules, protected FIX8 release details, FIX91's broad single-sheet page-turn module, FIX93's integrated voice/HQ/Bible wrapper, and current phone update registry. Osko specified the motion: pull from the top; the page folds forward and lays down onto the next page; the top slides into place, then the rest follows smoothly and the bottom arrives last.
+2. Changed: created an isolated FIX94 candidate from the integrated FIX93 build. FIX94 retains the broad one-piece sheet, reduces the mid-turn side fold, makes the grabbed top corner's lead more visible, and gives the sheet a gentler downward landing. Voice control, HQ rooms, Bible text, and phone controls carry forward unchanged.
+3. Exact candidate: TEST/bible-fall-and-slide-fix94.js; TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX94-TOP-LED-GENTLE-LANDING.html; candidate ID FIX94-TOP-LED-GENTLE-LANDING; GitHub Pages URL: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX94-TOP-LED-GENTLE-LANDING.html?v=94a
+4. Tests: module syntax passed; wrapper inline JavaScript parse and module-reference checks passed; the single broad page sheet is preserved. This still needs a real touch/visual check on Osko's phone; AI-side preview cannot confirm whether the tactile direction matches his explanation.
+5. Protected/not changed: stable FIX8, prior FIX91/FIX93 files, HQ artwork/room layout, voice module, Bible content, and shirt/site assets. FIX94 is test-only (phoneConfirmed:false, stable:false); do not promote it.
+6. Remaining uncertainty: phone test must confirm that the page visibly folds forward and lays down as one sheet, with the top leading and bottom following, without collapsing/clapping. HQ improvement is not specified yet; keep the current HQ design and ask Osko which room or part of the house he wants improved first.
+7. Next: open the FIX94 URL on Android, turn pages in both directions, and compare top lead and bottom follow-through. Keep or reject only on Osko's feedback. After that ask which HQ area to improve first.
+8. Stable recovery: TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX8.html. Earlier candidate FIX93: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX93-HEY-SKIE-AUTO-START.html?v=93a
