@@ -881,3 +881,8 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 6. Remaining uncertainty: phone test must confirm that the page visibly folds forward and lays down as one sheet, with the top leading and bottom following, without collapsing/clapping. HQ improvement is not specified yet; keep the current HQ design and ask Osko which room or part of the house he wants improved first.
 7. Next: open the FIX94 URL on Android, turn pages in both directions, and compare top lead and bottom follow-through. Keep or reject only on Osko's feedback. After that ask which HQ area to improve first.
 8. Stable recovery: TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX8.html. Earlier candidate FIX93: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX93-HEY-SKIE-AUTO-START.html?v=93a
+
+
+### FIX94 direction clarification — 2026-09-27
+
+Osko clarified that the page's top edge/corner must travel inward onto the receiving page, never fold or lift outward away from it. The whole broad sheet follows through smoothly after that leading top edge, with the bottom arriving last. In FIX94, the leaf translates inward across the center seam (`sheetX` moves the right leaf left and the left leaf right); preserve that inward direction when tuning the motion. The phone test is still required to confirm the visual feel.
