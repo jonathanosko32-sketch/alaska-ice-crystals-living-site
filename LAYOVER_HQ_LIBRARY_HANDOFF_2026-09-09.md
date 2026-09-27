@@ -317,3 +317,15 @@ This section supersedes the earlier unconfirmed phone assumptions above. Read it
 6. Remaining uncertainty: no visual/touch test has yet been confirmed on Osko's phone. The prior FIX88 GitHub Pages link returned 404; confirm FIX89 wrapper and module are served before asking Osko to test. Do not mark the candidate phone-confirmed or stable.
 7. Next step: verify the published FIX89 test URL and module return successfully, then Osko tests the top-corner-first motion and bottom follow-through in Chrome. Keep/reject only on Osko's direction; FIX8 remains stable.
 8. Phone test URL: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX89-FORWARD-FOLLOWTHROUGH.html?v=89a
+
+
+## 2026-09-26 — FIX90 Smooth Forward-Fold Whole-Sheet Glide
+
+1. Inspected before work: current FIX89 wrapper/module, protected FIX8 baseline, required OSKO handoffs, and Chrome release registry.
+2. Changed: created a separate FIX90 test after Osko said the turn was close but still looked like it clapped/snapped. The turn now uses one continuous sheet instead of five independently landing vertical bands. The outer top corner leads the forward sweep; the full sheet, including its bottom edge, follows into the same smooth landing.
+3. Exact checkpoint: branch `fix90-smooth-forward-sheet-glide`; module `TEST/bible-smooth-sheet-fix90.js`; wrapper `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX90-SMOOTH-SHEET.html`; candidate id `FIX90-SMOOTH-FORWARD-SHEET-GLIDE`.
+4. Tested: module passes `node --check`; wrapper inline JavaScript parses; wrapper-to-module reference and single-sheet geometry checks pass; release registry JSON validates.
+5. Protected/not changed: FIX8 stable, FIX86–FIX89 candidates, Bible text/buttons/verse features, owner keep/reject/rollback flow, and non-Bible world features.
+6. Remaining uncertainty: phone visual/touch confirmation is pending. Do not mark FIX90 phone-confirmed or stable before Osko tests it.
+7. Next step: verify deployment and module delivery, then have Osko check that the full sheet folds forward and glides without a clap/snap. Preserve FIX89 for comparison and FIX8 as stable.
+8. Phone test URL: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX90-SMOOTH-SHEET.html?v=90a
