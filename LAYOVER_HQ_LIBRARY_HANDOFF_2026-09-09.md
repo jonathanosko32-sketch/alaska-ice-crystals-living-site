@@ -339,3 +339,13 @@ This section supersedes the earlier unconfirmed phone assumptions above. Read it
 - Registry candidate: `FIX91-FALL-FORWARD-AND-SLIDE`; owner confirmation pending. FIX8 stays stable and unchanged; FIX90 is preserved.
 - Syntax, wrapper parsing, motion geometry, and registry JSON checks passed. Visual/touch confirmation must come from Osko on the phone.
 - Test URL: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX91-FALL-AND-SLIDE.html?v=91a
+
+
+## 2026-09-26 — FIX92 Hey SKIE voice-control test
+
+- Added a phone test based on FIX91 with voice commands wired to the existing HQ and KJV Bible controls.
+- Tap the SKIE voice panel once to enable speech recognition and grant microphone access, then say “Hey SKIE.” Commands: open HQ; upstairs/downstairs; open Bible; next/previous page; go to page N within the current chapter; or name a book, chapter, and verse.
+- On a specific scripture request, voice selection loads that book/chapter and locates the verse in the reader. The first tap is required by Chrome's microphone permission flow. Background/screen-locked listening remains unverified and is not promised.
+- Files: `TEST/skie-voice-control-fix92.js` and `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX92-HEY-SKIE-VOICE.html`.
+- Syntax and spoken-reference parser checks passed. The page has not yet been tested with a real phone microphone. FIX8 remains stable; FIX91 is preserved; FIX92 awaits owner confirmation.
+- Test link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX92-HEY-SKIE-VOICE.html?v=92a
