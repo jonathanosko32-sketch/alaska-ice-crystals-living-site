@@ -896,3 +896,8 @@ At Osko's request, revised the untested FIX94 candidate so the turn visibly lead
 ### FIX94 incoming-page reveal update — 2026-09-27
 
 Osko asked for the page underneath to become visible during the turn, while the old sheet slides away. FIX94 now advances the underlying Bible spread at the start of a committed turn; the existing Bible renderer's 820 ms transition delay lets the incoming spread render during the custom top-to-bottom inward slide. The copied old-page rows remain above it and slide away, revealing the newly rendered spread. The old end-of-animation click was removed, so the spread is not advanced twice. Updated cache-busted test link ends ?v=94c. This still requires touch testing on Osko's phone; do not promote to stable.
+
+
+### FIX94 tactile turn description clarified — 2026-09-27
+
+Osko said FIX94 was close and clarified the physical feel: while reading, a relaxed finger gently catches the top of the page and pulls it inward to the next page. The top edge touches the receiving page, slides onto it, and a rolling motion travels through the rest of the sheet until the bottom follows. Preserve the gentle fingertip start, top-first contact, inward slide, and continuous roll-down; avoid a stiff button-like flip, outward fold, clap, or collapse. FIX94 already stages the inward movement from top to bottom; this note records the intended tactile feel for phone review and any later tuning.
