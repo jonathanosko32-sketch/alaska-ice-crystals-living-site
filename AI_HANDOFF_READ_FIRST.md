@@ -813,3 +813,15 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 - Preserved bold scripture and enlarged reader controls. Added `TEST/bible-stronger-down-settle-fix88.js` and `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX88-STRONGER-SLIDE-DOWN.html`.
 - Chrome TEST registry points to FIX88; phone confirmation is still required. FIX8 remains stable; FIX87 is preserved.
 - Wrapper and module syntax checks passed. Real-phone motion still requires Osko's test.
+
+
+## 2026-09-26 — FIX89 Forward Fold with Bottom Follow-Through
+
+1. Inspected before work: required OSKO handoffs, protected FIX8 baseline, current FIX88 module/wrapper, and the Chrome phone release registry.
+2. Changed: added an isolated FIX89 Bible page-turn candidate. The outer top corner leads forward across the binding; five horizontal page bands follow in sequence from top to bottom, then settle onto the receiving page with one shared downward landing. Bold scripture, enlarged controls, verse features, and the existing HQ content remain included.
+3. Exact checkpoint: branch `fix89-forward-fold-bottom-follows`; module `TEST/bible-forward-followthrough-fix89.js`; wrapper `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX89-FORWARD-FOLLOWTHROUGH.html`; candidate release id `FIX89-FORWARD-FOLD-BOTTOM-FOLLOWS`.
+4. Tested: module passes `node --check`; wrapper inline JavaScript parses; wrapper-to-module reference, five-band ordering, gradual top-to-bottom landing, and JSON release registry checks pass.
+5. Protected/not changed: stable FIX8, FIX86–FIX88 files/builds, owner keep/reject/rollback flow, truck/world design, and all non-Bible features.
+6. Remaining uncertainty: no visual/touch test has yet been confirmed on Osko's phone. The prior FIX88 GitHub Pages link returned 404; confirm FIX89 wrapper and module are served before asking Osko to test. Do not mark the candidate phone-confirmed or stable.
+7. Next step: verify the published FIX89 test URL and module return successfully, then Osko tests the top-corner-first motion and bottom follow-through in Chrome. Keep/reject only on Osko's direction; FIX8 remains stable.
+8. Phone test URL: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX89-FORWARD-FOLLOWTHROUGH.html?v=89a
