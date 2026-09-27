@@ -160,13 +160,15 @@ if(bible&&book&&next&&prev){
   renderCurl(inward/(pageW*.88),down);lastX=e.clientX;lastT=performance.now();
  }
  function settle(commit){
-  const from=progress,to=commit?1:0,fromY=dragY,duration=commit?glideMs:420,start=performance.now(),side=corner;
+  const from=progress,fromY=dragY,duration=commit?glideMs:420,start=performance.now(),side=corner;
   mode='animating';
+  // Advance the underlying spread as the turn starts. Its built-in 820ms transition delay lets the new page appear beneath the old sheet while it is sliding away.
+  if(commit)(side==='right'?next:prev).click();
   function frame(now){const t=clamp((now-start)/duration,0,1);let p,y,landing=0;
    if(commit){const a=smooth(t);p=from+(1-from)*a;y=fromY*(1-a);landing=smooth(clamp((t-.34)/.66,0,1))}
    else{const a=smooth(t);p=from*(1-a);y=fromY*(1-a)}
    renderCurl(p,y,landing);if(t<1){anim=requestAnimationFrame(frame);return}
-   if(commit){if(navigator.vibrate)navigator.vibrate(18);(side==='right'?next:prev).click()}clearMesh();if(status)status.textContent='KING JAMES VERSION • REAL FINGERTIP PAGE ROLL • PINCH TO ENLARGE';
+   if(commit&&navigator.vibrate)navigator.vibrate(18);clearMesh();if(status)status.textContent='KING JAMES VERSION • TOP-LED INWARD PAGE GLIDE • PINCH TO ENLARGE';
   }anim=requestAnimationFrame(frame);
  }
  function isBookTarget(t){return !!(t&&t.closest&&t.closest('#h74-open-book'))}
