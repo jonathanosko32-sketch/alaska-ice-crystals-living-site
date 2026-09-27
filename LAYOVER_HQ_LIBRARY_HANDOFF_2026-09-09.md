@@ -349,3 +349,15 @@ This section supersedes the earlier unconfirmed phone assumptions above. Read it
 - Files: `TEST/skie-voice-control-fix92.js` and `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX92-HEY-SKIE-VOICE.html`.
 - Syntax and spoken-reference parser checks passed. The page has not yet been tested with a real phone microphone. FIX8 remains stable; FIX91 is preserved; FIX92 awaits owner confirmation.
 - Test link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX92-HEY-SKIE-VOICE.html?v=92a
+
+
+## 2026-09-26 — FIX93 Hey SKIE auto-start test
+
+1. Read before work: the current SKIE and robot master records in Google Drive, the current Layover handoff, repository continuity rules, and the existing FIX92 voice candidate. Google Docs' trusted-read bridge returned an error before a full structural read, so the Drive handoff was not edited.
+2. Changed: added an isolated FIX93 voice module and test shell. After the owner grants microphone permission and recognition successfully starts once, FIX93 saves the opt-in. On later OS page opens it attempts to start listening automatically, without tapping the SKIE panel. Voice can be toggled off; foreground visibility is required and listening resumes when the page returns to the screen.
+3. Exact candidate: branch `fix93-voice-auto-start`; `TEST/skie-voice-control-fix93.js`; `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX93-HEY-SKIE-AUTO-START.html`; phone registry candidate FIX93. FIX8 remains stable.
+4. Tested: `node --check` passed. A mocked browser test verified first-run setup, saving permission after listening starts, and automatic listening on the next page load without a tap. Real Samsung/Chrome microphone behavior has not been tested.
+5. Protected: FIX8 stable and prior FIX92/FIX91 test files remain unchanged; Bible, HQ, yard, Aurora, truck and other artwork were not changed.
+6. Remaining limit: browser voice recognition cannot reliably wake the site while Chrome is closed or the phone is locked. Chrome may require the one-time microphone permission again if its grant expires or is revoked. A true device-level hotword needs a native Android service.
+7. Next: test FIX93 on the Samsung phone—grant mic once; say “Hey SKIE, open HQ,” then “go upstairs,” “open the Bible,” and a passage; reload the OS and confirm it listens without tapping SKIE. Keep it test-only until owner confirmation.
+8. Phone-safe link: https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX93-HEY-SKIE-AUTO-START.html?v=93a
