@@ -804,3 +804,12 @@ Starting from the confirmed FIX42 cabin checkpoint, FIX43 added only the version
 - Chrome TEST registry points to FIX87; it remains unconfirmed and non-stable. FIX8 remains stable, and FIX86 is preserved.
 - Wrapper and module syntax checks passed. Real-phone motion and readability still require Osko's test.
 - Test link: `https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX87-SLIDE-DOWN-BIBLE-TURN.html?v=87a`
+
+
+## 2026-09-26 — FIX88 Stronger Downward Bible Landing
+
+- Preserved FIX87 and created FIX88 after Osko said the revised turn was closer but not quite finished.
+- Kept the sweep across the binding and increased the staggered downward settle: the outer top corner contacts first; the landing wave follows it across the binding. The upper sheet section lowers 11% of page height, then the remaining section lowers 19%, so the leaf glides down onto the facing page instead of flipping straight over.
+- Preserved bold scripture and enlarged reader controls. Added `TEST/bible-stronger-down-settle-fix88.js` and `TEST/OSKO-Living-OS-FIRST-BUILD-v1-FIX88-STRONGER-SLIDE-DOWN.html`.
+- Chrome TEST registry points to FIX88; phone confirmation is still required. FIX8 remains stable; FIX87 is preserved.
+- Wrapper and module syntax checks passed. Real-phone motion still requires Osko's test.
