@@ -93,8 +93,9 @@ function openHQ(upstairs=true){
  return true;
 }
 function openUpstairs(){return openHQ(true)}
-function openBible(){
+function openBible(loadReader=true){
  openUpstairs();const btn=['h74-desk-book','h73-desk-bible','h72-bible','h69-bible','h72-bible'].map(id=>document.getElementById(id)).find(Boolean);
+ if(!loadReader&&bible){bible.classList.add('open');syncVisibility();return true}
  if(btn){btn.click();return true}return false;
 }
 async function goToPage(n){
@@ -109,7 +110,7 @@ async function runCommand(raw){
  const text=normalize(wordsToNumbers(raw));
  if(/\b(stop listening|turn off voice|voice off|goodbye skie)\b/.test(text)){stopListening();return}
  const ref=parseReference(text);
- if(ref){openBible();await wait(150);if(setChapterAndVerse(ref))speak('Opening '+ref.book+' '+ref.chapter+':'+ref.verse+'.');else speak('I could not open that passage.');return}
+ if(ref){openBible(false);await wait(80);if(setChapterAndVerse(ref))speak('Opening '+ref.book+' '+ref.chapter+':'+ref.verse+'.');else speak('I could not open that passage.');return}
  const page=text.match(/\b(?:go to )?page\s+(\d+)\b/);
  if(page){const result=await goToPage(Number(page[1]));speak(result===true?'Moved to page '+page[1]+'.':result==='out-of-range'?'That page number is outside this chapter. Say a book, chapter, and verse.':'Open the Bible first, then ask for a page.');return}
  const asksBuilding=/\b(open|show|take me to)\b/.test(text)&&/\b(building|house|headquarters|hq|home)\b/.test(text);
