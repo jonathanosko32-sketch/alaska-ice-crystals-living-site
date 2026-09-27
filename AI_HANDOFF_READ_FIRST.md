@@ -891,3 +891,8 @@ Osko clarified that the page's top edge/corner must travel inward onto the recei
 ### FIX94 coded motion update — 2026-09-27
 
 At Osko's request, revised the untested FIX94 candidate so the turn visibly leads inward at the top and follows down the page. The broad leaf is rendered as twelve closely overlapped horizontal rows. Their inward glide is staggered smoothly from top to bottom; the right page moves left across the center seam and the left page moves right. The old stable FIX8 is unchanged. Candidate link is now cache-busted with `?v=94b`. Phone testing is still pending; do not promote based on code checks alone.
+
+
+### FIX94 incoming-page reveal update — 2026-09-27
+
+Osko asked for the page underneath to become visible during the turn, while the old sheet slides away. FIX94 now advances the underlying Bible spread at the start of a committed turn; the existing Bible renderer's 820 ms transition delay lets the incoming spread render during the custom top-to-bottom inward slide. The copied old-page rows remain above it and slide away, revealing the newly rendered spread. The old end-of-animation click was removed, so the spread is not advanced twice. Updated cache-busted test link ends ?v=94c. This still requires touch testing on Osko's phone; do not promote to stable.
