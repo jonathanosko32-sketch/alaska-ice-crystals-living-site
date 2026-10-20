@@ -10,14 +10,14 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "HOUSE-v103",
-    "label": "v103 • SKIE • 3D JOINT PROTOTYPE",
-    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-HOUSE-v101.html?v=103",
+    "id": "HOUSE-v104",
+    "label": "v104 • STARTUP & UPDATES FIX",
+    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-HOUSE-v101.html?v=104",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
     "requiresOwnerConfirmation": true,
     "dataSchema": 1,
-    "houseUrl": "https://osko-private-hq.oskoicecrystals.chatgpt.site/?v=103#basement"
+    "houseUrl": "https://osko-private-hq.oskoicecrystals.chatgpt.site/?v=104#basement"
   }
 }
