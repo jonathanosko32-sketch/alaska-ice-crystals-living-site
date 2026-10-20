@@ -10,14 +10,14 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "HOUSE-v107",
-    "label": "v107 • SKIE • SKELETON & JOINTS",
-    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-HOUSE-v101.html?v=107",
+    "id": "HOUSE-v108",
+    "label": "v108 • SKIE • FACE & HEAD",
+    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-HOUSE-v101.html?v=108",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
     "requiresOwnerConfirmation": true,
     "dataSchema": 1,
-    "houseUrl": "https://osko-private-hq.oskoicecrystals.chatgpt.site/?v=107#basement"
+    "houseUrl": "https://osko-private-hq.oskoicecrystals.chatgpt.site/?v=108&workshop=skie&view=head#basement"
   }
 }
