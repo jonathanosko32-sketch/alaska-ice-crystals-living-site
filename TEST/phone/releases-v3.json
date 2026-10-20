@@ -10,14 +10,14 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "HOUSE-v105",
-    "label": "v105 • PHONE HOUSE • NO SIGN-IN",
-    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-HOUSE-v101.html?v=105",
+    "id": "HOUSE-v106",
+    "label": "v106 • ROBOTS • PHONE ACCESS",
+    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-HOUSE-v101.html?v=106",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
     "requiresOwnerConfirmation": true,
     "dataSchema": 1,
-    "houseUrl": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/SKIE-HOUSE-v100.html?v=phone105"
+    "houseUrl": "https://osko-private-hq.oskoicecrystals.chatgpt.site/?v=106#basement"
   }
 }
