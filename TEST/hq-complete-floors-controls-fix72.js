@@ -15,7 +15,7 @@ try{
       pd.head.appendChild(ps);
     }
     const panel=pd.getElementById('panel');
-    if(panel)setTimeout(()=>panel.classList.remove('show'),350);
+    // Keep the owner's Updates panel open while the world finishes loading.
   }
 }catch(_){}
 
