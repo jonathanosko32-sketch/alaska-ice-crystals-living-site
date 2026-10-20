@@ -41,7 +41,7 @@ function label(){const title=root.querySelector('.h69-title span');if(title)titl
 ['h69-down-tab','h69-up-tab','h69-stairs','h69-switch'].forEach(id=>document.getElementById(id)?.addEventListener('click',()=>requestAnimationFrame(label)));
 document.querySelector('.hq-standalone-nav')?.remove();
 const up=root.querySelector('#h69-up');if(up)new MutationObserver(label).observe(up,{attributes:true,attributeFilter:['class']});label();
-function open(){if(!document.body.classList.contains('house-only')){window.top.location.href=new URL('./SKIE-HOUSE-v99.html?v=99b',location.href).href;return}root.classList.add('open');document.getElementById('h69-up-tab')?.click()}
+function open(){if(!document.body.classList.contains('house-only')){window.top.location.href=new URL('./SKIE-HOUSE-v100.html?v=100a',location.href).href;return}root.classList.add('open');document.getElementById('h69-up-tab')?.click()}
 window.OSKO_HQ_OPEN=open;
 document.addEventListener('click',e=>{const button=e.target.closest?.('.chip');if(button?.textContent.trim().toUpperCase()==='OPEN'&&/Alaska Ice Crystals HQ/i.test(document.getElementById('ptitle')?.textContent||'')){e.preventDefault();e.stopImmediatePropagation();open()}},true);
 if(document.body.classList.contains('house-only')){open();for(const id of ['h69-yard','h69-yard-top']){const b=document.getElementById(id);if(b){b.textContent='LIVING OS';b.onclick=()=>location.href='./OSKO-Living-OS-HOUSE-READY-v97.html'}}}else{const b=document.createElement('button');b.className='hq-house-shortcut';b.textContent='SKIE’s House';b.addEventListener('click',open);document.body.appendChild(b)}
