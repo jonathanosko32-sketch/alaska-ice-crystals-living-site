@@ -1,0 +1,1 @@
+(()=>{'use strict';if(!document.getElementById('hq66')){const root=document.createElement('section');root.id='hq66';root.setAttribute('aria-label','SKIE’s Headquarters home');document.body.appendChild(root)}})();
