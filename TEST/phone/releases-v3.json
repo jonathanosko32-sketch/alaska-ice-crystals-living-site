@@ -10,14 +10,14 @@
     "dataSchema": 1
   },
   "candidate": {
-    "id": "HOUSE-v101",
-    "label": "v101 • HQ • FOUR ROBOTS",
-    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-HOUSE-v101.html?v=101",
+    "id": "HOUSE-v102",
+    "label": "v102 • FOUR ROBOTS • HOUSE ENTRY FIX",
+    "url": "https://jonathanosko32-sketch.github.io/alaska-ice-crystals-living-site/TEST/OSKO-Living-OS-HOUSE-v101.html?v=102",
     "enabled": true,
     "phoneConfirmed": false,
     "stable": false,
     "requiresOwnerConfirmation": true,
     "dataSchema": 1,
-    "houseUrl": "https://osko-private-hq.oskoicecrystals.chatgpt.site/"
+    "houseUrl": "https://osko-private-hq.oskoicecrystals.chatgpt.site/#basement"
   }
 }
